@@ -826,6 +826,7 @@
       .shell {
         width: min(calc(100% - 16px), var(--content-width));
         padding: 10px 0 16px;
+        align-items: flex-start;
       }
 
       .hero-panel {
@@ -2092,6 +2093,7 @@
         if (comingNameInput) comingNameInput.value = fullName;
 
         document.body.classList.remove("lock-open");
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
       } catch (error) {
         alert(translations[currentLanguage].verifyErrorAlert);
       } finally {
