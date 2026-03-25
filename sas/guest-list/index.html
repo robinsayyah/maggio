@@ -966,13 +966,11 @@
           </div>
 
           <div class="group-card">
-            <div class="group-card-header">
-            </div>
             <div class="group-card-content">
               <div class="details">
                 <div class="detail-row">
                   <div class="detail-label">Tid</div>
-                  <div class="detail-value">14 augusti 2026, kl. 17:00</div>
+                  <div class="detail-value">14 augusti 2026, kl. 17:30 - 22:00</div>
                 </div>
 
                 <div class="detail-row">
@@ -1209,563 +1207,458 @@
 
   <script>
     const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbxwy976pH_JStcwrDtu0XXRVwrhkdOF7blIDU1HQP8MUYb0mOQwtD2fdRNunYMc5VgsqQ/exec";
-    const inviteRecords = [
-      {
-        salt: "IfM2WU7fPlD0DWHgvNcvdQ==",
-        verifier: "J9z6EW8sHfEg+JvGvl//+1pH02hHnqvlRASXEg2Z78M=",
-        name: "vu8h8id8utM07nej"
-      },
-      {
-        salt: "XqgEC7lQ5+sTCkz2N+kiGg==",
-        verifier: "4TC+wlHm/ilZQQ0KVm6xQmN879TV8XgoKfo1tBb3nRk=",
-        name: "CF6H2M7usWPUb4Fy"
-      },
-      {
-        salt: "0SCoVP7NIWIrdfgCOpGvng==",
-        verifier: "HW3mLAcfu8Qm0UWLUHJ0xddRG+CKNgOEcaJVavowGjE=",
-        name: "Aj0j5mAXXEceqaxoT4idkGSNrcU="
-      },
-      {
-        salt: "T1wJHf8v3cEWYSiLecsslg==",
-        verifier: "UyN2Firl8CpiRHWlcb2kU4lR0jTd2U9fKKN2lnnUjgg=",
-        name: "ywva9Eoa9rTuqm7Nx/E="
-      },
-      {
-        salt: "lQjjq1ehrBfYpMK3c84wuA==",
-        verifier: "ZbNAREzySt5g0GsE8gFDxi+bI19//Ymt6RShpbihloI=",
-        name: "aphIRNlwPx6CZtfS7eYkBFQt"
-      },
-      {
-        salt: "ouOp+yICXzx3qCg9BmCQrA==",
-        verifier: "J1eLTnlfwWV6V4TKSRCVTk3A3E7saa8dvRfJIWsZTJs=",
-        name: "I5X0CihXCiuCdj+BS9o="
-      },
-      {
-        salt: "JNwzlGAJPVWLlbV1fLHrrg==",
-        verifier: "+W+l219G4g/nEjFKWRYCy5V7buNp+8oSOjQdiOu3kxc=",
-        name: "UdS2AHtdSja8YeE="
-      },
-      {
-        salt: "XTXt4/T13JKxQ73yX10Q4Q==",
-        verifier: "Yduyk4o4qJ759i9h58+yqZrOkC2KVh0/YVUWcwFLNoo=",
-        name: "iTnEpmIxJT5A0Jmr98RjorE="
-      },
-      {
-        salt: "aaPVvKwA1zHD6oXtJiGXWQ==",
-        verifier: "FPzWiHs+lSfutpwatFPsTpa2Y03IewLOeMjMcNlcwqs=",
-        name: "680UFMeJvKgm2DMdIZgF"
-      },
-      {
-        salt: "IRApko9DZ5RkDQvBkJxRrg==",
-        verifier: "d9YG3kHd/ML3TIkJqjG6BkySVxjT/BXanX7kpFHzy3U=",
-        name: "QUkHlqssdY7Av3faZraH"
-      },
-      {
-        salt: "ewExdwNFTUaBsD/KTXevpw==",
-        verifier: "c2mY1j74iPraBewNF3u6iiR6FEYoZii+/9noDgUPN+E=",
-        name: "snDgKPiTRiO7hBl65/M="
-      },
-      {
-        salt: "enBBWCslpysCNI4x1Kk+TA==",
-        verifier: "oaRqpioXYXPnKopRW7N1JmBevAGh28yYQTw51eNzRl4=",
-        name: "8qXPQ2j6oOgK8Lb5pAbx"
-      },
-      {
-        salt: "mh+5vPh+1wUqqIKJTWdV4g==",
-        verifier: "C9QUlCwDJAScYkq9zncMykGeZE/TiXyK8+HRSsORcGw=",
-        name: "i59JaT4tbfDQ4f6yJaw="
-      },
-      {
-        salt: "/9vPSM2qf+7gqO8bjPzraA==",
-        verifier: "JcIG75VwYiGgWXG1LLQZVumbdCmNxOvvbjS4kThBB0g=",
-        name: "7NeSrUhPezRBrC28jGacZhI="
-      },
-      {
-        salt: "wnWlk/xpo9asPYxFXBHwpw==",
-        verifier: "RDgwtGeP5aHjCCvDDJtGIFZXxL3KyfHpTqJ5pCkstkQ=",
-        name: "eeBT45D8VguMug1EGUPuEgU="
-      },
-      {
-        salt: "CjcMw5oFj6UpgvhVtgYjjg==",
-        verifier: "AXdP39l+QTgbV0CUF+STsmL1p/tdh5KhC1hGqi6Oc6k=",
-        name: "KcpkQYWz376qvzdlGucr0VKxLQ=="
-      },
-      {
-        salt: "So/UmsBFzf5ilWQrlxzxKw==",
-        verifier: "v2n4Bj0XrQ+43kLHJKn6ZlHFdIbNadqyYg7yQn3F8sE=",
-        name: "cQwmGgRNBAIWBmWu7B0j344iJg=="
-      },
-      {
-        salt: "6BosSOTl+Jt+Yq/NiroRHQ==",
-        verifier: "eQd6GbFDmz8UV9ihRdQw2qYIRW27lUpwWBCjj5tWE8s=",
-        name: "nSPh2jhq9dOrAHDTwg=="
-      },
-      {
-        salt: "9gyHBxTHDwHG0C/ZNJ/JsA==",
-        verifier: "J6QyPS6CAUwPva87Gcfq1v6AGUYjN8QrWMCceIfcscs=",
-        name: "i5U8ljdXW5HAOWcCfWmKhQ=="
-      },
-      {
-        salt: "JsFcbejuWCvcd+DTYlpctw==",
-        verifier: "5dWzrN+uFSqj6f+vS+X/QA7YRwLKjtOPJ2YNa8sTXOc=",
-        name: "wipF2Vsu78sbSONcH0c="
-      },
-      {
-        salt: "G3LawxMfIRd2ED7eRl+9xA==",
-        verifier: "lDksY6dCGZnWbmoThLmUcjjQaI88Qd/OXUTonPER7g0=",
-        name: "96o1MmFL11LBpjrGfqg="
-      },
-      {
-        salt: "SD6VxDMbGxOM13PL1Icg5A==",
-        verifier: "YeBj9zC7UpZVkPJUb4W/33NWgEc5As5z563MryOr/N8=",
-        name: "5F3dai2MevYLrc6w"
-      },
-      {
-        salt: "shj3ovohGUIQp7Kil7pVkw==",
-        verifier: "9l6jkSTW8BOe9ohjvEMWuf0yegVlSr8bdTKGW05d1Fc=",
-        name: "8OLk0b7jHeOHuUNeCA=="
-      },
-      {
-        salt: "KSuLaUIB2eEhq3fNt59IEw==",
-        verifier: "DP5f+s/LmBKcsg/Kx+z5b+f276rHXsGT5RCTLDwIqM8=",
-        name: "wJszPgIfA2lR5V7x"
-      },
-      {
-        salt: "kxedh7kcEI7g0RKduRHokA==",
-        verifier: "jVCHGrUL/yLVDPo4EbdX29NRDEXpJ3dSaAD8lg5s2eE=",
-        name: "DeiRL/79D1bhWWTyuA=="
-      },
-      {
-        salt: "PaYAzrzlYRpDMpBiq+KXcA==",
-        verifier: "DWaMwrBoPq/mx5bG5fp22nEZDjQrRxEUSYBRlZkRKig=",
-        name: "11dmXJmvXsZ4"
-      },
-      {
-        salt: "uH00nZB2sBvGTBnHVfaHjQ==",
-        verifier: "A47YB1F2popckWbLQrPyduFR2gLheR7mxwEpuq2XsmQ=",
-        name: "zjTl+VJTBp8="
-      },
-      {
-        salt: "NTRa6+JS0exGNXTrCnr8gA==",
-        verifier: "n+uXehKKTwDGxixAFCXWEtO10WVUi34di1ZCwAQM3wo=",
-        name: "S0tq47/qe7kTgQ+e"
-      },
-      {
-        salt: "JPIaVgAbCHeUmYH1az8MxA==",
-        verifier: "YJQVqXcAV22dqgs2GFxYz9h+SZZ8QIAHkolp/hsnR8g=",
-        name: "B6syqfogWoPU"
-      },
-      {
-        salt: "PxwzwN9EKlu747ATDtfwwQ==",
-        verifier: "qRZdOqlnFi8M6BSeZGBpIj5AzIEqthMJw85I3S0v4rs=",
-        name: "PYOMMtY2Bsakqt80kD0="
-      },
-      {
-        salt: "3Y/Qn+/uk3QPpDz1P1ERFg==",
-        verifier: "JBRIx4MeuG5P01INxa3+gjNOicAw9Et7+ExZ5WELffM=",
-        name: "dm22aYWC2u3WVgAzB3K4asg="
-      },
-      {
-        salt: "7wu9Nnxx2LqfxwTPvgukBw==",
-        verifier: "J+WnhVvNG4AFp7V8PRcZK6LAB72u55FnDPTlUXn7ytE=",
-        name: "RHVDjCGTGOf1MFLP"
-      },
-      {
-        salt: "sSjE4Z/VcPMDmN0iXph02A==",
-        verifier: "/LhD2B3vyQhrshgkN5sLJa5OLf0QgDQs+Z1AZFUS7fU=",
-        name: "CIStYqQJixYrUJ2TEs6j20M51g=="
-      },
-      {
-        salt: "TKVgXsP1zua4cIUUUWl//Q==",
-        verifier: "n4q2uf+1lS7mVhd4Ck4Raepqj/MuaSjSF38FR9rUQ2A=",
-        name: "OLfJVqNxbn6MTjfKytCKG517bng="
-      },
-      {
-        salt: "KpafDsP+96xVYW6dIcL+JA==",
-        verifier: "IsNKHb9o2GORCN9fBjIM1ooriDTp7tcTLVHoXOCGzpY=",
-        name: "QHvsplxb10/hGHp9Tg=="
-      },
-      {
-        salt: "QlaMsNdBekMNe9LRLeRDtQ==",
-        verifier: "qkJxSjsC/cpdcndRJSfTh83trMDbFSzEBSQa1R0nvSY=",
-        name: "0ztTVNcZU/Q2GxJ0/6FG+w=="
-      },
-      {
-        salt: "zDm/sUGTJT9wSxMzDUxJwQ==",
-        verifier: "ki271wz267GjZH3gbGeSermfVWoQkYR65q+iyU+FCUw=",
-        name: "jcmBUqbVmADxY9Htyc8v"
-      },
-      {
-        salt: "5Q0LjcOFHB+M36WTa026zg==",
-        verifier: "a9M1mfoewbm/joRwcBYpQq6SSuNgosWKqX/QOY3i3Mo=",
-        name: "jiMh9l5PQshf40eW7Nf6"
-      },
-      {
-        salt: "XshJl5kdOVVa9DnR2keEpg==",
-        verifier: "JJiDUCaRsRcovfj1TkQJWWFF6JG4+TiYRqQfIHXtMfw=",
-        name: "MlxujgvP5MAKnTsEcg=="
-      },
-      {
-        salt: "xqM+h+7UWLeIa1SpnrdcHg==",
-        verifier: "bYm8xFFkdeXtNcYJFdfwC7hGengF64/fLFKTKQoIA0A=",
-        name: "NzSHMBGOs55/UhmBFg=="
-      },
-      {
-        salt: "gECXbYosWTMYmo8MGOMXxQ==",
-        verifier: "d5lXL5VwA9lKpAGhjWK63I3yoqH4aYngNmgla0ESqdE=",
-        name: "szvCWNOZN7DNHpKtBi73"
-      },
-      {
-        salt: "+YPCykGrMHN2vvr6dokFvg==",
-        verifier: "WxBWfcsYtzkmbFQdzgyBok36XJj6rl7+qiKZlA93KEw=",
-        name: "Xwkhbky3yh4hKVF5u3QH"
-      },
-      {
-        salt: "el1Ng9+WNECZ44sfeaE+DA==",
-        verifier: "FPRzMCtG9T3lfzf7h1gxQpOrTqNdxcYe5nFdgpcKRWw=",
-        name: "ZZOQ7JMiAIphm0tpJ8c="
-      },
-      {
-        salt: "eNXwvjjs3tzKd/TjENEoTg==",
-        verifier: "8WNAyQYA0pX0KHWgiFuOXT/BE1wSP48HDlj3RtPWlaw=",
-        name: "HgNlcCMYPYWE8cJxemMrrQ=="
-      },
-      {
-        salt: "PbAHVjIQp/7Sc6hpIpRXbg==",
-        verifier: "NJnfNsa6z9z8sYElu6X/xa96t2EQjEPVfTA23KOipWA=",
-        name: "gb6jMKNyW2zpOrBWrXzLOg=="
-      },
-      {
-        salt: "l/SKlQNb48MPdencwufamA==",
-        verifier: "0qhTO/IuhfJ4DyAQKDKPHcjAsyaonT3jPkQOXxdKJko=",
-        name: "lVST60XMMURFog=="
-      },
-      {
-        salt: "qW1EnYcPRDdlrTim/j4cjA==",
-        verifier: "Pf3CrartWyStYECRnIdZtuw9sgXtWRdOdwPueJDGI80=",
-        name: "70twuHz7VMh3ODkVBA=="
-      },
-      {
-        salt: "FDEljy+5+AL3LP5NN/MfUg==",
-        verifier: "RUR0IqUm6V/rBMUhkyE7S0JjqtfwpZrQUaIyjywV910=",
-        name: "4VCFmACyCniKBXfX6p+n"
-      },
-      {
-        salt: "WCVj5HVNNeARAAS/R2m+8w==",
-        verifier: "9UNtE1ZONNA+hKJmWJN4pvC7WLPRnEhibNAHKVyxS34=",
-        name: "7MkLMBpAtagxbHRgBmABpA=="
-      },
-      {
-        salt: "mguTkeqqaNxvXDm69UOtPg==",
-        verifier: "cf2oRx4+md+spP1nxLY71B/kQJNaTugO5fY6hySCXLI=",
-        name: "20HW6JgLIdyNYvblt3jHsQ538g=="
-      },
-      {
-        salt: "TsY4Ul/Ds8fwpSNnrQ6CKg==",
-        verifier: "3Du29pgpoWsYBw85qX5v8muWa5Wh6zt/R+NL4T2zkUM=",
-        name: "MEpAUPO1eOfRDOV6J1FC"
-      },
-      {
-        salt: "ozh+ZaUwvY8ogFv1kHKL/A==",
-        verifier: "309d5zYKh0+U0uoLFqpiwQfHAGo+4n4uPP9A8kVgYVo=",
-        name: "HXZszr+y4GZKgxs3Qa7lxg=="
-      },
-      {
-        salt: "2p71iBGpEdVI3jpUnRGT8Q==",
-        verifier: "wl0Fx6exv9+WhcEbx8m8UTbTqO82zL/hk2wYOnGF3Ck=",
-        name: "ubkBcM+8aOolSVajef8="
-      },
-      {
-        salt: "/hoKv3Ls11klEXIEG0rfyQ==",
-        verifier: "DmP9L67kka52E2lt6Wz9wMigqGsO1dMMKy62RUuBJ0A=",
-        name: "7ixdIQ5KtGJYeLd7"
-      },
-      {
-        salt: "6g8TChGbtIhfFtZU4ZULCw==",
-        verifier: "p3PnuTSoX7tuqG0ODuoM5wVUIff7ihKN/wiOA6FyDXI=",
-        name: "rqBFY3wOcss7nuGKluiJszQAwRg57PDu"
-      },
-      {
-        salt: "I6fYyD+Kw++tM/fE56SP0Q==",
-        verifier: "0yYKs0UpedcMSHNGb2sf5VRf7lldqOgWWiTk46lltsw=",
-        name: "NT0x3dqHR6wySKeocw=="
-      },
-      {
-        salt: "KH4DsvqPZKH0OP4z021HLw==",
-        verifier: "uQEMRbLtFDr/uaC1n2rxWrxBsSkb0K+1eA+IsVNIoLk=",
-        name: "fAoSZvn+WmMcEXJlXLxkSw=="
-      },
-      {
-        salt: "cFWDJRBvrT6UwEyG7TeMbQ==",
-        verifier: "ldhEJE9eXhB/oZF3mHhSdJ6N0zFPqyuV6kRUdOz1Dp4=",
-        name: "YgLFFlu4gzU7ineTIQ=="
-      },
-      {
-        salt: "/chzkMjxCFrwliX4wdmMgg==",
-        verifier: "ZW1rAbgBPRJYcIg153TiB8WkoWPFzVbBP4nb+uMTNbk=",
-        name: "o78XwImLrBU6X7C9zt8mInM="
-      },
-      {
-        salt: "hWLqynaujJUYPLlEGoIlng==",
-        verifier: "jI5olgEf6uXEnxZEqkrVM/a42yp77FT/Ug+LmQV5wWI=",
-        name: "2TpvYHXAYeIb/1hZIg=="
-      },
-      {
-        salt: "9UDKlprcaRQVYyIUr0kPFw==",
-        verifier: "7YR0/g3E1pFPoCIwsEPAc2SWSL1UK8mK9GPcxWswf8o=",
-        name: "yasw9ZmJIxfPNE7v"
-      },
-      {
-        salt: "NXmneW0GpWB5lVNynuet7g==",
-        verifier: "jJW3hK0IayHnxJgdy7y3lT2S/6XV/kExb/N5n9CJz2c=",
-        name: "HvjATEzREF0vmZDZoBs="
-      },
-      {
-        salt: "x/Xgnb5lR1C2/XoXlJq2ow==",
-        verifier: "tKbY4Q6btDNAz0QZj+y7zehW4Nu1F1VMx8JhHl9r/X8=",
-        name: "8XFZpx7ejWgIBrvxONqGCms="
-      },
-      {
-        salt: "cC3Qj8mIPmhxJ1USOTnHZA==",
-        verifier: "qJxRUAsWsqpahhrowoGPaYfnIvhaD5MyPN892A1je50=",
-        name: "j26uwKGqdS3dfGNY1g=="
-      },
-      {
-        salt: "SJEOyYg0g2i7Je78mKKmQA==",
-        verifier: "OK6njWwVGHS71I9nFwxHeu1KrHfNvSN/sOziW74RI/U=",
-        name: "qhCSm91IZla3U7uAJg=="
-      },
-      {
-        salt: "7gzRreAhkn4xOpYAgMc4yA==",
-        verifier: "+TXjTHPpY3/02u0h9Q4SGddZMwy+Sx3nDUdZJkuWUAs=",
-        name: "ljC4IOVbCeHgVXOVlQ=="
-      },
-      {
-        salt: "nmfmx95a1JiUWV+QKsyPgg==",
-        verifier: "ozgscv2Dcbz4jtMiFgyidDKc8sr2A/DVr58XPqJF398=",
-        name: "goEimIbGJ3yL/jRpFis="
-      },
-      {
-        salt: "zXyaR68ADGEZL2PtUI4Q9A==",
-        verifier: "rj8sqpwdWR78c7XcjhpxUe4ag6lpCPpwzrbJTdeEg1Y=",
-        name: "Flc5Zy0K+Z9VBdOd"
-      },
-      {
-        salt: "0qjcmBxbj+wtYVqDgabsNA==",
-        verifier: "5vt2GLYJVOiQ4XLV0oB2GMaPpVWbveLCn/PQ5wtUH/Y=",
-        name: "K/laRZrHaOLFNLWmewM="
-      },
-      {
-        salt: "w9nKgYdTTrQGi8fsHsRYsg==",
-        verifier: "/n0EjfELgQKhvE6XcyWluS0dLsM/OzZ3FYOacNtj7Cw=",
-        name: "ezMIOjoPG65pHunc6nhlDJC+"
-      },
-      {
-        salt: "6cXwy6gqDtWxcZqQuIUoww==",
-        verifier: "eA9Om77ybZAz2UO4r8jXQEWq/tI71fyNzt2OPmMV+mA=",
-        name: "C0+frIOCPZvBwOY7yN0="
-      },
-      {
-        salt: "ZvQ3jBcF+TfOKgC2l+UT4A==",
-        verifier: "NCVRNrfHu42/hIKI6eICjPiahN4cRSlbNB7O3e0QI1c=",
-        name: "TOKbARr2u1utvuC7NmaK"
-      },
-      {
-        salt: "/Yr3ET5+vxOSuZkfOxCH2w==",
-        verifier: "fZnHR+o891VvBywluqdkB834TD1VEtcZVNDpjMzHMLM=",
-        name: "l9Gmulb7FyiB9rRv"
-      },
-      {
-        salt: "+mqWoF0o7rEtWdxUCy7OtA==",
-        verifier: "ebCJyjRM1HRFWe2kevblwn+YZJqKCO6zUvXkGCJD3ak=",
-        name: "vNglBahSBa81w9yFopk="
-      },
-      {
-        salt: "bdhPzt05Al1hhy5jWV/IMQ==",
-        verifier: "eq4CrLCWC9hCYii8pRmMCwPMTH9XR0TdHDu+eI+Tfx8=",
-        name: "YXhB/sQwIu3c6A=="
-      },
-      {
-        salt: "ToFTUiqYBXI2EWbNp0CbXw==",
-        verifier: "+djbI+qt47m4gypwGp9eFjALZgB0RxjOpivdxzvFjOU=",
-        name: "fNsYfvW/n6zsUKwMNK8="
-      },
-      {
-        salt: "Q0c5SXetVKTkv1ANL51Cmw==",
-        verifier: "wnCj1QklfV8SaOrAnlL9tJB3LVVChzqirRaCrsqfAmY=",
-        name: "S0wuBxiEbUdFsyss6le8XLZt/ooshfI="
-      },
-      {
-        salt: "Z4Wr6TYkx4iffDB18o+oCQ==",
-        verifier: "xOg15/3GDZdhXWChQuuPsmp7Tf8V1jEG5WuPxKHaWuw=",
-        name: "ISL5gCJ9QpQvKqFzCUCdLw=="
-      },
-      {
-        salt: "49hb8wC2k4uKPeb5wyrTVA==",
-        verifier: "GocFh3tNZPnXb6uJaK+UipMrSbD+pDWwFbKIbnDRcy8=",
-        name: "enIQiBBw5oPEexUE6Ypx"
-      },
-      {
-        salt: "SbaolX3K9gCBIP6+DIDwNA==",
-        verifier: "NoiAP0SAB/wHenehO89vPde4oPLCuklELs27vyrUlfA=",
-        name: "4HxLaNqcN3JSLs/t"
-      },
-      {
-        salt: "f+Pmbid64n1Fvev7CBh7GQ==",
-        verifier: "JXQjCIRZsGhlUa5F/Z9O+ydA4JVCx1YiTsp4gNr4eEc=",
-        name: "XYPVMriE+bfeGnbZMZ319A=="
-      },
-      {
-        salt: "iXxtOj9oEQ0qsp7N21Rfgw==",
-        verifier: "HGCcQnvpk8eXIH21x422JjxnQ5GB8G7M1jdbWfOKhJA=",
-        name: "gDFhZXxBVgBVNiONbA=="
-      },
-      {
-        salt: "5+vpeXRLqFU1MlraCqD0TQ==",
-        verifier: "nWhLTScCWaNoq3H/ArMwoW5Hvj5iF6SAPPb9avcHtkg=",
-        name: "QF5xYU8Ai3NyliHGKQ44"
-      },
-      {
-        salt: "5GG2TKcKladztWGKtb0D5A==",
-        verifier: "I0FoIVnrtka3GNIwdaPqSAIKJKPwEA0lMRa9jeu/yjA=",
-        name: "+uIFkmckuO0sFaLc"
-      },
-      {
-        salt: "H9ZiWrbqq2hj5y5GbrN2wA==",
-        verifier: "yWcl9We0QYVgpCn2I9nKN/TZ2Cjeg3Sx7bVjGygB3iU=",
-        name: "vXDC+sJXC4udFI38"
-      },
-      {
-        salt: "ob0uvpqmp7u6kiaSFV540Q==",
-        verifier: "igoA/8aZBpRmLayv0mCrNptMKs1I5xE3ape7ANdkcjw=",
-        name: "+SZVO8iF+Jd4BD9O"
-      },
-      {
-        salt: "igxrT46F+++TdqZSv3iKhg==",
-        verifier: "5dxuvMQODulEJTlvuvvgmfvZf1FT/ywPOjoLcHJc38Y=",
-        name: "WtofEyhzqIHF4hiNYWU="
-      },
-      {
-        salt: "f0fINB1+m9vhO7X23ElD/w==",
-        verifier: "cXKdLbdsW1PInRFqiX/1+mVPhJClWOJyH9Bn358RtJQ=",
-        name: "449hDwe7lR7VKG+SK3psVA=="
-      },
-      {
-        salt: "ndgv29SnjHC6hzIlpJioUQ==",
-        verifier: "4Zmq/fCl7AiG+1OVKAsrzwigm75aqgoPwkzOfKcKVNA=",
-        name: "b3conDG1ssyUewGXVp0="
-      },
-      {
-        salt: "3Brn5tsVhDrzqwzkG/mvTA==",
-        verifier: "SsEnrhv0fDnedeQ7PnsmDVKL9PXwq3f7T6wNddDIz9w=",
-        name: "6T4Hq1bB+I5/OFiPiA=="
-      },
-      {
-        salt: "AnAS432uZP8SNPX4dY/YPA==",
-        verifier: "nsMWasgm0dSkqZwgiugiee0+UWg5DEgFCE6RevFzmpc=",
-        name: "XjQLcyoIGA3I/NsT"
-      },
-      {
-        salt: "SbJvj3OXPVIvty7B9z/KXg==",
-        verifier: "s+3HguovG9S4Ki4tqGuf7rpEgaM8j1i/L4c6MHFHMlY=",
-        name: "lssCk8Hr/ppDy3bBY0pg"
-      },
-      {
-        salt: "ws0NeN+vMByBczR80eC5hQ==",
-        verifier: "h6fxmjeGdXSBWDEs99KuRj4v2YrVOpbpSxil858aEPw=",
-        name: "Bu8PursxNgH4oneZztQqDA=="
-      },
-      {
-        salt: "VQIIl0snd/UlQO4YGNiXuw==",
-        verifier: "R7j4+msNziwVFi4rY169K1DU8VpJi2Kxxp70w27bfdU=",
-        name: "JwgM8JlsDGU="
-      },
-      {
-        salt: "k28LNqObwQQ20wOnJSalZA==",
-        verifier: "tGlcXVwMRIIQw0V/oRxFd5MIyBhhYulh0L8D+rvRh5I=",
-        name: "MF57iqF1ATsMepkcNw=="
-      },
-      {
-        salt: "YgA9bXR6XlK59KY9CwsBnA==",
-        verifier: "GNaIz7bWQuxjMTpiKjz9iT6wCgKxpsKGD5HlI4GDMng=",
-        name: "hczRMZ1a+4P+yw1NjL0HCQ=="
-      },
-      {
-        salt: "HBjeOrfKms5ooEBVCBGFMw==",
-        verifier: "0TX7lt4sfG6zQMf+K4vcK4JZL1cWz3KPNl/m1kuTIxs=",
-        name: "KB+BMMoISCH/2V0rN1XXok8="
-      },
-      {
-        salt: "Uy5+Vykh4tYEj8yy9td9OA==",
-        verifier: "Wjd2OUcJWHJxFnYrCsjjnoO7j7dwhr+CoW3g28NDpGY=",
-        name: "s9jiU8yAd6sn2DjpeA=="
-      },
-      {
-        salt: "DqZRe4S5BfFButxf3iW3Pg==",
-        verifier: "OMG1EhDVS2FuJTms0PuoghNlctgikeRB9rJ9lm3jskw=",
-        name: "khdJNAjzlp26XyAs"
-      },
-      {
-        salt: "TySeuHQ+GrjDnnG04B6eKw==",
-        verifier: "CwBmDL60k5M5b1+X1bTq++2H3oZE4ULkbS+4UpF2zX8=",
-        name: "hc3VmN+1jxpPqOllxPWo"
-      },
-      {
-        salt: "jHu9Rk0xfXFmV/pTTwzj4w==",
-        verifier: "bbIwyqnerYyCY8kGqo5X8VxofGrTFCts39fCsTrbirc=",
-        name: "W66gdX1Il2osyx2EJeYAaf0="
-      },
-      {
-        salt: "qDrzsKNAuKh2RiTOpRNL3Q==",
-        verifier: "0uVmKESTWiOumI19z7QWO9NG+5EKZf4MJndGgtmmsV8=",
-        name: "lonJbPKp0xpuF16QDiep"
-      },
-      {
-        salt: "xOc87J0fUsX3NwCgevTlbQ==",
-        verifier: "SvVz3IGjpTnhi4dAEJUvCxlpXWWP43U7XwjLTMrylME=",
-        name: "7x6o5ruOXLpKKSbpnBFqMTRRo1CuMQ=="
-      },
-      {
-        salt: "DeKmf2R0bVnuuPIi7syBFw==",
-        verifier: "bT829h2MNgRlNCjeZirAZXFPGy3o8wiNdSaYPH1VYWI=",
-        name: "Racwv/dc2Ul+gl1t"
-      },
-      {
-        salt: "nuIgh5ZT575pIm27JNTcaw==",
-        verifier: "MQKbhlsjENs/gA9D9pa6TxEV4LQBaRYOSXp49mor6hs=",
-        name: "/6+6w+pwmeulYPM="
-      },
-      {
-        salt: "d3461Te9L3HspboTvwzUWQ==",
-        verifier: "R+ZO141wJYVkvY+ec1bTrvhT6b+Yikr4MXAJOyYEjrQ=",
-        name: "gSYzf2DqF/o4I4OW"
-      },
-      {
-        salt: "1bvhFOxpcI7vGKsLsNnj6A==",
-        verifier: "GYhqa2bgTAcWKSkfTZv5+tOQx/2rH0B8eo5E6jU0OZ8=",
-        name: "xQnX8X5lwbGguw=="
-      },
-      {
-        salt: "cXnaiWE6Pk4eNvyhyNMq6A==",
-        verifier: "C+At8+kxjC7WuGhinr70HQW7z+urrezRvJhnFD2U7iA=",
-        name: "A9b+GddAXUR0yE95ZF4C/Q=="
-      },
-      {
-        salt: "e9EBYDSYyqyAosSPHKdg4g==",
-        verifier: "GohE3yZ5vKIKv7w5ioyVWWf0pRdvhDkNqxh9GgUaW6Q=",
-        name: "OwuH0u7zPmjQ2NLIf8k="
-      },
-      {
-        salt: "LiNlo4bRBB5npgKR/HmG4g==",
-        verifier: "AXIT1TzhKu+R3pKAWYc97SOywp7AEIdh877IC+iG9Ss=",
-        name: "LWGscE1Rml1wr9QByOM="
-      },
-      {
-        salt: "t9ww7Chx8rcyrtVdErCm1A==",
-        verifier: "whu9/sxSKq0hxXRJiWUucs5aac2sMrp2LachMu++12o=",
-        name: "nyZ2hUgyjhTbXAP46uY="
+    // GENERATED_INVITES_START
+    const inviteConfig = {
+      iterations: 120000,
+      lookupSalt: "WdVXU012OwRZvugVMGE7Vg==",
+      records: {
+        "1212cf3a5c348b57b4f07c8737121886b5114b64f9da2086676a52cebe3635f7": {
+          salt: "DUap9YNaD4Gd6QbhmYscuw==",
+          name: "IMMlflnvdaCaVLsI"
+        },
+        "d97a10f7dfe8a351c93016a66b7890a3f5aebac7298d65594dda12b2ed04c07b": {
+          salt: "0B+wQEnH19+kKsDAx9tGKw==",
+          name: "6zAtJDsFZMLLsQin"
+        },
+        "6182ab8052bbec7846b54682afd2ab8d6a8c6aa480492f32461b692242342880": {
+          salt: "Kf/tNrJXD7yJfa0k6PiegA==",
+          name: "4CSSwtNNk9ZKoJJU9H4b2IGUhDg="
+        },
+        "bff683fab4733b51ccae19e7ca788dfa23d0c5c2214eb0f919a89ff042e7f8d4": {
+          salt: "mbvUGuEWuZhRIGI9Vuu0pw==",
+          name: "1nJbio0po7S6XHSTYfQ="
+        },
+        "aca957d7ccb8d2e376ef4581b65023c23c2ad423d51dce97b432155b4c835b6c": {
+          salt: "ep06/CGMCYg4Ce7QwZxvPg==",
+          name: "2F6TbbIF9BY5/nkfXAWIOyi7"
+        },
+        "a824d2902870856775bfae70022254e5df59e97885ebf86ecf0df4734d46a7da": {
+          salt: "mVb8nUfNrpq+7W1OHVxnpA==",
+          name: "kri3Dp6SCj25wmcFAzI="
+        },
+        "8cbc2c66f9ac7632fd6c7cf7c642bb7f7edd05ce041fb76af7931dd02e597a99": {
+          salt: "1uRcP0CNuZ/gAmQpwxWxeg==",
+          name: "OVEcTtjKE//6XGw="
+        },
+        "c8a240e2c858a7a9e96b68afe6cf11839c76cda558b95fc347f53132e4d64e2a": {
+          salt: "LUyJi0s1+46dcd3Kl1ts4g==",
+          name: "YsUnlm1ne5ulSmpIVzuOmDY="
+        },
+        "4912222bcd64d3f37cf3bf244e03ea86c60b77d120af5206cf01eb45d715fa0c": {
+          salt: "XcT6koDzbAwBOhJKXQfSBQ==",
+          name: "wrwmzHu2gHW2CQ5rv7j/"
+        },
+        "7e04a23087c5019756c0a1c515299069d0dda6b7490fbe0fd96badea5cc87109": {
+          salt: "IethnzYCjUW1EQ2X1PTkew==",
+          name: "nByom9/BjtTQPHgT7Hgc"
+        },
+        "260538f9d1704d787bf3491ea38d3d89eedb02174f4639bc417f8aca89e087e3": {
+          salt: "PmAQSJcrmH8hn5yffhL/JQ==",
+          name: "lHrmAFFdMGOAzWEFx7Y="
+        },
+        "40fdd15cddaa6b6bda5a586e679017ee15f810e11d2a375131b7bcbdcd4b51c8": {
+          salt: "qA5rpJA2KKV/SrckrcvtAQ==",
+          name: "X6Tnbq9H8BLC94rRg/83"
+        },
+        "4fea26843f493c404882dca045277083045651442de649b90b56e3bdd0a25ad5": {
+          salt: "1gbKKbaitevaOd15iOBHXg==",
+          name: "OWoQ2ZNgQSAOGwtShp8="
+        },
+        "c130625d8d8a860867332a4dc789fb998f3d55dda2e418b0228ef1b950c0f18f": {
+          salt: "/4mnlI5WE20pHYiyGGHO/g==",
+          name: "fMeiiF+HsMHqELoI0V3d2ZI="
+        },
+        "de39765a6bb4ca63fde326903449be06a6c21c449a9401e7b7b22913bc164e38": {
+          salt: "+FMWk6+nfbFx2vVg+jCfcw==",
+          name: "iWfnOHePbvxMtGRzeA1kSEY="
+        },
+        "2af171996728beddece0207c36d183d3490e3c0144bb66f51b79942e37c4fc6c": {
+          salt: "Izz+qOcUKxCq19HzUBRcsw==",
+          name: "6yQPSRkuLbj49Ov5JmGQns5epQ=="
+        },
+        "370d639e0a90cf8d73057461bb90fa4f0d0d2627e10e139cb9f2a59ed7618c8c": {
+          salt: "iup8EDdp60zmVfCYNh33Rg==",
+          name: "M1ksFPCmfCt0btuwru5JOdPHkQ=="
+        },
+        "329ef5778c717bdc8c9201552ff7f12e4778d841c0d1b3e4850ca3e925139e02": {
+          salt: "XGnG0zfivaMhgJiNVc22vg==",
+          name: "Qz11z3a84cyZ8eTcVg=="
+        },
+        "65ed049663d1350da2c7d5f1590f60f3725e1cdbe7aeddd1ec22a0a69f7c1440": {
+          salt: "ZAFrrZjStsAXa313uKMibA==",
+          name: "RWfO5BhaSxWY2eESIeLfHg=="
+        },
+        "b226eaf7358fcb5da302d83e458165fc16ef9d52086f92ee55fc5d649db81808": {
+          salt: "ZDkzaEAs0RKkhYXXNMmrzQ==",
+          name: "7zjAsuwCBTMKfM0S2p0="
+        },
+        "c4139ea4e9db25f9fbb5f398ab2d1dea3560071a29471f85d8ec1f0a447803cf": {
+          salt: "AwJ4Q6pfoliJdc9Ugc4IeA==",
+          name: "Ecg47XDzNADE+c0GiUw="
+        },
+        "4d9712370b05804b33aeb612eb1a3ccf3b13b1ef3195bdd22e8cf84d77979508": {
+          salt: "VxP/rD8sWKR363s1xgG4/g==",
+          name: "pfMgqTAWeDipr9hB"
+        },
+        "63c5a017a18f0d4d67809e0b10af032bddfc1ecb05d8f519a8a68a361ec097bb": {
+          salt: "Smu+TrUDNbezy0J58C8vJg==",
+          name: "FP8FfdSWZ9o+wmmNmQ=="
+        },
+        "5ffab4c7cd27179bc53ed3a8327627f9dc92d63fccd34a9ae0bb19846e309fd7": {
+          salt: "1vsTTQDuS8lS8vFZN45XhA==",
+          name: "2N2FYVznDy+DpNNc"
+        },
+        "ef0d3c03f98aebf25dae32c5c2f55f9c133c5850b4094e9a9735d4fef7333939": {
+          salt: "gpNNFdTn7sDTVwVKrDRoHg==",
+          name: "41r6jbMrmeS6lilZGg=="
+        },
+        "bd22707564393ffcf93a8a2f96520855746c8b950e459b98e3e22e5de9d413a3": {
+          salt: "coNAihBSeN7eiWBXCdug3Q==",
+          name: "M1G7JDKSocsU"
+        },
+        "53bd3066ed619a309ce290aac154479ca235b49e38c674c487f442e3edc81627": {
+          salt: "yBGRSHu7esZZtYSq38dUaQ==",
+          name: "cy/axyTfz3U="
+        },
+        "66ca12b347f90c9b453b8ddb8a4fad93ac8850265bb72de635848d755cd27ed3": {
+          salt: "z02p/KoMnUsbLef0Q7O2CA==",
+          name: "sVmTxELYttavQ8JU"
+        },
+        "6c6283cce3199bd572d7be55abe84a684607e479a85195f64d18875f8698a266": {
+          salt: "hf/qh7bdbVFbkfPIpr9YSA==",
+          name: "t332dmS1VUUS"
+        },
+        "61e8212eaf02d1c313a2f3d33e1c92d6ff642c6477b5cb2dd85a184aeb9af114": {
+          salt: "ilNhmAgVGR+F/TmrFHwOAg==",
+          name: "unm6qC92aZsY6nxVnYY="
+        },
+        "d8098217c61d114201cf75564b653a66d20d2fb39cfae049f6b06700aaeaa1c8": {
+          salt: "rjqQ6VqejgbAjROrTWHiGg==",
+          name: "pEbhJn22NX8WwA4kEFw94x0="
+        },
+        "cf3e1ea28df4af47bb3da6582e392fc952b4c3a3b9c878b5fc7956e04a7b6918": {
+          salt: "DO4j3KX3Ra0M7YxfCCPueg==",
+          name: "tXkIocCQxRNVBBSQ"
+        },
+        "feb376015c4f3c1c0bb6a31e53e46a93aacb6fc46c646079964adf4865b7318b": {
+          salt: "UNPLcUDMKgWOwLkWkEtXvA==",
+          name: "9dYbaJKNg4RJfZerQqiP3jrGpg=="
+        },
+        "e973740662de18116fb1e54d1e83ead3cfb171df49e3dcc87b1627f763527440": {
+          salt: "R+xP+ul+MmmMeRIV5/+png==",
+          name: "tUI5/tmkc6p1T3Hmyr5KM2fOnzw="
+        },
+        "e804de4fdf4a7066deb87881c58d49f5372d35949f0de539398d69f0824aa626": {
+          salt: "ZboK5MfPzGEtyaTSYgLyqQ==",
+          name: "MEmLC9x0swMp8UkqLA=="
+        },
+        "8bb535c99249ccc3d6943a580bd847c42e86360de6a814f2d09128b9492c420c": {
+          salt: "8bGTUv8faG2KGNdKLqRMzg==",
+          name: "BvSTLEWbmtQy1eeMpunJrg=="
+        },
+        "3d8fb2be1d250abfd50dcceacd0714198464aeeaf4fe6843a9d57e54f926f5fa": {
+          salt: "rVNEwpEmXEsMrdwYvmf2Cw==",
+          name: "Y2pWbdyGcHxM/pL58wRI"
+        },
+        "a1651e8eb1acdf6d0af6bf50efdd8e7981a855a41263489c7abd6af26174c1d2": {
+          salt: "XMyUG5CoXftMytqVb2nW6Q==",
+          name: "Q0vBRbJI0QV7P0Umk+mf"
+        },
+        "6cf5598fbfa736c23de5c50cfe300f82956f7d75c45dfb695982a04ce51145f4": {
+          salt: "m+TWrGXq+6N1x4ISJHVlAQ==",
+          name: "eoD9e9Rs6g9h3mfQ7w=="
+        },
+        "40aea6932e155a4cba703ed5fa5cfbaccf56862acb551d7f0de4a78ced150a1a": {
+          salt: "nRSarlDxqjfaDkM1OymYtg==",
+          name: "V2vmcMyPJrhZuCQi4Q=="
+        },
+        "274eb9baf76801f9c73f127a013b62264ea4f16ffae8c3a8323b0541c7330ccc": {
+          salt: "PYEx/KpX2SOH3EZe31ALtg==",
+          name: "PJae6yY7o+me7j8azage"
+        },
+        "a58fc39d2dbf4a6cd63d50efeb33014f21cb9992734102bb5ee6c6687769e417": {
+          salt: "dIKeXNsQW8WVIvd3ToC4Vg==",
+          name: "Lssl4W2GLPrkD7zpbgI4"
+        },
+        "19edcb5c79b23138ca1e23def4a8af02289b014ff50c260e4436a6604d46883e": {
+          salt: "ZiHdUIQdxA4bxuUkKjMQ7Q==",
+          name: "M856Bb3xsVn0hwDXM5A="
+        },
+        "6cc2dd178df0e5f9d9da6629cf13213939109236ee65d1f9826189e53b396f0c": {
+          salt: "dx6ENfiOVtmVQ91YBiba9Q==",
+          name: "MJN7TjklOVDLb5ZueL+j/A=="
+        },
+        "baaed5f4b66075c08d11d8a4f0848ff3db6846a0319985dc4c46bae162fc70a3": {
+          salt: "aSa/BA7t4CHWM1ZARfS3/Q==",
+          name: "1hHvJlRn4t/Mb3R9o9yn8g=="
+        },
+        "4915ca2066ea733de564434008d6044589d015fe95d3892cffb22b4dcd29be66": {
+          salt: "5uP2Isze/Lqite2TcghuXw==",
+          name: "DsgrwtNmdXOWmA=="
+        },
+        "3cdb3cfe61120ce6a64319aedc61b6610e4a5f511426467162fa5bb1556c4c26": {
+          salt: "S1prPVMybxBuoEfUgtBtJg==",
+          name: "jQql+D9VAon9uNMRFQ=="
+        },
+        "d7c5c0592bfd63132931ef8acf4e69c8636d5ab39b64bda3e2bf88f28d5136cb": {
+          salt: "jQ/xV5cjneQei+Za6pl/2Q==",
+          name: "/E+WziegYuwYPMAzVAHe"
+        },
+        "b94997c0ad1c6351dc69eb818db3cd4fcbe35c82af720f924a615c6e9c97dff3": {
+          salt: "38CQwTZY9L0Y7gKkFkCIeA==",
+          name: "MPdWJDCMYyFPWg7+5zNzWg=="
+        },
+        "52eb6f87ea45df84a4a1cdf75966008914bb2c621fbf977c8e0e37a9d5701cc9": {
+          salt: "2LQdQIN7aLDxDwY9O++Ycw==",
+          name: "cLQgiJYJarKbGXj3/AIxx6MDBg=="
+        },
+        "da4b3e26474bbd7d7952b13e9000b6d4e6e5dfc144d96d7c077042603a201884": {
+          salt: "jbgu7SQcP8yRdNJVRHnd/w==",
+          name: "XErBuhIp5P8xB3AjHYCk"
+        },
+        "7c49ce532680a726ab5e102d3f5fb753f18b5ee1a18878af785c3df560046f4c": {
+          salt: "RDv/bEbEKrKdBjg6Jn7iXQ==",
+          name: "8geJ/8TzvN2+3CYdpXXi4w=="
+        },
+        "b9f895fccfa3fba73f29abec4370507f0e049d07ab3e28778d0e46086ca35bf3": {
+          salt: "dxfujxTYrZ9o6WYbOcnM5w==",
+          name: "ZhKoo1HDQr5dJx2fpRY="
+        },
+        "917d0649fd3ba46d44dad4dd643dbd3ab14a22c2b164dc377d47376325ae8c3c": {
+          salt: "87y+CMxMB+xxMgnrtNTGVA==",
+          name: "4ki4r/mHwBp1SoVM"
+        },
+        "891881f52a383b6af0fee40f57cf2fe33dfb3c8cc6bc2bcab9497eb1c7d631f8": {
+          salt: "7PbvKe03sLUpfBzsg7C9/w==",
+          name: "7W+HwjlnPTezIklOWtyS6qPCLfbejtag"
+        },
+        "aafcfac4c8cbcedc903d3d9d009b92e91ca05164c4b28785bde635f1626ec9c4": {
+          salt: "5BNSgpNvywl6ZYFlJwTEew==",
+          name: "QKvp4g/DChxSZvGu+A=="
+        },
+        "95b66f5665479bf3f31079dec8e222ebd4a3634e410a90101470712ad316cf3a": {
+          salt: "J70Mhhti+7lxYPdJxJ/PLw==",
+          name: "aW3r51zn1wGlTiZvCi6dbA=="
+        },
+        "906a3b7d0358992fb5114198c876894441029af0b25c30026c3ab9b1270d6772": {
+          salt: "mxDZWf6YwuvZpcG+FEXptg==",
+          name: "0SOB7ciHPQSCca0jBQ=="
+        },
+        "5a4613160681b30a8fd2779e7926f00bbafbacd22b97e1fb526bd6dca11af94e": {
+          salt: "XbR2qJARKssB0RdidMycjw==",
+          name: "vGIP5KXsKD9AM/cIaCz+opc="
+        },
+        "a425afb4174ff4ee290e25ced4d39cc155647092bf8fa26bc9d4aea66713b3ff": {
+          salt: "CJFjbDx9rBBaRrVwRpPb9Q==",
+          name: "+M26DBpQDVn6JBVFNw=="
+        },
+        "90b1f18b04ef3a1d745ab6e2d67f7e061a9be3d8c94401f0fedf4def8bbc0092": {
+          salt: "TGwzubx00DqDXP76xNK39A==",
+          name: "hPMYtZA9VtrjjaR/"
+        },
+        "f4e77e147a852158122165391aec6ee51eb3058b06766103142cd41092090917": {
+          salt: "cc05OlfktffcRNJOi1Sp7g==",
+          name: "LzfTFeomCIV+FUCl7g0="
+        },
+        "e02675b18ddc20ab22e96db8e8244abe5e33cdb4cef11982af53ab552b5ddf0b": {
+          salt: "pVm73afC2VxuvPgCLIxvcg==",
+          name: "8Gnrn/EO6ZHGOT7EMkPSEPY="
+        },
+        "87b3c65d2b439af893a1c1358665e1d3a69743455a10075f69e8ed9f2c7add2b": {
+          salt: "8kk05V08cCBXIz0EmoYkkw==",
+          name: "HGPQ29TjvFglf5K1bg=="
+        },
+        "4cad643dfadc3bc9812e88944af86a8660bac2a6981b05b390f2fddcaea7e31f": {
+          salt: "weBpJX6+1J7Ogs4o2NbMHg==",
+          name: "wISbFSH92qjqE6Y8MQ=="
+        },
+        "85a82b9edf591a82229a4eb0893b010de0c5943501f8fee6af46550c220b023f": {
+          salt: "MJ3V7hNzh8uTSEnluGl9zw==",
+          name: "jDPkrmHbIou6fvRzqg=="
+        },
+        "5c52379634618318a4f976b26948016d2fa2fe6835de39eae37d96e2b2cc938a": {
+          salt: "nR+27DXI8rtlu0KexPJ4MQ==",
+          name: "L0tCwevi46sR3tHfJOE="
+        },
+        "037376ba03a34a4df557a66412546ba429e67562c89da9d262f8c1432a9b0166": {
+          salt: "8iQzUDF6PY5yplhSPi1xNg==",
+          name: "AFIZd1mWhaAhwktd"
+        },
+        "12df3002cc8725d535d2d48cde5bcdd5575e8b43e91bdca70727159c2f4b36db": {
+          salt: "9woit9VkW/sQdSGSjMz4IQ==",
+          name: "1aeW8Xv4VLRBuL2dcfA="
+        },
+        "98b8a664bc1dd9ce6dab87299fb76a16ebfff57671df156bcdda15fc8e325159": {
+          salt: "c2L2rggSohOkbBz75Ob5CQ==",
+          name: "She0UXr0D3le+I9DGIIJoV+9"
+        },
+        "58174e4b8d12538336d67391b5ed3d6698f7caa4be02d59a94f1a2222ce6e66e": {
+          salt: "yKbLht9Ahesw92QCQiIpLw==",
+          name: "0AEui4f2+lqza7c2L3U="
+        },
+        "bb344c2dc207e0e0326979d4de8d3735c44a8e99ebbe3cb2a8096066fb31ce0f": {
+          salt: "CD+tFAdSQpszAL9NdKrSsA==",
+          name: "bvF4KURWFAS5F8qnzn94"
+        },
+        "a4f0f2592d7115d97c285f405767c616b8c9e46577734e18ab1384a98c7641f6": {
+          salt: "XzRUyFd/Fclxy6tZWBNwkA==",
+          name: "BguDniZveijDp9Gt"
+        },
+        "a50132eac0cd2620598b46a25291086ff5826770b1b9727ead9b047915f83fd9": {
+          salt: "Hwu5vrJ7yYFR1/IgOPBmhg==",
+          name: "4z6tOuaGyOuHdljlD6M="
+        },
+        "503e3b8d870d70f5d787e1930037828ad4090e6133a9924762b400ee10c91f0d": {
+          salt: "QNGaF5F3ql76LX9f9PHr2w==",
+          name: "AN4Y16w7hrxAig=="
+        },
+        "dd132f2cd77464d81f66bdbf40a8a260172c3582451c39c024708bbda94399bd": {
+          salt: "C+wDbpowfomRrl/zWP6UvQ==",
+          name: "SD0PDgvdOwO6IaeofbE="
+        },
+        "19f6177669c7cde6c1865840510737456d83d7df4e9d92b96034a12dac8289dc": {
+          salt: "qBLDzW1CvWyM/qmSSFezsg==",
+          name: "S7iNXR5FQDXco1pqqvr6EUuxmNXp+uI="
+        },
+        "6388c10cedac34ce24257a7f6def99454b1464db28a54c8a5d0e8ca3ec01adbc": {
+          salt: "Rh7D7+FDYwfMX1SvwdxWFg==",
+          name: "74WzeM/6WoyBXPGNxsbo0Q=="
+        },
+        "c0c5e29d1b8eda60adc93dfafc98f725fd6e1a8de296408d6ab4b5f13af71ba2": {
+          salt: "UcI3q17X+uwi67Bsx7Pklg==",
+          name: "6ViJBAEniuqcN3T2jFoM"
+        },
+        "449dcac977b40a4488cfdaaf7410fc5ace74e1a826a38e7dedc0749e8f20aa6a": {
+          salt: "Uifm06dOY9Cw13Wn4nwLrA==",
+          name: "iQsdKilBRi/1PPxG"
+        },
+        "65c65a61f63b98c1754b5a8db9b170a38646fdd0053e1bf03216481dfb6b8ec3": {
+          salt: "YuljzV3FnF3JtfwcgxxcAA==",
+          name: "3lVqBkIUd2LTmzplICLeLQ=="
+        },
+        "a169cf21913185cd427662a22458cf550fd039282735551b22bdb90ca529caac": {
+          salt: "LDKpyAf2wBQ3C3I9bDNUpw==",
+          name: "IZdpx0sjVE77fwOa5Q=="
+        },
+        "0c614ba644b5d197b511ae0916fe17133cc74e5856a142bc400e6c306f3e6948": {
+          salt: "6L9AFUPZUzLPWy50Qr9phQ==",
+          name: "3A4EhrazKb5Rtj/VHvlT"
+        },
+        "511719e0038fc53c844cdfc76506ea5408809608cef7792dc118d6ba45898dcb": {
+          salt: "d9wN20j8lBFV0jwMVdRNdQ==",
+          name: "5fzKZQQec4tvL5+x"
+        },
+        "295ab77c1093a32a75a168f2c5862767a902048cf1c11d69ec391166ae2c845e": {
+          salt: "5r9yMqgVsqCvPdM25evkaA==",
+          name: "0agjLUttJiOXKCbn"
+        },
+        "f66e7b94f59ca1f60aed64f11c4e2d940e43316dccb2cf092ce3ad083ef175c0": {
+          salt: "HJv6STAjduj693fZwy6h6Q==",
+          name: "sSfXVH3osLxfkLuG"
+        },
+        "de2c1d3e40fdd823a84b68fb6da58fa9dd8136f777bf19e3aa66952f83eef723": {
+          salt: "MJXrVnjbTLiXQh4CXlBYwA==",
+          name: "wc6furmXkGeOooPZ3Co="
+        },
+        "25c2811126e05ef023567dbd965515aaa18c0f05014bf4d882b28b77c5e7803c": {
+          salt: "Pd04yvZJRU2WtdjFtyGFfA==",
+          name: "r6+Ih3JLzXTEsFA6mgR1Jg=="
+        },
+        "b71945b3645daf151a395f0a3f68034556320ace0b19732112e24142100c9b4f": {
+          salt: "ZDTDJXXj0cYMd2Fr+i3spg==",
+          name: "TVuZsz/MUUi8QdlkPWg="
+        },
+        "59fcc3536392848149a637dda41e1aaef0e9147d82caef3357541cb055fade8f": {
+          salt: "LJNcH9P7+KT58uGWtY4niQ==",
+          name: "AFan+RF5S/+sclhSWQ=="
+        },
+        "a351927bb012dd5cc0dfe41e4bcf4dc0bfc2837ded195513890422d0b694b8c3": {
+          salt: "877l3EMVrCstRLKLqKPANQ==",
+          name: "Gkk6pUprvpOMDmhK"
+        },
+        "6aad5569ac0d692e99a1c70e9e6062b69f76332b3a85423fa61ec4fee26182c0": {
+          salt: "rLe4ymfZ6vNNsap/P8G6lQ==",
+          name: "uZwlv9oRgQ0YhR4N32dM"
+        },
+        "776b6b52cf5ff86e1cfa318d7d4e5368ff583872f787c19aafb6c273c8fe02f6": {
+          salt: "jLGKBsaHGvd5kIJYUgFxfQ==",
+          name: "Hw9uAu922eianYIDawYE1A=="
+        },
+        "7dc3fcac98a539212bc1a003f277a37715f31e094d43f55c2e64da14dd272062": {
+          salt: "zd/kw1IbbKK0hz+qE20Ghg==",
+          name: "06fMN+Jkqm4="
+        },
+        "656e2fdf3cb463362422d09e1cc305e0b08b0747cf1d3b84ff214a6f6f3eef9f": {
+          salt: "A6qTOK58bkA3qZ0tKQB+dg==",
+          name: "5Brl7ot3bfxLuW9rsw=="
+        },
+        "60c74d3eb2b68af86d4250d85b51ccbd824a6133c3918c914febd7b66ae9767b": {
+          salt: "npl6G43IGBM5073PaW43LA==",
+          name: "8zCJqP1X9VGImGUeNsHDFg=="
+        },
+        "120379f703aca01b1e48c5cfcad498c574b3b99a82a4bddf6e4e5c5d1b6eab68": {
+          salt: "Lb/tkdh5FpQIpuijmCxprA==",
+          name: "oXP9xb5BowzD/m1y47xcrg4="
+        },
+        "3e2a12cb058233c688dd8314ad393633792fe5c2cbd6c9da078f2b535b76f7fe": {
+          salt: "Z4la0Zt9JhLAu8RGDP9iIQ==",
+          name: "8+XxkouNqmnDMXbY7g=="
+        },
+        "e7620252845c3f9235b9ec8f3ba7b993e9953db48866827d35e7b1db2fb987ad": {
+          salt: "prK9ObwQ1U3JuCo/s0K42g==",
+          name: "bvU6mUX1fM1EianX"
+        },
+        "a1a002851dcd66637a50e2e0ec996911849d36b759b4b32def309d0696f235fd": {
+          salt: "I+XSyoz5Yopsl3hq+10ZvQ==",
+          name: "nC5jbsepdHXKpiue4Dz2"
+        },
+        "544404699ee24987ee918efae38320779dcc043dbab3671488aba41968d10658": {
+          salt: "0fog9I4igwFs+crZF4khRA==",
+          name: "xu8uHM8N8s8RkyHep1kU7+I="
+        },
+        "e7e10519fdcfddd78f9a78142f958e9102eaae2e64cc9d942ccd033a60696172": {
+          salt: "UWVPoATdUAtxIoEpHZ2p7w==",
+          name: "h0rDfQFJdj3mIQmY2J4v"
+        },
+        "659ebf51114ed766fb10a362a257d02a60a4235e2f98675c4da8a088f0548391": {
+          salt: "78iQJeTaMr2Ok1AhsLnajA==",
+          name: "PpqFc9gqOB34/hnteDXfb5iADaRl/A=="
+        },
+        "1ff2249cb3860e7914d548d2ce5dc374a58b97557d98c0405fb683f083342537": {
+          salt: "h/til3AwIU90jFQdn32HEw==",
+          name: "SgQ/DcE0FaeANsQT"
+        },
+        "39f796b043fe64aefbc527265d3d4cf1cf93a6fc67aec221390c9a02d5e71cfb": {
+          salt: "rEhOqG/0ZxYNqz0qBpk9Og==",
+          name: "J25LwVqoA3Z5w8Q="
+        },
+        "d0c28db1e5eda2b581364959f12747757a4ab7f198c23b199c8c816a1ccc57a2": {
+          salt: "QzgtpNQC8Stm3tt9xuuebQ==",
+          name: "r5e+pHdwXJZdigxi"
+        },
+        "1ac48250c272d26b11543037780c4199dd8db5ea07da05b47390dad23cb69fab": {
+          salt: "SNaHZRNmnM9xKgo+iyBCWQ==",
+          name: "Do+fOUwReSwZ7A=="
+        },
+        "e18289ca180d16abb29886c18e7dc8c829d6477e726986d0c716fdc310a315ad": {
+          salt: "n7qYYiuEpQKapozIUhlrxw==",
+          name: "TD3+ahFg22ca6glDQ2Rpyw=="
+        },
+        "bfab36e054e533bc525605ce53f5aaad0e2dda7c8dabe9b615c975e474b2da0d": {
+          salt: "FvwbTTlJrokYBMV3cImNWQ==",
+          name: "+fFjYsxIFLb1NlknucE="
+        },
+        "a820cefb5c1d0f5c405ad50cc91ba5957c0986dc67dbe7a35683aaf016557e32": {
+          salt: "tcvWIKSLACK+TGD5yUwr+Q==",
+          name: "AQ1GHi2WIP7q/bhhNyg="
+        },
+        "cb50a60bc75045d5381b250503c8136d8592af921a2d510ca68a3fd4ddc57308": {
+          salt: "Pq+tMhKFrc8FHvnCSwg5Ew==",
+          name: "r4pDqBIYNH6pyehMZyM="
+        }
       }
-    ];
+    };
+    // GENERATED_INVITES_END
 
     const input = document.querySelector(".lock-input");
     const unlockButton = document.querySelector(".lock-submit");
@@ -1841,7 +1734,7 @@
         noteCopy: "Obs: Festen är ett privat evenemang och har ingen koppling till något flygbolag.",
         infoTitle: "Information",
         timeLabel: "Tid",
-        timeValue: "14 augusti 2026, kl. 17:00",
+        timeValue: "14 augusti 2026, kl. 17:30 - 22:00",
         placeLabel: "Plats",
         placeValue: "Skeppsholmen, Stockholm",
         rsvpButton: "OSA",
@@ -1890,7 +1783,7 @@
           ]
         ],
         faqItems: [
-          ["Ska vi vara på en båt?", "Det är alltid fest när det här gänget är ombord ett flygplan, så varför inte festa ombord på en båt den här gången?"],
+          ["Ska vi vara på en båt?", "Det är alltid fest när det här gänget är ombord ett flygplan, så varför inte festa ombord en båt den här gången?"],
           ["Hur får man sin biljett?", "När vi har mottagit betalningen får du en bekräftelse via SMS. Själva biljetten skickas ut kort tid innan avgång."],
           ["När börjar boarding?", "Vi återkommer med exakt tid närmare avgång."],
           ["Vad händer om man kommer sent?", "\"No Show\" i SAS Time! Nejdå, men vi kan tyvärr inte ta en försening för att vänta in någon."],
@@ -1924,7 +1817,7 @@
         noteCopy: "Please note: this is a private event and has no connection to any airline.",
         infoTitle: "Information",
         timeLabel: "Time",
-        timeValue: "Friday, August 14, 2026 at 5:00 PM",
+        timeValue: "Friday, August 14, 2026, 5:30 PM - 10:00 PM",
         placeLabel: "Location",
         placeValue: "Skeppsholmen, Stockholm",
         rsvpButton: "RSVP",
@@ -2113,15 +2006,8 @@
       return new TextDecoder().decode(bytes);
     }
 
-    function bytesEqual(left, right) {
-      if (left.length !== right.length) return false;
-      let result = 0;
-
-      for (let i = 0; i < left.length; i += 1) {
-        result |= left[i] ^ right[i];
-      }
-
-      return result === 0;
+    function bytesToHex(bytes) {
+      return Array.from(bytes, (value) => value.toString(16).padStart(2, "0")).join("");
     }
 
     async function deriveBytes(code, saltBytes, label, length) {
@@ -2143,7 +2029,7 @@
         {
           name: "PBKDF2",
           salt: combinedSalt,
-          iterations: 200000,
+          iterations: inviteConfig.iterations,
           hash: "SHA-256"
         },
         keyMaterial,
@@ -2154,20 +2040,19 @@
     }
 
     async function findInviteRecord(code) {
-      for (const record of inviteRecords) {
-        const saltBytes = decodeBase64(record.salt);
-        const verifierBytes = decodeBase64(record.verifier);
-        const derivedVerifier = await deriveBytes(code, saltBytes, "|verify", verifierBytes.length);
-
-        if (bytesEqual(derivedVerifier, verifierBytes)) {
-          return { record, saltBytes };
-        }
-      }
-
-      return null;
+      const encoder = new TextEncoder();
+      const lookupSalt = decodeBase64(inviteConfig.lookupSalt);
+      const codeBytes = encoder.encode(code);
+      const inputBytes = new Uint8Array(lookupSalt.length + codeBytes.length);
+      inputBytes.set(lookupSalt);
+      inputBytes.set(codeBytes, lookupSalt.length);
+      const digest = await crypto.subtle.digest("SHA-256", inputBytes);
+      const lookupHex = bytesToHex(new Uint8Array(digest));
+      return inviteConfig.records[lookupHex] || null;
     }
 
-    async function decryptGuestName(code, record, saltBytes) {
+    async function decryptGuestName(code, record) {
+      const saltBytes = decodeBase64(record.salt);
       const encryptedName = decodeBase64(record.name);
       const nameKey = await deriveBytes(code, saltBytes, "|name", encryptedName.length);
       const nameBytes = encryptedName.map((value, index) => value ^ nameKey[index]);
@@ -2185,14 +2070,14 @@
       unlockButton.disabled = true;
 
       try {
-        const match = await findInviteRecord(code);
+        const record = await findInviteRecord(code);
 
-        if (!match) {
+        if (!record) {
           alert(translations[currentLanguage].invalidCodeAlert);
           return;
         }
 
-        const fullName = await decryptGuestName(code, match.record, match.saltBytes);
+        const fullName = await decryptGuestName(code, record);
         unlockedGuestName = fullName;
         applyUnlockedCopy();
 
