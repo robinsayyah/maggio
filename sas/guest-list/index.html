@@ -464,13 +464,9 @@
       position: fixed;
       inset: 0;
       display: none;
-      align-items: center;
-      justify-content: center;
+      place-items: center;
       padding: 24px;
       z-index: 40;
-      background: rgba(8, 11, 26, 0.24);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
     }
 
     .lock-card {
@@ -550,7 +546,17 @@
     }
 
     .lock-open .lock-overlay {
-      display: flex;
+      display: grid;
+    }
+
+    .lock-open .invite-layout,
+    .lock-open .page-bg {
+      pointer-events: none;
+    }
+
+    .lock-open .hero-panel,
+    .lock-open .info-card {
+      filter: blur(8px) saturate(0.92) brightness(0.92);
     }
 
     .rsvp-sheet-overlay {
