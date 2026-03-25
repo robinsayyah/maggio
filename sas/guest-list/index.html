@@ -906,6 +906,21 @@
       .rsvp-choice {
         min-height: 68px;
       }
+
+      .sheet-section-title {
+        font-size: 0.94rem;
+      }
+
+      .sheet-list,
+      .faq-question,
+      .faq-answer {
+        font-size: 0.92rem;
+        line-height: 1.42;
+      }
+
+      .faq-item {
+        padding: 12px 14px;
+      }
     }
   </style>
 </head>
@@ -940,8 +955,7 @@
               <div class="welcome">
                 <h2 class="welcome-title">Hej [namn]!</h2>
                 <p class="welcome-copy">
-                  Now boarding: Fredag den 14 augusti kastar vi loss för en sommarfest i Stockholms skärgård.
-                  En kväll till sjöss med ARN-crew. OSA senast 5 april för att säkra din plats. Mer info kommer!
+                  Dags för sommarfest! Fredag den 14 augusti bjuder vi in till en festkväll till sjöss tillsammans med kollegor från ARN-basen. OSA senast 5 april för att säkra din plats. Mer information kommer inom kort!
                 </p>
               </div>
 
@@ -1121,17 +1135,14 @@
             <div class="sheet-handle"></div>
             <div class="rsvp-header">
               <h3 class="rsvp-title">Villkor och frågor</h3>
-              <p class="rsvp-copy">
-                Kort information för crew på ARN-basen inför anmälan och deltagande.
-              </p>
             </div>
 
             <div class="sheet-section">
               <h4 class="sheet-section-title">Anmälan</h4>
               <ul class="sheet-list">
                 <li>Evenemanget är endast för ARN-crew.</li>
-                <li>Din anmälan är bindande när biljetten är betald.</li>
-                <li>Får du förhinder kan din plats överlåtas till någon annan på ARN-basen, efter godkännande från Christopher eller Robin.</li>
+                <li>Din anmälan är bindande när biljetten är betald. Biljetter återbetalas ej.</li>
+                <li>Får du förhinder kan din plats överlåtas till någon annan på ARN-basen, efter godkännande.</li>
               </ul>
             </div>
 
@@ -1200,9 +1211,559 @@
     const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbxwy976pH_JStcwrDtu0XXRVwrhkdOF7blIDU1HQP8MUYb0mOQwtD2fdRNunYMc5VgsqQ/exec";
     const inviteRecords = [
       {
-        salt: "5y9tnjcHWGctkLTJwuBy6w==",
-        verifier: "Uu9qHIY35ZrqQgb2KoTls79kboSL4Pw/HwqPekqqk3c=",
-        name: "aem9O8ryMxn8QQGh"
+        salt: "IfM2WU7fPlD0DWHgvNcvdQ==",
+        verifier: "J9z6EW8sHfEg+JvGvl//+1pH02hHnqvlRASXEg2Z78M=",
+        name: "vu8h8id8utM07nej"
+      },
+      {
+        salt: "XqgEC7lQ5+sTCkz2N+kiGg==",
+        verifier: "4TC+wlHm/ilZQQ0KVm6xQmN879TV8XgoKfo1tBb3nRk=",
+        name: "CF6H2M7usWPUb4Fy"
+      },
+      {
+        salt: "0SCoVP7NIWIrdfgCOpGvng==",
+        verifier: "HW3mLAcfu8Qm0UWLUHJ0xddRG+CKNgOEcaJVavowGjE=",
+        name: "Aj0j5mAXXEceqaxoT4idkGSNrcU="
+      },
+      {
+        salt: "T1wJHf8v3cEWYSiLecsslg==",
+        verifier: "UyN2Firl8CpiRHWlcb2kU4lR0jTd2U9fKKN2lnnUjgg=",
+        name: "ywva9Eoa9rTuqm7Nx/E="
+      },
+      {
+        salt: "lQjjq1ehrBfYpMK3c84wuA==",
+        verifier: "ZbNAREzySt5g0GsE8gFDxi+bI19//Ymt6RShpbihloI=",
+        name: "aphIRNlwPx6CZtfS7eYkBFQt"
+      },
+      {
+        salt: "ouOp+yICXzx3qCg9BmCQrA==",
+        verifier: "J1eLTnlfwWV6V4TKSRCVTk3A3E7saa8dvRfJIWsZTJs=",
+        name: "I5X0CihXCiuCdj+BS9o="
+      },
+      {
+        salt: "JNwzlGAJPVWLlbV1fLHrrg==",
+        verifier: "+W+l219G4g/nEjFKWRYCy5V7buNp+8oSOjQdiOu3kxc=",
+        name: "UdS2AHtdSja8YeE="
+      },
+      {
+        salt: "XTXt4/T13JKxQ73yX10Q4Q==",
+        verifier: "Yduyk4o4qJ759i9h58+yqZrOkC2KVh0/YVUWcwFLNoo=",
+        name: "iTnEpmIxJT5A0Jmr98RjorE="
+      },
+      {
+        salt: "aaPVvKwA1zHD6oXtJiGXWQ==",
+        verifier: "FPzWiHs+lSfutpwatFPsTpa2Y03IewLOeMjMcNlcwqs=",
+        name: "680UFMeJvKgm2DMdIZgF"
+      },
+      {
+        salt: "IRApko9DZ5RkDQvBkJxRrg==",
+        verifier: "d9YG3kHd/ML3TIkJqjG6BkySVxjT/BXanX7kpFHzy3U=",
+        name: "QUkHlqssdY7Av3faZraH"
+      },
+      {
+        salt: "ewExdwNFTUaBsD/KTXevpw==",
+        verifier: "c2mY1j74iPraBewNF3u6iiR6FEYoZii+/9noDgUPN+E=",
+        name: "snDgKPiTRiO7hBl65/M="
+      },
+      {
+        salt: "enBBWCslpysCNI4x1Kk+TA==",
+        verifier: "oaRqpioXYXPnKopRW7N1JmBevAGh28yYQTw51eNzRl4=",
+        name: "8qXPQ2j6oOgK8Lb5pAbx"
+      },
+      {
+        salt: "mh+5vPh+1wUqqIKJTWdV4g==",
+        verifier: "C9QUlCwDJAScYkq9zncMykGeZE/TiXyK8+HRSsORcGw=",
+        name: "i59JaT4tbfDQ4f6yJaw="
+      },
+      {
+        salt: "/9vPSM2qf+7gqO8bjPzraA==",
+        verifier: "JcIG75VwYiGgWXG1LLQZVumbdCmNxOvvbjS4kThBB0g=",
+        name: "7NeSrUhPezRBrC28jGacZhI="
+      },
+      {
+        salt: "wnWlk/xpo9asPYxFXBHwpw==",
+        verifier: "RDgwtGeP5aHjCCvDDJtGIFZXxL3KyfHpTqJ5pCkstkQ=",
+        name: "eeBT45D8VguMug1EGUPuEgU="
+      },
+      {
+        salt: "CjcMw5oFj6UpgvhVtgYjjg==",
+        verifier: "AXdP39l+QTgbV0CUF+STsmL1p/tdh5KhC1hGqi6Oc6k=",
+        name: "KcpkQYWz376qvzdlGucr0VKxLQ=="
+      },
+      {
+        salt: "So/UmsBFzf5ilWQrlxzxKw==",
+        verifier: "v2n4Bj0XrQ+43kLHJKn6ZlHFdIbNadqyYg7yQn3F8sE=",
+        name: "cQwmGgRNBAIWBmWu7B0j344iJg=="
+      },
+      {
+        salt: "6BosSOTl+Jt+Yq/NiroRHQ==",
+        verifier: "eQd6GbFDmz8UV9ihRdQw2qYIRW27lUpwWBCjj5tWE8s=",
+        name: "nSPh2jhq9dOrAHDTwg=="
+      },
+      {
+        salt: "9gyHBxTHDwHG0C/ZNJ/JsA==",
+        verifier: "J6QyPS6CAUwPva87Gcfq1v6AGUYjN8QrWMCceIfcscs=",
+        name: "i5U8ljdXW5HAOWcCfWmKhQ=="
+      },
+      {
+        salt: "JsFcbejuWCvcd+DTYlpctw==",
+        verifier: "5dWzrN+uFSqj6f+vS+X/QA7YRwLKjtOPJ2YNa8sTXOc=",
+        name: "wipF2Vsu78sbSONcH0c="
+      },
+      {
+        salt: "G3LawxMfIRd2ED7eRl+9xA==",
+        verifier: "lDksY6dCGZnWbmoThLmUcjjQaI88Qd/OXUTonPER7g0=",
+        name: "96o1MmFL11LBpjrGfqg="
+      },
+      {
+        salt: "SD6VxDMbGxOM13PL1Icg5A==",
+        verifier: "YeBj9zC7UpZVkPJUb4W/33NWgEc5As5z563MryOr/N8=",
+        name: "5F3dai2MevYLrc6w"
+      },
+      {
+        salt: "shj3ovohGUIQp7Kil7pVkw==",
+        verifier: "9l6jkSTW8BOe9ohjvEMWuf0yegVlSr8bdTKGW05d1Fc=",
+        name: "8OLk0b7jHeOHuUNeCA=="
+      },
+      {
+        salt: "KSuLaUIB2eEhq3fNt59IEw==",
+        verifier: "DP5f+s/LmBKcsg/Kx+z5b+f276rHXsGT5RCTLDwIqM8=",
+        name: "wJszPgIfA2lR5V7x"
+      },
+      {
+        salt: "kxedh7kcEI7g0RKduRHokA==",
+        verifier: "jVCHGrUL/yLVDPo4EbdX29NRDEXpJ3dSaAD8lg5s2eE=",
+        name: "DeiRL/79D1bhWWTyuA=="
+      },
+      {
+        salt: "PaYAzrzlYRpDMpBiq+KXcA==",
+        verifier: "DWaMwrBoPq/mx5bG5fp22nEZDjQrRxEUSYBRlZkRKig=",
+        name: "11dmXJmvXsZ4"
+      },
+      {
+        salt: "uH00nZB2sBvGTBnHVfaHjQ==",
+        verifier: "A47YB1F2popckWbLQrPyduFR2gLheR7mxwEpuq2XsmQ=",
+        name: "zjTl+VJTBp8="
+      },
+      {
+        salt: "NTRa6+JS0exGNXTrCnr8gA==",
+        verifier: "n+uXehKKTwDGxixAFCXWEtO10WVUi34di1ZCwAQM3wo=",
+        name: "S0tq47/qe7kTgQ+e"
+      },
+      {
+        salt: "JPIaVgAbCHeUmYH1az8MxA==",
+        verifier: "YJQVqXcAV22dqgs2GFxYz9h+SZZ8QIAHkolp/hsnR8g=",
+        name: "B6syqfogWoPU"
+      },
+      {
+        salt: "PxwzwN9EKlu747ATDtfwwQ==",
+        verifier: "qRZdOqlnFi8M6BSeZGBpIj5AzIEqthMJw85I3S0v4rs=",
+        name: "PYOMMtY2Bsakqt80kD0="
+      },
+      {
+        salt: "3Y/Qn+/uk3QPpDz1P1ERFg==",
+        verifier: "JBRIx4MeuG5P01INxa3+gjNOicAw9Et7+ExZ5WELffM=",
+        name: "dm22aYWC2u3WVgAzB3K4asg="
+      },
+      {
+        salt: "7wu9Nnxx2LqfxwTPvgukBw==",
+        verifier: "J+WnhVvNG4AFp7V8PRcZK6LAB72u55FnDPTlUXn7ytE=",
+        name: "RHVDjCGTGOf1MFLP"
+      },
+      {
+        salt: "sSjE4Z/VcPMDmN0iXph02A==",
+        verifier: "/LhD2B3vyQhrshgkN5sLJa5OLf0QgDQs+Z1AZFUS7fU=",
+        name: "CIStYqQJixYrUJ2TEs6j20M51g=="
+      },
+      {
+        salt: "TKVgXsP1zua4cIUUUWl//Q==",
+        verifier: "n4q2uf+1lS7mVhd4Ck4Raepqj/MuaSjSF38FR9rUQ2A=",
+        name: "OLfJVqNxbn6MTjfKytCKG517bng="
+      },
+      {
+        salt: "KpafDsP+96xVYW6dIcL+JA==",
+        verifier: "IsNKHb9o2GORCN9fBjIM1ooriDTp7tcTLVHoXOCGzpY=",
+        name: "QHvsplxb10/hGHp9Tg=="
+      },
+      {
+        salt: "QlaMsNdBekMNe9LRLeRDtQ==",
+        verifier: "qkJxSjsC/cpdcndRJSfTh83trMDbFSzEBSQa1R0nvSY=",
+        name: "0ztTVNcZU/Q2GxJ0/6FG+w=="
+      },
+      {
+        salt: "zDm/sUGTJT9wSxMzDUxJwQ==",
+        verifier: "ki271wz267GjZH3gbGeSermfVWoQkYR65q+iyU+FCUw=",
+        name: "jcmBUqbVmADxY9Htyc8v"
+      },
+      {
+        salt: "5Q0LjcOFHB+M36WTa026zg==",
+        verifier: "a9M1mfoewbm/joRwcBYpQq6SSuNgosWKqX/QOY3i3Mo=",
+        name: "jiMh9l5PQshf40eW7Nf6"
+      },
+      {
+        salt: "XshJl5kdOVVa9DnR2keEpg==",
+        verifier: "JJiDUCaRsRcovfj1TkQJWWFF6JG4+TiYRqQfIHXtMfw=",
+        name: "MlxujgvP5MAKnTsEcg=="
+      },
+      {
+        salt: "xqM+h+7UWLeIa1SpnrdcHg==",
+        verifier: "bYm8xFFkdeXtNcYJFdfwC7hGengF64/fLFKTKQoIA0A=",
+        name: "NzSHMBGOs55/UhmBFg=="
+      },
+      {
+        salt: "gECXbYosWTMYmo8MGOMXxQ==",
+        verifier: "d5lXL5VwA9lKpAGhjWK63I3yoqH4aYngNmgla0ESqdE=",
+        name: "szvCWNOZN7DNHpKtBi73"
+      },
+      {
+        salt: "+YPCykGrMHN2vvr6dokFvg==",
+        verifier: "WxBWfcsYtzkmbFQdzgyBok36XJj6rl7+qiKZlA93KEw=",
+        name: "Xwkhbky3yh4hKVF5u3QH"
+      },
+      {
+        salt: "el1Ng9+WNECZ44sfeaE+DA==",
+        verifier: "FPRzMCtG9T3lfzf7h1gxQpOrTqNdxcYe5nFdgpcKRWw=",
+        name: "ZZOQ7JMiAIphm0tpJ8c="
+      },
+      {
+        salt: "eNXwvjjs3tzKd/TjENEoTg==",
+        verifier: "8WNAyQYA0pX0KHWgiFuOXT/BE1wSP48HDlj3RtPWlaw=",
+        name: "HgNlcCMYPYWE8cJxemMrrQ=="
+      },
+      {
+        salt: "PbAHVjIQp/7Sc6hpIpRXbg==",
+        verifier: "NJnfNsa6z9z8sYElu6X/xa96t2EQjEPVfTA23KOipWA=",
+        name: "gb6jMKNyW2zpOrBWrXzLOg=="
+      },
+      {
+        salt: "l/SKlQNb48MPdencwufamA==",
+        verifier: "0qhTO/IuhfJ4DyAQKDKPHcjAsyaonT3jPkQOXxdKJko=",
+        name: "lVST60XMMURFog=="
+      },
+      {
+        salt: "qW1EnYcPRDdlrTim/j4cjA==",
+        verifier: "Pf3CrartWyStYECRnIdZtuw9sgXtWRdOdwPueJDGI80=",
+        name: "70twuHz7VMh3ODkVBA=="
+      },
+      {
+        salt: "FDEljy+5+AL3LP5NN/MfUg==",
+        verifier: "RUR0IqUm6V/rBMUhkyE7S0JjqtfwpZrQUaIyjywV910=",
+        name: "4VCFmACyCniKBXfX6p+n"
+      },
+      {
+        salt: "WCVj5HVNNeARAAS/R2m+8w==",
+        verifier: "9UNtE1ZONNA+hKJmWJN4pvC7WLPRnEhibNAHKVyxS34=",
+        name: "7MkLMBpAtagxbHRgBmABpA=="
+      },
+      {
+        salt: "mguTkeqqaNxvXDm69UOtPg==",
+        verifier: "cf2oRx4+md+spP1nxLY71B/kQJNaTugO5fY6hySCXLI=",
+        name: "20HW6JgLIdyNYvblt3jHsQ538g=="
+      },
+      {
+        salt: "TsY4Ul/Ds8fwpSNnrQ6CKg==",
+        verifier: "3Du29pgpoWsYBw85qX5v8muWa5Wh6zt/R+NL4T2zkUM=",
+        name: "MEpAUPO1eOfRDOV6J1FC"
+      },
+      {
+        salt: "ozh+ZaUwvY8ogFv1kHKL/A==",
+        verifier: "309d5zYKh0+U0uoLFqpiwQfHAGo+4n4uPP9A8kVgYVo=",
+        name: "HXZszr+y4GZKgxs3Qa7lxg=="
+      },
+      {
+        salt: "2p71iBGpEdVI3jpUnRGT8Q==",
+        verifier: "wl0Fx6exv9+WhcEbx8m8UTbTqO82zL/hk2wYOnGF3Ck=",
+        name: "ubkBcM+8aOolSVajef8="
+      },
+      {
+        salt: "/hoKv3Ls11klEXIEG0rfyQ==",
+        verifier: "DmP9L67kka52E2lt6Wz9wMigqGsO1dMMKy62RUuBJ0A=",
+        name: "7ixdIQ5KtGJYeLd7"
+      },
+      {
+        salt: "6g8TChGbtIhfFtZU4ZULCw==",
+        verifier: "p3PnuTSoX7tuqG0ODuoM5wVUIff7ihKN/wiOA6FyDXI=",
+        name: "rqBFY3wOcss7nuGKluiJszQAwRg57PDu"
+      },
+      {
+        salt: "I6fYyD+Kw++tM/fE56SP0Q==",
+        verifier: "0yYKs0UpedcMSHNGb2sf5VRf7lldqOgWWiTk46lltsw=",
+        name: "NT0x3dqHR6wySKeocw=="
+      },
+      {
+        salt: "KH4DsvqPZKH0OP4z021HLw==",
+        verifier: "uQEMRbLtFDr/uaC1n2rxWrxBsSkb0K+1eA+IsVNIoLk=",
+        name: "fAoSZvn+WmMcEXJlXLxkSw=="
+      },
+      {
+        salt: "cFWDJRBvrT6UwEyG7TeMbQ==",
+        verifier: "ldhEJE9eXhB/oZF3mHhSdJ6N0zFPqyuV6kRUdOz1Dp4=",
+        name: "YgLFFlu4gzU7ineTIQ=="
+      },
+      {
+        salt: "/chzkMjxCFrwliX4wdmMgg==",
+        verifier: "ZW1rAbgBPRJYcIg153TiB8WkoWPFzVbBP4nb+uMTNbk=",
+        name: "o78XwImLrBU6X7C9zt8mInM="
+      },
+      {
+        salt: "hWLqynaujJUYPLlEGoIlng==",
+        verifier: "jI5olgEf6uXEnxZEqkrVM/a42yp77FT/Ug+LmQV5wWI=",
+        name: "2TpvYHXAYeIb/1hZIg=="
+      },
+      {
+        salt: "9UDKlprcaRQVYyIUr0kPFw==",
+        verifier: "7YR0/g3E1pFPoCIwsEPAc2SWSL1UK8mK9GPcxWswf8o=",
+        name: "yasw9ZmJIxfPNE7v"
+      },
+      {
+        salt: "NXmneW0GpWB5lVNynuet7g==",
+        verifier: "jJW3hK0IayHnxJgdy7y3lT2S/6XV/kExb/N5n9CJz2c=",
+        name: "HvjATEzREF0vmZDZoBs="
+      },
+      {
+        salt: "x/Xgnb5lR1C2/XoXlJq2ow==",
+        verifier: "tKbY4Q6btDNAz0QZj+y7zehW4Nu1F1VMx8JhHl9r/X8=",
+        name: "8XFZpx7ejWgIBrvxONqGCms="
+      },
+      {
+        salt: "cC3Qj8mIPmhxJ1USOTnHZA==",
+        verifier: "qJxRUAsWsqpahhrowoGPaYfnIvhaD5MyPN892A1je50=",
+        name: "j26uwKGqdS3dfGNY1g=="
+      },
+      {
+        salt: "SJEOyYg0g2i7Je78mKKmQA==",
+        verifier: "OK6njWwVGHS71I9nFwxHeu1KrHfNvSN/sOziW74RI/U=",
+        name: "qhCSm91IZla3U7uAJg=="
+      },
+      {
+        salt: "7gzRreAhkn4xOpYAgMc4yA==",
+        verifier: "+TXjTHPpY3/02u0h9Q4SGddZMwy+Sx3nDUdZJkuWUAs=",
+        name: "ljC4IOVbCeHgVXOVlQ=="
+      },
+      {
+        salt: "nmfmx95a1JiUWV+QKsyPgg==",
+        verifier: "ozgscv2Dcbz4jtMiFgyidDKc8sr2A/DVr58XPqJF398=",
+        name: "goEimIbGJ3yL/jRpFis="
+      },
+      {
+        salt: "zXyaR68ADGEZL2PtUI4Q9A==",
+        verifier: "rj8sqpwdWR78c7XcjhpxUe4ag6lpCPpwzrbJTdeEg1Y=",
+        name: "Flc5Zy0K+Z9VBdOd"
+      },
+      {
+        salt: "0qjcmBxbj+wtYVqDgabsNA==",
+        verifier: "5vt2GLYJVOiQ4XLV0oB2GMaPpVWbveLCn/PQ5wtUH/Y=",
+        name: "K/laRZrHaOLFNLWmewM="
+      },
+      {
+        salt: "w9nKgYdTTrQGi8fsHsRYsg==",
+        verifier: "/n0EjfELgQKhvE6XcyWluS0dLsM/OzZ3FYOacNtj7Cw=",
+        name: "ezMIOjoPG65pHunc6nhlDJC+"
+      },
+      {
+        salt: "6cXwy6gqDtWxcZqQuIUoww==",
+        verifier: "eA9Om77ybZAz2UO4r8jXQEWq/tI71fyNzt2OPmMV+mA=",
+        name: "C0+frIOCPZvBwOY7yN0="
+      },
+      {
+        salt: "ZvQ3jBcF+TfOKgC2l+UT4A==",
+        verifier: "NCVRNrfHu42/hIKI6eICjPiahN4cRSlbNB7O3e0QI1c=",
+        name: "TOKbARr2u1utvuC7NmaK"
+      },
+      {
+        salt: "/Yr3ET5+vxOSuZkfOxCH2w==",
+        verifier: "fZnHR+o891VvBywluqdkB834TD1VEtcZVNDpjMzHMLM=",
+        name: "l9Gmulb7FyiB9rRv"
+      },
+      {
+        salt: "+mqWoF0o7rEtWdxUCy7OtA==",
+        verifier: "ebCJyjRM1HRFWe2kevblwn+YZJqKCO6zUvXkGCJD3ak=",
+        name: "vNglBahSBa81w9yFopk="
+      },
+      {
+        salt: "bdhPzt05Al1hhy5jWV/IMQ==",
+        verifier: "eq4CrLCWC9hCYii8pRmMCwPMTH9XR0TdHDu+eI+Tfx8=",
+        name: "YXhB/sQwIu3c6A=="
+      },
+      {
+        salt: "ToFTUiqYBXI2EWbNp0CbXw==",
+        verifier: "+djbI+qt47m4gypwGp9eFjALZgB0RxjOpivdxzvFjOU=",
+        name: "fNsYfvW/n6zsUKwMNK8="
+      },
+      {
+        salt: "Q0c5SXetVKTkv1ANL51Cmw==",
+        verifier: "wnCj1QklfV8SaOrAnlL9tJB3LVVChzqirRaCrsqfAmY=",
+        name: "S0wuBxiEbUdFsyss6le8XLZt/ooshfI="
+      },
+      {
+        salt: "Z4Wr6TYkx4iffDB18o+oCQ==",
+        verifier: "xOg15/3GDZdhXWChQuuPsmp7Tf8V1jEG5WuPxKHaWuw=",
+        name: "ISL5gCJ9QpQvKqFzCUCdLw=="
+      },
+      {
+        salt: "49hb8wC2k4uKPeb5wyrTVA==",
+        verifier: "GocFh3tNZPnXb6uJaK+UipMrSbD+pDWwFbKIbnDRcy8=",
+        name: "enIQiBBw5oPEexUE6Ypx"
+      },
+      {
+        salt: "SbaolX3K9gCBIP6+DIDwNA==",
+        verifier: "NoiAP0SAB/wHenehO89vPde4oPLCuklELs27vyrUlfA=",
+        name: "4HxLaNqcN3JSLs/t"
+      },
+      {
+        salt: "f+Pmbid64n1Fvev7CBh7GQ==",
+        verifier: "JXQjCIRZsGhlUa5F/Z9O+ydA4JVCx1YiTsp4gNr4eEc=",
+        name: "XYPVMriE+bfeGnbZMZ319A=="
+      },
+      {
+        salt: "iXxtOj9oEQ0qsp7N21Rfgw==",
+        verifier: "HGCcQnvpk8eXIH21x422JjxnQ5GB8G7M1jdbWfOKhJA=",
+        name: "gDFhZXxBVgBVNiONbA=="
+      },
+      {
+        salt: "5+vpeXRLqFU1MlraCqD0TQ==",
+        verifier: "nWhLTScCWaNoq3H/ArMwoW5Hvj5iF6SAPPb9avcHtkg=",
+        name: "QF5xYU8Ai3NyliHGKQ44"
+      },
+      {
+        salt: "5GG2TKcKladztWGKtb0D5A==",
+        verifier: "I0FoIVnrtka3GNIwdaPqSAIKJKPwEA0lMRa9jeu/yjA=",
+        name: "+uIFkmckuO0sFaLc"
+      },
+      {
+        salt: "H9ZiWrbqq2hj5y5GbrN2wA==",
+        verifier: "yWcl9We0QYVgpCn2I9nKN/TZ2Cjeg3Sx7bVjGygB3iU=",
+        name: "vXDC+sJXC4udFI38"
+      },
+      {
+        salt: "ob0uvpqmp7u6kiaSFV540Q==",
+        verifier: "igoA/8aZBpRmLayv0mCrNptMKs1I5xE3ape7ANdkcjw=",
+        name: "+SZVO8iF+Jd4BD9O"
+      },
+      {
+        salt: "igxrT46F+++TdqZSv3iKhg==",
+        verifier: "5dxuvMQODulEJTlvuvvgmfvZf1FT/ywPOjoLcHJc38Y=",
+        name: "WtofEyhzqIHF4hiNYWU="
+      },
+      {
+        salt: "f0fINB1+m9vhO7X23ElD/w==",
+        verifier: "cXKdLbdsW1PInRFqiX/1+mVPhJClWOJyH9Bn358RtJQ=",
+        name: "449hDwe7lR7VKG+SK3psVA=="
+      },
+      {
+        salt: "ndgv29SnjHC6hzIlpJioUQ==",
+        verifier: "4Zmq/fCl7AiG+1OVKAsrzwigm75aqgoPwkzOfKcKVNA=",
+        name: "b3conDG1ssyUewGXVp0="
+      },
+      {
+        salt: "3Brn5tsVhDrzqwzkG/mvTA==",
+        verifier: "SsEnrhv0fDnedeQ7PnsmDVKL9PXwq3f7T6wNddDIz9w=",
+        name: "6T4Hq1bB+I5/OFiPiA=="
+      },
+      {
+        salt: "AnAS432uZP8SNPX4dY/YPA==",
+        verifier: "nsMWasgm0dSkqZwgiugiee0+UWg5DEgFCE6RevFzmpc=",
+        name: "XjQLcyoIGA3I/NsT"
+      },
+      {
+        salt: "SbJvj3OXPVIvty7B9z/KXg==",
+        verifier: "s+3HguovG9S4Ki4tqGuf7rpEgaM8j1i/L4c6MHFHMlY=",
+        name: "lssCk8Hr/ppDy3bBY0pg"
+      },
+      {
+        salt: "ws0NeN+vMByBczR80eC5hQ==",
+        verifier: "h6fxmjeGdXSBWDEs99KuRj4v2YrVOpbpSxil858aEPw=",
+        name: "Bu8PursxNgH4oneZztQqDA=="
+      },
+      {
+        salt: "VQIIl0snd/UlQO4YGNiXuw==",
+        verifier: "R7j4+msNziwVFi4rY169K1DU8VpJi2Kxxp70w27bfdU=",
+        name: "JwgM8JlsDGU="
+      },
+      {
+        salt: "k28LNqObwQQ20wOnJSalZA==",
+        verifier: "tGlcXVwMRIIQw0V/oRxFd5MIyBhhYulh0L8D+rvRh5I=",
+        name: "MF57iqF1ATsMepkcNw=="
+      },
+      {
+        salt: "YgA9bXR6XlK59KY9CwsBnA==",
+        verifier: "GNaIz7bWQuxjMTpiKjz9iT6wCgKxpsKGD5HlI4GDMng=",
+        name: "hczRMZ1a+4P+yw1NjL0HCQ=="
+      },
+      {
+        salt: "HBjeOrfKms5ooEBVCBGFMw==",
+        verifier: "0TX7lt4sfG6zQMf+K4vcK4JZL1cWz3KPNl/m1kuTIxs=",
+        name: "KB+BMMoISCH/2V0rN1XXok8="
+      },
+      {
+        salt: "Uy5+Vykh4tYEj8yy9td9OA==",
+        verifier: "Wjd2OUcJWHJxFnYrCsjjnoO7j7dwhr+CoW3g28NDpGY=",
+        name: "s9jiU8yAd6sn2DjpeA=="
+      },
+      {
+        salt: "DqZRe4S5BfFButxf3iW3Pg==",
+        verifier: "OMG1EhDVS2FuJTms0PuoghNlctgikeRB9rJ9lm3jskw=",
+        name: "khdJNAjzlp26XyAs"
+      },
+      {
+        salt: "TySeuHQ+GrjDnnG04B6eKw==",
+        verifier: "CwBmDL60k5M5b1+X1bTq++2H3oZE4ULkbS+4UpF2zX8=",
+        name: "hc3VmN+1jxpPqOllxPWo"
+      },
+      {
+        salt: "jHu9Rk0xfXFmV/pTTwzj4w==",
+        verifier: "bbIwyqnerYyCY8kGqo5X8VxofGrTFCts39fCsTrbirc=",
+        name: "W66gdX1Il2osyx2EJeYAaf0="
+      },
+      {
+        salt: "qDrzsKNAuKh2RiTOpRNL3Q==",
+        verifier: "0uVmKESTWiOumI19z7QWO9NG+5EKZf4MJndGgtmmsV8=",
+        name: "lonJbPKp0xpuF16QDiep"
+      },
+      {
+        salt: "xOc87J0fUsX3NwCgevTlbQ==",
+        verifier: "SvVz3IGjpTnhi4dAEJUvCxlpXWWP43U7XwjLTMrylME=",
+        name: "7x6o5ruOXLpKKSbpnBFqMTRRo1CuMQ=="
+      },
+      {
+        salt: "DeKmf2R0bVnuuPIi7syBFw==",
+        verifier: "bT829h2MNgRlNCjeZirAZXFPGy3o8wiNdSaYPH1VYWI=",
+        name: "Racwv/dc2Ul+gl1t"
+      },
+      {
+        salt: "nuIgh5ZT575pIm27JNTcaw==",
+        verifier: "MQKbhlsjENs/gA9D9pa6TxEV4LQBaRYOSXp49mor6hs=",
+        name: "/6+6w+pwmeulYPM="
+      },
+      {
+        salt: "d3461Te9L3HspboTvwzUWQ==",
+        verifier: "R+ZO141wJYVkvY+ec1bTrvhT6b+Yikr4MXAJOyYEjrQ=",
+        name: "gSYzf2DqF/o4I4OW"
+      },
+      {
+        salt: "1bvhFOxpcI7vGKsLsNnj6A==",
+        verifier: "GYhqa2bgTAcWKSkfTZv5+tOQx/2rH0B8eo5E6jU0OZ8=",
+        name: "xQnX8X5lwbGguw=="
+      },
+      {
+        salt: "cXnaiWE6Pk4eNvyhyNMq6A==",
+        verifier: "C+At8+kxjC7WuGhinr70HQW7z+urrezRvJhnFD2U7iA=",
+        name: "A9b+GddAXUR0yE95ZF4C/Q=="
+      },
+      {
+        salt: "e9EBYDSYyqyAosSPHKdg4g==",
+        verifier: "GohE3yZ5vKIKv7w5ioyVWWf0pRdvhDkNqxh9GgUaW6Q=",
+        name: "OwuH0u7zPmjQ2NLIf8k="
+      },
+      {
+        salt: "LiNlo4bRBB5npgKR/HmG4g==",
+        verifier: "AXIT1TzhKu+R3pKAWYc97SOywp7AEIdh877IC+iG9Ss=",
+        name: "LWGscE1Rml1wr9QByOM="
+      },
+      {
+        salt: "t9ww7Chx8rcyrtVdErCm1A==",
+        verifier: "whu9/sxSKq0hxXRJiWUucs5aac2sMrp2LachMu++12o=",
+        name: "nyZ2hUgyjhTbXAP46uY="
       }
     ];
 
@@ -1275,7 +1836,7 @@
         heroCopyDefault: "",
         welcomeTitleDefault: "Hej [namn]!",
         welcomeTitleNamed: (firstName) => `Hej ${firstName}!`,
-        welcomeCopy: "Now boarding: Fredag den 14 augusti kastar vi loss för en sommarfest i Stockholms skärgård. En kväll till sjöss med ARN-crew. OSA senast 5 april för att säkra din plats. Mer info kommer!",
+        welcomeCopy: "Dags för sommarfest! Fredag den 14 augusti bjuder vi in till en festkväll till sjöss tillsammans med kollegor från ARN-basen. OSA senast 5 april för att säkra din plats. Mer information kommer inom kort!",
         heroCopyNamed: () => "",
         noteCopy: "Obs: Festen är ett privat evenemang och har ingen koppling till något flygbolag.",
         infoTitle: "Information",
@@ -1301,7 +1862,7 @@
         comingTitle: "Nu kör vi!",
         comingCopyBeforeLink: "Din anmälan är bindande (",
         comingCopyLink: "villkor",
-        comingCopyAfterLink: '). Efter att din anmälan har skickats in <span class="inline-emphasis">och godkänts</span> skickas en Swishförfrågan till numret du anger nedan.',
+        comingCopyAfterLink: '). Biljettpris: 450 kr. Efter att din anmälan har skickats in <span class="inline-emphasis">och godkänts</span> skickas en Swishförfrågan till numret du anger nedan.',
         comingNamePlaceholder: "Fullt namn",
         comingPhonePlaceholder: "Mobil",
         comingSubmit: "Bekräfta",
@@ -1315,8 +1876,8 @@
         termsSectionItems: [
           [
             "Evenemanget är endast för ARN-crew.",
-            "Din anmälan är bindande när biljetten är betald.",
-            "Får du förhinder kan din plats överlåtas till någon annan på ARN-basen, efter godkännande från Christopher eller Robin."
+            "Din anmälan är bindande när biljetten är betald. Biljettpris: 450 kr. Biljetter återbetalas ej.",
+            "Får du förhinder kan din plats överlåtas till någon annan på ARN-basen, efter godkännande."
           ],
           [
             "Vi har beställt sol, men evenemanget genomförs oavsett väder.",
@@ -1329,6 +1890,7 @@
           ]
         ],
         faqItems: [
+          ["Ska vi vara på en båt?", "Det är alltid fest när det här gänget är ombord ett flygplan, så varför inte festa ombord på en båt den här gången?"],
           ["Hur får man sin biljett?", "När vi har mottagit betalningen får du en bekräftelse via SMS. Själva biljetten skickas ut kort tid innan avgång."],
           ["När börjar boarding?", "Vi återkommer med exakt tid närmare avgång."],
           ["Vad händer om man kommer sent?", "\"No Show\" i SAS Time! Nejdå, men vi kan tyvärr inte ta en försening för att vänta in någon."],
@@ -1357,7 +1919,7 @@
         heroCopyDefault: "",
         welcomeTitleDefault: "Hi [name]!",
         welcomeTitleNamed: (firstName) => `Hi ${firstName}!`,
-        welcomeCopy: "Now boarding: On Friday, 14 August, we set sail for a summer party in the Stockholm archipelago. An evening at sea with the ARN crew. Please RSVP by 5 April to secure your spot. More details to follow.",
+        welcomeCopy: "Time for a summer party! On Friday, 14 August, we’re inviting you to a festive evening at sea together with colleagues from the ARN base. Please RSVP by 5 April to secure your spot. More information will follow shortly!",
         heroCopyNamed: () => "",
         noteCopy: "Please note: this is a private event and has no connection to any airline.",
         infoTitle: "Information",
@@ -1383,7 +1945,7 @@
         comingTitle: "Great!",
         comingCopyBeforeLink: "Your registration is binding (",
         comingCopyLink: "terms",
-        comingCopyAfterLink: '). Once your registration has been submitted <span class="inline-emphasis">and approved</span>, a Swish payment request will be sent to the number you enter below.',
+        comingCopyAfterLink: '). Ticket price: 450 SEK. Once your registration has been submitted <span class="inline-emphasis">and approved</span>, a Swish payment request will be sent to the number you enter below.',
         comingNamePlaceholder: "Full name",
         comingPhonePlaceholder: "Mobile number",
         comingSubmit: "Confirm",
@@ -1397,8 +1959,8 @@
         termsSectionItems: [
           [
             "The event is for ARN crew only.",
-            "Your registration becomes binding once your ticket has been paid.",
-            "If you can no longer attend, your spot may be transferred to someone else at the ARN base, subject to approval by Christopher or Robin."
+            "Your registration becomes binding once your ticket has been paid. Ticket price: 450 SEK. Tickets are non-refundable.",
+            "If you can no longer attend, your spot may be transferred to someone else at the ARN base, subject to approval."
           ],
           [
             "We ordered sunshine, but the event will go ahead regardless of weather.",
@@ -1411,6 +1973,7 @@
           ]
         ],
         faqItems: [
+          ["Are we going to be on a boat?", "It’s always a party when this crew is on board an aircraft, so why not party on board a boat this time?"],
           ["How do I receive my ticket?", "Once payment has been received, you will get a confirmation by SMS. The actual ticket will be sent shortly before departure."],
           ["When does boarding start?", "We will share the exact time closer to departure."],
           ["What happens if I arrive late?", "\"No Show\" in SAS Time. Jokes aside, we unfortunately cannot delay departure to wait for anyone."],
@@ -1507,7 +2070,7 @@
       notComingClose.textContent = t.notComingClose;
       notComingBack.textContent = t.backText;
       termsTitle.textContent = t.termsTitle;
-      termsCopy.textContent = t.termsCopy;
+      if (termsCopy) termsCopy.textContent = t.termsCopy;
       termsSectionTitles[0].textContent = t.termsSectionTitles[0];
       termsSectionTitles[1].textContent = t.termsSectionTitles[1];
       termsSectionTitles[2].textContent = t.termsSectionTitles[2];
