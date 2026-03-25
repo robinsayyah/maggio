@@ -126,12 +126,10 @@
     }
 
     .hero-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: nowrap;
-      width: 100%;
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      z-index: 4;
     }
 
     .hero-kicker {
@@ -143,14 +141,12 @@
     }
 
     .hero-title {
-      font-size: clamp(1.15rem, 3.2vw, 5.5rem);
+      font-size: clamp(2.2rem, 4.8vw, 5.5rem);
       line-height: 0.95;
       letter-spacing: -0.04em;
       font-weight: 700;
       margin: 0;
-      white-space: nowrap;
-      flex: 1 1 auto;
-      min-width: 0;
+      text-wrap: balance;
     }
 
     .hero-copy {
@@ -817,11 +813,12 @@
       }
 
       .hero-title {
-        font-size: clamp(1.15rem, 8vw, 2.8rem);
+        font-size: clamp(2.2rem, 11vw, 3.7rem);
       }
 
       .hero-header {
-        gap: 12px;
+        top: 14px;
+        right: 14px;
       }
 
       .info-card {
