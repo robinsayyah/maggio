@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Event Invite</title>
+  <title>ARN Crew Sommarfest!</title>
   <style>
     :root {
       --text: #ffffff;
@@ -757,6 +757,21 @@
       padding: 0;
     }
 
+    .rsvp-feedback {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(17, 24, 39, 0.06);
+      color: rgba(17, 24, 39, 0.76);
+      font-size: 0.95rem;
+      line-height: 1.45;
+      display: none;
+    }
+
+    .rsvp-feedback.is-visible {
+      display: block;
+    }
+
     @media (min-width: 721px) {
       .rsvp-panel {
         position: fixed;
@@ -905,7 +920,7 @@
         <div class="hero-content">
           <div class="hero-kicker"></div>
           <div class="hero-header">
-            <h1 class="hero-title">SAS sommarfest!</h1>
+            <h1 class="hero-title">ARN Crew Sommarfest!</h1>
           </div>
           <div class="hero-copy">
             <span class="hero-copy-text"></span>
@@ -921,19 +936,18 @@
                 <h2 class="welcome-title">Hej [namn]!</h2>
                 <p class="welcome-copy">
                   Now boarding: Fredag den 14 augusti kastar vi loss för en sommarfest i Stockholms skärgård.
-                  En kväll till sjöss med STO-crew. OSA senast 5 april för att säkra din plats. Mer info kommer!
+                  En kväll till sjöss med ARN-crew. OSA senast 5 april för att säkra din plats. Mer info kommer!
                 </p>
               </div>
 
               <div class="note">
-                <p>Obs: Festen är inte ett officiellt SAS-arrangemang.</p>
+                <p>Obs: Festen är ett privat evenemang och har ingen koppling till något flygbolag.</p>
               </div>
             </div>
           </div>
 
           <div class="group-card">
             <div class="group-card-header">
-              <h3 class="group-title">Information</h3>
             </div>
             <div class="group-card-content">
               <div class="details">
@@ -1067,13 +1081,15 @@
             </div>
 
             <form class="rsvp-form" id="comingForm">
-              <input class="rsvp-input" type="text" placeholder="Fullt namn" />
-              <input class="rsvp-input" type="tel" placeholder="Mobil" />
+              <input class="rsvp-input" type="text" placeholder="Fullt namn" required />
+              <input class="rsvp-input" type="tel" placeholder="Mobil" required />
 
               <div class="rsvp-action">
                 <button class="rsvp-submit" type="submit">Bekräfta</button>
               </div>
             </form>
+
+            <div class="rsvp-feedback" id="comingFeedback"></div>
 
             <button class="rsvp-back" type="button" data-back>← Tillbaka</button>
           </div>
@@ -1088,8 +1104,10 @@
             </div>
 
             <div class="rsvp-action">
-              <button class="rsvp-submit" type="button" id="notComingClose">Okej</button>
+              <button class="rsvp-submit" type="button" id="notComingClose">Skicka svar</button>
             </div>
+
+            <div class="rsvp-feedback" id="notComingFeedback"></div>
 
             <button class="rsvp-back" type="button" data-back>← Tillbaka</button>
           </div>
@@ -1099,16 +1117,16 @@
             <div class="rsvp-header">
               <h3 class="rsvp-title">Villkor och frågor</h3>
               <p class="rsvp-copy">
-                Kort information för crew på Stockholms-basen inför anmälan och deltagande.
+                Kort information för crew på ARN-basen inför anmälan och deltagande.
               </p>
             </div>
 
             <div class="sheet-section">
               <h4 class="sheet-section-title">Anmälan</h4>
               <ul class="sheet-list">
-                <li>Evenemanget är endast för STO-crew.</li>
+                <li>Evenemanget är endast för ARN-crew.</li>
                 <li>Din anmälan är bindande när biljetten är betald.</li>
-                <li>Får du förhinder kan din plats överlåtas till någon annan på STO-basen, efter godkännande från Christopher eller Robin.</li>
+                <li>Får du förhinder kan din plats överlåtas till någon annan på ARN-basen, efter godkännande från Christopher eller Robin.</li>
               </ul>
             </div>
 
@@ -1174,7 +1192,7 @@
   <div class="rsvp-sheet-overlay" id="rsvpSheetOverlay"></div>
 
   <script>
-    const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbx3szKZ2gz1oB6dhgYBvCPb0XAI-vAgU1_m3cAJ6lwsVX82M3Y14TbUVt8wFtcirjeGxg/exec";
+    const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbxwy976pH_JStcwrDtu0XXRVwrhkdOF7blIDU1HQP8MUYb0mOQwtD2fdRNunYMc5VgsqQ/exec";
     const inviteRecords = [
       {
         salt: "7WORoJZ19x3nlJQ+xFfANg==",
@@ -1232,9 +1250,11 @@
     const comingNameInput = comingPanel.querySelector('input[type="text"]');
     const comingPhoneInput = comingPanel.querySelector('input[type="tel"]');
     const comingSubmit = comingPanel.querySelector(".rsvp-submit");
+    const comingFeedback = document.getElementById("comingFeedback");
     const comingBack = comingPanel.querySelector(".rsvp-back");
     const notComingTitle = notComingPanel.querySelector(".rsvp-title");
     const notComingCopy = notComingPanel.querySelector(".rsvp-copy");
+    const notComingFeedback = document.getElementById("notComingFeedback");
     const notComingBack = notComingPanel.querySelector(".rsvp-back");
     const termsTitle = termsPanel.querySelector(".rsvp-title");
     const termsCopy = termsPanel.querySelector(".rsvp-copy");
@@ -1249,15 +1269,15 @@
 
     const translations = {
       sv: {
-        documentTitle: "SAS sommarfest!",
+        documentTitle: "ARN Crew Sommarfest!",
         heroKicker: "",
-        heroTitle: "SAS sommarfest!",
+        heroTitle: "ARN Crew Sommarfest!",
         heroCopyDefault: "",
         welcomeTitleDefault: "Hej [namn]!",
         welcomeTitleNamed: (firstName) => `Hej ${firstName}!`,
-        welcomeCopy: "Now boarding: Fredag den 14 augusti kastar vi loss för en sommarfest i Stockholms skärgård. En kväll till sjöss med STO-crew. OSA senast 5 april för att säkra din plats. Mer info kommer!",
+        welcomeCopy: "Now boarding: Fredag den 14 augusti kastar vi loss för en sommarfest i Stockholms skärgård. En kväll till sjöss med ARN-crew. OSA senast 5 april för att säkra din plats. Mer info kommer!",
         heroCopyNamed: () => "",
-        noteCopy: "Obs: Festen är inte ett officiellt SAS-arrangemang.",
+        noteCopy: "Obs: Festen är ett privat evenemang och har ingen koppling till något flygbolag.",
         infoTitle: "Information",
         timeLabel: "Tid",
         timeValue: "14 augusti 2026, kl. 17:00",
@@ -1288,15 +1308,15 @@
         backText: "← Tillbaka",
         notComingTitle: "Tråkigt...",
         notComingCopy: "Om saker ändrar sig kan du kontakta Robin eller Christopher så ska vi se om vi kan lösa något.",
-        notComingClose: "Okej",
+        notComingClose: "Skicka svar",
         termsTitle: "Villkor och frågor",
-        termsCopy: "Kort information för crew på Stockholms-basen inför anmälan och deltagande.",
+        termsCopy: "Kort information för crew på ARN-basen inför anmälan och deltagande.",
         termsSectionTitles: ["Anmälan", "Genomförande", "Ordning och trivsel", "Vanliga frågor"],
         termsSectionItems: [
           [
-            "Evenemanget är endast för STO-crew.",
+            "Evenemanget är endast för ARN-crew.",
             "Din anmälan är bindande när biljetten är betald.",
-            "Får du förhinder kan din plats överlåtas till någon annan på STO-basen, efter godkännande från Christopher eller Robin."
+            "Får du förhinder kan din plats överlåtas till någon annan på ARN-basen, efter godkännande från Christopher eller Robin."
           ],
           [
             "Vi har beställt sol, men evenemanget genomförs oavsett väder.",
@@ -1319,23 +1339,27 @@
         ],
         termsClose: "Stäng",
         rsvpSubmitting: "Skickar...",
+        rsvpDeclineSubmitting: "Skickar...",
         emptyCodeAlert: "Ange din kod",
         invalidCodeAlert: "Ogiltig kod",
         verifyErrorAlert: "Kunde inte verifiera koden",
         rsvpSuccessAlert: "Tack! Din OSA är registrerad.",
+        rsvpSuccessInline: "Tack! Din OSA är registrerad och skickad vidare.",
+        rsvpDeclineSuccessAlert: "Tack! Ditt svar är registrerat.",
+        rsvpDeclineSuccessInline: "Tack! Ditt svar är registrerat.",
         rsvpErrorAlert: "Något gick fel. Försök igen.",
         rsvpConfigAlert: "RSVP är inte konfigurerad ännu."
       },
       en: {
-        documentTitle: "SAS Summer Party!",
+        documentTitle: "ARN Crew Summer Party!",
         heroKicker: "",
-        heroTitle: "SAS Summer Party!",
+        heroTitle: "ARN Crew Summer Party!",
         heroCopyDefault: "",
         welcomeTitleDefault: "Hi [name]!",
         welcomeTitleNamed: (firstName) => `Hi ${firstName}!`,
-        welcomeCopy: "Now boarding: On Friday, 14 August, we set sail for a summer party in the Stockholm archipelago. An evening at sea with the STO crew. Please RSVP by 5 April to secure your spot. More details to follow.",
+        welcomeCopy: "Now boarding: On Friday, 14 August, we set sail for a summer party in the Stockholm archipelago. An evening at sea with the ARN crew. Please RSVP by 5 April to secure your spot. More details to follow.",
         heroCopyNamed: () => "",
-        noteCopy: "Please note: this party is not an official SAS event.",
+        noteCopy: "Please note: this is a private event and has no connection to any airline.",
         infoTitle: "Information",
         timeLabel: "Time",
         timeValue: "Friday, August 14, 2026 at 5:00 PM",
@@ -1366,15 +1390,15 @@
         backText: "← Back",
         notComingTitle: "Sorry to hear that...",
         notComingCopy: "If things change, contact Robin or Christopher and we will see whether something can be arranged.",
-        notComingClose: "OK",
+        notComingClose: "Send response",
         termsTitle: "Terms and FAQ",
-        termsCopy: "Short practical information for Stockholm-base crew before registering and attending.",
+        termsCopy: "Short practical information for ARN-base crew before registering and attending.",
         termsSectionTitles: ["Registration", "Operations", "On-board conduct", "Frequently asked questions"],
         termsSectionItems: [
           [
-            "The event is for STO crew only.",
+            "The event is for ARN crew only.",
             "Your registration becomes binding once your ticket has been paid.",
-            "If you can no longer attend, your spot may be transferred to someone else at the STO base, subject to approval by Christopher or Robin."
+            "If you can no longer attend, your spot may be transferred to someone else at the ARN base, subject to approval by Christopher or Robin."
           ],
           [
             "We ordered sunshine, but the event will go ahead regardless of weather.",
@@ -1397,10 +1421,14 @@
         ],
         termsClose: "Close",
         rsvpSubmitting: "Sending...",
+        rsvpDeclineSubmitting: "Sending...",
         emptyCodeAlert: "Enter your code",
         invalidCodeAlert: "Invalid code",
         verifyErrorAlert: "Could not verify the code",
         rsvpSuccessAlert: "Thank you. Your RSVP has been registered.",
+        rsvpSuccessInline: "Thank you. Your RSVP has been registered and sent.",
+        rsvpDeclineSuccessAlert: "Thank you. Your response has been registered.",
+        rsvpDeclineSuccessInline: "Thank you. Your response has been registered.",
         rsvpErrorAlert: "Something went wrong. Please try again.",
         rsvpConfigAlert: "RSVP is not configured yet."
       }
@@ -1443,7 +1471,7 @@
       applyUnlockedCopy();
       welcomeCopy.textContent = t.welcomeCopy;
       noteCopy.textContent = t.noteCopy;
-      infoTitle.textContent = t.infoTitle;
+      if (infoTitle) infoTitle.textContent = t.infoTitle;
       detailRows[0].querySelector(".detail-label").textContent = t.timeLabel;
       detailRows[0].querySelector(".detail-value").textContent = t.timeValue;
       detailRows[1].querySelector(".detail-label").textContent = t.placeLabel;
@@ -1622,6 +1650,10 @@
       termsPanel.classList.remove("is-visible");
       rsvpSheetOverlay.classList.remove("is-visible");
       document.body.style.overflow = "";
+      comingFeedback.classList.remove("is-visible");
+      comingFeedback.textContent = "";
+      notComingFeedback.classList.remove("is-visible");
+      notComingFeedback.textContent = "";
     }
 
     function showPanel(panel) {
@@ -1708,7 +1740,38 @@
     });
 
     notComingClose.addEventListener("click", () => {
-      hideAllRsvpPanels();
+      const t = translations[currentLanguage];
+
+      if (!RSVP_ENDPOINT) {
+        alert(t.rsvpConfigAlert);
+        return;
+      }
+
+      if (!unlockedGuestName) {
+        alert(t.rsvpErrorAlert);
+        return;
+      }
+
+      const originalLabel = t.notComingClose;
+      notComingClose.disabled = true;
+      notComingClose.textContent = t.rsvpDeclineSubmitting;
+
+      submitRsvp({
+        fullName: unlockedGuestName,
+        phoneNumber: "",
+        rsvp: "no"
+      }).then(() => {
+        notComingFeedback.textContent = t.rsvpDeclineSuccessInline;
+        notComingFeedback.classList.add("is-visible");
+        window.setTimeout(() => {
+          hideAllRsvpPanels();
+        }, 1400);
+      }).catch(() => {
+        alert(t.rsvpErrorAlert);
+      }).finally(() => {
+        notComingClose.disabled = false;
+        notComingClose.textContent = originalLabel;
+      });
     });
 
     termsClose.addEventListener("click", () => {
@@ -1748,10 +1811,13 @@
       submitRsvp({
         fullName,
         phoneNumber,
-        rsvp: "coming"
+        rsvp: "yes"
       }).then(() => {
-        alert(t.rsvpSuccessAlert);
-        hideAllRsvpPanels();
+        comingFeedback.textContent = t.rsvpSuccessInline;
+        comingFeedback.classList.add("is-visible");
+        window.setTimeout(() => {
+          hideAllRsvpPanels();
+        }, 1400);
       }).catch(() => {
         alert(t.rsvpErrorAlert);
       }).finally(() => {
