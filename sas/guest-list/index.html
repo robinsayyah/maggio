@@ -1033,6 +1033,7 @@
       </div>
     </section>
   </main>
+  <iframe name="rsvpSubmitFrame" id="rsvpSubmitFrame" hidden></iframe>
 <div class="rsvp-panel" id="rsvpChoicePanel">
             <div class="sheet-handle"></div>
             <div class="rsvp-header">
@@ -1173,7 +1174,7 @@
   <div class="rsvp-sheet-overlay" id="rsvpSheetOverlay"></div>
 
   <script>
-    const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbw1Voe9nBFtivBUgIifW6Iwuky_K27PefOXjfz6U0CiMEwAdGg21RROyGwGLf7D6Q8PUA/exec";
+    const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbx3szKZ2gz1oB6dhgYBvCPb0XAI-vAgU1_m3cAJ6lwsVX82M3Y14TbUVt8wFtcirjeGxg/exec";
     const inviteRecords = [
       {
         salt: "7WORoJZ19x3nlJQ+xFfANg==",
@@ -1220,6 +1221,7 @@
     const backButtons = document.querySelectorAll("[data-back]");
     const rsvpSheetOverlay = document.getElementById("rsvpSheetOverlay");
     const comingForm = document.getElementById("comingForm");
+    const rsvpSubmitFrame = document.getElementById("rsvpSubmitFrame");
 
     const rsvpChoiceTitle = rsvpChoicePanel.querySelector(".rsvp-title");
     const rsvpChoiceCopy = rsvpChoicePanel.querySelector(".rsvp-copy");
@@ -1629,20 +1631,42 @@
       document.body.style.overflow = "hidden";
     }
 
-    async function submitRsvp(payload) {
-      const response = await fetch(RSVP_ENDPOINT, {
-        method: "POST",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify(payload)
+    function submitRsvp(payload) {
+      return new Promise((resolve, reject) => {
+        const form = document.createElement("form");
+        const timeoutId = window.setTimeout(() => {
+          cleanup();
+          reject(new Error("RSVP submission timed out."));
+        }, 10000);
+
+        function cleanup() {
+          window.clearTimeout(timeoutId);
+          rsvpSubmitFrame.removeEventListener("load", handleLoad);
+          form.remove();
+        }
+
+        function handleLoad() {
+          cleanup();
+          resolve();
+        }
+
+        form.method = "POST";
+        form.action = RSVP_ENDPOINT;
+        form.target = "rsvpSubmitFrame";
+        form.style.display = "none";
+
+        Object.entries(payload).forEach(([key, value]) => {
+          const input = document.createElement("input");
+          input.type = "hidden";
+          input.name = key;
+          input.value = value;
+          form.appendChild(input);
+        });
+
+        rsvpSubmitFrame.addEventListener("load", handleLoad, { once: true });
+        document.body.appendChild(form);
+        form.submit();
       });
-
-      const result = await response.json().catch(() => ({ ok: false }));
-
-      if (!response.ok || !result.ok) {
-        throw new Error(result.error || "RSVP submission failed.");
-      }
     }
 
     unlockButton.addEventListener("click", unlock);
