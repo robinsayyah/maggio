@@ -127,9 +127,10 @@
 
     .hero-header {
       display: flex;
-      align-items: flex-end;
+      align-items: baseline;
       justify-content: space-between;
       gap: 18px;
+      flex-wrap: nowrap;
     }
 
     .hero-kicker {
@@ -141,12 +142,14 @@
     }
 
     .hero-title {
-      font-size: clamp(3rem, 5vw, 5.5rem);
+      font-size: clamp(2rem, 4.2vw, 5.5rem);
       line-height: 0.95;
       letter-spacing: -0.04em;
       font-weight: 700;
       margin: 0;
-      text-wrap: balance;
+      white-space: nowrap;
+      flex: 1 1 auto;
+      min-width: 0;
     }
 
     .hero-copy {
@@ -303,9 +306,11 @@
     .language-switch {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-size: 0.84rem;
-      color: rgba(255, 255, 255, 0.66);
+      gap: 6px;
+      font-size: 0.76rem;
+      color: rgba(255, 255, 255, 0.72);
+      flex: 0 0 auto;
+      white-space: nowrap;
     }
 
     .language-button {
@@ -316,6 +321,7 @@
       color: inherit;
       font: inherit;
       cursor: pointer;
+      letter-spacing: -0.01em;
     }
 
     .language-button.is-active {
@@ -813,8 +819,7 @@
       }
 
       .hero-header {
-        flex-direction: column;
-        align-items: flex-start;
+        gap: 12px;
       }
 
       .info-card {
@@ -891,9 +896,9 @@
           <div class="hero-header">
             <h1 class="hero-title">SAS sommarfest!</h1>
             <div class="language-switch" aria-label="Language switcher">
-              <button class="language-button" id="langSvButton" type="button">Svenska</button>
+              <button class="language-button" id="langSvButton" type="button">SV</button>
               <span>/</span>
-              <button class="language-button" id="langEnButton" type="button">English</button>
+              <button class="language-button" id="langEnButton" type="button">EN</button>
             </div>
           </div>
           <div class="hero-copy">
@@ -956,8 +961,10 @@
               <div class="hosts-section">
                 <div class="hosts-list">
                   <div class="host-person">
-                    <img class="avatar" src="images/christopherMedevik.jpeg" alt="Christopher Medevik" />
-                    <div class="host-name">Christopher Medevik</div>
+                    <a class="host-link" href="sms:+46704567454">
+                      <img class="avatar" src="images/christopherMedevik.jpeg" alt="Christopher Medevik" />
+                      <div class="host-name">Christopher Medevik</div>
+                    </a>
                   </div>
                   <div class="host-person">
                     <a class="host-link" href="sms:+470768347279">
