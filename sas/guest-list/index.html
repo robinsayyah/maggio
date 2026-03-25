@@ -1173,6 +1173,7 @@
   <div class="rsvp-sheet-overlay" id="rsvpSheetOverlay"></div>
 
   <script>
+    const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbw1Voe9nBFtivBUgIifW6Iwuky_K27PefOXjfz6U0CiMEwAdGg21RROyGwGLf7D6Q8PUA/exec";
     const inviteRecords = [
       {
         salt: "7WORoJZ19x3nlJQ+xFfANg==",
@@ -1315,10 +1316,13 @@
           ["Kan man simma från båten?", "Ja, om rederiet bedömer att väderförhållandena är tillräckligt bra. Kapten har sista ordet även här."]
         ],
         termsClose: "Stäng",
+        rsvpSubmitting: "Skickar...",
         emptyCodeAlert: "Ange din kod",
         invalidCodeAlert: "Ogiltig kod",
         verifyErrorAlert: "Kunde inte verifiera koden",
-        rsvpSuccessAlert: "Tack! Din OSA är registrerad."
+        rsvpSuccessAlert: "Tack! Din OSA är registrerad.",
+        rsvpErrorAlert: "Något gick fel. Försök igen.",
+        rsvpConfigAlert: "RSVP är inte konfigurerad ännu."
       },
       en: {
         documentTitle: "SAS Summer Party!",
@@ -1390,10 +1394,13 @@
           ["Can we swim from the boat?", "Yes, if the shipping operator considers the weather conditions suitable. The captain has the final word here as well."]
         ],
         termsClose: "Close",
+        rsvpSubmitting: "Sending...",
         emptyCodeAlert: "Enter your code",
         invalidCodeAlert: "Invalid code",
         verifyErrorAlert: "Could not verify the code",
-        rsvpSuccessAlert: "Thank you. Your RSVP has been registered."
+        rsvpSuccessAlert: "Thank you. Your RSVP has been registered.",
+        rsvpErrorAlert: "Something went wrong. Please try again.",
+        rsvpConfigAlert: "RSVP is not configured yet."
       }
     };
 
@@ -1622,6 +1629,22 @@
       document.body.style.overflow = "hidden";
     }
 
+    async function submitRsvp(payload) {
+      const response = await fetch(RSVP_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json().catch(() => ({ ok: false }));
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.error || "RSVP submission failed.");
+      }
+    }
+
     unlockButton.addEventListener("click", unlock);
 
     input.addEventListener("keydown", (e) => {
@@ -1680,8 +1703,37 @@
 
     comingForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      alert(translations[currentLanguage].rsvpSuccessAlert);
-      hideAllRsvpPanels();
+      const t = translations[currentLanguage];
+      const fullName = comingNameInput.value.trim();
+      const phoneNumber = comingPhoneInput.value.trim();
+
+      if (!RSVP_ENDPOINT) {
+        alert(t.rsvpConfigAlert);
+        return;
+      }
+
+      if (!fullName || !phoneNumber) {
+        alert(t.rsvpErrorAlert);
+        return;
+      }
+
+      const originalLabel = t.comingSubmit;
+      comingSubmit.disabled = true;
+      comingSubmit.textContent = t.rsvpSubmitting;
+
+      submitRsvp({
+        fullName,
+        phoneNumber,
+        rsvp: "coming"
+      }).then(() => {
+        alert(t.rsvpSuccessAlert);
+        hideAllRsvpPanels();
+      }).catch(() => {
+        alert(t.rsvpErrorAlert);
+      }).finally(() => {
+        comingSubmit.disabled = false;
+        comingSubmit.textContent = originalLabel;
+      });
     });
 
     setLanguage(detectInitialLanguage());
