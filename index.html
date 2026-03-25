@@ -951,13 +951,12 @@
           <div class="group-card">
             <div class="group-card-header">
               <h3 class="group-title">Värdar</h3>
-              <div class="section-caption">Dina kontaktpersoner</div>
             </div>
             <div class="group-card-content">
               <div class="hosts-section">
                 <div class="hosts-list">
                   <div class="host-person">
-                    <img class="avatar" src="christopherMedevik.jpg" alt="Christopher Medevik" />
+                    <img class="avatar" src="christopherMedevik.jpeg" alt="Christopher Medevik" />
                     <div class="host-name">Christopher Medevik</div>
                   </div>
                   <div class="host-person">
@@ -1234,7 +1233,7 @@
 
     const translations = {
       sv: {
-        documentTitle: "Event Invite",
+        documentTitle: "SAS sommarfest!",
         heroKicker: "",
         heroTitle: "SAS sommarfest!",
         heroCopyDefault: "",
@@ -1251,7 +1250,7 @@
         rsvpButton: "OSA",
         termsButton: "Villkor och frågor",
         hostsTitle: "Värdar",
-        hostsCaption: "Dina kontaktpersoner",
+        hostsCaption: "",
         guestsTitle: "Gäster",
         acceptedCount: "Platser kvar: 120 / 120",
         guestStatus: "Kommer",
@@ -1309,7 +1308,7 @@
         rsvpSuccessAlert: "Tack! Din OSA är registrerad."
       },
       en: {
-        documentTitle: "Event Invite",
+        documentTitle: "SAS Summer Party!",
         heroKicker: "",
         heroTitle: "SAS Summer Party!",
         heroCopyDefault: "",
@@ -1326,7 +1325,7 @@
         rsvpButton: "RSVP",
         termsButton: "Terms and FAQ",
         hostsTitle: "Hosts",
-        hostsCaption: "Your contact persons",
+        hostsCaption: "",
         guestsTitle: "Guests",
         acceptedCount: "Spots left: 120 / 120",
         guestStatus: "Attending",
@@ -1430,7 +1429,7 @@
       rsvpButton.textContent = t.rsvpButton;
       termsButton.textContent = t.termsButton;
       hostsTitle.textContent = t.hostsTitle;
-      hostsCaption.textContent = t.hostsCaption;
+      if (hostsCaption) hostsCaption.textContent = t.hostsCaption;
       guestsTitle.textContent = t.guestsTitle;
       acceptedCount.textContent = t.acceptedCount;
       guestStatusLabels.forEach((label) => {
