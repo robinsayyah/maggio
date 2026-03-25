@@ -54,6 +54,12 @@
       background-size: auto, auto, auto, cover, 100% 200%;
     }
 
+    body.lock-open {
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+    }
+
     .page-bg {
       display: none;
     }
@@ -68,6 +74,10 @@
       display: flex;
       align-items: center;
       padding: 18px 0;
+    }
+
+    .lock-open .shell {
+      align-items: flex-start;
     }
 
     .invite-layout {
@@ -2146,6 +2156,15 @@
         form.submit();
       });
     }
+
+    function resetLockedScrollPosition() {
+      if (!document.body.classList.contains("lock-open")) return;
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    }
+
+    resetLockedScrollPosition();
+    window.addEventListener("load", resetLockedScrollPosition);
+    window.addEventListener("pageshow", resetLockedScrollPosition);
 
     unlockButton.addEventListener("click", unlock);
 
