@@ -609,8 +609,7 @@
     }
 
     .inline-emphasis {
-      text-decoration: underline;
-      text-underline-offset: 0.14em;
+      font-weight: 700;
     }
 
     .rsvp-choices {
@@ -1093,8 +1092,9 @@
               <p class="rsvp-copy" id="comingCopy">
                 Din anmälan är bindande (
                 <button class="inline-sheet-link" id="comingTermsLink" type="button">villkor</button>
-                ). Efter att din anmälan har skickats in <span class="inline-emphasis">och godkänts</span> skickas en Swishförfrågan till numret du anger nedan.
+                ). Efter att din anmälan har mottagits <span class="inline-emphasis">och godkänts</span> skickas en Swishförfrågan till numret du anger nedan.
               </p>
+              <p class="rsvp-copy" id="comingPrice">Biljettpris: 450 kr</p>
             </div>
 
             <form class="rsvp-form" id="comingForm">
@@ -1701,6 +1701,7 @@
     const notComingChoiceText = notComingButton.querySelector(".choice-text");
     const comingTitle = comingPanel.querySelector(".rsvp-title");
     const comingCopy = document.getElementById("comingCopy");
+    const comingPrice = document.getElementById("comingPrice");
     const comingNameInput = comingPanel.querySelector('input[type="text"]');
     const comingPhoneInput = comingPanel.querySelector('input[type="tel"]');
     const comingSubmit = comingPanel.querySelector(".rsvp-submit");
@@ -1755,7 +1756,8 @@
         comingTitle: "Nu kör vi!",
         comingCopyBeforeLink: "Din anmälan är bindande (",
         comingCopyLink: "villkor",
-        comingCopyAfterLink: '). Biljettpris: 450 kr. Efter att din anmälan har skickats in <span class="inline-emphasis">och godkänts</span> skickas en Swishförfrågan till numret du anger nedan.',
+        comingCopyAfterLink: '). Efter att din anmälan har mottagits <span class="inline-emphasis">och godkänts</span> skickas en Swishförfrågan till numret du anger nedan.',
+        comingPrice: "Biljettpris: 450 kr",
         comingNamePlaceholder: "Fullt namn",
         comingPhonePlaceholder: "Mobil",
         comingSubmit: "Bekräfta",
@@ -1838,7 +1840,8 @@
         comingTitle: "Great!",
         comingCopyBeforeLink: "Your registration is binding (",
         comingCopyLink: "terms",
-        comingCopyAfterLink: '). Ticket price: 450 SEK. Once your registration has been submitted <span class="inline-emphasis">and approved</span>, a Swish payment request will be sent to the number you enter below.',
+        comingCopyAfterLink: '). Once your registration has been received <span class="inline-emphasis">and approved</span>, a Swish payment request will be sent to the number you enter below.',
+        comingPrice: "Ticket price: 450 SEK",
         comingNamePlaceholder: "Full name",
         comingPhonePlaceholder: "Mobile number",
         comingSubmit: "Confirm",
@@ -1951,6 +1954,7 @@
       notComingChoiceText.textContent = t.notComingChoiceText;
       comingTitle.textContent = t.comingTitle;
       comingCopy.innerHTML = `${t.comingCopyBeforeLink}<button class="inline-sheet-link" id="comingTermsLink" type="button">${t.comingCopyLink}</button>${t.comingCopyAfterLink}`;
+      comingPrice.textContent = t.comingPrice;
       document.getElementById("comingTermsLink").addEventListener("click", () => {
         showPanel(termsPanel);
       });
