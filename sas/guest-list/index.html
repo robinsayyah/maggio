@@ -608,6 +608,11 @@
       cursor: pointer;
     }
 
+    .inline-emphasis {
+      text-decoration: underline;
+      text-underline-offset: 0.14em;
+    }
+
     .rsvp-choices {
       display: grid;
       gap: 14px;
@@ -1076,7 +1081,7 @@
               <p class="rsvp-copy" id="comingCopy">
                 Din anmälan är bindande (
                 <button class="inline-sheet-link" id="comingTermsLink" type="button">villkor</button>
-                ). Efter registrering tillkommer en Swishförfrågan till numret angiven nedan.
+                ). Efter att din anmälan har skickats in <span class="inline-emphasis">och godkänts</span> skickas en Swishförfrågan till numret du anger nedan.
               </p>
             </div>
 
@@ -1195,14 +1200,9 @@
     const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbxwy976pH_JStcwrDtu0XXRVwrhkdOF7blIDU1HQP8MUYb0mOQwtD2fdRNunYMc5VgsqQ/exec";
     const inviteRecords = [
       {
-        salt: "7WORoJZ19x3nlJQ+xFfANg==",
-        verifier: "6s/UBTBd1HbhcrpwTF64EhfLuilAlbrlDm6aNKl323s=",
-        name: "CDI/dqDWvc7EGdfi"
-      },
-      {
-        salt: "xCCIhurc44QI35VuTyQbkw==",
-        verifier: "Apu+xxgNPR5QCwbVc6a+usbNLQJfaC6hk04RteO5U7c=",
-        name: "y7DHb64PjYsDQun1H+j/JIGnRA=="
+        salt: "5y9tnjcHWGctkLTJwuBy6w==",
+        verifier: "Uu9qHIY35ZrqQgb2KoTls79kboSL4Pw/HwqPekqqk3c=",
+        name: "aem9O8ryMxn8QQGh"
       }
     ];
 
@@ -1301,13 +1301,13 @@
         comingTitle: "Nu kör vi!",
         comingCopyBeforeLink: "Din anmälan är bindande (",
         comingCopyLink: "villkor",
-        comingCopyAfterLink: "). Efter registrering tillkommer en Swishförfrågan till numret angiven nedan.",
+        comingCopyAfterLink: '). Efter att din anmälan har skickats in <span class="inline-emphasis">och godkänts</span> skickas en Swishförfrågan till numret du anger nedan.',
         comingNamePlaceholder: "Fullt namn",
         comingPhonePlaceholder: "Mobil",
         comingSubmit: "Bekräfta",
         backText: "← Tillbaka",
         notComingTitle: "Tråkigt...",
-        notComingCopy: "Om saker ändrar sig kan du kontakta Robin eller Christopher så ska vi se om vi kan lösa något.",
+        notComingCopy: "Tråkigt att du inte kan komma. Om planerna ändras är du välkommen att höra av dig till Robin eller Christopher, så ser vi om det går att lösa.",
         notComingClose: "Skicka svar",
         termsTitle: "Villkor och frågor",
         termsCopy: "Kort information för crew på ARN-basen inför anmälan och deltagande.",
@@ -1331,8 +1331,8 @@
         faqItems: [
           ["Hur får man sin biljett?", "När vi har mottagit betalningen får du en bekräftelse via SMS. Själva biljetten skickas ut kort tid innan avgång."],
           ["När börjar boarding?", "Vi återkommer med exakt tid närmare avgång."],
-          ["Vad händer om man kommer sent?", "No show i SAS Time! Nejdå, men vi kan tyvärr inte ta en försening för att vänta in någon."],
-          ["Vad gäller för klädsel?", "Det finnes ikke dårlig vær, bare dårlige klær."],
+          ["Vad händer om man kommer sent?", "\"No Show\" i SAS Time! Nejdå, men vi kan tyvärr inte ta en försening för att vänta in någon."],
+          ["Finns det en klädkod?", "Det finnes ikke dårlig vær, bare dårlige klær."],
           ["Finns det garderob?", "Ja, garderob finns ombord, men tänk på att ditt bagage ska få plats under stolen framför dig."],
           ["Finns det mat och dryck ombord?", "Ja, det finns bar och eventuellt lite tilltugg. Vi återkommer med detaljer när servicekonceptet är spikat."],
           ["Kan man simma från båten?", "Ja, om rederiet bedömer att väderförhållandena är tillräckligt bra. Kapten har sista ordet även här."]
@@ -1343,8 +1343,8 @@
         emptyCodeAlert: "Ange din kod",
         invalidCodeAlert: "Ogiltig kod",
         verifyErrorAlert: "Kunde inte verifiera koden",
-        rsvpSuccessAlert: "Tack! Din OSA är registrerad.",
-        rsvpSuccessInline: "Tack! Din OSA är registrerad och skickad vidare.",
+        rsvpSuccessAlert: "Tack! Din anmälan är registrerad.",
+        rsvpSuccessInline: "Tack! Din anmälan är registrerad och skickad vidare.",
         rsvpDeclineSuccessAlert: "Tack! Ditt svar är registrerat.",
         rsvpDeclineSuccessInline: "Tack! Ditt svar är registrerat.",
         rsvpErrorAlert: "Något gick fel. Försök igen.",
@@ -1383,13 +1383,13 @@
         comingTitle: "Great!",
         comingCopyBeforeLink: "Your registration is binding (",
         comingCopyLink: "terms",
-        comingCopyAfterLink: "). After registration, a Swish payment request will be sent to the number entered below.",
+        comingCopyAfterLink: '). Once your registration has been submitted <span class="inline-emphasis">and approved</span>, a Swish payment request will be sent to the number you enter below.',
         comingNamePlaceholder: "Full name",
         comingPhonePlaceholder: "Mobile number",
         comingSubmit: "Confirm",
         backText: "← Back",
         notComingTitle: "Sorry to hear that...",
-        notComingCopy: "If things change, contact Robin or Christopher and we will see whether something can be arranged.",
+        notComingCopy: "Sorry to hear you can’t make it. If your plans change, feel free to reach out to Robin or Christopher and we’ll see if something can be arranged.",
         notComingClose: "Send response",
         termsTitle: "Terms and FAQ",
         termsCopy: "Short practical information for ARN-base crew before registering and attending.",
@@ -1413,8 +1413,8 @@
         faqItems: [
           ["How do I receive my ticket?", "Once payment has been received, you will get a confirmation by SMS. The actual ticket will be sent shortly before departure."],
           ["When does boarding start?", "We will share the exact time closer to departure."],
-          ["What happens if I arrive late?", "No show in SAS Time. Jokes aside, we unfortunately cannot delay departure to wait for anyone."],
-          ["What should I wear?", "There is no bad weather, only bad clothing."],
+          ["What happens if I arrive late?", "\"No Show\" in SAS Time. Jokes aside, we unfortunately cannot delay departure to wait for anyone."],
+          ["Is there a dress code?", "There is no bad weather, only bad clothing."],
           ["Is there a cloakroom?", "Yes, there is a cloakroom on board, but keep in mind that your baggage should fit under the seat in front of you."],
           ["Will there be food and drinks on board?", "Yes, there will be a bar and possibly some light bites. We will share more details once the service concept is finalized."],
           ["Can we swim from the boat?", "Yes, if the shipping operator considers the weather conditions suitable. The captain has the final word here as well."]
@@ -1425,8 +1425,8 @@
         emptyCodeAlert: "Enter your code",
         invalidCodeAlert: "Invalid code",
         verifyErrorAlert: "Could not verify the code",
-        rsvpSuccessAlert: "Thank you. Your RSVP has been registered.",
-        rsvpSuccessInline: "Thank you. Your RSVP has been registered and sent.",
+        rsvpSuccessAlert: "Thank you. Your registration has been registered.",
+        rsvpSuccessInline: "Thank you. Your registration has been registered and sent.",
         rsvpDeclineSuccessAlert: "Thank you. Your response has been registered.",
         rsvpDeclineSuccessInline: "Thank you. Your response has been registered.",
         rsvpErrorAlert: "Something went wrong. Please try again.",
