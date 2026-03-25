@@ -1,1 +1,1687 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Invite</title>
+  <style>
+    :root {
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.72);
+      --line: rgba(255, 255, 255, 0.12);
+      --card: rgba(255, 255, 255, 0.12);
+      --card-strong: rgba(255, 255, 255, 0.18);
+      --sheet-bg: rgba(246, 247, 251, 0.94);
+      --sheet-line: rgba(15, 23, 42, 0.08);
+      --button-text: #081033;
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.32);
+      --shadow-soft: 0 18px 48px rgba(7, 17, 88, 0.2);
+      --radius-xl: 34px;
+      --radius-lg: 26px;
+      --radius-md: 20px;
+      --content-width: 1320px;
+    }
 
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0.34)),
+        linear-gradient(180deg, #84a9cd 0%, #2b67d9 56%, #17258d 100%);
+      color: var(--text);
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .page-bg {
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(4, 10, 36, 0.1), rgba(4, 10, 36, 0.56)),
+        url("hero.jpg") center center / cover no-repeat;
+      transform: scale(1.03);
+      filter: saturate(1.02);
+      z-index: 0;
+    }
+
+    .page-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.22), transparent 28%),
+        radial-gradient(circle at 80% 15%, rgba(255, 255, 255, 0.14), transparent 24%),
+        linear-gradient(180deg, rgba(9, 21, 73, 0.06) 0%, rgba(8, 24, 105, 0.52) 60%, rgba(7, 17, 88, 0.82) 100%);
+    }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      width: min(calc(100% - 28px), var(--content-width));
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .invite-layout {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 20px;
+      align-items: stretch;
+      position: relative;
+    }
+
+    .hero-panel {
+      position: relative;
+      min-height: 720px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)),
+        url("images/boatParty.jpg") center center / cover no-repeat;
+      isolation: isolate;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.16) 30%, rgba(7,17,88,0.06) 52%, rgba(7,17,88,0.86) 100%);
+      z-index: 0;
+    }
+
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.25), transparent 32%),
+        linear-gradient(180deg, transparent 35%, rgba(7, 17, 88, 0.12) 52%, rgba(7, 17, 88, 0.78) 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: absolute;
+      inset: auto 0 0 0;
+      z-index: 3;
+      padding: 44px 32px 30px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: nowrap;
+      width: 100%;
+    }
+
+    .hero-kicker {
+      display: inline-block;
+      margin: 0 0 12px;
+      font-size: 0.94rem;
+      letter-spacing: -0.01em;
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    .hero-title {
+      font-size: clamp(1.6rem, 3.6vw, 5.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+      margin: 0;
+      white-space: nowrap;
+      flex: 1 1 auto;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .hero-copy {
+      display: none;
+    }
+
+    .hero-copy-text {
+      display: none;
+    }
+
+    .info-card {
+      display: flex;
+      flex-direction: column;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(12, 23, 92, 0.54), rgba(7, 18, 88, 0.78));
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(26px) saturate(1.15);
+      -webkit-backdrop-filter: blur(26px) saturate(1.15);
+      overflow: hidden;
+      min-height: 720px;
+    }
+
+    .info-inner {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .group-card {
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      overflow: hidden;
+    }
+
+    .group-card-content {
+      padding: 20px;
+    }
+
+    .group-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 20px 0;
+    }
+
+    .group-title {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .section-caption {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    .welcome {
+      margin-bottom: 0;
+    }
+
+    .welcome h2 {
+      margin: 0 0 10px;
+      font-size: 2.2rem;
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+    }
+
+    .welcome p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .note {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .note p {
+      margin: 0;
+    }
+
+    .details {
+      display: grid;
+      gap: 0;
+      margin-bottom: 0;
+    }
+
+    .detail-row {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .detail-row:first-child {
+      padding-top: 0;
+    }
+
+    .detail-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .detail-label {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .detail-value {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.92);
+      line-height: 1.45;
+    }
+
+    .cta-wrap {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+
+    .inline-link {
+      appearance: none;
+      border: none;
+      background: transparent;
+      padding: 0;
+      margin-top: 14px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.92rem;
+      line-height: 1.4;
+      text-decoration: underline;
+      text-decoration-color: rgba(255, 255, 255, 0.28);
+      text-underline-offset: 0.18em;
+      cursor: pointer;
+    }
+
+    .language-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      color: rgba(255, 255, 255, 0.72);
+      flex: 0 0 52px;
+      justify-content: flex-end;
+      white-space: nowrap;
+    }
+
+    .language-button {
+      appearance: none;
+      border: none;
+      background: transparent;
+      padding: 0;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+      letter-spacing: -0.01em;
+    }
+
+    .language-button.is-active {
+      color: rgba(255, 255, 255, 0.96);
+      font-weight: 600;
+    }
+
+    .button {
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      min-height: 52px;
+      padding: 0 22px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: transform 0.18s ease, opacity 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(237, 239, 247, 0.94));
+      color: var(--button-text);
+      min-width: 160px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    }
+
+    .hosts-section {
+      margin-bottom: 0;
+    }
+
+    .hosts-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .hosts-list {
+      display: flex;
+      gap: 22px;
+    }
+
+    .host-person {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .host-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .host-name {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.88);
+      text-align: center;
+    }
+
+    .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.24);
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+    }
+
+    .guests-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .guests-header h3 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .accepted-count {
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 0.84rem;
+    }
+
+    .guest-list {
+      display: grid;
+      gap: 8px;
+      filter: blur(6px);
+      opacity: 0.65;
+      pointer-events: none;
+    }
+
+    .guest-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+    }
+
+    .guest-item .avatar {
+      width: 46px;
+      height: 46px;
+      box-shadow: none;
+    }
+
+    .guest-name {
+      font-size: 0.96rem;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .guest-status {
+      margin-left: auto;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      background: rgba(89, 255, 154, 0.12);
+      color: #d8ffe4;
+      border: 1px solid rgba(89, 255, 154, 0.14);
+    }
+
+    .lock-overlay {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 40;
+      background: rgba(8, 11, 26, 0.24);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .lock-card {
+      width: min(540px, 100%);
+      background: rgba(246, 247, 251, 0.86);
+      color: #111827;
+      border-radius: 30px;
+      padding: 18px 18px 18px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.48);
+      backdrop-filter: blur(30px) saturate(1.15);
+      -webkit-backdrop-filter: blur(30px) saturate(1.15);
+    }
+
+    .sheet-handle {
+      width: 42px;
+      height: 5px;
+      margin: 0 auto 18px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.16);
+    }
+
+    .sheet-eyebrow {
+      margin: 0 0 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: rgba(15, 23, 42, 0.52);
+    }
+
+    .lock-card h3 {
+      margin: 0 0 10px;
+      font-size: clamp(1.9rem, 3vw, 2.6rem);
+      letter-spacing: -0.05em;
+      font-weight: 700;
+    }
+
+    .lock-card p {
+      margin: 0 0 18px;
+      font-size: 1rem;
+      line-height: 1.45;
+      color: rgba(17, 24, 39, 0.78);
+    }
+
+    .lock-input {
+      width: 100%;
+      height: 56px;
+      border-radius: 16px;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      padding: 0 18px;
+      font-size: 1rem;
+      outline: none;
+      background: rgba(255, 255, 255, 0.82);
+      margin-bottom: 14px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .lock-input:focus,
+    .rsvp-input:focus {
+      border-color: rgba(30, 99, 236, 0.45);
+      box-shadow: 0 0 0 4px rgba(30, 99, 236, 0.12);
+    }
+
+    .lock-submit {
+      width: 100%;
+      height: 54px;
+      border-radius: 16px;
+      border: none;
+      background: linear-gradient(180deg, #141926, #0f1524);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lock-open .lock-overlay {
+      display: flex;
+    }
+
+    .rsvp-sheet-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 10, 30, 0.36);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      z-index: 90;
+    }
+
+    .rsvp-sheet-overlay.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .rsvp-panel {
+      background: var(--sheet-bg);
+      color: #111827;
+      z-index: 100;
+      border: 1px solid rgba(255, 255, 255, 0.58);
+      backdrop-filter: blur(34px) saturate(1.08);
+      -webkit-backdrop-filter: blur(34px) saturate(1.08);
+    }
+
+    .rsvp-header {
+      margin-bottom: 18px;
+    }
+
+    .rsvp-title {
+      margin: 0;
+      font-size: clamp(1.9rem, 3vw, 2.4rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: #111827;
+    }
+
+    .rsvp-copy {
+      margin: 10px 0 0;
+      font-size: 1rem;
+      line-height: 1.45;
+      color: rgba(17, 24, 39, 0.72);
+    }
+
+    .inline-sheet-link {
+      appearance: none;
+      border: none;
+      background: transparent;
+      padding: 0;
+      color: inherit;
+      font: inherit;
+      text-decoration: underline;
+      text-underline-offset: 0.16em;
+      cursor: pointer;
+    }
+
+    .rsvp-choices {
+      display: grid;
+      gap: 14px;
+    }
+
+    .rsvp-choice {
+      width: 100%;
+      min-height: 72px;
+      border: 1px solid var(--sheet-line);
+      background: rgba(255, 255, 255, 0.62);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      justify-content: space-between;
+      padding: 0 18px;
+      border-radius: 22px;
+      font-size: 1.12rem;
+      cursor: pointer;
+      color: #111827;
+      text-align: left;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .sheet-section {
+      padding: 16px 0;
+      border-top: 1px solid rgba(17, 24, 39, 0.08);
+    }
+
+    .sheet-section:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .sheet-section-title {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #111827;
+      letter-spacing: -0.02em;
+    }
+
+    .sheet-list {
+      margin: 0;
+      padding-left: 18px;
+      color: rgba(17, 24, 39, 0.76);
+      line-height: 1.5;
+      font-size: 0.98rem;
+    }
+
+    .sheet-list li + li {
+      margin-top: 8px;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq-item {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(17, 24, 39, 0.06);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    }
+
+    .faq-question,
+    .faq-answer {
+      margin: 0;
+      font-size: 0.98rem;
+      line-height: 1.5;
+      color: rgba(17, 24, 39, 0.8);
+    }
+
+    .faq-answer {
+      margin-top: 6px;
+    }
+
+    .choice-icon {
+      width: 34px;
+      height: 34px;
+      border: 1.5px solid rgba(17, 24, 39, 0.18);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.08rem;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .choice-text {
+      flex: 1;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .choice-chevron {
+      font-size: 1.2rem;
+      color: rgba(17, 24, 39, 0.38);
+    }
+
+    .rsvp-form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .rsvp-input {
+      width: 100%;
+      height: 58px;
+      border-radius: 16px;
+      border: 1px solid var(--sheet-line);
+      background: rgba(255, 255, 255, 0.8);
+      padding: 0 18px;
+      font-size: 1rem;
+      outline: none;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.84);
+    }
+
+    .rsvp-action {
+      margin-top: 8px;
+      display: flex;
+      justify-content: stretch;
+    }
+
+    .rsvp-submit {
+      width: 100%;
+      min-width: 120px;
+      height: 54px;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #141926, #0f1524);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0 24px;
+    }
+
+    .rsvp-back {
+      margin-top: 16px;
+      background: transparent;
+      border: none;
+      color: rgba(17,17,17,0.56);
+      font-size: 0.92rem;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    @media (min-width: 721px) {
+      .rsvp-panel {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: min(560px, calc(100vw - 48px));
+        max-height: min(82vh, 760px);
+        overflow-y: auto;
+        padding: 18px 22px 22px;
+        border-radius: 30px;
+        box-shadow: 0 24px 70px rgba(0,0,0,0.22);
+        opacity: 0;
+        pointer-events: none;
+        transform: translate(-50%, -50%) scale(0.96);
+        transition:
+          opacity 0.22s ease,
+          transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .rsvp-panel.is-visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .invite-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-panel,
+      .info-card {
+        min-height: auto;
+      }
+
+      .hero-panel {
+        min-height: 580px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .shell {
+        width: min(calc(100% - 16px), var(--content-width));
+        padding: 10px 0 16px;
+      }
+
+      .hero-panel {
+        min-height: 500px;
+        border-radius: 28px;
+      }
+
+      .hero-content {
+        padding: 28px 20px 20px;
+      }
+
+      .hero-kicker {
+        font-size: 0.88rem;
+      }
+
+      .hero-title {
+        font-size: clamp(2.5rem, 11vw, 3.7rem);
+      }
+
+      .hero-header {
+        gap: 12px;
+      }
+
+      .info-card {
+        border-radius: 28px;
+      }
+
+      .info-inner {
+        padding: 14px;
+      }
+
+      .group-card-content,
+      .group-card-header {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .detail-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .cta-wrap {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .lock-card {
+        padding: 16px;
+        border-radius: 28px;
+      }
+
+      .rsvp-panel {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        max-height: min(82vh, 760px);
+        overflow-y: auto;
+        padding: 16px 16px 28px;
+        border-radius: 28px 28px 0 0;
+        box-shadow: 0 -18px 52px rgba(0, 0, 0, 0.18);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(100%);
+        transition:
+          transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+          opacity 0.22s ease;
+      }
+
+      .rsvp-panel.is-visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .rsvp-choice {
+        min-height: 68px;
+      }
+    }
+  </style>
+</head>
+<body class="lock-open">
+  <div class="page-bg"></div>
+
+  <main class="shell">
+    <section class="invite-layout">
+      <div class="hero-panel">
+        <div class="hero-content">
+          <div class="hero-kicker"></div>
+          <div class="hero-header">
+            <h1 class="hero-title">SAS sommarfest!</h1>
+            <div class="language-switch" aria-label="Language switcher">
+              <button class="language-button" id="langSvButton" type="button">SV</button>
+              <span>/</span>
+              <button class="language-button" id="langEnButton" type="button">EN</button>
+            </div>
+          </div>
+          <div class="hero-copy">
+            <span class="hero-copy-text"></span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="info-card">
+        <div class="info-inner">
+          <div class="group-card">
+            <div class="group-card-content">
+              <div class="welcome">
+                <h2 class="welcome-title">Hej [namn]!</h2>
+                <p class="welcome-copy">
+                  Now boarding: Fredag den 14 augusti kastar vi loss för en sommarfest i Stockholms skärgård.
+                  En kväll till sjöss med STO-crew. OSA senast 5 april för att säkra din plats. Mer info kommer!
+                </p>
+              </div>
+
+              <div class="note">
+                <p>Obs: Festen är inte ett officiellt SAS-arrangemang.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="group-card">
+            <div class="group-card-header">
+              <h3 class="group-title">Information</h3>
+            </div>
+            <div class="group-card-content">
+              <div class="details">
+                <div class="detail-row">
+                  <div class="detail-label">Tid</div>
+                  <div class="detail-value">14 augusti 2026, kl. 17:00</div>
+                </div>
+
+                <div class="detail-row">
+                  <div class="detail-label">Plats</div>
+                  <div class="detail-value">Skeppsholmen, Stockholm</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="group-card">
+            <div class="group-card-content">
+              <div class="cta-wrap">
+                <button class="button button-primary" id="rsvpButton" type="button">OSA</button>
+              </div>
+              <button class="inline-link" id="termsButton" type="button">Villkor och frågor</button>
+            </div>
+          </div>
+
+          <div class="group-card">
+            <div class="group-card-header">
+              <h3 class="group-title">Värdar</h3>
+            </div>
+            <div class="group-card-content">
+              <div class="hosts-section">
+                <div class="hosts-list">
+                  <div class="host-person">
+                    <a class="host-link" href="sms:+46704567454">
+                      <img class="avatar" src="images/christopherMedevik.jpeg" alt="Christopher Medevik" />
+                      <div class="host-name">Christopher Medevik</div>
+                    </a>
+                  </div>
+                  <div class="host-person">
+                    <a class="host-link" href="sms:+470768347279">
+                      <img class="avatar" src="images/robinSayyah.png" alt="Robin Sayyah" />
+                      <div class="host-name">Robin Sayyah</div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="group-card">
+            <div class="group-card-header">
+              <h3 class="group-title">Gäster</h3>
+              <div class="accepted-count">Platser kvar: 120 / 120</div>
+            </div>
+            <div class="group-card-content">
+              <div class="guest-list">
+                <div class="guest-item">
+                  <img class="avatar" src="guest-1.jpg" alt="Guest avatar" />
+                  <div class="guest-name">Vagör Duhär</div>
+                  <div class="guest-status">Kommer</div>
+                </div>
+
+                <div class="guest-item">
+                  <img class="avatar" src="guest-2.jpg" alt="Guest avatar" />
+                  <div class="guest-name">Ärduså Nyfikenatt</div>
+                  <div class="guest-status">Kommer</div>
+                </div>
+
+                <div class="guest-item">
+                  <img class="avatar" src="guest-3.jpg" alt="Guest avatar" />
+                  <div class="guest-name">Dugräver I Källkoden</div>
+                  <div class="guest-status">Kommer</div>
+                </div>
+
+                <div class="guest-item">
+                  <img class="avatar" src="guest-4.jpg" alt="Guest avatar" />
+                  <div class="guest-name">Osa Istället</div>
+                  <div class="guest-status">Kommer</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="lock-overlay">
+        <div class="lock-card">
+          <div class="sheet-handle"></div>
+          <div class="sheet-eyebrow"></div>
+          <h3>Hej!</h3>
+          <p>
+            Du står på gästlistan. Ange din personliga kod för att se inbjudan.
+          </p>
+          <input class="lock-input" type="text" placeholder="Personlig kod" />
+          <button class="lock-submit" aria-label="Unlock" type="button">Fortsätt</button>
+        </div>
+      </div>
+    </section>
+  </main>
+<div class="rsvp-panel" id="rsvpChoicePanel">
+            <div class="sheet-handle"></div>
+            <div class="rsvp-header">
+              <h3 class="rsvp-title">OSA</h3>
+              <p class="rsvp-copy">Välj hur du vill svara på inbjudan.</p>
+            </div>
+            <div class="rsvp-choices">
+              <button class="rsvp-choice" id="comingButton" type="button">
+                <span class="choice-icon">✓</span>
+                <span class="choice-text">Kommer</span>
+                <span class="choice-chevron">›</span>
+              </button>
+
+              <button class="rsvp-choice" id="notComingButton" type="button">
+                <span class="choice-icon">×</span>
+                <span class="choice-text">Kan inte komma</span>
+                <span class="choice-chevron">›</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="rsvp-panel" id="comingPanel">
+            <div class="sheet-handle"></div>
+            <div class="rsvp-header">
+              <h3 class="rsvp-title">Nu kör vi!</h3>
+              <p class="rsvp-copy" id="comingCopy">
+                Din anmälan är bindande (
+                <button class="inline-sheet-link" id="comingTermsLink" type="button">villkor</button>
+                ). Efter registrering tillkommer en Swishförfrågan till numret angiven nedan.
+              </p>
+            </div>
+
+            <form class="rsvp-form" id="comingForm">
+              <input class="rsvp-input" type="text" placeholder="Fullt namn" />
+              <input class="rsvp-input" type="tel" placeholder="Mobil" />
+
+              <div class="rsvp-action">
+                <button class="rsvp-submit" type="submit">Bekräfta</button>
+              </div>
+            </form>
+
+            <button class="rsvp-back" type="button" data-back>← Tillbaka</button>
+          </div>
+
+          <div class="rsvp-panel" id="notComingPanel">
+            <div class="sheet-handle"></div>
+            <div class="rsvp-header">
+              <h3 class="rsvp-title">Tråkigt...</h3>
+              <p class="rsvp-copy">
+                Om saker ändrar sig kan du kontakta Robin eller Christopher så ska vi se om vi kan lösa något.
+              </p>
+            </div>
+
+            <div class="rsvp-action">
+              <button class="rsvp-submit" type="button" id="notComingClose">Okej</button>
+            </div>
+
+            <button class="rsvp-back" type="button" data-back>← Tillbaka</button>
+          </div>
+
+          <div class="rsvp-panel" id="termsPanel">
+            <div class="sheet-handle"></div>
+            <div class="rsvp-header">
+              <h3 class="rsvp-title">Villkor och frågor</h3>
+              <p class="rsvp-copy">
+                Kort information för crew på Stockholms-basen inför anmälan och deltagande.
+              </p>
+            </div>
+
+            <div class="sheet-section">
+              <h4 class="sheet-section-title">Anmälan</h4>
+              <ul class="sheet-list">
+                <li>Evenemanget är endast för STO-crew.</li>
+                <li>Din anmälan är bindande när biljetten är betald.</li>
+                <li>Får du förhinder kan din plats överlåtas till någon annan på STO-basen, efter godkännande från Christopher eller Robin.</li>
+              </ul>
+            </div>
+
+            <div class="sheet-section">
+              <h4 class="sheet-section-title">Genomförande</h4>
+              <ul class="sheet-list">
+                <li>Vi har beställt sol, men evenemanget genomförs oavsett väder.</li>
+                <li>Undantag gäller endast om rederiet bedömer att genomförandet inte är möjligt.</li>
+                <li>Eventuella ändringar i tid, plats eller upplägg kommuniceras så snart som möjligt till anmälda gäster.</li>
+              </ul>
+            </div>
+
+            <div class="sheet-section">
+              <h4 class="sheet-section-title">Ordning och trivsel</h4>
+              <ul class="sheet-list">
+                <li>Alla deltagare förväntas bidra till en trygg, respektfull och trevlig kväll.</li>
+                <li>Arrangörerna förbehåller sig rätten att göra ändringar i gästlistan eller neka ombordstigning om man bedömer att en gäst riskerar att uppträda unruly ombord.</li>
+              </ul>
+            </div>
+
+            <div class="sheet-section">
+              <h4 class="sheet-section-title">Vanliga frågor</h4>
+              <div class="faq-list">
+                <div class="faq-item">
+                  <p class="faq-question"><strong>Hur får man sin biljett?</strong></p>
+                  <p class="faq-answer">När vi har mottagit betalningen får du en bekräftelse via SMS. Själva biljetten skickas ut kort tid innan avgång.</p>
+                </div>
+
+                <div class="faq-item">
+                  <p class="faq-question"><strong>När börjar boarding?</strong></p>
+                  <p class="faq-answer">Vi återkommer med exakt tid närmare avgång.</p>
+                </div>
+
+                <div class="faq-item">
+                  <p class="faq-question"><strong>Vad händer om man kommer sent?</strong></p>
+                  <p class="faq-answer">No show i SAS Time! Nejdå, men vi kan tyvärr inte ta en försening för att vänta in någon.</p>
+                </div>
+
+                <div class="faq-item">
+                  <p class="faq-question"><strong>Vad gäller för klädsel?</strong></p>
+                  <p class="faq-answer">Det finnes ikke dårlig vær, bare dårlige klær.</p>
+                </div>
+
+                <div class="faq-item">
+                  <p class="faq-question"><strong>Finns det garderob?</strong></p>
+                  <p class="faq-answer">Ja, garderob finns ombord, men tänk på att ditt bagage ska få plats under stolen framför dig.</p>
+                </div>
+
+                <div class="faq-item">
+                  <p class="faq-question"><strong>Finns det mat och dryck ombord?</strong></p>
+                  <p class="faq-answer">Ja, det finns bar och eventuellt lite tilltugg. Vi återkommer med detaljer när servicekonceptet är spikat.</p>
+                </div>
+
+                <div class="faq-item">
+                  <p class="faq-question"><strong>Kan man simma från båten?</strong></p>
+                  <p class="faq-answer">Ja, om rederiet bedömer att väderförhållandena är tillräckligt bra. Kapten har sista ordet även här.</p>
+                </div>
+              </div>
+            </div>
+
+            <button class="rsvp-back" type="button" id="termsClose">Stäng</button>
+          </div>
+  <div class="rsvp-sheet-overlay" id="rsvpSheetOverlay"></div>
+
+  <script>
+    const inviteRecords = [
+      {
+        salt: "7WORoJZ19x3nlJQ+xFfANg==",
+        verifier: "6s/UBTBd1HbhcrpwTF64EhfLuilAlbrlDm6aNKl323s=",
+        name: "CDI/dqDWvc7EGdfi"
+      },
+      {
+        salt: "xCCIhurc44QI35VuTyQbkw==",
+        verifier: "Apu+xxgNPR5QCwbVc6a+usbNLQJfaC6hk04RteO5U7c=",
+        name: "y7DHb64PjYsDQun1H+j/JIGnRA=="
+      }
+    ];
+
+    const input = document.querySelector(".lock-input");
+    const unlockButton = document.querySelector(".lock-submit");
+    const heroKicker = document.querySelector(".hero-kicker");
+    const heroTitle = document.querySelector(".hero-title");
+    const heroCopyText = document.querySelector(".hero-copy-text");
+    const welcomeTitle = document.querySelector(".welcome-title");
+    const welcomeCopy = document.querySelector(".welcome-copy");
+    const noteCopy = document.querySelector(".note p");
+    const infoTitle = document.querySelector(".group-card:nth-of-type(2) .group-title");
+    const detailRows = document.querySelectorAll(".details .detail-row");
+    const rsvpButton = document.getElementById("rsvpButton");
+    const termsButton = document.getElementById("termsButton");
+    const hostsTitle = document.querySelector(".group-card:nth-of-type(4) .group-title");
+    const hostsCaption = document.querySelector(".group-card:nth-of-type(4) .section-caption");
+    const guestsTitle = document.querySelector(".group-card:nth-of-type(5) .group-title");
+    const acceptedCount = document.querySelector(".accepted-count");
+    const guestStatusLabels = document.querySelectorAll(".guest-status");
+    const lockTitle = document.querySelector(".lock-card h3");
+    const lockCopy = document.querySelector(".lock-card p");
+    const langSvButton = document.getElementById("langSvButton");
+    const langEnButton = document.getElementById("langEnButton");
+
+    const rsvpChoicePanel = document.getElementById("rsvpChoicePanel");
+    const comingPanel = document.getElementById("comingPanel");
+    const notComingPanel = document.getElementById("notComingPanel");
+    const termsPanel = document.getElementById("termsPanel");
+    const comingButton = document.getElementById("comingButton");
+    const notComingButton = document.getElementById("notComingButton");
+    const notComingClose = document.getElementById("notComingClose");
+    const termsClose = document.getElementById("termsClose");
+    const backButtons = document.querySelectorAll("[data-back]");
+    const rsvpSheetOverlay = document.getElementById("rsvpSheetOverlay");
+    const comingForm = document.getElementById("comingForm");
+
+    const rsvpChoiceTitle = rsvpChoicePanel.querySelector(".rsvp-title");
+    const rsvpChoiceCopy = rsvpChoicePanel.querySelector(".rsvp-copy");
+    const comingChoiceText = comingButton.querySelector(".choice-text");
+    const notComingChoiceText = notComingButton.querySelector(".choice-text");
+    const comingTitle = comingPanel.querySelector(".rsvp-title");
+    const comingCopy = document.getElementById("comingCopy");
+    const comingNameInput = comingPanel.querySelector('input[type="text"]');
+    const comingPhoneInput = comingPanel.querySelector('input[type="tel"]');
+    const comingSubmit = comingPanel.querySelector(".rsvp-submit");
+    const comingBack = comingPanel.querySelector(".rsvp-back");
+    const notComingTitle = notComingPanel.querySelector(".rsvp-title");
+    const notComingCopy = notComingPanel.querySelector(".rsvp-copy");
+    const notComingBack = notComingPanel.querySelector(".rsvp-back");
+    const termsTitle = termsPanel.querySelector(".rsvp-title");
+    const termsCopy = termsPanel.querySelector(".rsvp-copy");
+    const termsSectionTitles = termsPanel.querySelectorAll(".sheet-section-title");
+    const termsLists = termsPanel.querySelectorAll(".sheet-list");
+    const faqTitle = termsSectionTitles[3];
+    const faqList = termsPanel.querySelector(".faq-list");
+
+    const languageStorageKey = "maggio-event-language";
+    let currentLanguage = "sv";
+    let unlockedGuestName = "";
+
+    const translations = {
+      sv: {
+        documentTitle: "SAS sommarfest!",
+        heroKicker: "",
+        heroTitle: "SAS sommarfest!",
+        heroCopyDefault: "",
+        welcomeTitleDefault: "Hej [namn]!",
+        welcomeTitleNamed: (firstName) => `Hej ${firstName}!`,
+        welcomeCopy: "Now boarding: Fredag den 14 augusti kastar vi loss för en sommarfest i Stockholms skärgård. En kväll till sjöss med STO-crew. OSA senast 5 april för att säkra din plats. Mer info kommer!",
+        heroCopyNamed: () => "",
+        noteCopy: "Obs: Festen är inte ett officiellt SAS-arrangemang.",
+        infoTitle: "Information",
+        timeLabel: "Tid",
+        timeValue: "14 augusti 2026, kl. 17:00",
+        placeLabel: "Plats",
+        placeValue: "Skeppsholmen, Stockholm",
+        rsvpButton: "OSA",
+        termsButton: "Villkor och frågor",
+        hostsTitle: "Värdar",
+        hostsCaption: "",
+        guestsTitle: "Gäster",
+        acceptedCount: "Platser kvar: 120 / 120",
+        guestStatus: "Kommer",
+        lockTitle: "Hej!",
+        lockCopy: "Du står på gästlistan. Ange din personliga kod för att se inbjudan.",
+        lockPlaceholder: "Personlig kod",
+        lockSubmit: "Fortsätt",
+        rsvpChoiceTitle: "OSA",
+        rsvpChoiceCopy: "Välj hur du vill svara på inbjudan.",
+        comingChoiceText: "Kommer",
+        notComingChoiceText: "Kan inte komma",
+        comingTitle: "Nu kör vi!",
+        comingCopyBeforeLink: "Din anmälan är bindande (",
+        comingCopyLink: "villkor",
+        comingCopyAfterLink: "). Efter registrering tillkommer en Swishförfrågan till numret angiven nedan.",
+        comingNamePlaceholder: "Fullt namn",
+        comingPhonePlaceholder: "Mobil",
+        comingSubmit: "Bekräfta",
+        backText: "← Tillbaka",
+        notComingTitle: "Tråkigt...",
+        notComingCopy: "Om saker ändrar sig kan du kontakta Robin eller Christopher så ska vi se om vi kan lösa något.",
+        notComingClose: "Okej",
+        termsTitle: "Villkor och frågor",
+        termsCopy: "Kort information för crew på Stockholms-basen inför anmälan och deltagande.",
+        termsSectionTitles: ["Anmälan", "Genomförande", "Ordning och trivsel", "Vanliga frågor"],
+        termsSectionItems: [
+          [
+            "Evenemanget är endast för STO-crew.",
+            "Din anmälan är bindande när biljetten är betald.",
+            "Får du förhinder kan din plats överlåtas till någon annan på STO-basen, efter godkännande från Christopher eller Robin."
+          ],
+          [
+            "Vi har beställt sol, men evenemanget genomförs oavsett väder.",
+            "Undantag gäller endast om rederiet bedömer att genomförandet inte är möjligt.",
+            "Eventuella ändringar i tid, plats eller upplägg kommuniceras så snart som möjligt till anmälda gäster."
+          ],
+          [
+            "Alla deltagare förväntas bidra till en trygg, respektfull och trevlig kväll.",
+            "Arrangörerna förbehåller sig rätten att göra ändringar i gästlistan eller neka ombordstigning om man bedömer att en gäst riskerar att uppträda unruly ombord."
+          ]
+        ],
+        faqItems: [
+          ["Hur får man sin biljett?", "När vi har mottagit betalningen får du en bekräftelse via SMS. Själva biljetten skickas ut kort tid innan avgång."],
+          ["När börjar boarding?", "Vi återkommer med exakt tid närmare avgång."],
+          ["Vad händer om man kommer sent?", "No show i SAS Time! Nejdå, men vi kan tyvärr inte ta en försening för att vänta in någon."],
+          ["Vad gäller för klädsel?", "Det finnes ikke dårlig vær, bare dårlige klær."],
+          ["Finns det garderob?", "Ja, garderob finns ombord, men tänk på att ditt bagage ska få plats under stolen framför dig."],
+          ["Finns det mat och dryck ombord?", "Ja, det finns bar och eventuellt lite tilltugg. Vi återkommer med detaljer när servicekonceptet är spikat."],
+          ["Kan man simma från båten?", "Ja, om rederiet bedömer att väderförhållandena är tillräckligt bra. Kapten har sista ordet även här."]
+        ],
+        termsClose: "Stäng",
+        emptyCodeAlert: "Ange din kod",
+        invalidCodeAlert: "Ogiltig kod",
+        verifyErrorAlert: "Kunde inte verifiera koden",
+        rsvpSuccessAlert: "Tack! Din OSA är registrerad."
+      },
+      en: {
+        documentTitle: "SAS Summer Party!",
+        heroKicker: "",
+        heroTitle: "SAS Summer Party!",
+        heroCopyDefault: "",
+        welcomeTitleDefault: "Hi [name]!",
+        welcomeTitleNamed: (firstName) => `Hi ${firstName}!`,
+        welcomeCopy: "Now boarding: On Friday, 14 August, we set sail for a summer party in the Stockholm archipelago. An evening at sea with the STO crew. Please RSVP by 5 April to secure your spot. More details to follow.",
+        heroCopyNamed: () => "",
+        noteCopy: "Please note: this party is not an official SAS event.",
+        infoTitle: "Information",
+        timeLabel: "Time",
+        timeValue: "Friday, August 14, 2026 at 5:00 PM",
+        placeLabel: "Location",
+        placeValue: "Skeppsholmen, Stockholm",
+        rsvpButton: "RSVP",
+        termsButton: "Terms and FAQ",
+        hostsTitle: "Hosts",
+        hostsCaption: "",
+        guestsTitle: "Guests",
+        acceptedCount: "Spots left: 120 / 120",
+        guestStatus: "Attending",
+        lockTitle: "Hello!",
+        lockCopy: "You are on the guest list. Enter your personal code to view the invitation.",
+        lockPlaceholder: "Personal code",
+        lockSubmit: "Continue",
+        rsvpChoiceTitle: "RSVP",
+        rsvpChoiceCopy: "Choose how you would like to respond to the invitation.",
+        comingChoiceText: "Attending",
+        notComingChoiceText: "Unable to attend",
+        comingTitle: "Great!",
+        comingCopyBeforeLink: "Your registration is binding (",
+        comingCopyLink: "terms",
+        comingCopyAfterLink: "). After registration, a Swish payment request will be sent to the number entered below.",
+        comingNamePlaceholder: "Full name",
+        comingPhonePlaceholder: "Mobile number",
+        comingSubmit: "Confirm",
+        backText: "← Back",
+        notComingTitle: "Sorry to hear that...",
+        notComingCopy: "If things change, contact Robin or Christopher and we will see whether something can be arranged.",
+        notComingClose: "OK",
+        termsTitle: "Terms and FAQ",
+        termsCopy: "Short practical information for Stockholm-base crew before registering and attending.",
+        termsSectionTitles: ["Registration", "Operations", "On-board conduct", "Frequently asked questions"],
+        termsSectionItems: [
+          [
+            "The event is for STO crew only.",
+            "Your registration becomes binding once your ticket has been paid.",
+            "If you can no longer attend, your spot may be transferred to someone else at the STO base, subject to approval by Christopher or Robin."
+          ],
+          [
+            "We ordered sunshine, but the event will go ahead regardless of weather.",
+            "The only exception is if the shipping operator determines that the event cannot be carried out.",
+            "Any changes to time, location, or format will be communicated to registered guests as soon as possible."
+          ],
+          [
+            "All guests are expected to contribute to a safe, respectful, and enjoyable evening.",
+            "The organizers reserve the right to make changes to the guest list or deny boarding if a guest is considered likely to behave in an unruly manner on board."
+          ]
+        ],
+        faqItems: [
+          ["How do I receive my ticket?", "Once payment has been received, you will get a confirmation by SMS. The actual ticket will be sent shortly before departure."],
+          ["When does boarding start?", "We will share the exact time closer to departure."],
+          ["What happens if I arrive late?", "No show in SAS Time. Jokes aside, we unfortunately cannot delay departure to wait for anyone."],
+          ["What should I wear?", "There is no bad weather, only bad clothing."],
+          ["Is there a cloakroom?", "Yes, there is a cloakroom on board, but keep in mind that your baggage should fit under the seat in front of you."],
+          ["Will there be food and drinks on board?", "Yes, there will be a bar and possibly some light bites. We will share more details once the service concept is finalized."],
+          ["Can we swim from the boat?", "Yes, if the shipping operator considers the weather conditions suitable. The captain has the final word here as well."]
+        ],
+        termsClose: "Close",
+        emptyCodeAlert: "Enter your code",
+        invalidCodeAlert: "Invalid code",
+        verifyErrorAlert: "Could not verify the code",
+        rsvpSuccessAlert: "Thank you. Your RSVP has been registered."
+      }
+    };
+
+    function buildListMarkup(items) {
+      return items.map((item) => `<li>${item}</li>`).join("");
+    }
+
+    function buildFaqMarkup(items) {
+      return items.map(([question, answer]) => `
+        <div class="faq-item">
+          <p class="faq-question"><strong>${question}</strong></p>
+          <p class="faq-answer">${answer}</p>
+        </div>
+      `).join("");
+    }
+
+    function applyUnlockedCopy() {
+      const t = translations[currentLanguage];
+
+      if (unlockedGuestName) {
+        const firstName = unlockedGuestName.split(" ")[0];
+        welcomeTitle.textContent = t.welcomeTitleNamed(firstName);
+        heroCopyText.textContent = t.heroCopyNamed(firstName);
+      } else {
+        welcomeTitle.textContent = t.welcomeTitleDefault;
+        heroCopyText.textContent = t.heroCopyDefault;
+      }
+    }
+
+    function setLanguage(lang) {
+      currentLanguage = translations[lang] ? lang : "sv";
+      const t = translations[currentLanguage];
+
+      document.documentElement.lang = currentLanguage;
+      document.title = t.documentTitle;
+      heroKicker.textContent = t.heroKicker;
+      heroTitle.textContent = t.heroTitle;
+      applyUnlockedCopy();
+      welcomeCopy.textContent = t.welcomeCopy;
+      noteCopy.textContent = t.noteCopy;
+      infoTitle.textContent = t.infoTitle;
+      detailRows[0].querySelector(".detail-label").textContent = t.timeLabel;
+      detailRows[0].querySelector(".detail-value").textContent = t.timeValue;
+      detailRows[1].querySelector(".detail-label").textContent = t.placeLabel;
+      detailRows[1].querySelector(".detail-value").textContent = t.placeValue;
+      rsvpButton.textContent = t.rsvpButton;
+      termsButton.textContent = t.termsButton;
+      hostsTitle.textContent = t.hostsTitle;
+      if (hostsCaption) hostsCaption.textContent = t.hostsCaption;
+      guestsTitle.textContent = t.guestsTitle;
+      acceptedCount.textContent = t.acceptedCount;
+      guestStatusLabels.forEach((label) => {
+        label.textContent = t.guestStatus;
+      });
+      lockTitle.textContent = t.lockTitle;
+      lockCopy.textContent = t.lockCopy;
+      input.placeholder = t.lockPlaceholder;
+      unlockButton.textContent = t.lockSubmit;
+      rsvpChoiceTitle.textContent = t.rsvpChoiceTitle;
+      rsvpChoiceCopy.textContent = t.rsvpChoiceCopy;
+      comingChoiceText.textContent = t.comingChoiceText;
+      notComingChoiceText.textContent = t.notComingChoiceText;
+      comingTitle.textContent = t.comingTitle;
+      comingCopy.innerHTML = `${t.comingCopyBeforeLink}<button class="inline-sheet-link" id="comingTermsLink" type="button">${t.comingCopyLink}</button>${t.comingCopyAfterLink}`;
+      document.getElementById("comingTermsLink").addEventListener("click", () => {
+        showPanel(termsPanel);
+      });
+      comingNameInput.placeholder = t.comingNamePlaceholder;
+      comingPhoneInput.placeholder = t.comingPhonePlaceholder;
+      comingSubmit.textContent = t.comingSubmit;
+      comingBack.textContent = t.backText;
+      notComingTitle.textContent = t.notComingTitle;
+      notComingCopy.textContent = t.notComingCopy;
+      notComingClose.textContent = t.notComingClose;
+      notComingBack.textContent = t.backText;
+      termsTitle.textContent = t.termsTitle;
+      termsCopy.textContent = t.termsCopy;
+      termsSectionTitles[0].textContent = t.termsSectionTitles[0];
+      termsSectionTitles[1].textContent = t.termsSectionTitles[1];
+      termsSectionTitles[2].textContent = t.termsSectionTitles[2];
+      faqTitle.textContent = t.termsSectionTitles[3];
+      termsLists[0].innerHTML = buildListMarkup(t.termsSectionItems[0]);
+      termsLists[1].innerHTML = buildListMarkup(t.termsSectionItems[1]);
+      termsLists[2].innerHTML = buildListMarkup(t.termsSectionItems[2]);
+      faqList.innerHTML = buildFaqMarkup(t.faqItems);
+      termsClose.textContent = t.termsClose;
+      langSvButton.classList.toggle("is-active", currentLanguage === "sv");
+      langEnButton.classList.toggle("is-active", currentLanguage === "en");
+
+      try {
+        localStorage.setItem(languageStorageKey, currentLanguage);
+      } catch (error) {
+      }
+    }
+
+    function detectInitialLanguage() {
+      try {
+        const savedLanguage = localStorage.getItem(languageStorageKey);
+        if (savedLanguage && translations[savedLanguage]) {
+          return savedLanguage;
+        }
+      } catch (error) {
+      }
+
+      const locales = navigator.languages && navigator.languages.length
+        ? navigator.languages
+        : [navigator.language || "sv"];
+
+      return locales.some((locale) => locale && locale.toLowerCase().startsWith("sv")) ? "sv" : "en";
+    }
+
+    function decodeBase64(value) {
+      return Uint8Array.from(atob(value), (char) => char.charCodeAt(0));
+    }
+
+    function bytesToUtf8(bytes) {
+      return new TextDecoder().decode(bytes);
+    }
+
+    function bytesEqual(left, right) {
+      if (left.length !== right.length) return false;
+      let result = 0;
+
+      for (let i = 0; i < left.length; i += 1) {
+        result |= left[i] ^ right[i];
+      }
+
+      return result === 0;
+    }
+
+    async function deriveBytes(code, saltBytes, label, length) {
+      const encoder = new TextEncoder();
+      const keyMaterial = await crypto.subtle.importKey(
+        "raw",
+        encoder.encode(code),
+        "PBKDF2",
+        false,
+        ["deriveBits"]
+      );
+
+      const labelBytes = encoder.encode(label);
+      const combinedSalt = new Uint8Array(saltBytes.length + labelBytes.length);
+      combinedSalt.set(saltBytes);
+      combinedSalt.set(labelBytes, saltBytes.length);
+
+      const bits = await crypto.subtle.deriveBits(
+        {
+          name: "PBKDF2",
+          salt: combinedSalt,
+          iterations: 200000,
+          hash: "SHA-256"
+        },
+        keyMaterial,
+        length * 8
+      );
+
+      return new Uint8Array(bits);
+    }
+
+    async function findInviteRecord(code) {
+      for (const record of inviteRecords) {
+        const saltBytes = decodeBase64(record.salt);
+        const verifierBytes = decodeBase64(record.verifier);
+        const derivedVerifier = await deriveBytes(code, saltBytes, "|verify", verifierBytes.length);
+
+        if (bytesEqual(derivedVerifier, verifierBytes)) {
+          return { record, saltBytes };
+        }
+      }
+
+      return null;
+    }
+
+    async function decryptGuestName(code, record, saltBytes) {
+      const encryptedName = decodeBase64(record.name);
+      const nameKey = await deriveBytes(code, saltBytes, "|name", encryptedName.length);
+      const nameBytes = encryptedName.map((value, index) => value ^ nameKey[index]);
+      return bytesToUtf8(nameBytes);
+    }
+
+    async function unlock() {
+      const code = input.value.trim();
+
+      if (!code) {
+        alert(translations[currentLanguage].emptyCodeAlert);
+        return;
+      }
+
+      unlockButton.disabled = true;
+
+      try {
+        const match = await findInviteRecord(code);
+
+        if (!match) {
+          alert(translations[currentLanguage].invalidCodeAlert);
+          return;
+        }
+
+        const fullName = await decryptGuestName(code, match.record, match.saltBytes);
+        unlockedGuestName = fullName;
+        applyUnlockedCopy();
+
+        if (comingNameInput) comingNameInput.value = fullName;
+
+        document.body.classList.remove("lock-open");
+      } catch (error) {
+        alert(translations[currentLanguage].verifyErrorAlert);
+      } finally {
+        unlockButton.disabled = false;
+      }
+    }
+
+    function hideAllRsvpPanels() {
+      rsvpChoicePanel.classList.remove("is-visible");
+      comingPanel.classList.remove("is-visible");
+      notComingPanel.classList.remove("is-visible");
+      termsPanel.classList.remove("is-visible");
+      rsvpSheetOverlay.classList.remove("is-visible");
+      document.body.style.overflow = "";
+    }
+
+    function showPanel(panel) {
+      hideAllRsvpPanels();
+      panel.classList.add("is-visible");
+      rsvpSheetOverlay.classList.add("is-visible");
+      document.body.style.overflow = "hidden";
+    }
+
+    unlockButton.addEventListener("click", unlock);
+
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        unlock();
+      }
+    });
+
+    langSvButton.addEventListener("click", () => {
+      setLanguage("sv");
+    });
+
+    langEnButton.addEventListener("click", () => {
+      setLanguage("en");
+    });
+
+    rsvpButton.addEventListener("click", () => {
+      showPanel(rsvpChoicePanel);
+    });
+
+    termsButton.addEventListener("click", () => {
+      showPanel(termsPanel);
+    });
+
+    comingButton.addEventListener("click", () => {
+      showPanel(comingPanel);
+    });
+
+    notComingButton.addEventListener("click", () => {
+      showPanel(notComingPanel);
+    });
+
+    backButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        showPanel(rsvpChoicePanel);
+      });
+    });
+
+    notComingClose.addEventListener("click", () => {
+      hideAllRsvpPanels();
+    });
+
+    termsClose.addEventListener("click", () => {
+      hideAllRsvpPanels();
+    });
+
+    rsvpSheetOverlay.addEventListener("click", () => {
+      hideAllRsvpPanels();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        hideAllRsvpPanels();
+      }
+    });
+
+    comingForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert(translations[currentLanguage].rsvpSuccessAlert);
+      hideAllRsvpPanels();
+    });
+
+    setLanguage(detectInitialLanguage());
+  </script>
+</body>
+</html>
