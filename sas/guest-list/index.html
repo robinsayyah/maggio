@@ -965,7 +965,7 @@
               </div>
 
               <div class="note">
-                <p>Obs: Festen är ett privat evenemang och har ingen koppling till något flygbolag.</p>
+                <p>Obs: Festen är ett privat evenemang och anordnas <span class="inline-emphasis">inte</span> av SAS.</p>
               </div>
             </div>
           </div>
@@ -975,7 +975,7 @@
               <div class="details">
                 <div class="detail-row">
                   <div class="detail-label">Tid</div>
-                  <div class="detail-value">14 augusti 2026, kl. 17:30 - 22:00</div>
+                  <div class="detail-value">14 augusti 2026<br />17:30 - 22:00</div>
                 </div>
 
                 <div class="detail-row">
@@ -1737,10 +1737,10 @@
         welcomeTitleNamed: (firstName) => `Hej ${firstName}!`,
         welcomeCopy: "Dags för sommarfest! Fredag den 14 augusti bjuder vi in till en festkväll till sjöss tillsammans med kollegor från ARN-basen. OSA senast 5 april för att säkra din plats. Mer information kommer inom kort!",
         heroCopyNamed: () => "",
-        noteCopy: "Obs: Festen är ett privat evenemang och har ingen koppling till något flygbolag.",
+        noteCopy: 'Obs: Festen är ett privat evenemang och anordnas <span class="inline-emphasis">inte</span> av SAS.',
         infoTitle: "Information",
         timeLabel: "Tid",
-        timeValue: "14 augusti 2026, kl. 17:30 - 22:00",
+        timeValue: "14 augusti 2026<br />17:30 - 22:00",
         placeLabel: "Plats",
         placeValue: "Skeppsholmen, Stockholm",
         rsvpButton: "OSA",
@@ -1821,10 +1821,10 @@
         welcomeTitleNamed: (firstName) => `Hi ${firstName}!`,
         welcomeCopy: "Time for a summer party! On Friday, 14 August, we’re inviting you to a festive evening at sea together with colleagues from the ARN base. Please RSVP by 5 April to secure your spot. More information will follow shortly!",
         heroCopyNamed: () => "",
-        noteCopy: "Please note: this is a private event and has no connection to any airline.",
+        noteCopy: 'Please note: this is a private event and is <span class="inline-emphasis">not</span> organized by SAS.',
         infoTitle: "Information",
         timeLabel: "Time",
-        timeValue: "Friday, August 14, 2026, 5:30 PM - 10:00 PM",
+        timeValue: "Friday, August 14, 2026<br />5:30 PM - 10:00 PM",
         placeLabel: "Location",
         placeValue: "Skeppsholmen, Stockholm",
         rsvpButton: "RSVP",
@@ -1865,7 +1865,7 @@
           ],
           [
             "We ordered sunshine, but the event will go ahead regardless of weather.",
-            "The only exception is if the shipping operator determines that the event cannot be carried out.",
+            "The only exception is if the boat operator determines that the event cannot be carried out.",
             "Any changes to time, location, or format will be communicated to registered guests as soon as possible."
           ],
           [
@@ -1881,7 +1881,7 @@
           ["Is there a dress code?", "There is no bad weather, only bad clothing."],
           ["Is there a cloakroom?", "Yes, there is a cloakroom on board, but keep in mind that your baggage should fit under the seat in front of you."],
           ["Will there be food and drinks on board?", "Yes, there will be a bar and possibly some light bites. We will share more details once the service concept is finalized."],
-          ["Can we swim from the boat?", "Yes, if the shipping operator considers the weather conditions suitable. The captain has the final word here as well."]
+          ["Can we swim from the boat?", "Yes, if the boat operator considers the weather conditions suitable. The captain has the final word here as well."]
         ],
         termsClose: "Close",
         rsvpSubmitting: "Sending...",
@@ -1934,10 +1934,10 @@
       heroTitle.textContent = t.heroTitle;
       applyUnlockedCopy();
       welcomeCopy.textContent = t.welcomeCopy;
-      noteCopy.textContent = t.noteCopy;
+      noteCopy.innerHTML = t.noteCopy;
       if (infoTitle) infoTitle.textContent = t.infoTitle;
       detailRows[0].querySelector(".detail-label").textContent = t.timeLabel;
-      detailRows[0].querySelector(".detail-value").textContent = t.timeValue;
+      detailRows[0].querySelector(".detail-value").innerHTML = t.timeValue;
       detailRows[1].querySelector(".detail-label").textContent = t.placeLabel;
       detailRows[1].querySelector(".detail-value").textContent = t.placeValue;
       rsvpButton.textContent = t.rsvpButton;
