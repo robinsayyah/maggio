@@ -2133,6 +2133,8 @@
 
     function showPanel(panel) {
       hideAllRsvpPanels();
+      comingSubmit.style.display = "";
+      comingSubmit.disabled = false;
       panel.classList.add("is-visible");
       rsvpSheetOverlay.classList.add("is-visible");
       document.body.style.overflow = "hidden";
@@ -2297,10 +2299,11 @@
         phoneNumber,
         rsvp: "yes"
       }).then(() => {
+        comingSubmit.style.display = "none";
         comingFeedback.textContent = t.rsvpSuccessInline;
         comingFeedback.classList.add("is-visible");
         window.setTimeout(() => {
-          hideAllRsvpPanels();
+        hideAllRsvpPanels();
         }, 10000);
       }).catch(() => {
         alert(t.rsvpErrorAlert);
