@@ -1,1 +1,2255 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#5d7fa9" />
+  <meta property="og:title" content="ARN Crew Sommarfest" />
+  <meta property="og:description" content="Gästlista - ARN Crew Sommarfest" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.maggio.club/arn/guest-list/" />
+  <meta property="og:image" content="https://www.maggio.club/arn/guest-list/images/boatParty.jpg" />
+  <meta property="og:image:width" content="1146" />
+  <meta property="og:image:height" content="728" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ARN Crew Sommarfest" />
+  <meta name="twitter:description" content="Gästlista - ARN Crew Sommarfest" />
+  <meta name="twitter:image" content="https://www.maggio.club/arn/guest-list/images/boatParty.jpg" />
+  <title>ARN Crew Sommarfest</title>
+  <style>
+    :root {
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.72);
+      --line: rgba(255, 255, 255, 0.12);
+      --card: rgba(255, 255, 255, 0.12);
+      --card-strong: rgba(255, 255, 255, 0.18);
+      --sheet-bg: rgba(246, 247, 251, 0.94);
+      --sheet-line: rgba(15, 23, 42, 0.08);
+      --button-text: #081033;
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.32);
+      --shadow-soft: 0 18px 48px rgba(7, 17, 88, 0.2);
+      --radius-xl: 34px;
+      --radius-lg: 26px;
+      --radius-md: 20px;
+      --content-width: 1320px;
+    }
 
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
+      color: var(--text);
+      min-height: 100%;
+    }
+
+    html {
+      background-color: #071158;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      position: relative;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.18), transparent 24%),
+        radial-gradient(circle at 80% 15%, rgba(255, 255, 255, 0.12), transparent 20%),
+        linear-gradient(180deg, rgba(4, 10, 36, 0.14), rgba(4, 10, 36, 0.68)),
+        url("hero.jpg") center center / cover no-repeat,
+        linear-gradient(180deg, #84a9cd 0%, #2b67d9 52%, #142178 78%, #091147 100%);
+      background-repeat: no-repeat;
+      background-size: auto, auto, auto, cover, 100% 200%;
+    }
+
+    body.lock-open {
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+    }
+
+    .page-bg {
+      display: none;
+    }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      width: min(calc(100% - 28px), var(--content-width));
+      margin: 0 auto;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .lock-open .shell {
+      align-items: flex-start;
+    }
+
+    .invite-layout {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 20px;
+      align-items: stretch;
+      position: relative;
+    }
+
+    .hero-panel {
+      position: relative;
+      min-height: 720px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)),
+        url("images/boatParty.jpg") center center / cover no-repeat;
+      isolation: isolate;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.16) 30%, rgba(7,17,88,0.06) 52%, rgba(7,17,88,0.86) 100%);
+      z-index: 0;
+    }
+
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.25), transparent 32%),
+        linear-gradient(180deg, transparent 35%, rgba(7, 17, 88, 0.12) 52%, rgba(7, 17, 88, 0.78) 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: absolute;
+      inset: auto 0 0 0;
+      z-index: 3;
+      padding: 44px 32px 30px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-header {
+      display: block;
+      width: 100%;
+    }
+
+    .hero-kicker {
+      display: inline-block;
+      margin: 0 0 12px;
+      font-size: 0.94rem;
+      letter-spacing: -0.01em;
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+      margin: 0;
+      text-wrap: balance;
+    }
+
+    .hero-language {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      z-index: 4;
+    }
+
+    .hero-copy {
+      display: none;
+    }
+
+    .hero-copy-text {
+      display: none;
+    }
+
+    .info-card {
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(12, 23, 92, 0.54), rgba(7, 18, 88, 0.78));
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(26px) saturate(1.15);
+      -webkit-backdrop-filter: blur(26px) saturate(1.15);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 720px;
+    }
+
+    .info-inner {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .group-card {
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      overflow: hidden;
+    }
+
+    .group-card-content {
+      padding: 20px;
+    }
+
+    .group-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 20px 0;
+    }
+
+    .group-title {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .section-caption {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    .welcome {
+      margin-bottom: 0;
+    }
+
+    .welcome h2 {
+      margin: 0 0 10px;
+      font-size: 2.2rem;
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+    }
+
+    .welcome p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .note {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .note p {
+      margin: 0;
+    }
+
+    .details {
+      display: grid;
+      gap: 0;
+      margin-bottom: 0;
+    }
+
+    .detail-row {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .detail-row:first-child {
+      padding-top: 0;
+    }
+
+    .detail-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .detail-label {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .detail-value {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.92);
+      line-height: 1.45;
+    }
+
+    .cta-wrap {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+
+    .inline-link {
+      appearance: none;
+      border: none;
+      background: transparent;
+      padding: 0;
+      margin-top: 14px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.92rem;
+      line-height: 1.4;
+      text-decoration: underline;
+      text-decoration-color: rgba(255, 255, 255, 0.28);
+      text-underline-offset: 0.18em;
+      cursor: pointer;
+    }
+
+    .language-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      color: rgba(255, 255, 255, 0.72);
+      flex: 0 0 52px;
+      justify-content: flex-end;
+      white-space: nowrap;
+    }
+
+    .language-button {
+      appearance: none;
+      border: none;
+      background: transparent;
+      padding: 0;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+      letter-spacing: -0.01em;
+    }
+
+    .language-button.is-active {
+      color: rgba(255, 255, 255, 0.96);
+      font-weight: 600;
+    }
+
+    .button {
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      min-height: 52px;
+      padding: 0 22px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: transform 0.18s ease, opacity 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(237, 239, 247, 0.94));
+      color: var(--button-text);
+      min-width: 160px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    }
+
+    .hosts-section {
+      margin-bottom: 0;
+    }
+
+    .hosts-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .hosts-list {
+      display: flex;
+      gap: 22px;
+    }
+
+    .host-person {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .host-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .host-name {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.88);
+      text-align: center;
+    }
+
+    .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.24);
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+    }
+
+    .guests-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .guests-header h3 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .accepted-count {
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 0.84rem;
+    }
+
+    .guest-list {
+      display: grid;
+      gap: 8px;
+      filter: blur(6px);
+      opacity: 0.65;
+      pointer-events: none;
+    }
+
+    .guest-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+    }
+
+    .guest-item .avatar {
+      width: 46px;
+      height: 46px;
+      box-shadow: none;
+    }
+
+    .guest-name {
+      font-size: 0.96rem;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .guest-status {
+      margin-left: auto;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      background: rgba(89, 255, 154, 0.12);
+      color: #d8ffe4;
+      border: 1px solid rgba(89, 255, 154, 0.14);
+    }
+
+    .lock-overlay {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 40;
+      background: rgba(8, 11, 26, 0.24);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .lock-card {
+      width: min(540px, 100%);
+      background: rgba(246, 247, 251, 0.86);
+      color: #111827;
+      border-radius: 30px;
+      padding: 18px 18px 18px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.48);
+      backdrop-filter: blur(30px) saturate(1.15);
+      -webkit-backdrop-filter: blur(30px) saturate(1.15);
+    }
+
+    .sheet-handle {
+      width: 42px;
+      height: 5px;
+      margin: 0 auto 18px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.16);
+    }
+
+    .sheet-eyebrow {
+      margin: 0 0 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: rgba(15, 23, 42, 0.52);
+    }
+
+    .lock-card h3 {
+      margin: 0 0 10px;
+      font-size: clamp(1.9rem, 3vw, 2.6rem);
+      letter-spacing: -0.05em;
+      font-weight: 700;
+    }
+
+    .lock-card p {
+      margin: 0 0 18px;
+      font-size: 1rem;
+      line-height: 1.45;
+      color: rgba(17, 24, 39, 0.78);
+    }
+
+    .lock-input {
+      width: 100%;
+      height: 56px;
+      border-radius: 16px;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      padding: 0 18px;
+      font-size: 1rem;
+      outline: none;
+      background: rgba(255, 255, 255, 0.82);
+      margin-bottom: 14px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .lock-input:focus,
+    .rsvp-input:focus {
+      border-color: rgba(30, 99, 236, 0.45);
+      box-shadow: 0 0 0 4px rgba(30, 99, 236, 0.12);
+    }
+
+    .lock-submit {
+      width: 100%;
+      height: 54px;
+      border-radius: 16px;
+      border: none;
+      background: linear-gradient(180deg, #141926, #0f1524);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lock-open .lock-overlay {
+      display: flex;
+    }
+
+    .rsvp-sheet-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 10, 30, 0.36);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      z-index: 90;
+    }
+
+    .rsvp-sheet-overlay.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .rsvp-panel {
+      background: var(--sheet-bg);
+      color: #111827;
+      z-index: 100;
+      border: 1px solid rgba(255, 255, 255, 0.58);
+      backdrop-filter: blur(34px) saturate(1.08);
+      -webkit-backdrop-filter: blur(34px) saturate(1.08);
+    }
+
+    .rsvp-header {
+      margin-bottom: 18px;
+    }
+
+    .rsvp-title {
+      margin: 0;
+      font-size: clamp(1.9rem, 3vw, 2.4rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: #111827;
+    }
+
+    .rsvp-copy {
+      margin: 10px 0 0;
+      font-size: 1rem;
+      line-height: 1.45;
+      color: rgba(17, 24, 39, 0.72);
+    }
+
+    .inline-sheet-link {
+      appearance: none;
+      border: none;
+      background: transparent;
+      padding: 0;
+      color: inherit;
+      font: inherit;
+      text-decoration: underline;
+      text-underline-offset: 0.16em;
+      cursor: pointer;
+    }
+
+    .inline-emphasis {
+      font-weight: 700;
+    }
+
+    .rsvp-choices {
+      display: grid;
+      gap: 14px;
+    }
+
+    .rsvp-choice {
+      width: 100%;
+      min-height: 72px;
+      border: 1px solid var(--sheet-line);
+      background: rgba(255, 255, 255, 0.62);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      justify-content: space-between;
+      padding: 0 18px;
+      border-radius: 22px;
+      font-size: 1.12rem;
+      cursor: pointer;
+      color: #111827;
+      text-align: left;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .sheet-section {
+      padding: 16px 0;
+      border-top: 1px solid rgba(17, 24, 39, 0.08);
+    }
+
+    .sheet-section:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .sheet-section-title {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #111827;
+      letter-spacing: -0.02em;
+    }
+
+    .sheet-list {
+      margin: 0;
+      padding-left: 18px;
+      color: rgba(17, 24, 39, 0.76);
+      line-height: 1.5;
+      font-size: 0.98rem;
+    }
+
+    .sheet-list li + li {
+      margin-top: 8px;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq-item {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(17, 24, 39, 0.06);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    }
+
+    .faq-question,
+    .faq-answer {
+      margin: 0;
+      font-size: 0.98rem;
+      line-height: 1.5;
+      color: rgba(17, 24, 39, 0.8);
+    }
+
+    .faq-answer {
+      margin-top: 6px;
+    }
+
+    .choice-icon {
+      width: 34px;
+      height: 34px;
+      border: 1.5px solid rgba(17, 24, 39, 0.18);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.08rem;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .choice-text {
+      flex: 1;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .choice-chevron {
+      font-size: 1.2rem;
+      color: rgba(17, 24, 39, 0.38);
+    }
+
+    .rsvp-form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .rsvp-input {
+      width: 100%;
+      height: 58px;
+      border-radius: 16px;
+      border: 1px solid var(--sheet-line);
+      background: rgba(255, 255, 255, 0.8);
+      padding: 0 18px;
+      font-size: 1rem;
+      outline: none;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.84);
+    }
+
+    .rsvp-action {
+      margin-top: 8px;
+      display: flex;
+      justify-content: stretch;
+    }
+
+    .rsvp-submit {
+      width: 100%;
+      min-width: 120px;
+      height: 54px;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #141926, #0f1524);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0 24px;
+    }
+
+    .rsvp-back {
+      margin-top: 16px;
+      background: transparent;
+      border: none;
+      color: rgba(17,17,17,0.56);
+      font-size: 0.92rem;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .rsvp-feedback {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(17, 24, 39, 0.06);
+      color: rgba(17, 24, 39, 0.76);
+      font-size: 0.95rem;
+      line-height: 1.45;
+      display: none;
+    }
+
+    .rsvp-feedback.is-visible {
+      display: block;
+    }
+
+    @media (min-width: 721px) {
+      .rsvp-panel {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: min(560px, calc(100vw - 48px));
+        max-height: min(82vh, 760px);
+        overflow-y: auto;
+        padding: 18px 22px 22px;
+        border-radius: 30px;
+        box-shadow: 0 24px 70px rgba(0,0,0,0.22);
+        opacity: 0;
+        pointer-events: none;
+        transform: translate(-50%, -50%) scale(0.96);
+        transition:
+          opacity 0.22s ease,
+          transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .rsvp-panel.is-visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .invite-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-panel,
+      .info-card {
+        min-height: auto;
+      }
+
+      .hero-panel {
+        min-height: 580px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .shell {
+        width: min(calc(100% - 16px), var(--content-width));
+        padding: 10px 0 16px;
+        align-items: flex-start;
+      }
+
+      .hero-panel {
+        min-height: 500px;
+        border-radius: 28px;
+      }
+
+      .hero-content {
+        padding: 28px 20px 20px;
+      }
+
+      .hero-kicker {
+        font-size: 0.88rem;
+      }
+
+      .hero-title {
+        font-size: clamp(2.5rem, 11vw, 3.7rem);
+      }
+
+      .hero-language {
+        top: 14px;
+        right: 14px;
+      }
+
+      .info-card {
+        border-radius: 28px;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        overflow: visible;
+      }
+
+      .info-inner {
+        padding: 0;
+      }
+
+      .group-card-content,
+      .group-card-header {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .detail-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .cta-wrap {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .lock-card {
+        padding: 16px;
+        border-radius: 28px;
+      }
+
+      .rsvp-panel {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        max-height: min(82vh, 760px);
+        overflow-y: auto;
+        padding: 16px 16px 28px;
+        border-radius: 28px 28px 0 0;
+        box-shadow: 0 -18px 52px rgba(0, 0, 0, 0.18);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(100%);
+        transition:
+          transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+          opacity 0.22s ease;
+      }
+
+      .rsvp-panel.is-visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .rsvp-choice {
+        min-height: 68px;
+      }
+
+      .sheet-section-title {
+        font-size: 0.94rem;
+      }
+
+      .sheet-list,
+      .faq-question,
+      .faq-answer {
+        font-size: 0.92rem;
+        line-height: 1.42;
+      }
+
+      .faq-item {
+        padding: 12px 14px;
+      }
+    }
+  </style>
+</head>
+<body class="lock-open">
+  <div class="page-bg"></div>
+
+  <main class="shell">
+    <section class="invite-layout">
+      <div class="hero-panel">
+        <div class="hero-language">
+          <div class="language-switch" aria-label="Language switcher">
+            <button class="language-button" id="langSvButton" type="button">SV</button>
+            <span>/</span>
+            <button class="language-button" id="langEnButton" type="button">EN</button>
+          </div>
+        </div>
+        <div class="hero-content">
+          <div class="hero-kicker"></div>
+          <div class="hero-header">
+            <h1 class="hero-title">ARN Crew Sommarfest!</h1>
+          </div>
+          <div class="hero-copy">
+            <span class="hero-copy-text"></span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="info-card">
+        <div class="info-inner">
+          <div class="group-card">
+            <div class="group-card-content">
+              <div class="welcome">
+                <h2 class="welcome-title">Hej!</h2>
+                <p class="welcome-copy">
+                  Dags för sommarfest! Fredag den 14 augusti bjuder vi in till en festkväll till sjöss tillsammans med kollegor från ARN-basen. OSA senast 5 april för att säkra din plats. Mer information kommer inom kort!
+                </p>
+              </div>
+
+              <div class="note">
+                <p>Obs: Detta är ett privat evenemang och anordnas <span class="inline-emphasis">inte</span> av SAS.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="group-card">
+            <div class="group-card-content">
+              <div class="details">
+                <div class="detail-row">
+                  <div class="detail-label">Tid</div>
+                  <div class="detail-value">14 augusti 2026<br />17:30 - 22:00</div>
+                </div>
+
+                <div class="detail-row">
+                  <div class="detail-label">Plats</div>
+                  <div class="detail-value">Skeppsholmen, Stockholm</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="group-card">
+            <div class="group-card-content">
+              <div class="cta-wrap">
+                <button class="button button-primary" id="rsvpButton" type="button">OSA</button>
+              </div>
+              <button class="inline-link" id="termsButton" type="button">Villkor och frågor</button>
+            </div>
+          </div>
+
+          <div class="group-card">
+            <div class="group-card-header">
+              <h3 class="group-title">Värdar</h3>
+            </div>
+            <div class="group-card-content">
+              <div class="hosts-section">
+                <div class="hosts-list">
+                  <div class="host-person">
+                    <a class="host-link" href="sms:+46704567454">
+                      <img class="avatar" src="images/christopherMedevik.jpeg" alt="Christopher Medevik" />
+                      <div class="host-name">Christopher Medevik</div>
+                    </a>
+                  </div>
+                  <div class="host-person">
+                    <a class="host-link" href="sms:+470768347279">
+                      <img class="avatar" src="images/robinSayyah.png" alt="Robin Sayyah" />
+                      <div class="host-name">Robin Sayyah</div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="group-card">
+            <div class="group-card-header">
+              <h3 class="group-title">Gäster</h3>
+              <div class="accepted-count">Platser kvar: 82 / 120</div>
+            </div>
+            <div class="group-card-content">
+              <div class="guest-list">
+                <div class="guest-item">
+                  <img class="avatar" src="guest-1.jpg" alt="Guest avatar" />
+                  <div class="guest-name">Vagör Duhär</div>
+                  <div class="guest-status">Kommer</div>
+                </div>
+
+                <div class="guest-item">
+                  <img class="avatar" src="guest-2.jpg" alt="Guest avatar" />
+                  <div class="guest-name">Ärduså Nyfikenatt</div>
+                  <div class="guest-status">Kommer</div>
+                </div>
+
+                <div class="guest-item">
+                  <img class="avatar" src="guest-3.jpg" alt="Guest avatar" />
+                  <div class="guest-name">Dugräver I Källkoden</div>
+                  <div class="guest-status">Kommer</div>
+                </div>
+
+                <div class="guest-item">
+                  <img class="avatar" src="guest-4.jpg" alt="Guest avatar" />
+                  <div class="guest-name">Osa Istället</div>
+                  <div class="guest-status">Kommer</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="lock-overlay">
+        <div class="lock-card">
+          <div class="sheet-eyebrow"></div>
+          <h3>Hej!</h3>
+          <p>
+            Ange koden för att se information och anmäla intresse.
+          </p>
+          <input class="lock-input" type="text" placeholder="Ange kod" />
+          <button class="lock-submit" aria-label="Unlock" type="button">Fortsätt</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <iframe name="rsvpSubmitFrame" id="rsvpSubmitFrame" hidden></iframe>
+          <div class="rsvp-panel" id="comingPanel">
+            <div class="sheet-handle"></div>
+            <div class="rsvp-header">
+              <h3 class="rsvp-title">Anmäl intresse</h3>
+              <p class="rsvp-copy" id="comingCopy">
+                Din anmälan är bindande (
+                <button class="inline-sheet-link" id="comingTermsLink" type="button">villkor</button>
+                ). Efter att din anmälan har mottagits <span class="inline-emphasis">och godkänts</span> skickas en Swishförfrågan till numret du anger nedan.
+              </p>
+              <p class="rsvp-copy" id="comingPrice">Biljettpris: 450 kr</p>
+            </div>
+
+            <form class="rsvp-form" id="comingForm">
+              <input class="rsvp-input" type="text" placeholder="Fullt namn" required />
+              <input class="rsvp-input" type="tel" placeholder="Mobil" required />
+
+              <div class="rsvp-action">
+                <button class="rsvp-submit" type="submit">Bekräfta</button>
+              </div>
+            </form>
+
+            <div class="rsvp-feedback" id="comingFeedback"></div>
+          </div>
+
+          <div class="rsvp-panel" id="termsPanel">
+            <div class="sheet-handle"></div>
+            <div class="rsvp-header">
+              <h3 class="rsvp-title">Villkor och frågor</h3>
+            </div>
+
+            <div class="sheet-section">
+              <h4 class="sheet-section-title">Anmälan</h4>
+              <ul class="sheet-list">
+                <li>Evenemanget är endast för ARN-crew.</li>
+                <li>Din anmälan är bindande när biljetten är betald. Biljetter återbetalas ej.</li>
+                <li>Får du förhinder kan din plats överlåtas till någon annan på ARN-basen, efter godkännande.</li>
+              </ul>
+            </div>
+
+            <div class="sheet-section">
+              <h4 class="sheet-section-title">Genomförande</h4>
+              <ul class="sheet-list">
+                <li>Vi har beställt sol, men evenemanget genomförs oavsett väder.</li>
+                <li>Undantag gäller endast om rederiet bedömer att genomförandet inte är möjligt.</li>
+                <li>Eventuella ändringar i tid, plats eller upplägg kommuniceras så snart som möjligt till anmälda gäster.</li>
+              </ul>
+            </div>
+
+            <div class="sheet-section">
+              <h4 class="sheet-section-title">Ordning och trivsel</h4>
+              <ul class="sheet-list">
+                <li>Vi vill påminna om att det inte är tillåtet att förtära medhavd alkohol ombord.</li>
+                <li>Arrangörerna förbehåller sig rätten att göra ändringar i gästlistan eller neka ombordstigning om man bedömer att en gäst riskerar att uppträda unruly ombord.</li>
+              </ul>
+            </div>
+
+            <div class="sheet-section">
+              <h4 class="sheet-section-title">Vanliga frågor</h4>
+              <div class="faq-list">
+                <div class="faq-item">
+                  <p class="faq-question"><strong>Hur får jag min biljett?</strong></p>
+                  <p class="faq-answer">När vi har mottagit betalningen får du en bekräftelse via SMS. Själva biljetten skickas ut kort tid innan avgång.</p>
+                </div>
+
+                <div class="faq-item">
+                  <p class="faq-question"><strong>När börjar boarding?</strong></p>
+                  <p class="faq-answer">Vi återkommer med exakt tid närmare avgång.</p>
+                </div>
+
+                <div class="faq-item">
+                  <p class="faq-question"><strong>Vad händer om jag kommer sent?</strong></p>
+                  <p class="faq-answer">No show i SAS Time! Nejdå, men vi kan tyvärr inte ta en försening för att vänta in någon.</p>
+                </div>
+
+                <div class="faq-item">
+                  <p class="faq-question"><strong>Vad gäller för klädsel?</strong></p>
+                  <p class="faq-answer">Det finnes ikke dårlig vær, bare dårlige klær.</p>
+                </div>
+
+                <div class="faq-item">
+                  <p class="faq-question"><strong>Finns det garderob?</strong></p>
+                  <p class="faq-answer">Ja, garderob finns ombord, men tänk på att ditt bagage ska få plats under stolen framför dig.</p>
+                </div>
+
+                <div class="faq-item">
+                  <p class="faq-question"><strong>Finns det mat och dryck ombord?</strong></p>
+                  <p class="faq-answer">Ja, det finns bar och eventuellt lite tilltugg. Vi återkommer med detaljer när servicekonceptet är spikat.</p>
+                </div>
+
+                <div class="faq-item">
+                  <p class="faq-question"><strong>Kan jag simma från båten?</strong></p>
+                  <p class="faq-answer">Ja, om rederiet bedömer att väderförhållandena är tillräckligt bra. Kapten har sista ordet även här.</p>
+                </div>
+              </div>
+            </div>
+
+            <button class="rsvp-back" type="button" id="termsClose">Stäng</button>
+          </div>
+  <div class="rsvp-sheet-overlay" id="rsvpSheetOverlay"></div>
+
+  <script>
+    const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbxwy976pH_JStcwrDtu0XXRVwrhkdOF7blIDU1HQP8MUYb0mOQwtD2fdRNunYMc5VgsqQ/exec";
+    // GENERATED_INVITES_START
+    const inviteConfig = {
+      iterations: 120000,
+      lookupSalt: "5HfxAbJUjQQjuxQQ6QCzaQ==",
+      records: {
+        "c6f4b3e84c0ff763d80d8970ff709edf299df1994c6b2ecb21af7793189925f5": {
+          salt: "F6uyVeeUZbEz3uUrXLNnEw==",
+          name: "oxmPj7iRVIvt0Pi9"
+        },
+        "93bf9f144d309e295728b6545b1f53638665b591e5270d9b9f15098efa9d956d": {
+          salt: "ObgxDhhxVfBz3Kw3Fky4pA==",
+          name: "JBx+TkMadkxuwwtv"
+        },
+        "923d560a2fc4cac8ff85be51737e38281d13d1c847dc64e89d3c987ffa9ec64e": {
+          salt: "KegC8qFu1x7oZUJoI/yzLQ==",
+          name: "JLT6YtCr4Jrl1p+LAYLguRcoFTM="
+        },
+        "231a5a3df62c6ad14cb0f159da495c7c3b004046b51f1b173d5be9efb8b89991": {
+          salt: "7+8OqrJ5qZD5xp2Jhx4SPw==",
+          name: "LzLBqj2ZgVYVcE4FCWs="
+        },
+        "bc75a8f4a257c26bc98c92569321fa4e19e85bc7735c534e58aebe3daf6731a1": {
+          salt: "DdIlDwGcLcOEbMCztnLqzw==",
+          name: "yWaw+77zWKfedm1pkXrhX5dE"
+        },
+        "9f629f8752007b1e4935f52d12fb3d2741909e62c82845fac21fdb73d20ace97": {
+          salt: "FRsmOivgjIB8OcNHO5iY0g==",
+          name: "N2I4OpW/Dbfz6hOlU8s="
+        },
+        "32c9eb74071b90dc2a4419f0fced40a3b726cd3c1e65b2c6cd3459972ab8d194": {
+          salt: "7OvpC4w7Oslg7T8y9T9C4g==",
+          name: "RmJiOe1Wx8ySjWo="
+        },
+        "9f8828a7c4a335c028c2f81cdd58174557f497cd9e6533f204320228904f7996": {
+          salt: "GwXZgHTAxDaO7PXc1zPwtw==",
+          name: "7lvX8aEhOJmozHqnCGnQZsk="
+        },
+        "220c34d6614cbf1c3e5b4aeeee25cf4f517ef5de027faf37054fab879e29d240": {
+          salt: "LX00jEl5k9xmxs5++3TNbg==",
+          name: "97axvaLfmx99KWvQRwLC"
+        },
+        "878ab7b8f698756a64901f93610122b33f5798d4b483381fe8ef313d13bfbd19": {
+          salt: "xYJqYVn5hwkt4BJ0sk8CnQ==",
+          name: "YdF0MlGLAg2fkX0j4nA4"
+        },
+        "38b3024985a9f7ff1e612e6eb4e7c5863044017253a24aed6bbb78a44621e823": {
+          salt: "58hkMsh2iy/U+/wcdNWOiQ==",
+          name: "vhXT7WWkf25D/My3IJ8="
+        },
+        "49985c67633df185c2c2b5f1a835405d0c80a9eed743e3b21adf23d643c113e9": {
+          salt: "6WRwCOfIL0KixzyOa/pGuw==",
+          name: "lHq/Luruj90nvRue9Llm"
+        },
+        "77252aa62be10f4ceba864cf953c48f41dbbe000a18ffd93c4cf4c2d30ad02ee": {
+          salt: "oZgSatLksUBsNzGdRi7UOg==",
+          name: "1z6tyTK9Yj7DF147PWQ="
+        },
+        "1c0e44194fe265e2063c9cf4375d916d5312325bdd63dda20f88c1eb5bb27a4f": {
+          salt: "lBnbh8JGPelv/OY6w0tPvg==",
+          name: "9BoNPWismyrifwATB12kmm0="
+        },
+        "68cb9089feeb1f4d330e88178f1008e140b5f9f767162d11fc575299c5216a5b": {
+          salt: "Gpe6SchFJX/rdRbex43++A==",
+          name: "4Nvj9ofudT5juieiDyMP+m4="
+        },
+        "b4f264f8e8501dd80fc75e5136c6e71b2a88246600a85304ed41508db34ea425": {
+          salt: "bVY+p3C/ufE+9hys/nMc+w==",
+          name: "20+mc/25H0T9lx3HKm7TjlHHmA=="
+        },
+        "bac0e357307c10caee7a6c6b834bb86342a21ce467ecaaf9a896f0e43e9097b2": {
+          salt: "CmhJiTYL+AxSUVChJAaK7g==",
+          name: "vQYPaZRU9F8CYrrCIFSTuq7rkw=="
+        },
+        "2cca886e72d2d60473e1170e54f00877d467199b2b77d48f62b997e1a05db7ba": {
+          salt: "rGvBi4XLhotfMfqWYFXDXw==",
+          name: "EQ5ViWJaO3rb1P1A2g=="
+        },
+        "c743b0af886c8115602945411c930e6018d2607a422a8794f212b502514218b2": {
+          salt: "8oUpR0YcnCboAKjFBmP4MQ==",
+          name: "RqAVEcxgsAwBJ2TWDEK71Q=="
+        },
+        "b07d5a4b74a96dc81bdd1ca79add7f9cfb6984c07ab7e8634e4cf56b616f11f4": {
+          salt: "d6uEavlb+eKb5F8v5FNaWA==",
+          name: "zvCOaoaxqSV4rkno268="
+        },
+        "d32bccd769269da3d98a289310433ede7dec621e3e8618f4830eb911879d1c16": {
+          salt: "kHqzMZrYdg7ZAbQ2pjHFjA==",
+          name: "MmO+nhuIVWdoJeb3ZVY="
+        },
+        "7b0b253c798306fface554721a397ea8545290302de7ff2a59e5524c04cf11fc": {
+          salt: "0kzJaUxqvcRyFgz2Jr6NBg==",
+          name: "KvhDszFzL8nwBaU2"
+        },
+        "061ab0fab4c1bb5c47ca66c23ffc93fcda5833045457a01737038bc3acb27fc4": {
+          salt: "y+VRfBFospGzoxzFbaypwQ==",
+          name: "lYdt1tPNOwfBzrkrXg=="
+        },
+        "99470f09d24a82a5fb77deaceb548785982dae01220803dbf4127808c6707439": {
+          salt: "WB8G+GiP+7OXH3HLbgDwsw==",
+          name: "cvDoypfR8HEJj5Se"
+        },
+        "866c2871a1a321a91dfb27bc1850fcdd39f4a47798a6f80da99306bc096d2cd9": {
+          salt: "+UO78atpIXTv+DJRxXr3bQ==",
+          name: "iGI+RvCyfAaG4YIfnA=="
+        },
+        "e2c7f446bf9ee4c02d24e7ab78da64989875d9119f5899a85ee02e1bb638d144": {
+          salt: "yj+ukHr21eAUAJgg8O/zeQ==",
+          name: "c21XyLC2Ofjp"
+        },
+        "bccc4c5e50f73f54fd5b4aacf73b5b13f5ebb636cc76be52ca1ba77555542274": {
+          salt: "f5X9U7P83NKIv7CeIqpGGQ==",
+          name: "Qnn7RVjmfhM="
+        },
+        "75be3f4db1e4955fc4cb92cbef7261eac46d22418a075066b56b6ddcbc4dee9e": {
+          salt: "ICy3nIo4J393uJ7n71rPeg==",
+          name: "MHLmAlzZLf5h72dY"
+        },
+        "cc39fc36a8828579571acc4710b28b6161c745981b54dc6d3f34be9a46598f6b": {
+          salt: "WvJzfUwnOgMvdeEb5/fGNg==",
+          name: "gjHKaOgbTM8+"
+        },
+        "67508ec531de400ec822ab28710b4c197fb1a2845d32ac05ff580de8be358b37": {
+          salt: "a7rdavf3aV1bjFnF5QK8tA==",
+          name: "eVzrLq5bZFVV1pWYSkk="
+        },
+        "a0b29a0a1d57db89497b5df8151439bd2b141fd4cab50edad4fa7958be4f926d": {
+          salt: "+z7ZM1dI0MCPGeNMB72Krw==",
+          name: "72JtxZu6hNsvcsMrv4GxLzA="
+        },
+        "fe6b83a3c0d77d8516bb2b70a1aadd7dc3814cde1f0cc063bb68fc150852d381": {
+          salt: "dj57RQ2quh2I4qpNnoCpQg==",
+          name: "QMZ9rVzQx+owZo/h"
+        },
+        "65defe55662c64b357549ad7ba833b5128265fdc69ccae9617169c77051c5baf": {
+          salt: "AtVjKTskZAK5Lamoags2zw==",
+          name: "CQo8br+9tH4vJLHjpunuwPtE9w=="
+        },
+        "a0f7634c6f5591867194973ae3ef8e332c5b618f32d386a862cb797334395430": {
+          salt: "me+hQwjyWF8WETfsG0Iq+Q==",
+          name: "s33CpBSmgz6cjwjc6jXMkgeTl5o="
+        },
+        "0ae5e502334b836a0b380d90460f915a28f1c858968755c31aa519ddf334ec00": {
+          salt: "fR825BhXalXntPWJMCPiUA==",
+          name: "WxKUrQZIdHkmWzCQ9Q=="
+        },
+        "accae802d346b492dde0d0793d6daaeb9bcb60e0f3f8d83b24fded18ca257c26": {
+          salt: "1OmVMHYl/Mh/GzxaGcdLOQ==",
+          name: "RRMHlGzavDpApbf2ToiGag=="
+        },
+        "218b05377f0be8c7da1a8bb952ffb9fbbefeb5ac80eb77966b8ece379b8c35f1": {
+          salt: "72uUQSPg8mT60kvgfLN+eQ==",
+          name: "hfibGEhxPujNbJ7D4Kot"
+        },
+        "6cfdc0a88246226d2a2fdead27a9dfa6c75622d738d41ac0c43b32c34f7fdf8d": {
+          salt: "jx2ugxZXnZ0ungohOvJnHQ==",
+          name: "j1JvMx9R/fmsnYXYKklA"
+        },
+        "e95a38c36ae7a772015467ac68b88b333fd75ffc27227f27bf8d48db2af4cc02": {
+          salt: "WuZ0NQ0iINckFtp+jVvT8g==",
+          name: "zBokTXxNeC5elC8KLw=="
+        },
+        "ad167bf805950c92a80e3d2059e0b72fe5612b124db3c27d9ccc3c687343b10e": {
+          salt: "TcxNC6mNX2guWUe9+MK60Q==",
+          name: "QiV9LnAE6p4Xo5kjTw=="
+        },
+        "8ca7c8247cd8ea1a03563d5241670ab3bd806a2843ad3d3301b2c68817158593": {
+          salt: "hDMP7Q17RTPOrHLdx8609Q==",
+          name: "oUwOLZbf9D5eYgDsabHV"
+        },
+        "b608cd199e641e87565229da05be2d77cd559d9c126e20bf29290593655d5b8b": {
+          salt: "rENciT09pTbSDvm6eXaHQA==",
+          name: "lSkSpK7Q8wr5mHLpud5A"
+        },
+        "18d7d22e8c7623c8bb10bd8cfec5f1162706a3b83c44f3be97f7ad48bfb17021": {
+          salt: "RWxU7BXyGOzdDE6hoCJNBw==",
+          name: "YyujubI4Kiu4HyT4NqY="
+        },
+        "4ef8ece7ff13633848c2943099a31d0d6341b9f1fec65ec7979852a0317589f3": {
+          salt: "BuU5Mi7rwVTJJEeRY0PiPA==",
+          name: "lTMSGAlOuauzK5RmGC/63A=="
+        },
+        "fe6158a982866f10110be45d712d35ee0bdf62a837d285d4e402af74e841a081": {
+          salt: "rnqptGw2ZYjCXUsIphKZOg==",
+          name: "vJiXaM8KSxqCN6dMpErd9A=="
+        },
+        "320fa88e9d5727ebcf9c9a348983ca9bc89c4c2236b305e4add22dbff6aa4962": {
+          salt: "QyN44fGS6mE4zoOX5RNdyg==",
+          name: "2bumi082JzP0lQ=="
+        },
+        "899b9e4debb2499a14b2477cfa84ccca42d36ff51af196f5c41beb6525969a08": {
+          salt: "3VW1wfHd3uKIzi6jdoMd/w==",
+          name: "qfbiI5/VWtRD+8w6QA=="
+        },
+        "8ff0100c59424b823209090bf1362f36dc2286b3312449505d35e9d4ab47d164": {
+          salt: "bFzj0O8R9+rLrW4746kk0g==",
+          name: "Hj+0bChaqFN80xlA9vLw"
+        },
+        "bff45f5b77167a4ede659552b63da70c7dba65c35a93cffdf5746ebfeb23a98d": {
+          salt: "2N8ZOfDkxNMkp0dshnDvjg==",
+          name: "VpP0l6APVDnwKkgjYVpsrg=="
+        },
+        "46bd37710b2ae45731df114b45cc388773ee7fb0400ff9289f0f96f7a24d6e61": {
+          salt: "uc4t71/GIGozWDtcBufFrg==",
+          name: "IfjOt565d2tGEPDBnzzz3I+b1Q=="
+        },
+        "1bad579ed3cdbae04a1261cc273a8a53cab15c87db6791bc9bbd34e8bd1dbaeb": {
+          salt: "6H1v8sUys1jYkYtUyqOfkQ==",
+          name: "SLXMNtbkptBjUZsPkWjF"
+        },
+        "8244d55b8405e88bda223f1e79404eb3e63d170b21f5771488fa30b39df09a01": {
+          salt: "7YAYMA42xTX6YUYdMTwDqQ==",
+          name: "qE7aZ3Yx1STSGTHvGqQi0w=="
+        },
+        "d3be82774a2bc3797c3cc44c12197dca02ff3e67cc8d22e0ac0e9658020bce47": {
+          salt: "SwgYHB8Kj0zjobPM0Z7ZrQ==",
+          name: "6glk+63nQM3J35Mgc1g="
+        },
+        "dca5c1b2488e94f1eaed8c27ad3a1cab6343f6f5c328d49e5a858cb89911d983": {
+          salt: "4IEm3IvK4nOHSlBzeZUAaQ==",
+          name: "V5nf/xYz+BoMSZ2E"
+        },
+        "a5a2785e345ff2d18f1b64a5f42b2408aebd357ac7652ac93bdc2e88d265f6d3": {
+          salt: "2Kv6iTWihAbY9qz7Ynz2ew==",
+          name: "NIjphgzAPsJcBS70c4vPNzSOXoS4us7d"
+        },
+        "6d010c647a1e4064c1e63a22048e8b19d4fad5683b7dacd539d0fe259abe93d4": {
+          salt: "IJNgPhDhZSgBb8vGPYg/3Q==",
+          name: "HKecVDcFDPYoK4UH/A=="
+        },
+        "ee62948b63131db58ff0237ced8dcdf38c12705bfbdb4c4fa6ee8faf66cad18f": {
+          salt: "8MaGUDVuFqGyysr/yQqUYg==",
+          name: "KlLV3sVYbYGi7KsTaBEENg=="
+        },
+        "0e79657546b2148d77ec652cae93c2f92963c52e5c8289f544dc6dd44e6df8d9": {
+          salt: "WRtrqLu/imp0lfpGnhM+Kw==",
+          name: "uFYXlSZ3kZqocVaLgg=="
+        },
+        "bcbe16360f705ee24436e1c4d22917acf2c39e947d85abf273048476104414a8": {
+          salt: "cmPxeW7c1T4HaOYYhJ7kcA==",
+          name: "dsFDUOoLWkmp6wFmbzk9Vjo="
+        },
+        "1151a4591192dff4a5b100f127c1816c12aff917a2ccb7a739435e09ea5e1467": {
+          salt: "M7gsLqyFTUdPrq0Ofk+gMA==",
+          name: "211zj3hghQApm3qySQ=="
+        },
+        "d899cc750d1f30fde90a279bbca781eaa9dae70619c94611a2d65632ed7b37d2": {
+          salt: "//rDLs8rWuGJhEkQK20VgA==",
+          name: "81rM1Bd+hYnqIdIg"
+        },
+        "5049a57b07c8690c3b39b45bf650f2d2afcba4c221dc2997da5d1077923fe481": {
+          salt: "4d6oYwrxdmmsIY+GCaDBkQ==",
+          name: "2+pFxT8yOZDuEhJx1w8="
+        },
+        "580c0d298b9a761827f2c73162f0ca8484415443fd86bd0c955217ffad166c78": {
+          salt: "sYPgHGZZsaS1Mad2xBaSXw==",
+          name: "Vh/nuoQxFDktc6epDr/eD5g="
+        },
+        "0fe24f2e79bbaec685658041fdd90f48767e256b3f9fbfa98e77c58a25734871": {
+          salt: "2T47yvrN1sYCL1yJSsnMtQ==",
+          name: "0tCF/P5ZheCT9YNlqA=="
+        },
+        "11c4b15174140675f4530d226ffe1f7726652a3c6193d3646ffb63f14218cd79": {
+          salt: "lktjID/8mGhXDgVXIgR1/w==",
+          name: "Hxn8xYfjIXkOJYswpw=="
+        },
+        "e6fd0c2e6e6854d510e49a88b75078d3bbeb83b4a43bc67d9c20b63901cf3a91": {
+          salt: "D70e6/trt1mM1cHM42hkfg==",
+          name: "RvgV46FLaF/U08nKsA=="
+        },
+        "f639586e533ae75daeee10e1216870764ebf06225751170e1770c33ccdc7c097": {
+          salt: "zIrKP3mAoNmqaaeepH0FZg==",
+          name: "UcbgJHWDTkYjclZcsdM="
+        },
+        "feaa8b4bf3ecc2735338079bb4b3e5aa375261f0a0061844c1a20b595422c469": {
+          salt: "S5MoQfNEjMsXvkjonhk62A==",
+          name: "ZeE0ADuecxaoqpW0"
+        },
+        "4506082954cd247be783f24c2bae43a43de5639852223534a5a65baca2ecd28b": {
+          salt: "zKHSPbg9jxLSIuqfDHdEyg==",
+          name: "TeXnJFm2AUnrrvh7eb0="
+        },
+        "ed6ca4f0e4708855dd58c52e85f5347e091b595223480ce23c52736d25eada12": {
+          salt: "OvZWMuE3/biRQmA++8AoUw==",
+          name: "3uVrsdoXOxmDgy4Wfyv83Qn6"
+        },
+        "8c5cc3d5e8c38d3cabf2b35a320a61133a9bfbabbfef76c2b041de13a2924d12": {
+          salt: "Xmu+FF77hKWNNcBBS3dcZQ==",
+          name: "QW+TUaTDMMZz+1N8+sc="
+        },
+        "0e74bfed03875f7c23f277b1408856fb94c333368d72aba674fa3dda929b870a": {
+          salt: "/3PoufFQ1TyY1Pw62Wd37g==",
+          name: "feMdtm6xtZ/+2QQuuwha"
+        },
+        "b1cb556d2a53657ccd296c7f1ee20b133e3d50bc0fdf45b1a72ed6b310e93828": {
+          salt: "SHvTFNOPO8R8EAW/1vQtWg==",
+          name: "Gr9CXWJ6sz3NmTRS"
+        },
+        "2601f27a562baa6d2f6dfce3036ea78588da5bdb082d1b1acacfe55c23687de6": {
+          salt: "unwUy1FFgo69d/r+ckvEzw==",
+          name: "y2srmmSsZbmWcIGlF/U="
+        },
+        "b8ee6c2f9073c86e5d1ebc953dad86476b4ce9589ddd260c8e5c3a27966d70bf": {
+          salt: "usLYwwY7IYm/jTSQ/TITEw==",
+          name: "rFhcmMw7w8hKNw=="
+        },
+        "ce0878e72bc072bc63161a02af15a9c32a0a92bc74f0627d05d5aea98fe8b97e": {
+          salt: "ZVCbRRfgPcCe5ZHIqRlvuA==",
+          name: "VrTH6F7GTh2PPIWY+RE="
+        },
+        "3dc11daae259c1297dbaa2228b5723da7831c0acdb59b8ca9c0283f551aaffb3": {
+          salt: "PKvMK7NZe3GK7qZj3UgMng==",
+          name: "ON2ofYRFn1XK16cvebjAa0VGkxVSaNQ="
+        },
+        "d3b3836571c5838413d39abcbee5dd523abdb1f330e50d149975f3e301da2633": {
+          salt: "5+uP74Thc1/8glgz9qPZ8Q==",
+          name: "M8BAuTd6KhmviHll9eoRTw=="
+        },
+        "4a7cf5e6698cbd1876aa670dec2b60d8867f4064328e58383e38d9b19a5c7515": {
+          salt: "dhELwXCJO89I9aQ/lIAzHw==",
+          name: "a2qHiM39DwzTokqjK+dy"
+        },
+        "7056d8b64580897f280c5aa0f663156d5be3c74e7ce3780d43025c7ae891a8bc": {
+          salt: "bwIEJX9j5gLpUl+1XVWzTA==",
+          name: "chJ1LHjUKZsYYmtP"
+        },
+        "8db8ae348cba818f95f30a454db3d8f3cfe746539a3b501aa41d3161629d2e84": {
+          salt: "hvYY5rELd30WuVRKKhzcBw==",
+          name: "VTp5MOuSobdoGyq2InAD8w=="
+        },
+        "29f1e34a6ceffbf8ea91d74e42170b14000974524b9448d4519e9756f3cd756e": {
+          salt: "5HfZ/UF043vduZrh11BunA==",
+          name: "C3pCT4ohC6r8Shk9uQ=="
+        },
+        "faeb5d2d99065b7d0fa5463bb8c69c26a3a0f55cd4ff871bf668d6eb8b1390d7": {
+          salt: "sCd0xTthHGcTI1ZxXChKZg==",
+          name: "ZeMPggzX9n8UTsGI66I+"
+        },
+        "e1ee319396c6fd8e9b9bb0dec5933bf706356c20a41432234066384e66382247": {
+          salt: "sbyWbNXB3TkeZJ9p6InQew==",
+          name: "X6KR5RnwZls5wI4r"
+        },
+        "59843b04affd658b240855535c2408e709c2a33c21d7b3da0bb46b7e24363fdb": {
+          salt: "LF/7kgVdnS46CY8zU034mA==",
+          name: "6yjD6zw9uI6d2CpM"
+        },
+        "f85bb993edc9af197c839937b34feefceae94eddce70d93623528ab95cf7fe9f": {
+          salt: "tLLuM5shDRBoeqVPq2tcBw==",
+          name: "P4GVhI58q63cM7gv"
+        },
+        "2f1d509837508138fb80f2ba2e53e0fd09ea5430b55a87f9911eaeb1077ea5e5": {
+          salt: "oFKInvPt3sLlrkxVqPPk2w==",
+          name: "Kgp0PmfaecFP49MeneI="
+        },
+        "442d304605f350f0132f8976e4b945a9a47efdf1986649d58d9356d5660fc681": {
+          salt: "wiZ/d94f9E0GcVAeHdC4xw==",
+          name: "9c47RZVYCThMpQkw99tCXA=="
+        },
+        "f03f5f229e4e06044bc78ab3594e8609abe74f70f9f359c267ae221f89b9510f": {
+          salt: "opaqdXDOtWHBXF8xBLqlJA==",
+          name: "H+HCYz7AXsGz8UOYXRg="
+        },
+        "67b2c744b22a096a6cf29b488d13c30dff2afda5c0a81b9e7597e5f270ad9a74": {
+          salt: "O44sWrkCaP8Bp0RxrI1hSA==",
+          name: "ZWtM535VVj7sOPjFsw=="
+        },
+        "f57cc11cf04ed7c6e2bc7ad087d70ce1930b00b3f8d15de43b92b3fa13e62b67": {
+          salt: "kdUpkkKG/lzHsIas4iONow==",
+          name: "HG6hGntHkZ2PTunS"
+        },
+        "bfc1b339616a804cfaff5f0eb45ddf18b8b423667a9bda5b6e752401bc71b4ad": {
+          salt: "u2JdwQ8ILZXlPIOVnmUSQg==",
+          name: "JUP7z2PX0UmHCM6Qii6j"
+        },
+        "224e35945647243d463477f9100cff9df530a58b08dc4e791ac071b7bef59c5c": {
+          salt: "VOqf6cB+OZ0ZsD8PMK00ig==",
+          name: "LunT2/2lfdCKHeL7wbOycg=="
+        },
+        "ec63413b23da3ecddfd78aa0c6e62edb5bea991f8982df1ddbfa30167873d7ce": {
+          salt: "yWH5bmKQ0W5yUWOI+nzXnQ==",
+          name: "W9MAexyBBko="
+        },
+        "7808b4f71d270295104bd0b6c003d46c3afcdc4aba2683f424219ed7b2a814ea": {
+          salt: "zeji9epLIBiEkJZOZVR2gg==",
+          name: "msV9QbArnoyD363ibw=="
+        },
+        "ce0e1eb673e3a531532dd3d6432ced9a7d79d858f952a0c7aeec99deb7a72404": {
+          salt: "FQS8yvIh/W4GufFXSGF1bw==",
+          name: "hSleXuObNFG5ktlZ2oZ5AQ=="
+        },
+        "07eaedc8ffb430081af5a6377e16b1ee3f83f1bc81b72ee935052e05029063ee": {
+          salt: "0tK//ikCeynpKbKT/T+Pkw==",
+          name: "ZMFC93Zh/ZDukhpTxtr7mGw="
+        },
+        "328cc5dc8075e817e59625cda40374463078dede1e48a13c18680be0d4510e5a": {
+          salt: "BsxV5iuQaZ7svI3pCz4bqA==",
+          name: "JvPu68VmE8uwpxGMfg=="
+        },
+        "b278d2588e1b166fef3b6d2dfb80e9dd87c0a550e65ef83afbff45f4efa27854": {
+          salt: "D/xuOK06w1BsK84oJr6C0g==",
+          name: "6rriszPa36GxsdMJ"
+        },
+        "4e24e0d9c744634ce51e1add3500435e82259d4973a9a33a1e3feddc75db10c7": {
+          salt: "TRMWpwOwg6ruBkPka1ZsHg==",
+          name: "aDkrtAkhqXUmkWCn536p"
+        },
+        "ed86139f4e76b92cc1a25e76341e7e2814d1a418998cb1d5571c7d8ddc20eb86": {
+          salt: "1CeWNH39bZhOhAXj5EOVaw==",
+          name: "5J+JmbzoyGY4Q0YuKBDmFPk="
+        },
+        "bc757c6df0df59248a544bf337c0362a07df0f31fa60251aa0f0733be6061969": {
+          salt: "EmKAI2Ga/acniLxXv9Hx0A==",
+          name: "jX6aOmcxQEsK6z67cvzj"
+        },
+        "5288b950379ed619d15b33064f57178f38ff7c75ae214e4914e3d76b330bc185": {
+          salt: "n/+V0HyDrF3V5toJ4nmRNw==",
+          name: "m2xF8eDDkUEvE14MgiW0YcFZkbfS0A=="
+        },
+        "b39cc3c39ea7214a44f0e8e0c5cda3356013b59e821f27e4041106b3448ae475": {
+          salt: "cKzYPqH+qSBGNHouOuHMeQ==",
+          name: "cy3cahH4W/pynAcL"
+        },
+        "9237592d3e5c2bc09fce15c3b5933fdc57dc0f05e9e7dc2211aca143e88a6b51": {
+          salt: "SE7/SBAHwe9eTLvJQFuawQ==",
+          name: "MqeYejAfPrMFUKg="
+        },
+        "a79b2430ddd88c20d4030bde8b47779d8d027ca3e9f7c94a90b245e5d1116f07": {
+          salt: "0u+ISAtj3sYSK5X7Yft6LQ==",
+          name: "digdF7zarAThwuIL"
+        },
+        "3c8d99bf4114f0b89b29d76c9fec4d0dcac7d8ddefbdf75781d76c3cab7c26cb": {
+          salt: "B8NUDVDxc0trZPUDD+RulQ==",
+          name: "Mp27VWdVdbzuDg=="
+        },
+        "7839d04c4cbe27c023111049a7edadff8dbf847b5fdd53cae298df85788e8d8c": {
+          salt: "8Bm1ef9hGkrEbtSgHpT02A==",
+          name: "/kepnUsF9l/HCnq8c3CruQ=="
+        },
+        "3f02ab3bb0c0be760eb2a6c6ef75ac1e361f471513d656964d04c8f2afdd0297": {
+          salt: "aE5rZPnTYAYiDRp15n1olw==",
+          name: "FljvgkAMlzcgsB7PS1Y="
+        },
+        "62179ea852f88e74d8c57929828e449ad68e74b5b40b080a55409271d31d916a": {
+          salt: "RYe4hokUTiGosRMgCH5zpA==",
+          name: "0ppdNtQ+zIdBmmhsFwk="
+        },
+        "4d96bd4b4edf851a62f71068066f1cfce148e731d8a1092fc01daa2a0a3e79ba": {
+          salt: "9s+/ESJY4S5NXl3n2AOvTw==",
+          name: "y/TS2Pci7Oifc9KkFQ0="
+        },
+        "60e98353ceebc16590f752336861a221dc0b7428047d03a7576a12da667cbeb7": {
+          salt: "VPa6sWLH9XhNBHJWFV8m6w==",
+          name: "fSgrhjrVZmtfpg=="
+        },
+        "77431b2355ebe7fa4787692e6a7fc76b835e92879cf409500f738350899baf8e": {
+          salt: "MH/N7caU3SkjzI9tbo+AOA==",
+          name: "Zh2orBtHyjAqCVDpjdfIJw=="
+        },
+        "2e31c64ffb79766c5b2645cf7bf3cb628fe263c1c99610eef5b84c90758fa47f": {
+          salt: "RxwKen56STJPHguTaF3OVA==",
+          name: "WU76MwTyNLnYF8sIbgObww=="
+        },
+        "7c20443b46ffae988af54b2fc9fb2049a50b3792a977699efe5136612d2e3ae0": {
+          salt: "QMzvbR+MVi/fn39/AJrCQA==",
+          name: "5K7TUHEyR3AE"
+        },
+        "2cff1d2d81f970b2dc6293272aca44126a7b3d94afa4370968dbc4751faa9c5c": {
+          salt: "gl2HCKNL9AVFrH1rH3nKeA==",
+          name: "yHRhVx51YNkfYN9T"
+        },
+        "f62dee3596dc2de7527a8e3d0b4be83d893a93fcdab3bc8471dc27c39f724f6f": {
+          salt: "HNObGx9ILdFajhueGZyJbw==",
+          name: "s9ebb8ZkUfcvRYnfn3s="
+        },
+        "3f3b05559d297e159a2d204b869dccda40de37dd4edac0298a5c80afa5496cf8": {
+          salt: "7aIFA73/SHkKTATbO2TT7w==",
+          name: "M7LT2p54crqbmWv30PJMjis="
+        },
+        "75d9a953d4d1767121d994312efed3e4e44afe8ecc12de37650d4b83e1d92bc4": {
+          salt: "MdpTOsTEJ50woEcEODbhsg==",
+          name: "57sUwMwtbldUTrKq"
+        },
+        "6e28fd658df15e1939bf5cedba856c0617886eae36aaf09fee70dd903a59ab8d": {
+          salt: "ySBgZ/T0nlOsUDzfeROM3w==",
+          name: "YJNGFLE0ByG8rp4wf9c="
+        },
+        "f799fa3d8381644c27286ce6342d782d85ff413e86759c1669b93fcb0eb12872": {
+          salt: "XSvZ/mZIZQ5MrfAzTsH/fw==",
+          name: "SiMZ80jLa46ufMJn9yQ="
+        }
+      }
+    };
+    // GENERATED_INVITES_END
+
+    const input = document.querySelector(".lock-input");
+    const unlockButton = document.querySelector(".lock-submit");
+    const heroKicker = document.querySelector(".hero-kicker");
+    const heroTitle = document.querySelector(".hero-title");
+    const heroCopyText = document.querySelector(".hero-copy-text");
+    const welcomeTitle = document.querySelector(".welcome-title");
+    const welcomeCopy = document.querySelector(".welcome-copy");
+    const noteCopy = document.querySelector(".note p");
+    const infoTitle = document.querySelector(".group-card:nth-of-type(2) .group-title");
+    const detailRows = document.querySelectorAll(".details .detail-row");
+    const rsvpButton = document.getElementById("rsvpButton");
+    const termsButton = document.getElementById("termsButton");
+    const hostsTitle = document.querySelector(".group-card:nth-of-type(4) .group-title");
+    const hostsCaption = document.querySelector(".group-card:nth-of-type(4) .section-caption");
+    const guestsTitle = document.querySelector(".group-card:nth-of-type(5) .group-title");
+    const acceptedCount = document.querySelector(".accepted-count");
+    const guestStatusLabels = document.querySelectorAll(".guest-status");
+    const lockTitle = document.querySelector(".lock-card h3");
+    const lockCopy = document.querySelector(".lock-card p");
+    const langSvButton = document.getElementById("langSvButton");
+    const langEnButton = document.getElementById("langEnButton");
+
+    const rsvpChoicePanel = document.getElementById("rsvpChoicePanel");
+    const comingPanel = document.getElementById("comingPanel");
+    const notComingPanel = document.getElementById("notComingPanel");
+    const termsPanel = document.getElementById("termsPanel");
+    const comingButton = document.getElementById("comingButton");
+    const notComingButton = document.getElementById("notComingButton");
+    const notComingClose = document.getElementById("notComingClose");
+    const termsClose = document.getElementById("termsClose");
+    const backButtons = document.querySelectorAll("[data-back]");
+    const rsvpSheetOverlay = document.getElementById("rsvpSheetOverlay");
+    const comingForm = document.getElementById("comingForm");
+    const rsvpSubmitFrame = document.getElementById("rsvpSubmitFrame");
+
+    const rsvpChoiceTitle = rsvpChoicePanel.querySelector(".rsvp-title");
+    const rsvpChoiceCopy = rsvpChoicePanel.querySelector(".rsvp-copy");
+    const comingChoiceText = comingButton.querySelector(".choice-text");
+    const notComingChoiceText = notComingButton.querySelector(".choice-text");
+    const comingTitle = comingPanel.querySelector(".rsvp-title");
+    const comingCopy = document.getElementById("comingCopy");
+    const comingPrice = document.getElementById("comingPrice");
+    const comingNameInput = comingPanel.querySelector('input[type="text"]');
+    const comingPhoneInput = comingPanel.querySelector('input[type="tel"]');
+    const comingSubmit = comingPanel.querySelector(".rsvp-submit");
+    const comingFeedback = document.getElementById("comingFeedback");
+    const comingBack = comingPanel.querySelector(".rsvp-back");
+    const notComingTitle = notComingPanel.querySelector(".rsvp-title");
+    const notComingCopy = notComingPanel.querySelector(".rsvp-copy");
+    const notComingFeedback = document.getElementById("notComingFeedback");
+    const notComingBack = notComingPanel.querySelector(".rsvp-back");
+    const termsTitle = termsPanel.querySelector(".rsvp-title");
+    const termsCopy = termsPanel.querySelector(".rsvp-copy");
+    const termsSectionTitles = termsPanel.querySelectorAll(".sheet-section-title");
+    const termsLists = termsPanel.querySelectorAll(".sheet-list");
+    const faqTitle = termsSectionTitles[3];
+    const faqList = termsPanel.querySelector(".faq-list");
+
+    const languageStorageKey = "maggio-event-language";
+    let currentLanguage = "sv";
+    const translations = {
+      sv: {
+        documentTitle: "ARN Crew Sommarfest!",
+        heroKicker: "",
+        heroTitle: "ARN Crew Sommarfest!",
+        heroCopyDefault: "",
+        welcomeTitleDefault: "Hej!",
+        welcomeCopy: "Dags för sommarfest! Fredag den 14 augusti bjuder vi in till en festkväll till sjöss tillsammans med kollegor från ARN-basen. OSA senast 5 april för att säkra din plats. Mer information kommer inom kort!",
+        noteCopy: 'Obs: Detta är ett privat evenemang och anordnas <span class="inline-emphasis">inte</span> av SAS.',
+        infoTitle: "Information",
+        timeLabel: "Tid",
+        timeValue: "14 augusti 2026<br />17:30 - 22:00",
+        placeLabel: "Plats",
+        placeValue: "Skeppsholmen, Stockholm",
+        rsvpButton: "OSA",
+        termsButton: "Villkor och frågor",
+        hostsTitle: "Värdar",
+        hostsCaption: "",
+        guestsTitle: "Gäster",
+        acceptedCount: "Platser kvar: 82 / 120",
+        guestStatus: "Kommer",
+        lockTitle: "Hej!",
+        lockCopy: "Ange koden för att se information och anmäla intresse.",
+        lockPlaceholder: "Personlig kod",
+        lockSubmit: "Fortsätt",
+        rsvpChoiceTitle: "OSA",
+        rsvpChoiceCopy: "Välj hur du vill svara på inbjudan.",
+        comingChoiceText: "Kommer",
+        notComingChoiceText: "Kan inte komma",
+        comingTitle: "Nu kör vi!",
+        comingCopyBeforeLink: "Din anmälan är bindande (",
+        comingCopyLink: "villkor",
+        comingCopyAfterLink: '). Efter att din anmälan har mottagits <span class="inline-emphasis">och godkänts</span> skickas en Swishförfrågan till numret du anger nedan.',
+        comingPrice: "Biljettpris: 450 kr",
+        comingNamePlaceholder: "Fullt namn",
+        comingPhonePlaceholder: "Mobil",
+        comingSubmit: "Bekräfta",
+        backText: "← Tillbaka",
+        notComingTitle: "Tråkigt...",
+        notComingCopy: "Tråkigt att du inte kan komma. Om planerna ändras är du välkommen att höra av dig till Robin eller Christopher, så ser vi om det går att lösa.",
+        notComingClose: "Skicka svar",
+        termsTitle: "Villkor och frågor",
+        termsCopy: "Kort information för crew på ARN-basen inför anmälan och deltagande.",
+        termsSectionTitles: ["Anmälan", "Genomförande", "Ordning och trivsel", "Vanliga frågor"],
+        termsSectionItems: [
+          [
+            "Evenemanget är endast för ARN-crew.",
+            "Din anmälan är bindande när biljetten är betald. Biljettpris: 450 kr. Biljetter återbetalas ej.",
+            "Får du förhinder kan din plats överlåtas till någon annan på ARN-basen, efter godkännande."
+          ],
+          [
+            "Vi har beställt sol, men evenemanget genomförs oavsett väder.",
+            "Undantag gäller endast om rederiet bedömer att genomförandet inte är möjligt.",
+            "Eventuella ändringar i tid, plats eller upplägg kommuniceras så snart som möjligt till anmälda gäster."
+          ],
+          [
+            "Vi vill påminna om att det inte är tillåtet att förtära medhavd alkohol ombord.",
+            "Arrangörerna förbehåller sig rätten att göra ändringar i gästlistan eller neka ombordstigning om man bedömer att en gäst riskerar att uppträda unruly ombord."
+          ]
+        ],
+        faqItems: [
+          ["Ska vi vara på en båt?", "Det är alltid fest när det här gänget är ombord ett flygplan, så varför inte festa ombord en båt den här gången?"],
+          ["Hur får jag min biljett?", "När vi har mottagit betalningen får du en bekräftelse via SMS. Själva biljetten skickas ut kort tid innan avgång."],
+          ["När börjar boarding?", "Vi återkommer med exakt tid närmare avgång."],
+          ["Vad händer om jag kommer sent?", "\"No Show\" i SAS Time! Nejdå, men vi kan tyvärr inte ta en försening för att vänta in någon."],
+          ["Finns det en klädkod?", "Det finnes ikke dårlig vær, bare dårlige klær."],
+          ["Finns det garderob?", "Ja, garderob finns ombord, men tänk på att ditt bagage ska få plats under stolen framför dig."],
+          ["Finns det mat och dryck ombord?", "Ja, det finns bar och eventuellt lite tilltugg. Vi återkommer med detaljer när servicekonceptet är spikat."],
+          ["Kan jag simma från båten?", "Ja, om rederiet bedömer att väderförhållandena är tillräckligt bra. Kapten har sista ordet även här."]
+        ],
+        termsClose: "Stäng",
+        rsvpSubmitting: "Skickar...",
+        rsvpDeclineSubmitting: "Skickar...",
+        emptyCodeAlert: "Ange din kod",
+        invalidCodeAlert: "Ogiltig kod",
+        verifyErrorAlert: "Kunde inte verifiera koden",
+        rsvpSuccessAlert: "Tack! Din anmälan är registrerad.",
+        rsvpSuccessInline: "Tack! Din anmälan är registrerad.",
+        rsvpDeclineSuccessAlert: "Tack! Ditt svar är registrerat.",
+        rsvpDeclineSuccessInline: "Tack! Ditt svar är registrerat.",
+        rsvpErrorAlert: "Något gick fel. Försök igen.",
+        rsvpConfigAlert: "RSVP är inte konfigurerad ännu."
+      },
+      en: {
+        documentTitle: "ARN Crew Summer Party!",
+        heroKicker: "",
+        heroTitle: "ARN Crew Summer Party!",
+        heroCopyDefault: "",
+        welcomeTitleDefault: "Hi!",
+        welcomeCopy: "Time for a summer party! On Friday, 14 August, we’re inviting you to a festive evening at sea together with colleagues from the ARN base. Please RSVP by 5 April to secure your spot. More information soon!",
+        noteCopy: 'Please note: this is a private event and is <span class="inline-emphasis">not</span> organized by SAS.',
+        infoTitle: "Information",
+        timeLabel: "Time",
+        timeValue: "Friday, August 14, 2026<br />5:30 PM - 10:00 PM",
+        placeLabel: "Location",
+        placeValue: "Skeppsholmen, Stockholm",
+        rsvpButton: "RSVP",
+        termsButton: "Terms and FAQ",
+        hostsTitle: "Hosts",
+        hostsCaption: "",
+        guestsTitle: "Guests",
+        acceptedCount: "Spots left: 82 / 120",
+        guestStatus: "Attending",
+        lockTitle: "Hello!",
+        lockCopy: "Enter the code to view the details and request a spot.",
+        lockPlaceholder: "Personal code",
+        lockSubmit: "Continue",
+        rsvpChoiceTitle: "RSVP",
+        rsvpChoiceCopy: "Choose how you would like to respond to the invitation.",
+        comingChoiceText: "Attending",
+        notComingChoiceText: "Unable to attend",
+        comingTitle: "Great!",
+        comingCopyBeforeLink: "Your registration is binding (",
+        comingCopyLink: "terms",
+        comingCopyAfterLink: '). Once your registration has been received <span class="inline-emphasis">and approved</span>, a Swish payment request will be sent to the number you enter below.',
+        comingPrice: "Ticket price: 450 SEK",
+        comingNamePlaceholder: "Full name",
+        comingPhonePlaceholder: "Mobile number",
+        comingSubmit: "Confirm",
+        backText: "← Back",
+        notComingTitle: "Sorry to hear that...",
+        notComingCopy: "Sorry to hear you can’t make it. If your plans change, feel free to reach out to Robin or Christopher and we’ll see if something can be arranged.",
+        notComingClose: "Send response",
+        termsTitle: "Terms and FAQ",
+        termsCopy: "Short practical information for ARN-base crew before registering and attending.",
+        termsSectionTitles: ["Registration", "Operations", "On-board conduct", "Frequently asked questions"],
+        termsSectionItems: [
+          [
+            "The event is for ARN crew only.",
+            "Your registration becomes binding once your ticket has been paid. Ticket price: 450 SEK. Tickets are non-refundable.",
+            "If you can no longer attend, your spot may be transferred to someone else at the ARN base, subject to approval."
+          ],
+          [
+            "We ordered sunshine, but the event will go ahead regardless of weather.",
+            "The only exception is if the boat operator determines that the event cannot be carried out.",
+            "Any changes to time, location, or format will be communicated to registered guests as soon as possible."
+          ],
+          [
+            "We would like to remind you that the consumption of your own alcoholic beverages is not allowed.",
+            "The organizers reserve the right to make changes to the guest list or deny boarding if a guest is considered likely to behave in an unruly manner on board."
+          ]
+        ],
+        faqItems: [
+          ["Are we going to be on a boat?", "It’s always a party when this crew is on board an aircraft, so why not party on board a boat this time?"],
+          ["How do I receive my ticket?", "Once payment has been received, you will get a confirmation by SMS. The actual ticket will be sent shortly before departure."],
+          ["When does boarding start?", "We will share the exact time closer to departure."],
+          ["What happens if I arrive late?", "\"No Show\" in SAS Time. Jokes aside, we unfortunately cannot delay departure to wait for anyone."],
+          ["Is there a dress code?", "There is no bad weather, only bad clothing."],
+          ["Is there a cloakroom?", "Yes, there is a cloakroom on board, but keep in mind that your baggage should fit under the seat in front of you."],
+          ["Will there be food and drinks on board?", "Yes, there will be a bar and possibly some light bites. We will share more details once the service concept is finalized."],
+          ["Can we swim from the boat?", "Yes, if the boat operator considers the weather conditions suitable. The captain has the final word here as well."]
+        ],
+        termsClose: "Close",
+        rsvpSubmitting: "Sending...",
+        rsvpDeclineSubmitting: "Sending...",
+        emptyCodeAlert: "Enter your code",
+        invalidCodeAlert: "Invalid code",
+        verifyErrorAlert: "Could not verify the code",
+        rsvpSuccessAlert: "Thank you. Your registration has been registered.",
+        rsvpSuccessInline: "Thank you. Your registration has been registered and sent.",
+        rsvpDeclineSuccessAlert: "Thank you. Your response has been registered.",
+        rsvpDeclineSuccessInline: "Thank you. Your response has been registered.",
+        rsvpErrorAlert: "Something went wrong. Please try again.",
+        rsvpConfigAlert: "RSVP is not configured yet."
+      }
+    };
+
+    function buildListMarkup(items) {
+      return items.map((item) => `<li>${item}</li>`).join("");
+    }
+
+    function buildFaqMarkup(items) {
+      return items.map(([question, answer]) => `
+        <div class="faq-item">
+          <p class="faq-question"><strong>${question}</strong></p>
+          <p class="faq-answer">${answer}</p>
+        </div>
+      `).join("");
+    }
+
+    function applyUnlockedCopy() {
+      const t = translations[currentLanguage];
+      welcomeTitle.textContent = t.welcomeTitleDefault;
+      heroCopyText.textContent = t.heroCopyDefault;
+    }
+
+    function setLanguage(lang) {
+      currentLanguage = translations[lang] ? lang : "sv";
+      const t = translations[currentLanguage];
+
+      document.documentElement.lang = currentLanguage;
+      document.title = t.documentTitle;
+      heroKicker.textContent = t.heroKicker;
+      heroTitle.textContent = t.heroTitle;
+      applyUnlockedCopy();
+      welcomeCopy.textContent = t.welcomeCopy;
+      noteCopy.innerHTML = t.noteCopy;
+      if (infoTitle) infoTitle.textContent = t.infoTitle;
+      detailRows[0].querySelector(".detail-label").textContent = t.timeLabel;
+      detailRows[0].querySelector(".detail-value").innerHTML = t.timeValue;
+      detailRows[1].querySelector(".detail-label").textContent = t.placeLabel;
+      detailRows[1].querySelector(".detail-value").textContent = t.placeValue;
+      rsvpButton.textContent = t.rsvpButton;
+      termsButton.textContent = t.termsButton;
+      hostsTitle.textContent = t.hostsTitle;
+      if (hostsCaption) hostsCaption.textContent = t.hostsCaption;
+      guestsTitle.textContent = t.guestsTitle;
+      acceptedCount.textContent = t.acceptedCount;
+      guestStatusLabels.forEach((label) => {
+        label.textContent = t.guestStatus;
+      });
+      lockTitle.textContent = t.lockTitle;
+      lockCopy.textContent = t.lockCopy;
+      input.placeholder = t.lockPlaceholder;
+      unlockButton.textContent = t.lockSubmit;
+      rsvpChoiceTitle.textContent = t.rsvpChoiceTitle;
+      rsvpChoiceCopy.textContent = t.rsvpChoiceCopy;
+      comingChoiceText.textContent = t.comingChoiceText;
+      notComingChoiceText.textContent = t.notComingChoiceText;
+      comingTitle.textContent = t.comingTitle;
+      comingCopy.innerHTML = `${t.comingCopyBeforeLink}<button class="inline-sheet-link" id="comingTermsLink" type="button">${t.comingCopyLink}</button>${t.comingCopyAfterLink}`;
+      comingPrice.textContent = t.comingPrice;
+      document.getElementById("comingTermsLink").addEventListener("click", () => {
+        showPanel(termsPanel);
+      });
+      comingNameInput.placeholder = t.comingNamePlaceholder;
+      comingPhoneInput.placeholder = t.comingPhonePlaceholder;
+      comingSubmit.textContent = t.comingSubmit;
+      comingBack.textContent = t.backText;
+      notComingTitle.textContent = t.notComingTitle;
+      notComingCopy.textContent = t.notComingCopy;
+      notComingClose.textContent = t.notComingClose;
+      notComingBack.textContent = t.backText;
+      termsTitle.textContent = t.termsTitle;
+      if (termsCopy) termsCopy.textContent = t.termsCopy;
+      termsSectionTitles[0].textContent = t.termsSectionTitles[0];
+      termsSectionTitles[1].textContent = t.termsSectionTitles[1];
+      termsSectionTitles[2].textContent = t.termsSectionTitles[2];
+      faqTitle.textContent = t.termsSectionTitles[3];
+      termsLists[0].innerHTML = buildListMarkup(t.termsSectionItems[0]);
+      termsLists[1].innerHTML = buildListMarkup(t.termsSectionItems[1]);
+      termsLists[2].innerHTML = buildListMarkup(t.termsSectionItems[2]);
+      faqList.innerHTML = buildFaqMarkup(t.faqItems);
+      termsClose.textContent = t.termsClose;
+      langSvButton.classList.toggle("is-active", currentLanguage === "sv");
+      langEnButton.classList.toggle("is-active", currentLanguage === "en");
+
+      try {
+        localStorage.setItem(languageStorageKey, currentLanguage);
+      } catch (error) {
+      }
+    }
+
+    function detectInitialLanguage() {
+      try {
+        const savedLanguage = localStorage.getItem(languageStorageKey);
+        if (savedLanguage && translations[savedLanguage]) {
+          return savedLanguage;
+        }
+      } catch (error) {
+      }
+
+      const locales = navigator.languages && navigator.languages.length
+        ? navigator.languages
+        : [navigator.language || "sv"];
+
+      return locales.some((locale) => locale && locale.toLowerCase().startsWith("sv")) ? "sv" : "en";
+    }
+
+    function decodeBase64(value) {
+      return Uint8Array.from(atob(value), (char) => char.charCodeAt(0));
+    }
+
+    function bytesToHex(bytes) {
+      return Array.from(bytes, (value) => value.toString(16).padStart(2, "0")).join("");
+    }
+
+    async function findInviteRecord(code) {
+      const encoder = new TextEncoder();
+      const lookupSalt = decodeBase64(inviteConfig.lookupSalt);
+      const codeBytes = encoder.encode(code);
+      const inputBytes = new Uint8Array(lookupSalt.length + codeBytes.length);
+      inputBytes.set(lookupSalt);
+      inputBytes.set(codeBytes, lookupSalt.length);
+      const digest = await crypto.subtle.digest("SHA-256", inputBytes);
+      const lookupHex = bytesToHex(new Uint8Array(digest));
+      return inviteConfig.records[lookupHex] || null;
+    }
+
+    async function unlock() {
+      const code = input.value.trim();
+
+      if (!code) {
+        alert(translations[currentLanguage].emptyCodeAlert);
+        return;
+      }
+
+      unlockButton.disabled = true;
+
+      try {
+        const record = await findInviteRecord(code);
+
+        if (!record) {
+          alert(translations[currentLanguage].invalidCodeAlert);
+          return;
+        }
+
+        applyUnlockedCopy();
+
+        document.body.classList.remove("lock-open");
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      } catch (error) {
+        alert(translations[currentLanguage].verifyErrorAlert);
+      } finally {
+        unlockButton.disabled = false;
+      }
+    }
+
+    function hideAllRsvpPanels() {
+      rsvpChoicePanel.classList.remove("is-visible");
+      comingPanel.classList.remove("is-visible");
+      notComingPanel.classList.remove("is-visible");
+      termsPanel.classList.remove("is-visible");
+      rsvpSheetOverlay.classList.remove("is-visible");
+      document.body.style.overflow = "";
+      comingFeedback.classList.remove("is-visible");
+      comingFeedback.textContent = "";
+      notComingFeedback.classList.remove("is-visible");
+      notComingFeedback.textContent = "";
+    }
+
+    function showPanel(panel) {
+      hideAllRsvpPanels();
+      comingSubmit.style.display = "";
+      comingSubmit.disabled = false;
+      panel.classList.add("is-visible");
+      rsvpSheetOverlay.classList.add("is-visible");
+      document.body.style.overflow = "hidden";
+    }
+
+    function submitRsvp(payload) {
+      return new Promise((resolve, reject) => {
+        const form = document.createElement("form");
+        const timeoutId = window.setTimeout(() => {
+          cleanup();
+          reject(new Error("RSVP submission timed out."));
+        }, 10000);
+
+        function cleanup() {
+          window.clearTimeout(timeoutId);
+          rsvpSubmitFrame.removeEventListener("load", handleLoad);
+          form.remove();
+        }
+
+        function handleLoad() {
+          cleanup();
+          resolve();
+        }
+
+        form.method = "POST";
+        form.action = RSVP_ENDPOINT;
+        form.target = "rsvpSubmitFrame";
+        form.style.display = "none";
+
+        Object.entries(payload).forEach(([key, value]) => {
+          const input = document.createElement("input");
+          input.type = "hidden";
+          input.name = key;
+          input.value = value;
+          form.appendChild(input);
+        });
+
+        rsvpSubmitFrame.addEventListener("load", handleLoad, { once: true });
+        document.body.appendChild(form);
+        form.submit();
+      });
+    }
+
+    function resetLockedScrollPosition() {
+      if (!document.body.classList.contains("lock-open")) return;
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    }
+
+    resetLockedScrollPosition();
+    window.addEventListener("load", resetLockedScrollPosition);
+    window.addEventListener("pageshow", resetLockedScrollPosition);
+
+    unlockButton.addEventListener("click", unlock);
+
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        unlock();
+      }
+    });
+
+    langSvButton.addEventListener("click", () => {
+      setLanguage("sv");
+    });
+
+    langEnButton.addEventListener("click", () => {
+      setLanguage("en");
+    });
+
+    rsvpButton.addEventListener("click", () => {
+      showPanel(rsvpChoicePanel);
+    });
+
+    termsButton.addEventListener("click", () => {
+      showPanel(termsPanel);
+    });
+
+    comingButton.addEventListener("click", () => {
+      showPanel(comingPanel);
+    });
+
+    notComingButton.addEventListener("click", () => {
+      showPanel(notComingPanel);
+    });
+
+    backButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        showPanel(rsvpChoicePanel);
+      });
+    });
+
+    notComingClose.addEventListener("click", () => {
+      const t = translations[currentLanguage];
+
+      if (!RSVP_ENDPOINT) {
+        alert(t.rsvpConfigAlert);
+        return;
+      }
+
+      const originalLabel = t.notComingClose;
+      notComingClose.disabled = true;
+      notComingClose.textContent = t.rsvpDeclineSubmitting;
+
+      submitRsvp({
+        fullName: "",
+        phoneNumber: "",
+        rsvp: "no"
+      }).then(() => {
+        notComingFeedback.textContent = t.rsvpDeclineSuccessInline;
+        notComingFeedback.classList.add("is-visible");
+        window.setTimeout(() => {
+          hideAllRsvpPanels();
+        }, 10000);
+      }).catch(() => {
+        alert(t.rsvpErrorAlert);
+      }).finally(() => {
+        notComingClose.disabled = false;
+        notComingClose.textContent = originalLabel;
+      });
+    });
+
+    termsClose.addEventListener("click", () => {
+      hideAllRsvpPanels();
+    });
+
+    rsvpSheetOverlay.addEventListener("click", () => {
+      hideAllRsvpPanels();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        hideAllRsvpPanels();
+      }
+    });
+
+    comingForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const t = translations[currentLanguage];
+      const fullName = comingNameInput.value.trim();
+      const phoneNumber = comingPhoneInput.value.trim();
+
+      if (!RSVP_ENDPOINT) {
+        alert(t.rsvpConfigAlert);
+        return;
+      }
+
+      if (!fullName || !phoneNumber) {
+        alert(t.rsvpErrorAlert);
+        return;
+      }
+
+      const originalLabel = t.comingSubmit;
+      comingSubmit.disabled = true;
+      comingSubmit.textContent = t.rsvpSubmitting;
+
+      submitRsvp({
+        fullName,
+        phoneNumber,
+        rsvp: "yes"
+      }).then(() => {
+        comingSubmit.style.display = "none";
+        comingFeedback.textContent = t.rsvpSuccessInline;
+        comingFeedback.classList.add("is-visible");
+        window.setTimeout(() => {
+        hideAllRsvpPanels();
+        }, 10000);
+      }).catch(() => {
+        alert(t.rsvpErrorAlert);
+      }).finally(() => {
+        comingSubmit.disabled = false;
+        comingSubmit.textContent = originalLabel;
+      });
+    });
+
+    setLanguage(detectInitialLanguage());
+  </script>
+</body>
+</html>
