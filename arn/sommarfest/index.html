@@ -1039,7 +1039,7 @@
           <div class="group-card">
             <div class="group-card-header">
               <h3 class="group-title">Gäster</h3>
-              <div class="accepted-count">Platser kvar: 82 / 120</div>
+              <div class="accepted-count">Platser kvar: 74 / 120</div>
             </div>
             <div class="group-card-content">
               <div class="guest-list">
@@ -1193,6 +1193,10 @@
       iterations: 120000,
       lookupSalt: "5HfxAbJUjQQjuxQQ6QCzaQ==",
       records: {
+        "27c009354cef48a2fe733c6d84868f9a7ae7dd6c856932ebc8c06c35f4097a37": {
+          salt: "",
+          name: ""
+        },
         "c6f4b3e84c0ff763d80d8970ff709edf299df1994c6b2ecb21af7793189925f5": {
           salt: "F6uyVeeUZbEz3uUrXLNnEw==",
           name: "oxmPj7iRVIvt0Pi9"
@@ -1703,23 +1707,13 @@
     const langSvButton = document.getElementById("langSvButton");
     const langEnButton = document.getElementById("langEnButton");
 
-    const rsvpChoicePanel = document.getElementById("rsvpChoicePanel");
     const comingPanel = document.getElementById("comingPanel");
-    const notComingPanel = document.getElementById("notComingPanel");
     const termsPanel = document.getElementById("termsPanel");
-    const comingButton = document.getElementById("comingButton");
-    const notComingButton = document.getElementById("notComingButton");
-    const notComingClose = document.getElementById("notComingClose");
     const termsClose = document.getElementById("termsClose");
-    const backButtons = document.querySelectorAll("[data-back]");
     const rsvpSheetOverlay = document.getElementById("rsvpSheetOverlay");
     const comingForm = document.getElementById("comingForm");
     const rsvpSubmitFrame = document.getElementById("rsvpSubmitFrame");
 
-    const rsvpChoiceTitle = rsvpChoicePanel.querySelector(".rsvp-title");
-    const rsvpChoiceCopy = rsvpChoicePanel.querySelector(".rsvp-copy");
-    const comingChoiceText = comingButton.querySelector(".choice-text");
-    const notComingChoiceText = notComingButton.querySelector(".choice-text");
     const comingTitle = comingPanel.querySelector(".rsvp-title");
     const comingCopy = document.getElementById("comingCopy");
     const comingPrice = document.getElementById("comingPrice");
@@ -1727,11 +1721,6 @@
     const comingPhoneInput = comingPanel.querySelector('input[type="tel"]');
     const comingSubmit = comingPanel.querySelector(".rsvp-submit");
     const comingFeedback = document.getElementById("comingFeedback");
-    const comingBack = comingPanel.querySelector(".rsvp-back");
-    const notComingTitle = notComingPanel.querySelector(".rsvp-title");
-    const notComingCopy = notComingPanel.querySelector(".rsvp-copy");
-    const notComingFeedback = document.getElementById("notComingFeedback");
-    const notComingBack = notComingPanel.querySelector(".rsvp-back");
     const termsTitle = termsPanel.querySelector(".rsvp-title");
     const termsCopy = termsPanel.querySelector(".rsvp-copy");
     const termsSectionTitles = termsPanel.querySelectorAll(".sheet-section-title");
@@ -1748,53 +1737,46 @@
         heroTitle: "ARN Crew Sommarfest!",
         heroCopyDefault: "",
         welcomeTitleDefault: "Hej!",
-        welcomeCopy: "Dags för sommarfest! Fredag den 14 augusti bjuder vi in till en festkväll till sjöss tillsammans med kollegor från ARN-basen. OSA senast 5 april för att säkra din plats. Mer information kommer inom kort!",
+        welcomeCopy: "Dags för sommarfest! Fredag den 14 augusti bjuder vi in till en festkväll till sjöss tillsammans med kollegor från ARN-basen. <span class=\"inline-emphasis\">Först till kvarn!</span> Skicka in din intresseanmälan för en chans att få en plats. Mer information kommer inom kort!",
         noteCopy: 'Obs: Detta är ett privat evenemang och anordnas <span class="inline-emphasis">inte</span> av SAS.',
         infoTitle: "Information",
         timeLabel: "Tid",
         timeValue: "14 augusti 2026<br />17:30 - 22:00",
         placeLabel: "Plats",
         placeValue: "Skeppsholmen, Stockholm",
-        rsvpButton: "OSA",
+        rsvpButton: "Anmäl",
         termsButton: "Villkor och frågor",
         hostsTitle: "Värdar",
         hostsCaption: "",
         guestsTitle: "Gäster",
-        acceptedCount: "Platser kvar: 82 / 120",
+        acceptedCount: "Platser kvar: 74 / 120",
         guestStatus: "Kommer",
         lockTitle: "Hej!",
         lockCopy: "Ange koden för att se information och anmäla intresse.",
-        lockPlaceholder: "Personlig kod",
+        lockPlaceholder: "Ange kod",
         lockSubmit: "Fortsätt",
-        rsvpChoiceTitle: "OSA",
-        rsvpChoiceCopy: "Välj hur du vill svara på inbjudan.",
-        comingChoiceText: "Kommer",
-        notComingChoiceText: "Kan inte komma",
         comingTitle: "Nu kör vi!",
-        comingCopyBeforeLink: "Din anmälan är bindande (",
+        comingCopyBeforeLink: "Först till kvarn (endast 120 platser)! Efter godkänd anmälan skickas en Swishförfrågan till numret du anger nedan. Din plats är bekräftad först när betalningen är genomförd (",
         comingCopyLink: "villkor",
-        comingCopyAfterLink: '). Efter att din anmälan har mottagits <span class="inline-emphasis">och godkänts</span> skickas en Swishförfrågan till numret du anger nedan.',
+        comingCopyAfterLink: ").",
         comingPrice: "Biljettpris: 450 kr",
         comingNamePlaceholder: "Fullt namn",
         comingPhonePlaceholder: "Mobil",
-        comingSubmit: "Bekräfta",
-        backText: "← Tillbaka",
-        notComingTitle: "Tråkigt...",
-        notComingCopy: "Tråkigt att du inte kan komma. Om planerna ändras är du välkommen att höra av dig till Robin eller Christopher, så ser vi om det går att lösa.",
-        notComingClose: "Skicka svar",
+        comingSubmit: "Skicka intresseanmälan",
         termsTitle: "Villkor och frågor",
         termsCopy: "Kort information för crew på ARN-basen inför anmälan och deltagande.",
         termsSectionTitles: ["Anmälan", "Genomförande", "Ordning och trivsel", "Vanliga frågor"],
         termsSectionItems: [
           [
             "Evenemanget är endast för ARN-crew.",
-            "Din anmälan är bindande när biljetten är betald. Biljettpris: 450 kr. Biljetter återbetalas ej.",
-            "Får du förhinder kan din plats överlåtas till någon annan på ARN-basen, efter godkännande."
+            "Att skicka in en intresseanmälan garanterar inte en plats.",
+            "Om din anmälan godkänns skickas en Swishförfrågan till numret du anger. Din plats är bekräftad först efter betalning.",
+            "Vid förhinder kan en bekräftad plats överlåtas till någon annan på ARN-basen efter godkännande."
           ],
           [
             "Vi har beställt sol, men evenemanget genomförs oavsett väder.",
             "Undantag gäller endast om rederiet bedömer att genomförandet inte är möjligt.",
-            "Eventuella ändringar i tid, plats eller upplägg kommuniceras så snart som möjligt till anmälda gäster."
+            "Eventuella ändringar i tid, plats eller upplägg kommuniceras så snart som möjligt."
           ],
           [
             "Vi vill påminna om att det inte är tillåtet att förtära medhavd alkohol ombord.",
@@ -1813,70 +1795,60 @@
         ],
         termsClose: "Stäng",
         rsvpSubmitting: "Skickar...",
-        rsvpDeclineSubmitting: "Skickar...",
         emptyCodeAlert: "Ange din kod",
         invalidCodeAlert: "Ogiltig kod",
         verifyErrorAlert: "Kunde inte verifiera koden",
-        rsvpSuccessAlert: "Tack! Din anmälan är registrerad.",
-        rsvpSuccessInline: "Tack! Din anmälan är registrerad.",
-        rsvpDeclineSuccessAlert: "Tack! Ditt svar är registrerat.",
-        rsvpDeclineSuccessInline: "Tack! Ditt svar är registrerat.",
+        rsvpSuccessAlert: "Tack! Din intresseanmälan är registrerad.",
+        rsvpSuccessInline: "Tack! Din intresseanmälan är registrerad.",
         rsvpErrorAlert: "Något gick fel. Försök igen.",
-        rsvpConfigAlert: "RSVP är inte konfigurerad ännu."
+        rsvpConfigAlert: "Intresseanmälan är inte konfigurerad ännu."
       },
       en: {
         documentTitle: "ARN Crew Summer Party!",
         heroKicker: "",
         heroTitle: "ARN Crew Summer Party!",
         heroCopyDefault: "",
-        welcomeTitleDefault: "Hi!",
-        welcomeCopy: "Time for a summer party! On Friday, 14 August, we’re inviting you to a festive evening at sea together with colleagues from the ARN base. Please RSVP by 5 April to secure your spot. More information soon!",
+        welcomeTitleDefault: "Hello!",
+        welcomeCopy: "Time for a summer party! On Friday, 14 August, we’re inviting you to a festive evening at sea together with colleagues from the ARN base. <span class=\"inline-emphasis\">First come, first served.</span> Submit your interest for a chance to get a spot. More information soon!",
         noteCopy: 'Please note: this is a private event and is <span class="inline-emphasis">not</span> organized by SAS.',
         infoTitle: "Information",
         timeLabel: "Time",
         timeValue: "Friday, August 14, 2026<br />5:30 PM - 10:00 PM",
         placeLabel: "Location",
         placeValue: "Skeppsholmen, Stockholm",
-        rsvpButton: "RSVP",
+        rsvpButton: "Sign up",
         termsButton: "Terms and FAQ",
         hostsTitle: "Hosts",
         hostsCaption: "",
         guestsTitle: "Guests",
-        acceptedCount: "Spots left: 82 / 120",
+        acceptedCount: "Spots left: 74 / 120",
         guestStatus: "Attending",
         lockTitle: "Hello!",
         lockCopy: "Enter the code to view the details and request a spot.",
-        lockPlaceholder: "Personal code",
+        lockPlaceholder: "Enter Code",
         lockSubmit: "Continue",
-        rsvpChoiceTitle: "RSVP",
-        rsvpChoiceCopy: "Choose how you would like to respond to the invitation.",
-        comingChoiceText: "Attending",
-        notComingChoiceText: "Unable to attend",
-        comingTitle: "Great!",
-        comingCopyBeforeLink: "Your registration is binding (",
+        comingTitle: "Let's go!",
+        comingCopyBeforeLink: "First come, first served (only 120 spots)! If your request is approved, a Swish payment request will be sent to the number you enter below. Your spot is confirmed once payment has been completed (",
         comingCopyLink: "terms",
-        comingCopyAfterLink: '). Once your registration has been received <span class="inline-emphasis">and approved</span>, a Swish payment request will be sent to the number you enter below.',
+        comingCopyAfterLink: ").",
         comingPrice: "Ticket price: 450 SEK",
         comingNamePlaceholder: "Full name",
         comingPhonePlaceholder: "Mobile number",
-        comingSubmit: "Confirm",
-        backText: "← Back",
-        notComingTitle: "Sorry to hear that...",
-        notComingCopy: "Sorry to hear you can’t make it. If your plans change, feel free to reach out to Robin or Christopher and we’ll see if something can be arranged.",
-        notComingClose: "Send response",
+        comingSubmit: "Submit",
         termsTitle: "Terms and FAQ",
         termsCopy: "Short practical information for ARN-base crew before registering and attending.",
         termsSectionTitles: ["Registration", "Operations", "On-board conduct", "Frequently asked questions"],
         termsSectionItems: [
           [
             "The event is for ARN crew only.",
-            "Your registration becomes binding once your ticket has been paid. Ticket price: 450 SEK. Tickets are non-refundable.",
-            "If you can no longer attend, your spot may be transferred to someone else at the ARN base, subject to approval."
+            "Submitting your interest does not guarantee a spot.",
+            "If your request is approved, a Swish payment request will be sent to the number you provide. Your spot is confirmed once payment has been completed.",
+            "If you can no longer attend, a confirmed spot may be transferred to someone else at the ARN base, subject to approval."
           ],
           [
-            "We ordered sunshine, but the event will go ahead regardless of weather.",
+            "We've ordered sunshine, but the event will go ahead regardless of weather.",
             "The only exception is if the boat operator determines that the event cannot be carried out.",
-            "Any changes to time, location, or format will be communicated to registered guests as soon as possible."
+            "Any changes to time, location, or format will be communicated as soon as possible."
           ],
           [
             "We would like to remind you that the consumption of your own alcoholic beverages is not allowed.",
@@ -1895,16 +1867,13 @@
         ],
         termsClose: "Close",
         rsvpSubmitting: "Sending...",
-        rsvpDeclineSubmitting: "Sending...",
         emptyCodeAlert: "Enter your code",
         invalidCodeAlert: "Invalid code",
         verifyErrorAlert: "Could not verify the code",
-        rsvpSuccessAlert: "Thank you. Your registration has been registered.",
-        rsvpSuccessInline: "Thank you. Your registration has been registered and sent.",
-        rsvpDeclineSuccessAlert: "Thank you. Your response has been registered.",
-        rsvpDeclineSuccessInline: "Thank you. Your response has been registered.",
+        rsvpSuccessAlert: "Thank you. Your request has been registered.",
+        rsvpSuccessInline: "Thank you. Your request has been registered.",
         rsvpErrorAlert: "Something went wrong. Please try again.",
-        rsvpConfigAlert: "RSVP is not configured yet."
+        rsvpConfigAlert: "Request flow is not configured yet."
       }
     };
 
@@ -1936,7 +1905,7 @@
       heroKicker.textContent = t.heroKicker;
       heroTitle.textContent = t.heroTitle;
       applyUnlockedCopy();
-      welcomeCopy.textContent = t.welcomeCopy;
+      welcomeCopy.innerHTML = t.welcomeCopy;
       noteCopy.innerHTML = t.noteCopy;
       if (infoTitle) infoTitle.textContent = t.infoTitle;
       detailRows[0].querySelector(".detail-label").textContent = t.timeLabel;
@@ -1956,10 +1925,6 @@
       lockCopy.textContent = t.lockCopy;
       input.placeholder = t.lockPlaceholder;
       unlockButton.textContent = t.lockSubmit;
-      rsvpChoiceTitle.textContent = t.rsvpChoiceTitle;
-      rsvpChoiceCopy.textContent = t.rsvpChoiceCopy;
-      comingChoiceText.textContent = t.comingChoiceText;
-      notComingChoiceText.textContent = t.notComingChoiceText;
       comingTitle.textContent = t.comingTitle;
       comingCopy.innerHTML = `${t.comingCopyBeforeLink}<button class="inline-sheet-link" id="comingTermsLink" type="button">${t.comingCopyLink}</button>${t.comingCopyAfterLink}`;
       comingPrice.textContent = t.comingPrice;
@@ -1969,11 +1934,6 @@
       comingNameInput.placeholder = t.comingNamePlaceholder;
       comingPhoneInput.placeholder = t.comingPhonePlaceholder;
       comingSubmit.textContent = t.comingSubmit;
-      comingBack.textContent = t.backText;
-      notComingTitle.textContent = t.notComingTitle;
-      notComingCopy.textContent = t.notComingCopy;
-      notComingClose.textContent = t.notComingClose;
-      notComingBack.textContent = t.backText;
       termsTitle.textContent = t.termsTitle;
       if (termsCopy) termsCopy.textContent = t.termsCopy;
       termsSectionTitles[0].textContent = t.termsSectionTitles[0];
@@ -2060,16 +2020,12 @@
     }
 
     function hideAllRsvpPanels() {
-      rsvpChoicePanel.classList.remove("is-visible");
       comingPanel.classList.remove("is-visible");
-      notComingPanel.classList.remove("is-visible");
       termsPanel.classList.remove("is-visible");
       rsvpSheetOverlay.classList.remove("is-visible");
       document.body.style.overflow = "";
       comingFeedback.classList.remove("is-visible");
       comingFeedback.textContent = "";
-      notComingFeedback.classList.remove("is-visible");
-      notComingFeedback.textContent = "";
     }
 
     function showPanel(panel) {
@@ -2124,132 +2080,119 @@
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     }
 
-    resetLockedScrollPosition();
-    window.addEventListener("load", resetLockedScrollPosition);
-    window.addEventListener("pageshow", resetLockedScrollPosition);
+    let pageInitialized = false;
 
-    unlockButton.addEventListener("click", unlock);
+    function initPage() {
+      if (pageInitialized) return;
+      pageInitialized = true;
 
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        unlock();
-      }
-    });
+      resetLockedScrollPosition();
+      window.addEventListener("load", resetLockedScrollPosition);
+      window.addEventListener("pageshow", resetLockedScrollPosition);
 
-    langSvButton.addEventListener("click", () => {
-      setLanguage("sv");
-    });
-
-    langEnButton.addEventListener("click", () => {
-      setLanguage("en");
-    });
-
-    rsvpButton.addEventListener("click", () => {
-      showPanel(rsvpChoicePanel);
-    });
-
-    termsButton.addEventListener("click", () => {
-      showPanel(termsPanel);
-    });
-
-    comingButton.addEventListener("click", () => {
-      showPanel(comingPanel);
-    });
-
-    notComingButton.addEventListener("click", () => {
-      showPanel(notComingPanel);
-    });
-
-    backButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        showPanel(rsvpChoicePanel);
-      });
-    });
-
-    notComingClose.addEventListener("click", () => {
-      const t = translations[currentLanguage];
-
-      if (!RSVP_ENDPOINT) {
-        alert(t.rsvpConfigAlert);
-        return;
+      if (unlockButton) {
+        unlockButton.addEventListener("click", unlock);
       }
 
-      const originalLabel = t.notComingClose;
-      notComingClose.disabled = true;
-      notComingClose.textContent = t.rsvpDeclineSubmitting;
+      if (input) {
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            unlock();
+          }
+        });
+      }
 
-      submitRsvp({
-        fullName: "",
-        phoneNumber: "",
-        rsvp: "no"
-      }).then(() => {
-        notComingFeedback.textContent = t.rsvpDeclineSuccessInline;
-        notComingFeedback.classList.add("is-visible");
-        window.setTimeout(() => {
+      if (langSvButton) {
+        langSvButton.addEventListener("click", () => {
+          setLanguage("sv");
+        });
+      }
+
+      if (langEnButton) {
+        langEnButton.addEventListener("click", () => {
+          setLanguage("en");
+        });
+      }
+
+      if (rsvpButton) {
+        rsvpButton.addEventListener("click", () => {
+          showPanel(comingPanel);
+        });
+      }
+
+      if (termsButton) {
+        termsButton.addEventListener("click", () => {
+          showPanel(termsPanel);
+        });
+      }
+
+      if (termsClose) {
+        termsClose.addEventListener("click", () => {
           hideAllRsvpPanels();
-        }, 10000);
-      }).catch(() => {
-        alert(t.rsvpErrorAlert);
-      }).finally(() => {
-        notComingClose.disabled = false;
-        notComingClose.textContent = originalLabel;
+        });
+      }
+
+      if (rsvpSheetOverlay) {
+        rsvpSheetOverlay.addEventListener("click", () => {
+          hideAllRsvpPanels();
+        });
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          hideAllRsvpPanels();
+        }
       });
-    });
 
-    termsClose.addEventListener("click", () => {
-      hideAllRsvpPanels();
-    });
+      if (comingForm) {
+        comingForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const t = translations[currentLanguage];
+          const fullName = comingNameInput.value.trim();
+          const phoneNumber = comingPhoneInput.value.trim();
 
-    rsvpSheetOverlay.addEventListener("click", () => {
-      hideAllRsvpPanels();
-    });
+          if (!RSVP_ENDPOINT) {
+            alert(t.rsvpConfigAlert);
+            return;
+          }
 
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        hideAllRsvpPanels();
+          if (!fullName || !phoneNumber) {
+            alert(t.rsvpErrorAlert);
+            return;
+          }
+
+          const originalLabel = t.comingSubmit;
+          comingSubmit.disabled = true;
+          comingSubmit.textContent = t.rsvpSubmitting;
+
+          submitRsvp({
+            fullName,
+            phoneNumber,
+            rsvp: "yes"
+          }).then(() => {
+            comingSubmit.style.display = "none";
+            comingFeedback.textContent = t.rsvpSuccessInline;
+            comingFeedback.classList.add("is-visible");
+            window.setTimeout(() => {
+              hideAllRsvpPanels();
+            }, 10000);
+          }).catch(() => {
+            alert(t.rsvpErrorAlert);
+          }).finally(() => {
+            comingSubmit.disabled = false;
+            comingSubmit.textContent = originalLabel;
+          });
+        });
       }
-    });
 
-    comingForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const t = translations[currentLanguage];
-      const fullName = comingNameInput.value.trim();
-      const phoneNumber = comingPhoneInput.value.trim();
+      setLanguage(detectInitialLanguage());
+    }
 
-      if (!RSVP_ENDPOINT) {
-        alert(t.rsvpConfigAlert);
-        return;
-      }
-
-      if (!fullName || !phoneNumber) {
-        alert(t.rsvpErrorAlert);
-        return;
-      }
-
-      const originalLabel = t.comingSubmit;
-      comingSubmit.disabled = true;
-      comingSubmit.textContent = t.rsvpSubmitting;
-
-      submitRsvp({
-        fullName,
-        phoneNumber,
-        rsvp: "yes"
-      }).then(() => {
-        comingSubmit.style.display = "none";
-        comingFeedback.textContent = t.rsvpSuccessInline;
-        comingFeedback.classList.add("is-visible");
-        window.setTimeout(() => {
-        hideAllRsvpPanels();
-        }, 10000);
-      }).catch(() => {
-        alert(t.rsvpErrorAlert);
-      }).finally(() => {
-        comingSubmit.disabled = false;
-        comingSubmit.textContent = originalLabel;
-      });
-    });
-
-    setLanguage(detectInitialLanguage());
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initPage, { once: true });
+    } else {
+      initPage();
+    }
   </script>
 </body>
 </html>
