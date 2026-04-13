@@ -1039,7 +1039,7 @@
           <div class="group-card">
             <div class="group-card-header">
               <h3 class="group-title">Gäster</h3>
-              <div class="accepted-count">Platser kvar: 2 / 120</div>
+              <div class="accepted-count">120 / 120</div>
             </div>
             <div class="group-card-content">
               <div class="guest-list">
@@ -1117,6 +1117,14 @@
             </div>
 
             <div class="sheet-section">
+              <h4 class="sheet-section-title">Återförsäljning och väntelista</h4>
+              <ul class="sheet-list">
+                <li>Om evenemanget är fullbokat kan du skriva upp dig på väntelistan.</li>
+                <li>Kontakta Christopher eller Robin om du önskar att sälja vidare din biljett.</li>
+              </ul>
+            </div>
+
+            <div class="sheet-section">
               <h4 class="sheet-section-title">Anmälan</h4>
               <ul class="sheet-list">
                 <li>Evenemanget är endast för ARN-crew.</li>
@@ -1188,6 +1196,7 @@
 
   <script>
     const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbxwy976pH_JStcwrDtu0XXRVwrhkdOF7blIDU1HQP8MUYb0mOQwtD2fdRNunYMc5VgsqQ/exec";
+    const eventIsFull = false;
     // GENERATED_INVITES_START
     const inviteConfig = {
       iterations: 120000,
@@ -1725,7 +1734,7 @@
     const termsCopy = termsPanel.querySelector(".rsvp-copy");
     const termsSectionTitles = termsPanel.querySelectorAll(".sheet-section-title");
     const termsLists = termsPanel.querySelectorAll(".sheet-list");
-    const faqTitle = termsSectionTitles[3];
+    const faqTitle = termsSectionTitles[4];
     const faqList = termsPanel.querySelector(".faq-list");
 
     const languageStorageKey = "maggio-event-language";
@@ -1745,17 +1754,19 @@
         placeLabel: "Plats",
         placeValue: "Skeppsholmen, Stockholm",
         rsvpButton: "Anmäl",
+        rsvpButtonFull: "Väntlista",
         termsButton: "Villkor och frågor",
         hostsTitle: "Värdar",
         hostsCaption: "",
         guestsTitle: "Gäster",
-        acceptedCount: "Platser kvar: 2 / 120",
+        acceptedCount: "120 / 120",
         guestStatus: "Kommer",
         lockTitle: "Hej!",
         lockCopy: "Ready for boarding? Ange koden för att gå vidare.",
         lockPlaceholder: "Ange kod",
         lockSubmit: "Fortsätt",
         comingTitle: "Nu kör vi!",
+        comingTitleFull: "Du är på standby!",
         comingCopyBeforeLink: "Först till kvarn (endast 120 platser)! Efter godkänd anmälan skickas en Swishförfrågan till numret du anger nedan. Din plats är bekräftad först när betalningen är genomförd (",
         comingCopyLink: "villkor",
         comingCopyAfterLink: ").",
@@ -1763,10 +1774,22 @@
         comingNamePlaceholder: "Fullt namn",
         comingPhonePlaceholder: "Mobil",
         comingSubmit: "Skicka anmälan",
+        comingCopyFullBeforeLink: "Evenemanget är tyvärr fullbokat. Fyll i dina uppgifter nedan för att skriva upp dig på väntelistan (",
+        comingCopyFullLink: "villkor",
+        comingCopyFullAfterLink: ").",
+        comingPriceFull: "Biljettpris: 450 kr",
+        comingNamePlaceholderFull: "Fullt namn",
+        comingPhonePlaceholderFull: "Mobil",
+        comingSubmitFull: "Skicka",
         termsTitle: "Villkor och frågor",
         termsCopy: "Kort information för crew på ARN-basen inför anmälan och deltagande.",
-        termsSectionTitles: ["Anmälan", "Genomförande", "Ordning och trivsel", "Vanliga frågor"],
+        termsSectionTitles: ["Återförsäljning och väntelista", "Anmälan", "Genomförande", "Ordning och trivsel", "Vanliga frågor"],
         termsSectionItems: [
+          [
+            "Om evenemanget är fullbokat kan du skriva upp dig på väntelistan.",
+            "Eventuella återbudsbiljetter fördelas löpande efter godkännande.",
+            "En plats på väntelistan garanterar inte biljett eller plats på evenemanget."
+          ],
           [
             "Evenemanget är endast för ARN-crew.",
             "En anmälan garanterar inte en plats.",
@@ -1800,6 +1823,8 @@
         verifyErrorAlert: "Kunde inte verifiera koden",
         rsvpSuccessAlert: "Tack! Din anmälan är registrerad.",
         rsvpSuccessInline: "Tack! Din anmälan är registrerad.",
+        rsvpSuccessWaitlistAlert: "Tack! Du står nu på väntelistan.",
+        rsvpSuccessWaitlistInline: "Tack! Du står nu på väntelistan.",
         rsvpErrorAlert: "Något gick fel. Försök igen.",
         rsvpConfigAlert: "Anmälan är inte konfigurerad ännu."
       },
@@ -1817,17 +1842,19 @@
         placeLabel: "Location",
         placeValue: "Skeppsholmen, Stockholm",
         rsvpButton: "Apply for a ticket",
+        rsvpButtonFull: "Waitlist",
         termsButton: "Terms and FAQ",
         hostsTitle: "Hosts",
         hostsCaption: "",
         guestsTitle: "Guests",
-        acceptedCount: "Spots left: 2 / 120",
+        acceptedCount: "120 / 120",
         guestStatus: "Attending",
         lockTitle: "Hello!",
         lockCopy: "Ready for boarding? Enter the code to view details and to secure your spot.",
         lockPlaceholder: "Enter code",
         lockSubmit: "Continue",
         comingTitle: "Let's go!",
+        comingTitleFull: "You're on standby!",
         comingCopyBeforeLink: "First come, first served (only 120 spots)! If your request is approved, a Swish-request will be sent to the number you enter below. Your spot is confirmed once payment has been completed (",
         comingCopyLink: "terms",
         comingCopyAfterLink: ").",
@@ -1835,10 +1862,21 @@
         comingNamePlaceholder: "Full name",
         comingPhonePlaceholder: "Mobile number",
         comingSubmit: "Submit",
+        comingCopyFullBeforeLink: "The event is currently full. Fill in your details below to join the waitlist for resale tickets. (",
+        comingCopyFullLink: "terms",
+        comingCopyFullAfterLink: ").",
+        comingPriceFull: "Ticket price: 450 SEK",
+        comingNamePlaceholderFull: "Full name",
+        comingPhonePlaceholderFull: "Mobile number",
+        comingSubmitFull: "Join waitlist",
         termsTitle: "Terms and FAQ",
         termsCopy: "Short practical information for ARN-base crew before registering and attending.",
-        termsSectionTitles: ["Registration", "Operations", "On-board conduct", "Frequently asked questions"],
+        termsSectionTitles: ["Resale and waitlist", "Registration", "Operations", "On-board conduct", "Frequently asked questions"],
         termsSectionItems: [
+          [
+            "If the event is full, you may join waitlist.",
+            "Contact Christopher or Robin if you wish to resell your ticket.",
+          ],
           [
             "The event is for ARN crew only.",
             "Applying for a ticket does not guarantee a spot.",
@@ -1870,8 +1908,10 @@
         emptyCodeAlert: "Enter your code",
         invalidCodeAlert: "Invalid code",
         verifyErrorAlert: "Could not verify the code",
-        rsvpSuccessAlert: "Thank you. Your request has been registered.",
-        rsvpSuccessInline: "Thank you. Your request has been registered.",
+        rsvpSuccessAlert: "Thank you! Your request has been registered.",
+        rsvpSuccessInline: "Thank you! Your request has been registered.",
+        rsvpSuccessWaitlistAlert: "Thank you! You have joined the waitlist.",
+        rsvpSuccessWaitlistInline: "Thank you! You have joined the waitlist.",
         rsvpErrorAlert: "Something went wrong. Please try again.",
         rsvpConfigAlert: "Request flow is not configured yet."
       }
@@ -1912,7 +1952,7 @@
       detailRows[0].querySelector(".detail-value").innerHTML = t.timeValue;
       detailRows[1].querySelector(".detail-label").textContent = t.placeLabel;
       detailRows[1].querySelector(".detail-value").textContent = t.placeValue;
-      rsvpButton.textContent = t.rsvpButton;
+      rsvpButton.textContent = eventIsFull ? t.rsvpButtonFull : t.rsvpButton;
       termsButton.textContent = t.termsButton;
       hostsTitle.textContent = t.hostsTitle;
       if (hostsCaption) hostsCaption.textContent = t.hostsCaption;
@@ -1925,24 +1965,29 @@
       lockCopy.textContent = t.lockCopy;
       input.placeholder = t.lockPlaceholder;
       unlockButton.textContent = t.lockSubmit;
-      comingTitle.textContent = t.comingTitle;
-      comingCopy.innerHTML = `${t.comingCopyBeforeLink}<button class="inline-sheet-link" id="comingTermsLink" type="button">${t.comingCopyLink}</button>${t.comingCopyAfterLink}`;
-      comingPrice.textContent = t.comingPrice;
+      comingTitle.textContent = eventIsFull ? t.comingTitleFull : t.comingTitle;
+      const comingCopyBeforeLink = eventIsFull ? t.comingCopyFullBeforeLink : t.comingCopyBeforeLink;
+      const comingCopyLink = eventIsFull ? t.comingCopyFullLink : t.comingCopyLink;
+      const comingCopyAfterLink = eventIsFull ? t.comingCopyFullAfterLink : t.comingCopyAfterLink;
+      comingCopy.innerHTML = `${comingCopyBeforeLink}<button class="inline-sheet-link" id="comingTermsLink" type="button">${comingCopyLink}</button>${comingCopyAfterLink}`;
+      comingPrice.textContent = eventIsFull ? t.comingPriceFull : t.comingPrice;
       document.getElementById("comingTermsLink").addEventListener("click", () => {
         showPanel(termsPanel);
       });
-      comingNameInput.placeholder = t.comingNamePlaceholder;
-      comingPhoneInput.placeholder = t.comingPhonePlaceholder;
-      comingSubmit.textContent = t.comingSubmit;
+      comingNameInput.placeholder = eventIsFull ? t.comingNamePlaceholderFull : t.comingNamePlaceholder;
+      comingPhoneInput.placeholder = eventIsFull ? t.comingPhonePlaceholderFull : t.comingPhonePlaceholder;
+      comingSubmit.textContent = eventIsFull ? t.comingSubmitFull : t.comingSubmit;
       termsTitle.textContent = t.termsTitle;
       if (termsCopy) termsCopy.textContent = t.termsCopy;
       termsSectionTitles[0].textContent = t.termsSectionTitles[0];
       termsSectionTitles[1].textContent = t.termsSectionTitles[1];
       termsSectionTitles[2].textContent = t.termsSectionTitles[2];
-      faqTitle.textContent = t.termsSectionTitles[3];
+      termsSectionTitles[3].textContent = t.termsSectionTitles[3];
+      faqTitle.textContent = t.termsSectionTitles[4];
       termsLists[0].innerHTML = buildListMarkup(t.termsSectionItems[0]);
       termsLists[1].innerHTML = buildListMarkup(t.termsSectionItems[1]);
       termsLists[2].innerHTML = buildListMarkup(t.termsSectionItems[2]);
+      termsLists[3].innerHTML = buildListMarkup(t.termsSectionItems[3]);
       faqList.innerHTML = buildFaqMarkup(t.faqItems);
       termsClose.textContent = t.termsClose;
       langSvButton.classList.toggle("is-active", currentLanguage === "sv");
@@ -2171,7 +2216,7 @@
             rsvp: "yes"
           }).then(() => {
             comingSubmit.style.display = "none";
-            comingFeedback.textContent = t.rsvpSuccessInline;
+            comingFeedback.textContent = eventIsFull ? t.rsvpSuccessWaitlistInline : t.rsvpSuccessInline;
             comingFeedback.classList.add("is-visible");
             window.setTimeout(() => {
               hideAllRsvpPanels();
