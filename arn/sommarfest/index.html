@@ -823,6 +823,42 @@
       gap: 16px;
     }
 
+    .event-selection {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .event-choice {
+      transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+    }
+
+    .event-choice:hover {
+      transform: translateY(-1px);
+    }
+
+    .event-choice .choice-icon {
+      color: transparent;
+      transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .event-choice.is-selected {
+      border-color: rgba(17, 24, 39, 0.28);
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .event-choice.is-selected .choice-icon {
+      border-color: #111827;
+      background: #111827;
+      color: #fff;
+    }
+
+    .event-choice:disabled {
+      cursor: default;
+      opacity: 0.62;
+      transform: none;
+    }
+
     .rsvp-input {
       width: 100%;
       height: 58px;
@@ -841,6 +877,34 @@
       justify-content: stretch;
     }
 
+    .rsvp-submit-section {
+      display: grid;
+    }
+
+    .summer-waitlist-warning {
+      max-height: 0;
+      margin: 0;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-6px);
+      color: #b42318;
+      font-size: 0.88rem;
+      font-weight: 600;
+      line-height: 1.45;
+      transition:
+        max-height 0.24s ease,
+        margin-bottom 0.24s ease,
+        opacity 0.18s ease,
+        transform 0.24s ease;
+    }
+
+    .summer-waitlist-warning.is-visible {
+      max-height: 4rem;
+      margin-bottom: 12px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .rsvp-submit {
       width: 100%;
       min-width: 120px;
@@ -853,6 +917,11 @@
       font-weight: 600;
       cursor: pointer;
       padding: 0 24px;
+    }
+
+    .rsvp-submit:disabled {
+      cursor: not-allowed;
+      opacity: 0.48;
     }
 
     .rsvp-back {
@@ -1180,7 +1249,7 @@
               <img class="maggio-app-icon" src="../../images/favIconMaggio.png" alt="" />
               <div>
                 <p class="maggio-app-label">Maggio</p>
-                <h3 class="rsvp-title" id="waitlistTitle">Du är på standby!</h3>
+                <h3 class="rsvp-title" id="waitlistTitle">OSA i Maggio!</h3>
               </div>
             </div>
             <p class="rsvp-copy" id="waitlistCopy">Väntelistan hanteras i Maggio genom klubben SAS Crew ARN.</p>
@@ -1201,28 +1270,47 @@
             <button class="rsvp-back" type="button" id="waitlistClose">Stäng</button>
           </div>
 
-          <div class="rsvp-panel" id="androidWaitlistPanel">
+          <div class="rsvp-panel" id="androidRegistrationPanel">
             <div class="sheet-handle"></div>
             <div class="rsvp-header">
-              <h3 class="rsvp-title" id="androidWaitlistTitle">Du är på standby!</h3>
-              <p class="rsvp-copy" id="androidWaitlistCopy">
-                <span id="androidWaitlistCopyBeforeLink">Evenemanget är tyvärr fullbokat. Fyll i dina uppgifter nedan för att skriva upp dig på väntelistan (</span>
+              <h3 class="rsvp-title" id="androidRegistrationTitle">Välj vilka event du vill delta i</h3>
+              <p class="rsvp-copy" id="androidRegistrationCopy">
+                <span id="androidRegistrationCopyBeforeLink">Välj ett eller flera event och fyll sedan i dina uppgifter (</span>
                 <button class="inline-sheet-link" id="androidTermsLink" type="button">villkor</button>
-                <span id="androidWaitlistCopyAfterLink">).</span>
+                <span id="androidRegistrationCopyAfterLink">).</span>
               </p>
             </div>
 
-            <form class="rsvp-form" id="androidWaitlistForm">
+            <div class="event-selection" id="eventSelection" aria-label="Välj event">
+              <button class="rsvp-choice event-choice" id="prePartyChoice" type="button" data-event-code="0" aria-pressed="false">
+                <span class="choice-icon" aria-hidden="true">✓</span>
+                <span class="choice-text" id="prePartyChoiceText">Förfesten</span>
+              </button>
+              <button class="rsvp-choice event-choice" id="summerPartyChoice" type="button" data-event-code="1" aria-pressed="false">
+                <span class="choice-icon" aria-hidden="true">✓</span>
+                <span class="choice-text" id="summerPartyChoiceText">Sommarfesten</span>
+              </button>
+              <button class="rsvp-choice event-choice" id="afterPartyChoice" type="button" data-event-code="2" aria-pressed="false">
+                <span class="choice-icon" aria-hidden="true">✓</span>
+                <span class="choice-text" id="afterPartyChoiceText">Efterfesten</span>
+              </button>
+            </div>
+
+            <form class="rsvp-form" id="androidRegistrationForm">
               <input class="rsvp-input" type="text" placeholder="Fullt namn" required />
               <input class="rsvp-input" type="tel" placeholder="Mobil" required />
 
-              <div class="rsvp-action">
-                <button class="rsvp-submit" type="submit">Skicka</button>
+              <div class="rsvp-submit-section">
+                <p class="summer-waitlist-warning" id="summerWaitlistWarning" aria-hidden="true">Sommarfesten är fullbokad. Du placeras på väntelistan om du inte redan har en biljett.</p>
+
+                <div class="rsvp-action">
+                  <button class="rsvp-submit" type="submit" disabled>Skicka</button>
+                </div>
               </div>
             </form>
 
-            <div class="rsvp-feedback" id="androidWaitlistFeedback"></div>
-            <button class="rsvp-back" type="button" id="androidWaitlistClose">Stäng</button>
+            <div class="rsvp-feedback" id="androidRegistrationFeedback"></div>
+            <button class="rsvp-back" type="button" id="androidRegistrationClose">Stäng</button>
           </div>
 
           <div class="rsvp-panel" id="termsPanel">
@@ -1832,10 +1920,10 @@
     const langEnButton = document.getElementById("langEnButton");
 
     const waitlistPanel = document.getElementById("waitlistPanel");
-    const androidWaitlistPanel = document.getElementById("androidWaitlistPanel");
+    const androidRegistrationPanel = document.getElementById("androidRegistrationPanel");
     const termsPanel = document.getElementById("termsPanel");
     const waitlistClose = document.getElementById("waitlistClose");
-    const androidWaitlistClose = document.getElementById("androidWaitlistClose");
+    const androidRegistrationClose = document.getElementById("androidRegistrationClose");
     const termsClose = document.getElementById("termsClose");
     const rsvpSheetOverlay = document.getElementById("rsvpSheetOverlay");
     const rsvpSubmitFrame = document.getElementById("rsvpSubmitFrame");
@@ -1849,15 +1937,21 @@
     const openMaggioLink = document.getElementById("openMaggioLink");
     const downloadMaggioLink = document.getElementById("downloadMaggioLink");
     const androidUsersButton = document.getElementById("androidUsersButton");
-    const androidWaitlistTitle = document.getElementById("androidWaitlistTitle");
-    const androidWaitlistCopyBeforeLink = document.getElementById("androidWaitlistCopyBeforeLink");
+    const androidRegistrationTitle = document.getElementById("androidRegistrationTitle");
+    const androidRegistrationCopyBeforeLink = document.getElementById("androidRegistrationCopyBeforeLink");
     const androidTermsLink = document.getElementById("androidTermsLink");
-    const androidWaitlistCopyAfterLink = document.getElementById("androidWaitlistCopyAfterLink");
-    const androidWaitlistForm = document.getElementById("androidWaitlistForm");
-    const androidNameInput = androidWaitlistForm.querySelector('input[type="text"]');
-    const androidPhoneInput = androidWaitlistForm.querySelector('input[type="tel"]');
-    const androidWaitlistSubmit = androidWaitlistForm.querySelector(".rsvp-submit");
-    const androidWaitlistFeedback = document.getElementById("androidWaitlistFeedback");
+    const androidRegistrationCopyAfterLink = document.getElementById("androidRegistrationCopyAfterLink");
+    const androidRegistrationForm = document.getElementById("androidRegistrationForm");
+    const androidNameInput = androidRegistrationForm.querySelector('input[type="text"]');
+    const androidPhoneInput = androidRegistrationForm.querySelector('input[type="tel"]');
+    const androidRegistrationSubmit = androidRegistrationForm.querySelector(".rsvp-submit");
+    const androidRegistrationFeedback = document.getElementById("androidRegistrationFeedback");
+    const eventSelection = document.getElementById("eventSelection");
+    const eventChoiceButtons = Array.from(document.querySelectorAll(".event-choice"));
+    const prePartyChoiceText = document.getElementById("prePartyChoiceText");
+    const summerPartyChoiceText = document.getElementById("summerPartyChoiceText");
+    const afterPartyChoiceText = document.getElementById("afterPartyChoiceText");
+    const summerWaitlistWarning = document.getElementById("summerWaitlistWarning");
     const termsTitle = termsPanel.querySelector(".rsvp-title");
     const termsCopy = termsPanel.querySelector(".rsvp-copy");
     const termsSectionTitles = termsPanel.querySelectorAll(".sheet-section-title");
@@ -1867,6 +1961,8 @@
 
     const languageStorageKey = "maggio-event-language";
     let currentLanguage = "sv";
+    let isAndroidRegistrationSubmitting = false;
+    const selectedAndroidEventCodes = new Set();
     const translations = {
       sv: {
         documentTitle: "ARN Crew Sommarfest!",
@@ -1882,7 +1978,7 @@
         placeLabel: "Plats",
         placeValue: "Skeppsholmen, Stockholm",
         rsvpButton: "Anmäl",
-        rsvpButtonFull: "Väntelista",
+        rsvpButtonFull: "Anmäl",
         termsButton: "Villkor och frågor",
         hostsTitle: "Värdar",
         hostsCaption: "",
@@ -1893,7 +1989,7 @@
         lockCopy: "Ready for boarding? Ange koden för att gå vidare.",
         lockPlaceholder: "Ange kod",
         lockSubmit: "Fortsätt",
-        waitlistTitle: "Du är på standby!",
+        waitlistTitle: "OSA i Maggio!",
         waitlistCopy: "Väntelistan hanteras i Maggio genom klubben SAS Crew ARN.",
         waitlistStepOne: "Öppna Maggio och logga in.",
         waitlistStepTwo: "Gå till Clubs och gå med i klubben <strong>SAS Crew ARN</strong>.",
@@ -1903,18 +1999,25 @@
         downloadMaggio: "Hämta Maggio",
         androidUsers: "Android-användare",
         waitlistClose: "Stäng",
-        androidWaitlistTitle: "Du är på standby!",
-        androidWaitlistCopyBeforeLink: "Evenemanget är tyvärr fullbokat. Fyll i dina uppgifter nedan för att skriva upp dig på väntelistan (",
-        androidWaitlistCopyLink: "villkor",
-        androidWaitlistCopyAfterLink: ").",
+        androidRegistrationTitle: "Välj vilka event du vill delta i",
+        androidRegistrationCopyBeforeLink: "Välj ett eller flera event och fyll sedan i dina uppgifter (",
+        androidRegistrationCopyLink: "villkor",
+        androidRegistrationCopyAfterLink: ").",
+        eventSelectionLabel: "Välj event",
+        preParty: "Förfesten",
+        summerParty: "Sommarfesten",
+        afterParty: "Efterfesten",
+        summerWaitlistWarning: "Sommarfesten är fullbokad. Du placeras på väntelistan om du inte redan har en biljett.",
         androidNamePlaceholder: "Fullt namn",
         androidPhonePlaceholder: "Mobil",
-        androidWaitlistSubmit: "Skicka",
-        androidWaitlistSubmitting: "Skickar...",
-        androidWaitlistSuccess: "Tack! Du står nu på väntelistan.",
-        androidWaitlistError: "Något gick fel. Försök igen.",
-        androidWaitlistConfigError: "Anmälan är inte konfigurerad ännu.",
-        androidWaitlistClose: "Stäng",
+        androidRegistrationSubmit: "Skicka",
+        androidRegistrationSubmitting: "Skickar...",
+        androidRegistrationSuccess: "Tack! Din anmälan är registrerad.",
+        androidRegistrationSuccessWithWaitlist: "Tack! Din anmälan är registrerad. Du står på väntelistan till Sommarfesten.",
+        androidRegistrationError: "Något gick fel. Försök igen.",
+        androidRegistrationConfigError: "Anmälan är inte konfigurerad ännu.",
+        androidRegistrationSelectionError: "Välj minst ett event.",
+        androidRegistrationClose: "Stäng",
         termsTitle: "Villkor och frågor",
         termsCopy: "Kort information för crew på ARN-basen inför anmälan och deltagande.",
         termsSectionTitles: ["Återförsäljning och väntelista", "Anmälan", "Genomförande", "Ordning och trivsel", "Vanliga frågor"],
@@ -1967,8 +2070,8 @@
         timeValue: "Friday, August 14, 2026<br />5:30 PM - 10:00 PM",
         placeLabel: "Location",
         placeValue: "Skeppsholmen, Stockholm",
-        rsvpButton: "Apply for a ticket",
-        rsvpButtonFull: "Waitlist",
+        rsvpButton: "Register",
+        rsvpButtonFull: "Register",
         termsButton: "Terms and FAQ",
         hostsTitle: "Hosts",
         hostsCaption: "",
@@ -1979,7 +2082,7 @@
         lockCopy: "Ready for boarding? Enter the code to view details and to secure your spot.",
         lockPlaceholder: "Enter code",
         lockSubmit: "Continue",
-        waitlistTitle: "You're on standby!",
+        waitlistTitle: "RSVP in Maggio!",
         waitlistCopy: "The waitlist is managed in Maggio through the SAS Crew ARN club.",
         waitlistStepOne: "Open Maggio and sign in.",
         waitlistStepTwo: "Go to Clubs and join <strong>SAS Crew ARN</strong>.",
@@ -1989,18 +2092,25 @@
         downloadMaggio: "Download Maggio",
         androidUsers: "Android users",
         waitlistClose: "Close",
-        androidWaitlistTitle: "You're on standby!",
-        androidWaitlistCopyBeforeLink: "The event is currently full. Fill in your details below to join the waitlist for resale tickets (",
-        androidWaitlistCopyLink: "terms",
-        androidWaitlistCopyAfterLink: ").",
+        androidRegistrationTitle: "Select the events you’d like to attend",
+        androidRegistrationCopyBeforeLink: "Select one or more events, then enter your details (",
+        androidRegistrationCopyLink: "terms",
+        androidRegistrationCopyAfterLink: ").",
+        eventSelectionLabel: "Select events",
+        preParty: "Pre-party",
+        summerParty: "Summer party",
+        afterParty: "After-party",
+        summerWaitlistWarning: "The Summer party is full. You will be added to the waitlist unless you already have a ticket.",
         androidNamePlaceholder: "Full name",
         androidPhonePlaceholder: "Mobile number",
-        androidWaitlistSubmit: "Join waitlist",
-        androidWaitlistSubmitting: "Sending...",
-        androidWaitlistSuccess: "Thank you! You have joined the waitlist.",
-        androidWaitlistError: "Something went wrong. Please try again.",
-        androidWaitlistConfigError: "The waitlist form is not configured yet.",
-        androidWaitlistClose: "Close",
+        androidRegistrationSubmit: "Submit",
+        androidRegistrationSubmitting: "Sending...",
+        androidRegistrationSuccess: "Thank you! Your registration has been received.",
+        androidRegistrationSuccessWithWaitlist: "Thank you! Your registration has been received. You are on the Summer party waitlist.",
+        androidRegistrationError: "Something went wrong. Please try again.",
+        androidRegistrationConfigError: "The registration form is not configured yet.",
+        androidRegistrationSelectionError: "Select at least one event.",
+        androidRegistrationClose: "Close",
         termsTitle: "Terms and FAQ",
         termsCopy: "Short practical information for ARN-base crew before registering and attending.",
         termsSectionTitles: ["Resale and waitlist", "Registration", "Operations", "On-board conduct", "Frequently asked questions"],
@@ -2100,14 +2210,19 @@
       downloadMaggioLink.textContent = t.downloadMaggio;
       androidUsersButton.textContent = t.androidUsers;
       waitlistClose.textContent = t.waitlistClose;
-      androidWaitlistTitle.textContent = t.androidWaitlistTitle;
-      androidWaitlistCopyBeforeLink.textContent = t.androidWaitlistCopyBeforeLink;
-      androidTermsLink.textContent = t.androidWaitlistCopyLink;
-      androidWaitlistCopyAfterLink.textContent = t.androidWaitlistCopyAfterLink;
+      androidRegistrationTitle.textContent = t.androidRegistrationTitle;
+      androidRegistrationCopyBeforeLink.textContent = t.androidRegistrationCopyBeforeLink;
+      androidTermsLink.textContent = t.androidRegistrationCopyLink;
+      androidRegistrationCopyAfterLink.textContent = t.androidRegistrationCopyAfterLink;
+      eventSelection.setAttribute("aria-label", t.eventSelectionLabel);
+      prePartyChoiceText.textContent = t.preParty;
+      summerPartyChoiceText.textContent = t.summerParty;
+      afterPartyChoiceText.textContent = t.afterParty;
+      summerWaitlistWarning.textContent = t.summerWaitlistWarning;
       androidNameInput.placeholder = t.androidNamePlaceholder;
       androidPhoneInput.placeholder = t.androidPhonePlaceholder;
-      androidWaitlistSubmit.textContent = t.androidWaitlistSubmit;
-      androidWaitlistClose.textContent = t.androidWaitlistClose;
+      androidRegistrationSubmit.textContent = t.androidRegistrationSubmit;
+      androidRegistrationClose.textContent = t.androidRegistrationClose;
       termsTitle.textContent = t.termsTitle;
       if (termsCopy) termsCopy.textContent = t.termsCopy;
       termsSectionTitles[0].textContent = t.termsSectionTitles[0];
@@ -2197,19 +2312,19 @@
 
     function hideAllRsvpPanels() {
       waitlistPanel.classList.remove("is-visible");
-      androidWaitlistPanel.classList.remove("is-visible");
+      androidRegistrationPanel.classList.remove("is-visible");
       termsPanel.classList.remove("is-visible");
       rsvpSheetOverlay.classList.remove("is-visible");
       document.body.style.overflow = "";
-      androidWaitlistFeedback.classList.remove("is-visible");
-      androidWaitlistFeedback.textContent = "";
+      androidRegistrationFeedback.classList.remove("is-visible");
+      androidRegistrationFeedback.textContent = "";
     }
 
     function showPanel(panel) {
       hideAllRsvpPanels();
-      if (panel === androidWaitlistPanel) {
-        androidWaitlistSubmit.style.display = "";
-        androidWaitlistSubmit.disabled = false;
+      if (panel === androidRegistrationPanel) {
+        androidRegistrationSubmit.style.display = "";
+        updateAndroidEventSelection();
       }
       panel.classList.add("is-visible");
       rsvpSheetOverlay.classList.add("is-visible");
@@ -2252,6 +2367,19 @@
         document.body.appendChild(form);
         form.submit();
       });
+    }
+
+    function updateAndroidEventSelection() {
+      const hasSelection = selectedAndroidEventCodes.size > 0;
+      const includesSummerParty = selectedAndroidEventCodes.has("1");
+      eventChoiceButtons.forEach((button) => {
+        const isSelected = selectedAndroidEventCodes.has(button.dataset.eventCode);
+        button.classList.toggle("is-selected", isSelected);
+        button.setAttribute("aria-pressed", String(isSelected));
+      });
+      summerWaitlistWarning.classList.toggle("is-visible", includesSummerParty);
+      summerWaitlistWarning.setAttribute("aria-hidden", String(!includesSummerParty));
+      androidRegistrationSubmit.disabled = !hasSelection || isAndroidRegistrationSubmitting;
     }
 
     function resetLockedScrollPosition() {
@@ -2313,9 +2441,21 @@
 
       if (androidUsersButton) {
         androidUsersButton.addEventListener("click", () => {
-          showPanel(androidWaitlistPanel);
+          showPanel(androidRegistrationPanel);
         });
       }
+
+      eventChoiceButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const eventCode = button.dataset.eventCode;
+          if (selectedAndroidEventCodes.has(eventCode)) {
+            selectedAndroidEventCodes.delete(eventCode);
+          } else {
+            selectedAndroidEventCodes.add(eventCode);
+          }
+          updateAndroidEventSelection();
+        });
+      });
 
       if (androidTermsLink) {
         androidTermsLink.addEventListener("click", () => {
@@ -2323,8 +2463,8 @@
         });
       }
 
-      if (androidWaitlistClose) {
-        androidWaitlistClose.addEventListener("click", () => {
+      if (androidRegistrationClose) {
+        androidRegistrationClose.addEventListener("click", () => {
           hideAllRsvpPanels();
         });
       }
@@ -2347,46 +2487,67 @@
         }
       });
 
-      if (androidWaitlistForm) {
-        androidWaitlistForm.addEventListener("submit", (e) => {
+      if (androidRegistrationForm) {
+        androidRegistrationForm.addEventListener("submit", async (e) => {
           e.preventDefault();
           const t = translations[currentLanguage];
           const fullName = androidNameInput.value.trim();
           const phoneNumber = androidPhoneInput.value.trim();
+          const selectedEventCodes = Array.from(selectedAndroidEventCodes).sort();
 
           if (!RSVP_ENDPOINT) {
-            alert(t.androidWaitlistConfigError);
+            alert(t.androidRegistrationConfigError);
+            return;
+          }
+
+          if (selectedEventCodes.length === 0) {
+            alert(t.androidRegistrationSelectionError);
             return;
           }
 
           if (!fullName || !phoneNumber) {
-            alert(t.androidWaitlistError);
+            alert(t.androidRegistrationError);
             return;
           }
 
-          androidWaitlistSubmit.disabled = true;
-          androidWaitlistSubmit.textContent = t.androidWaitlistSubmitting;
+          isAndroidRegistrationSubmitting = true;
+          updateAndroidEventSelection();
+          androidRegistrationSubmit.textContent = t.androidRegistrationSubmitting;
+          eventChoiceButtons.forEach((button) => {
+            button.disabled = true;
+          });
 
-          submitRsvp({
-            fullName,
-            phoneNumber,
-            rsvp: "yes"
-          }).then(() => {
-            androidWaitlistSubmit.style.display = "none";
-            androidWaitlistFeedback.textContent = t.androidWaitlistSuccess;
-            androidWaitlistFeedback.classList.add("is-visible");
+          try {
+            for (const eventCode of selectedEventCodes) {
+              await submitRsvp({
+                fullName: `${eventCode} ${fullName}`,
+                phoneNumber,
+                rsvp: "yes"
+              });
+            }
+
+            androidRegistrationSubmit.style.display = "none";
+            androidRegistrationFeedback.textContent = selectedEventCodes.includes("1")
+              ? t.androidRegistrationSuccessWithWaitlist
+              : t.androidRegistrationSuccess;
+            androidRegistrationFeedback.classList.add("is-visible");
             window.setTimeout(() => {
               hideAllRsvpPanels();
             }, 10000);
-          }).catch(() => {
-            alert(t.androidWaitlistError);
-          }).finally(() => {
-            androidWaitlistSubmit.disabled = false;
-            androidWaitlistSubmit.textContent = t.androidWaitlistSubmit;
-          });
+          } catch (error) {
+            alert(t.androidRegistrationError);
+          } finally {
+            isAndroidRegistrationSubmitting = false;
+            androidRegistrationSubmit.textContent = t.androidRegistrationSubmit;
+            eventChoiceButtons.forEach((button) => {
+              button.disabled = false;
+            });
+            updateAndroidEventSelection();
+          }
         });
       }
 
+      updateAndroidEventSelection();
       setLanguage(detectInitialLanguage());
     }
 
