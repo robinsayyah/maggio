@@ -542,8 +542,7 @@
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
     }
 
-    .lock-input:focus,
-    .rsvp-input:focus {
+    .lock-input:focus {
       border-color: rgba(30, 99, 236, 0.45);
       box-shadow: 0 0 0 4px rgba(30, 99, 236, 0.12);
     }
@@ -730,41 +729,88 @@
       color: rgba(17, 24, 39, 0.38);
     }
 
-    .rsvp-form {
-      display: grid;
-      gap: 16px;
-    }
-
-    .rsvp-input {
-      width: 100%;
-      height: 58px;
-      border-radius: 16px;
-      border: 1px solid var(--sheet-line);
-      background: rgba(255, 255, 255, 0.8);
-      padding: 0 18px;
-      font-size: 1rem;
-      outline: none;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.84);
-    }
-
-    .rsvp-action {
-      margin-top: 8px;
+    .maggio-app-heading {
       display: flex;
-      justify-content: stretch;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
     }
 
-    .rsvp-submit {
-      width: 100%;
-      min-width: 120px;
-      height: 54px;
-      border: none;
+    .maggio-app-icon {
+      width: 64px;
+      height: 64px;
+      flex: 0 0 64px;
+      border-radius: 17px;
+      box-shadow: 0 10px 26px rgba(8, 16, 51, 0.16);
+    }
+
+    .maggio-app-label {
+      margin: 0 0 5px;
+      color: rgba(17, 24, 39, 0.54);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .maggio-app-heading .rsvp-title {
+      font-size: clamp(1.65rem, 3vw, 2.15rem);
+    }
+
+    .waitlist-steps {
+      margin: 18px 0 0;
+      padding: 16px 16px 16px 38px;
+      border: 1px solid var(--sheet-line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.62);
+      color: rgba(17, 24, 39, 0.76);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .waitlist-steps li + li {
+      margin-top: 9px;
+    }
+
+    .waitlist-steps strong {
+      color: #111827;
+      font-weight: 650;
+    }
+
+    .waitlist-actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .waitlist-action {
+      min-height: 54px;
+      padding: 0 20px;
       border-radius: 16px;
-      background: linear-gradient(180deg, #141926, #0f1524);
-      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 1rem;
       font-weight: 600;
-      cursor: pointer;
-      padding: 0 24px;
+      text-decoration: none;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .waitlist-action:hover {
+      transform: translateY(-1px);
+    }
+
+    .waitlist-action-primary {
+      background: linear-gradient(180deg, #141926, #0f1524);
+      color: #fff;
+      box-shadow: 0 10px 22px rgba(8, 16, 51, 0.14);
+    }
+
+    .waitlist-action-secondary {
+      border: 1px solid var(--sheet-line);
+      background: rgba(255, 255, 255, 0.72);
+      color: #111827;
     }
 
     .rsvp-back {
@@ -775,21 +821,6 @@
       font-size: 0.92rem;
       cursor: pointer;
       padding: 0;
-    }
-
-    .rsvp-feedback {
-      margin-top: 14px;
-      padding: 14px 16px;
-      border-radius: 16px;
-      background: rgba(17, 24, 39, 0.06);
-      color: rgba(17, 24, 39, 0.76);
-      font-size: 0.95rem;
-      line-height: 1.45;
-      display: none;
-    }
-
-    .rsvp-feedback.is-visible {
-      display: block;
     }
 
     @media (min-width: 721px) {
@@ -1085,29 +1116,30 @@
       </div>
     </section>
   </main>
-  <iframe name="rsvpSubmitFrame" id="rsvpSubmitFrame" hidden></iframe>
-          <div class="rsvp-panel" id="comingPanel">
+          <div class="rsvp-panel" id="waitlistPanel">
             <div class="sheet-handle"></div>
-            <div class="rsvp-header">
-              <h3 class="rsvp-title">Anmäl intresse</h3>
-              <p class="rsvp-copy" id="comingCopy">
-                Din anmälan är bindande (
-                <button class="inline-sheet-link" id="comingTermsLink" type="button">villkor</button>
-                ). Efter att din anmälan har mottagits <span class="inline-emphasis">och godkänts</span> skickas en Swishförfrågan till numret du angett nedan.
-              </p>
-              <p class="rsvp-copy" id="comingPrice"></p>
+            <div class="maggio-app-heading">
+              <img class="maggio-app-icon" src="../../images/favIconMaggio.png" alt="" />
+              <div>
+                <p class="maggio-app-label">Maggio</p>
+                <h3 class="rsvp-title" id="waitlistTitle">Du är på standby!</h3>
+              </div>
+            </div>
+            <p class="rsvp-copy" id="waitlistCopy">Väntelistan hanteras i Maggio genom klubben SAS Crew ARN.</p>
+
+            <ol class="waitlist-steps">
+              <li id="waitlistStepOne">Öppna Maggio och logga in.</li>
+              <li id="waitlistStepTwo">Gå till Clubs och gå med i klubben <strong>SAS Crew ARN</strong>.</li>
+              <li id="waitlistStepThree">När du blivit godkänd öppnar du eventet Sommarfesten och skriver upp dig på väntelistan.</li>
+              <li id="waitlistStepFour">Du kommer få uppdateringar om din plats i appen.</li>
+            </ol>
+
+            <div class="waitlist-actions">
+              <a class="waitlist-action waitlist-action-primary" id="openMaggioLink" href="maggio://clubs">Öppna Maggio</a>
+              <a class="waitlist-action waitlist-action-secondary" id="downloadMaggioLink" href="https://apps.apple.com/us/app/maggio-club/id6761921851">Hämta Maggio</a>
             </div>
 
-            <form class="rsvp-form" id="comingForm">
-              <input class="rsvp-input" type="text" placeholder="Fullt namn" required />
-              <input class="rsvp-input" type="tel" placeholder="Mobil" required />
-
-              <div class="rsvp-action">
-                <button class="rsvp-submit" type="submit">Bekräfta</button>
-              </div>
-            </form>
-
-            <div class="rsvp-feedback" id="comingFeedback"></div>
+            <button class="rsvp-back" type="button" id="waitlistClose">Stäng</button>
           </div>
 
           <div class="rsvp-panel" id="termsPanel">
@@ -1195,7 +1227,6 @@
   <div class="rsvp-sheet-overlay" id="rsvpSheetOverlay"></div>
 
   <script>
-    const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbxwy976pH_JStcwrDtu0XXRVwrhkdOF7blIDU1HQP8MUYb0mOQwtD2fdRNunYMc5VgsqQ/exec";
     const eventIsFull = true;
     // GENERATED_INVITES_START
     const inviteConfig = {
@@ -1716,20 +1747,20 @@
     const langSvButton = document.getElementById("langSvButton");
     const langEnButton = document.getElementById("langEnButton");
 
-    const comingPanel = document.getElementById("comingPanel");
+    const waitlistPanel = document.getElementById("waitlistPanel");
     const termsPanel = document.getElementById("termsPanel");
+    const waitlistClose = document.getElementById("waitlistClose");
     const termsClose = document.getElementById("termsClose");
     const rsvpSheetOverlay = document.getElementById("rsvpSheetOverlay");
-    const comingForm = document.getElementById("comingForm");
-    const rsvpSubmitFrame = document.getElementById("rsvpSubmitFrame");
 
-    const comingTitle = comingPanel.querySelector(".rsvp-title");
-    const comingCopy = document.getElementById("comingCopy");
-    const comingPrice = document.getElementById("comingPrice");
-    const comingNameInput = comingPanel.querySelector('input[type="text"]');
-    const comingPhoneInput = comingPanel.querySelector('input[type="tel"]');
-    const comingSubmit = comingPanel.querySelector(".rsvp-submit");
-    const comingFeedback = document.getElementById("comingFeedback");
+    const waitlistTitle = document.getElementById("waitlistTitle");
+    const waitlistCopy = document.getElementById("waitlistCopy");
+    const waitlistStepOne = document.getElementById("waitlistStepOne");
+    const waitlistStepTwo = document.getElementById("waitlistStepTwo");
+    const waitlistStepThree = document.getElementById("waitlistStepThree");
+    const waitlistStepFour = document.getElementById("waitlistStepFour");
+    const openMaggioLink = document.getElementById("openMaggioLink");
+    const downloadMaggioLink = document.getElementById("downloadMaggioLink");
     const termsTitle = termsPanel.querySelector(".rsvp-title");
     const termsCopy = termsPanel.querySelector(".rsvp-copy");
     const termsSectionTitles = termsPanel.querySelectorAll(".sheet-section-title");
@@ -1765,22 +1796,15 @@
         lockCopy: "Ready for boarding? Ange koden för att gå vidare.",
         lockPlaceholder: "Ange kod",
         lockSubmit: "Fortsätt",
-        comingTitle: "Nu kör vi!",
-        comingTitleFull: "Du är på standby!",
-        comingCopyBeforeLink: "Först till kvarn (endast 120 platser)! Efter godkänd anmälan skickas en Swishförfrågan till numret du anger nedan. Din plats är bekräftad först när betalningen är genomförd (",
-        comingCopyLink: "villkor",
-        comingCopyAfterLink: ").",
-        comingPrice: "",
-        comingNamePlaceholder: "Fullt namn",
-        comingPhonePlaceholder: "Mobil",
-        comingSubmit: "Skicka anmälan",
-        comingCopyFullBeforeLink: "Evenemanget är tyvärr fullbokat. Fyll i dina uppgifter nedan för att skriva upp dig på väntelistan (",
-        comingCopyFullLink: "villkor",
-        comingCopyFullAfterLink: ").",
-        comingPriceFull: "",
-        comingNamePlaceholderFull: "Fullt namn",
-        comingPhonePlaceholderFull: "Mobil",
-        comingSubmitFull: "Skicka",
+        waitlistTitle: "Du är på standby!",
+        waitlistCopy: "Väntelistan hanteras i Maggio genom klubben SAS Crew ARN.",
+        waitlistStepOne: "Öppna Maggio och logga in.",
+        waitlistStepTwo: "Gå till Clubs och gå med i klubben <strong>SAS Crew ARN</strong>.",
+        waitlistStepThree: "När du blivit godkänd öppnar du eventet Sommarfesten och skriver upp dig på väntelistan.",
+        waitlistStepFour: "Du kommer få uppdateringar om din plats i appen.",
+        openMaggio: "Öppna Maggio",
+        downloadMaggio: "Hämta Maggio",
+        waitlistClose: "Stäng",
         termsTitle: "Villkor och frågor",
         termsCopy: "Kort information för crew på ARN-basen inför anmälan och deltagande.",
         termsSectionTitles: ["Återförsäljning och väntelista", "Anmälan", "Genomförande", "Ordning och trivsel", "Vanliga frågor"],
@@ -1816,16 +1840,9 @@
           ["Kan jag simma från båten?", "Ja, om rederiet bedömer att väderförhållandena är tillräckligt bra. Kapten har sista ordet även här."]
         ],
         termsClose: "Stäng",
-        rsvpSubmitting: "Skickar...",
         emptyCodeAlert: "Ange din kod",
         invalidCodeAlert: "Ogiltig kod",
-        verifyErrorAlert: "Kunde inte verifiera koden",
-        rsvpSuccessAlert: "Tack! Din anmälan är registrerad.",
-        rsvpSuccessInline: "Tack! Din anmälan är registrerad.",
-        rsvpSuccessWaitlistAlert: "Tack! Du står nu på väntelistan.",
-        rsvpSuccessWaitlistInline: "Tack! Du står nu på väntelistan.",
-        rsvpErrorAlert: "Något gick fel. Försök igen.",
-        rsvpConfigAlert: "Anmälan är inte konfigurerad ännu."
+        verifyErrorAlert: "Kunde inte verifiera koden"
       },
       en: {
         documentTitle: "ARN Crew Summer Party!",
@@ -1852,22 +1869,15 @@
         lockCopy: "Ready for boarding? Enter the code to view details and to secure your spot.",
         lockPlaceholder: "Enter code",
         lockSubmit: "Continue",
-        comingTitle: "Let's go!",
-        comingTitleFull: "You're on standby!",
-        comingCopyBeforeLink: "First come, first served (only 120 spots)! If your request is approved, a Swish-request will be sent to the number you enter below. Your spot is confirmed once payment has been completed (",
-        comingCopyLink: "terms",
-        comingCopyAfterLink: ").",
-        comingPrice: "",
-        comingNamePlaceholder: "Full name",
-        comingPhonePlaceholder: "Mobile number",
-        comingSubmit: "Submit",
-        comingCopyFullBeforeLink: "The event is currently full. Fill in your details below to join the waitlist for resale tickets. (",
-        comingCopyFullLink: "terms",
-        comingCopyFullAfterLink: ").",
-        comingPriceFull: "",
-        comingNamePlaceholderFull: "Full name",
-        comingPhonePlaceholderFull: "Mobile number",
-        comingSubmitFull: "Join waitlist",
+        waitlistTitle: "You're on standby!",
+        waitlistCopy: "The waitlist is managed in Maggio through the SAS Crew ARN club.",
+        waitlistStepOne: "Open Maggio and sign in.",
+        waitlistStepTwo: "Go to Clubs and join <strong>SAS Crew ARN</strong>.",
+        waitlistStepThree: "Once approved, open the Sommarfest event and add yourself to the waitlist.",
+        waitlistStepFour: "You will receive updates about your place in the app.",
+        openMaggio: "Open Maggio",
+        downloadMaggio: "Download Maggio",
+        waitlistClose: "Close",
         termsTitle: "Terms and FAQ",
         termsCopy: "Short practical information for ARN-base crew before registering and attending.",
         termsSectionTitles: ["Resale and waitlist", "Registration", "Operations", "On-board conduct", "Frequently asked questions"],
@@ -1903,16 +1913,9 @@
           ["Can we swim from the boat?", "Yes, if the boat operator considers the weather conditions suitable. The captain has the final word here as well."]
         ],
         termsClose: "Close",
-        rsvpSubmitting: "Sending...",
         emptyCodeAlert: "Enter your code",
         invalidCodeAlert: "Invalid code",
-        verifyErrorAlert: "Could not verify the code",
-        rsvpSuccessAlert: "Thank you! Your request has been registered.",
-        rsvpSuccessInline: "Thank you! Your request has been registered.",
-        rsvpSuccessWaitlistAlert: "Thank you! You have joined the waitlist.",
-        rsvpSuccessWaitlistInline: "Thank you! You have joined the waitlist.",
-        rsvpErrorAlert: "Something went wrong. Please try again.",
-        rsvpConfigAlert: "Request flow is not configured yet."
+        verifyErrorAlert: "Could not verify the code"
       }
     };
 
@@ -1964,18 +1967,15 @@
       lockCopy.textContent = t.lockCopy;
       input.placeholder = t.lockPlaceholder;
       unlockButton.textContent = t.lockSubmit;
-      comingTitle.textContent = eventIsFull ? t.comingTitleFull : t.comingTitle;
-      const comingCopyBeforeLink = eventIsFull ? t.comingCopyFullBeforeLink : t.comingCopyBeforeLink;
-      const comingCopyLink = eventIsFull ? t.comingCopyFullLink : t.comingCopyLink;
-      const comingCopyAfterLink = eventIsFull ? t.comingCopyFullAfterLink : t.comingCopyAfterLink;
-      comingCopy.innerHTML = `${comingCopyBeforeLink}<button class="inline-sheet-link" id="comingTermsLink" type="button">${comingCopyLink}</button>${comingCopyAfterLink}`;
-      comingPrice.textContent = eventIsFull ? t.comingPriceFull : t.comingPrice;
-      document.getElementById("comingTermsLink").addEventListener("click", () => {
-        showPanel(termsPanel);
-      });
-      comingNameInput.placeholder = eventIsFull ? t.comingNamePlaceholderFull : t.comingNamePlaceholder;
-      comingPhoneInput.placeholder = eventIsFull ? t.comingPhonePlaceholderFull : t.comingPhonePlaceholder;
-      comingSubmit.textContent = eventIsFull ? t.comingSubmitFull : t.comingSubmit;
+      waitlistTitle.textContent = t.waitlistTitle;
+      waitlistCopy.textContent = t.waitlistCopy;
+      waitlistStepOne.textContent = t.waitlistStepOne;
+      waitlistStepTwo.innerHTML = t.waitlistStepTwo;
+      waitlistStepThree.textContent = t.waitlistStepThree;
+      waitlistStepFour.textContent = t.waitlistStepFour;
+      openMaggioLink.textContent = t.openMaggio;
+      downloadMaggioLink.textContent = t.downloadMaggio;
+      waitlistClose.textContent = t.waitlistClose;
       termsTitle.textContent = t.termsTitle;
       if (termsCopy) termsCopy.textContent = t.termsCopy;
       termsSectionTitles[0].textContent = t.termsSectionTitles[0];
@@ -2064,59 +2064,17 @@
     }
 
     function hideAllRsvpPanels() {
-      comingPanel.classList.remove("is-visible");
+      waitlistPanel.classList.remove("is-visible");
       termsPanel.classList.remove("is-visible");
       rsvpSheetOverlay.classList.remove("is-visible");
       document.body.style.overflow = "";
-      comingFeedback.classList.remove("is-visible");
-      comingFeedback.textContent = "";
     }
 
     function showPanel(panel) {
       hideAllRsvpPanels();
-      comingSubmit.style.display = "";
-      comingSubmit.disabled = false;
       panel.classList.add("is-visible");
       rsvpSheetOverlay.classList.add("is-visible");
       document.body.style.overflow = "hidden";
-    }
-
-    function submitRsvp(payload) {
-      return new Promise((resolve, reject) => {
-        const form = document.createElement("form");
-        const timeoutId = window.setTimeout(() => {
-          cleanup();
-          reject(new Error("RSVP submission timed out."));
-        }, 10000);
-
-        function cleanup() {
-          window.clearTimeout(timeoutId);
-          rsvpSubmitFrame.removeEventListener("load", handleLoad);
-          form.remove();
-        }
-
-        function handleLoad() {
-          cleanup();
-          resolve();
-        }
-
-        form.method = "POST";
-        form.action = RSVP_ENDPOINT;
-        form.target = "rsvpSubmitFrame";
-        form.style.display = "none";
-
-        Object.entries(payload).forEach(([key, value]) => {
-          const input = document.createElement("input");
-          input.type = "hidden";
-          input.name = key;
-          input.value = value;
-          form.appendChild(input);
-        });
-
-        rsvpSubmitFrame.addEventListener("load", handleLoad, { once: true });
-        document.body.appendChild(form);
-        form.submit();
-      });
     }
 
     function resetLockedScrollPosition() {
@@ -2160,13 +2118,19 @@
 
       if (rsvpButton) {
         rsvpButton.addEventListener("click", () => {
-          showPanel(comingPanel);
+          showPanel(waitlistPanel);
         });
       }
 
       if (termsButton) {
         termsButton.addEventListener("click", () => {
           showPanel(termsPanel);
+        });
+      }
+
+      if (waitlistClose) {
+        waitlistClose.addEventListener("click", () => {
+          hideAllRsvpPanels();
         });
       }
 
@@ -2187,47 +2151,6 @@
           hideAllRsvpPanels();
         }
       });
-
-      if (comingForm) {
-        comingForm.addEventListener("submit", (e) => {
-          e.preventDefault();
-          const t = translations[currentLanguage];
-          const fullName = comingNameInput.value.trim();
-          const phoneNumber = comingPhoneInput.value.trim();
-
-          if (!RSVP_ENDPOINT) {
-            alert(t.rsvpConfigAlert);
-            return;
-          }
-
-          if (!fullName || !phoneNumber) {
-            alert(t.rsvpErrorAlert);
-            return;
-          }
-
-          const originalLabel = t.comingSubmit;
-          comingSubmit.disabled = true;
-          comingSubmit.textContent = t.rsvpSubmitting;
-
-          submitRsvp({
-            fullName,
-            phoneNumber,
-            rsvp: "yes"
-          }).then(() => {
-            comingSubmit.style.display = "none";
-            comingFeedback.textContent = eventIsFull ? t.rsvpSuccessWaitlistInline : t.rsvpSuccessInline;
-            comingFeedback.classList.add("is-visible");
-            window.setTimeout(() => {
-              hideAllRsvpPanels();
-            }, 10000);
-          }).catch(() => {
-            alert(t.rsvpErrorAlert);
-          }).finally(() => {
-            comingSubmit.disabled = false;
-            comingSubmit.textContent = originalLabel;
-          });
-        });
-      }
 
       setLanguage(detectInitialLanguage());
     }
