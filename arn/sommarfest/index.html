@@ -542,7 +542,8 @@
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
     }
 
-    .lock-input:focus {
+    .lock-input:focus,
+    .rsvp-input:focus {
       border-color: rgba(30, 99, 236, 0.45);
       box-shadow: 0 0 0 4px rgba(30, 99, 236, 0.12);
     }
@@ -785,6 +786,8 @@
     }
 
     .waitlist-action {
+      appearance: none;
+      width: 100%;
       min-height: 54px;
       padding: 0 20px;
       border-radius: 16px;
@@ -793,7 +796,9 @@
       justify-content: center;
       font-size: 1rem;
       font-weight: 600;
+      font-family: inherit;
       text-decoration: none;
+      cursor: pointer;
       transition: transform 0.18s ease, opacity 0.18s ease;
     }
 
@@ -813,6 +818,43 @@
       color: #111827;
     }
 
+    .rsvp-form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .rsvp-input {
+      width: 100%;
+      height: 58px;
+      border-radius: 16px;
+      border: 1px solid var(--sheet-line);
+      background: rgba(255, 255, 255, 0.8);
+      padding: 0 18px;
+      font-size: 1rem;
+      outline: none;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.84);
+    }
+
+    .rsvp-action {
+      margin-top: 8px;
+      display: flex;
+      justify-content: stretch;
+    }
+
+    .rsvp-submit {
+      width: 100%;
+      min-width: 120px;
+      height: 54px;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #141926, #0f1524);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0 24px;
+    }
+
     .rsvp-back {
       margin-top: 16px;
       background: transparent;
@@ -821,6 +863,21 @@
       font-size: 0.92rem;
       cursor: pointer;
       padding: 0;
+    }
+
+    .rsvp-feedback {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(17, 24, 39, 0.06);
+      color: rgba(17, 24, 39, 0.76);
+      font-size: 0.95rem;
+      line-height: 1.45;
+      display: none;
+    }
+
+    .rsvp-feedback.is-visible {
+      display: block;
     }
 
     @media (min-width: 721px) {
@@ -1116,6 +1173,7 @@
       </div>
     </section>
   </main>
+  <iframe name="rsvpSubmitFrame" id="rsvpSubmitFrame" hidden></iframe>
           <div class="rsvp-panel" id="waitlistPanel">
             <div class="sheet-handle"></div>
             <div class="maggio-app-heading">
@@ -1137,9 +1195,34 @@
             <div class="waitlist-actions">
               <a class="waitlist-action waitlist-action-primary" id="openMaggioLink" href="maggio://clubs">Öppna Maggio</a>
               <a class="waitlist-action waitlist-action-secondary" id="downloadMaggioLink" href="https://apps.apple.com/us/app/maggio-club/id6761921851">Hämta Maggio</a>
+              <button class="waitlist-action waitlist-action-secondary" id="androidUsersButton" type="button">Android-användare</button>
             </div>
 
             <button class="rsvp-back" type="button" id="waitlistClose">Stäng</button>
+          </div>
+
+          <div class="rsvp-panel" id="androidWaitlistPanel">
+            <div class="sheet-handle"></div>
+            <div class="rsvp-header">
+              <h3 class="rsvp-title" id="androidWaitlistTitle">Du är på standby!</h3>
+              <p class="rsvp-copy" id="androidWaitlistCopy">
+                <span id="androidWaitlistCopyBeforeLink">Evenemanget är tyvärr fullbokat. Fyll i dina uppgifter nedan för att skriva upp dig på väntelistan (</span>
+                <button class="inline-sheet-link" id="androidTermsLink" type="button">villkor</button>
+                <span id="androidWaitlistCopyAfterLink">).</span>
+              </p>
+            </div>
+
+            <form class="rsvp-form" id="androidWaitlistForm">
+              <input class="rsvp-input" type="text" placeholder="Fullt namn" required />
+              <input class="rsvp-input" type="tel" placeholder="Mobil" required />
+
+              <div class="rsvp-action">
+                <button class="rsvp-submit" type="submit">Skicka</button>
+              </div>
+            </form>
+
+            <div class="rsvp-feedback" id="androidWaitlistFeedback"></div>
+            <button class="rsvp-back" type="button" id="androidWaitlistClose">Stäng</button>
           </div>
 
           <div class="rsvp-panel" id="termsPanel">
@@ -1227,6 +1310,7 @@
   <div class="rsvp-sheet-overlay" id="rsvpSheetOverlay"></div>
 
   <script>
+    const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbxwy976pH_JStcwrDtu0XXRVwrhkdOF7blIDU1HQP8MUYb0mOQwtD2fdRNunYMc5VgsqQ/exec";
     const eventIsFull = true;
     // GENERATED_INVITES_START
     const inviteConfig = {
@@ -1748,10 +1832,13 @@
     const langEnButton = document.getElementById("langEnButton");
 
     const waitlistPanel = document.getElementById("waitlistPanel");
+    const androidWaitlistPanel = document.getElementById("androidWaitlistPanel");
     const termsPanel = document.getElementById("termsPanel");
     const waitlistClose = document.getElementById("waitlistClose");
+    const androidWaitlistClose = document.getElementById("androidWaitlistClose");
     const termsClose = document.getElementById("termsClose");
     const rsvpSheetOverlay = document.getElementById("rsvpSheetOverlay");
+    const rsvpSubmitFrame = document.getElementById("rsvpSubmitFrame");
 
     const waitlistTitle = document.getElementById("waitlistTitle");
     const waitlistCopy = document.getElementById("waitlistCopy");
@@ -1761,6 +1848,16 @@
     const waitlistStepFour = document.getElementById("waitlistStepFour");
     const openMaggioLink = document.getElementById("openMaggioLink");
     const downloadMaggioLink = document.getElementById("downloadMaggioLink");
+    const androidUsersButton = document.getElementById("androidUsersButton");
+    const androidWaitlistTitle = document.getElementById("androidWaitlistTitle");
+    const androidWaitlistCopyBeforeLink = document.getElementById("androidWaitlistCopyBeforeLink");
+    const androidTermsLink = document.getElementById("androidTermsLink");
+    const androidWaitlistCopyAfterLink = document.getElementById("androidWaitlistCopyAfterLink");
+    const androidWaitlistForm = document.getElementById("androidWaitlistForm");
+    const androidNameInput = androidWaitlistForm.querySelector('input[type="text"]');
+    const androidPhoneInput = androidWaitlistForm.querySelector('input[type="tel"]');
+    const androidWaitlistSubmit = androidWaitlistForm.querySelector(".rsvp-submit");
+    const androidWaitlistFeedback = document.getElementById("androidWaitlistFeedback");
     const termsTitle = termsPanel.querySelector(".rsvp-title");
     const termsCopy = termsPanel.querySelector(".rsvp-copy");
     const termsSectionTitles = termsPanel.querySelectorAll(".sheet-section-title");
@@ -1804,7 +1901,20 @@
         waitlistStepFour: "Du kommer få uppdateringar om din plats i appen.",
         openMaggio: "Öppna Maggio",
         downloadMaggio: "Hämta Maggio",
+        androidUsers: "Android-användare",
         waitlistClose: "Stäng",
+        androidWaitlistTitle: "Du är på standby!",
+        androidWaitlistCopyBeforeLink: "Evenemanget är tyvärr fullbokat. Fyll i dina uppgifter nedan för att skriva upp dig på väntelistan (",
+        androidWaitlistCopyLink: "villkor",
+        androidWaitlistCopyAfterLink: ").",
+        androidNamePlaceholder: "Fullt namn",
+        androidPhonePlaceholder: "Mobil",
+        androidWaitlistSubmit: "Skicka",
+        androidWaitlistSubmitting: "Skickar...",
+        androidWaitlistSuccess: "Tack! Du står nu på väntelistan.",
+        androidWaitlistError: "Något gick fel. Försök igen.",
+        androidWaitlistConfigError: "Anmälan är inte konfigurerad ännu.",
+        androidWaitlistClose: "Stäng",
         termsTitle: "Villkor och frågor",
         termsCopy: "Kort information för crew på ARN-basen inför anmälan och deltagande.",
         termsSectionTitles: ["Återförsäljning och väntelista", "Anmälan", "Genomförande", "Ordning och trivsel", "Vanliga frågor"],
@@ -1877,7 +1987,20 @@
         waitlistStepFour: "You will receive updates about your place in the app.",
         openMaggio: "Open Maggio",
         downloadMaggio: "Download Maggio",
+        androidUsers: "Android users",
         waitlistClose: "Close",
+        androidWaitlistTitle: "You're on standby!",
+        androidWaitlistCopyBeforeLink: "The event is currently full. Fill in your details below to join the waitlist for resale tickets (",
+        androidWaitlistCopyLink: "terms",
+        androidWaitlistCopyAfterLink: ").",
+        androidNamePlaceholder: "Full name",
+        androidPhonePlaceholder: "Mobile number",
+        androidWaitlistSubmit: "Join waitlist",
+        androidWaitlistSubmitting: "Sending...",
+        androidWaitlistSuccess: "Thank you! You have joined the waitlist.",
+        androidWaitlistError: "Something went wrong. Please try again.",
+        androidWaitlistConfigError: "The waitlist form is not configured yet.",
+        androidWaitlistClose: "Close",
         termsTitle: "Terms and FAQ",
         termsCopy: "Short practical information for ARN-base crew before registering and attending.",
         termsSectionTitles: ["Resale and waitlist", "Registration", "Operations", "On-board conduct", "Frequently asked questions"],
@@ -1975,7 +2098,16 @@
       waitlistStepFour.textContent = t.waitlistStepFour;
       openMaggioLink.textContent = t.openMaggio;
       downloadMaggioLink.textContent = t.downloadMaggio;
+      androidUsersButton.textContent = t.androidUsers;
       waitlistClose.textContent = t.waitlistClose;
+      androidWaitlistTitle.textContent = t.androidWaitlistTitle;
+      androidWaitlistCopyBeforeLink.textContent = t.androidWaitlistCopyBeforeLink;
+      androidTermsLink.textContent = t.androidWaitlistCopyLink;
+      androidWaitlistCopyAfterLink.textContent = t.androidWaitlistCopyAfterLink;
+      androidNameInput.placeholder = t.androidNamePlaceholder;
+      androidPhoneInput.placeholder = t.androidPhonePlaceholder;
+      androidWaitlistSubmit.textContent = t.androidWaitlistSubmit;
+      androidWaitlistClose.textContent = t.androidWaitlistClose;
       termsTitle.textContent = t.termsTitle;
       if (termsCopy) termsCopy.textContent = t.termsCopy;
       termsSectionTitles[0].textContent = t.termsSectionTitles[0];
@@ -2065,16 +2197,61 @@
 
     function hideAllRsvpPanels() {
       waitlistPanel.classList.remove("is-visible");
+      androidWaitlistPanel.classList.remove("is-visible");
       termsPanel.classList.remove("is-visible");
       rsvpSheetOverlay.classList.remove("is-visible");
       document.body.style.overflow = "";
+      androidWaitlistFeedback.classList.remove("is-visible");
+      androidWaitlistFeedback.textContent = "";
     }
 
     function showPanel(panel) {
       hideAllRsvpPanels();
+      if (panel === androidWaitlistPanel) {
+        androidWaitlistSubmit.style.display = "";
+        androidWaitlistSubmit.disabled = false;
+      }
       panel.classList.add("is-visible");
       rsvpSheetOverlay.classList.add("is-visible");
       document.body.style.overflow = "hidden";
+    }
+
+    function submitRsvp(payload) {
+      return new Promise((resolve, reject) => {
+        const form = document.createElement("form");
+        const timeoutId = window.setTimeout(() => {
+          cleanup();
+          reject(new Error("RSVP submission timed out."));
+        }, 10000);
+
+        function cleanup() {
+          window.clearTimeout(timeoutId);
+          rsvpSubmitFrame.removeEventListener("load", handleLoad);
+          form.remove();
+        }
+
+        function handleLoad() {
+          cleanup();
+          resolve();
+        }
+
+        form.method = "POST";
+        form.action = RSVP_ENDPOINT;
+        form.target = "rsvpSubmitFrame";
+        form.style.display = "none";
+
+        Object.entries(payload).forEach(([key, value]) => {
+          const input = document.createElement("input");
+          input.type = "hidden";
+          input.name = key;
+          input.value = value;
+          form.appendChild(input);
+        });
+
+        rsvpSubmitFrame.addEventListener("load", handleLoad, { once: true });
+        document.body.appendChild(form);
+        form.submit();
+      });
     }
 
     function resetLockedScrollPosition() {
@@ -2134,6 +2311,24 @@
         });
       }
 
+      if (androidUsersButton) {
+        androidUsersButton.addEventListener("click", () => {
+          showPanel(androidWaitlistPanel);
+        });
+      }
+
+      if (androidTermsLink) {
+        androidTermsLink.addEventListener("click", () => {
+          showPanel(termsPanel);
+        });
+      }
+
+      if (androidWaitlistClose) {
+        androidWaitlistClose.addEventListener("click", () => {
+          hideAllRsvpPanels();
+        });
+      }
+
       if (termsClose) {
         termsClose.addEventListener("click", () => {
           hideAllRsvpPanels();
@@ -2151,6 +2346,46 @@
           hideAllRsvpPanels();
         }
       });
+
+      if (androidWaitlistForm) {
+        androidWaitlistForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const t = translations[currentLanguage];
+          const fullName = androidNameInput.value.trim();
+          const phoneNumber = androidPhoneInput.value.trim();
+
+          if (!RSVP_ENDPOINT) {
+            alert(t.androidWaitlistConfigError);
+            return;
+          }
+
+          if (!fullName || !phoneNumber) {
+            alert(t.androidWaitlistError);
+            return;
+          }
+
+          androidWaitlistSubmit.disabled = true;
+          androidWaitlistSubmit.textContent = t.androidWaitlistSubmitting;
+
+          submitRsvp({
+            fullName,
+            phoneNumber,
+            rsvp: "yes"
+          }).then(() => {
+            androidWaitlistSubmit.style.display = "none";
+            androidWaitlistFeedback.textContent = t.androidWaitlistSuccess;
+            androidWaitlistFeedback.classList.add("is-visible");
+            window.setTimeout(() => {
+              hideAllRsvpPanels();
+            }, 10000);
+          }).catch(() => {
+            alert(t.androidWaitlistError);
+          }).finally(() => {
+            androidWaitlistSubmit.disabled = false;
+            androidWaitlistSubmit.textContent = t.androidWaitlistSubmit;
+          });
+        });
+      }
 
       setLanguage(detectInitialLanguage());
     }
