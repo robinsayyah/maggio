@@ -1396,9 +1396,7 @@ body { background-image:none; }
             <div class="rsvp-header">
               <h3 class="rsvp-title" id="androidRegistrationTitle">Välj vilka event du vill delta i</h3>
               <p class="rsvp-copy" id="androidRegistrationCopy">
-                <span id="androidRegistrationCopyBeforeLink">Välj ett eller flera event och fyll sedan i dina uppgifter (</span>
-                <button class="inline-sheet-link" id="androidTermsLink" type="button">villkor</button>
-                <span id="androidRegistrationCopyAfterLink">).</span>
+                <span id="androidRegistrationCopyBeforeLink">Välj ett eller flera event och fyll sedan i dina uppgifter (</span><button class="inline-sheet-link" id="androidTermsLink" type="button">villkor</button><span id="androidRegistrationCopyAfterLink">).</span>
               </p>
             </div>
 
@@ -1433,9 +1431,9 @@ body { background-image:none; }
               </div>
             </form>
 
-            <section class="payment-step" id="paymentStep" inert aria-labelledby="paymentTitle">
-              <h3 id="paymentTitle" tabindex="-1">Säkra din biljett</h3>
-              <p id="paymentCopy">Betala 400 kr för att säkra din biljett.</p>
+            <section class="payment-step" id="paymentStep" inert aria-labelledby="paymentCopy">
+              <p id="paymentCopy" tabindex="-1">Betala 400 kr för att säkra din biljett. Skriv anställningsnummer och namn som meddelande.</p>
+              <div class="payment-number">076-834 72 79</div>
               <button class="button button-primary swish-open" type="button" id="openSwish">
                 <span id="openSwishLabel">Öppna Swish</span>
                 <img src="images/swishLogo.png" alt="" aria-hidden="true" />
@@ -1873,8 +1871,7 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
       document.getElementById("phoneCountryHint").textContent = currentLanguage === "sv" ? "Ange landskod om du har ett utländskt nummer." : "Include your country code if your number is not Swedish.";
       androidRegistrationSubmit.textContent = currentLanguage === "sv" ? "Fortsätt" : "Continue";
       androidRegistrationClose.setAttribute("aria-label", t.androidRegistrationClose);
-      document.getElementById("paymentTitle").textContent = currentLanguage === "sv" ? "Säkra din biljett" : "Secure your ticket";
-      document.getElementById("paymentCopy").textContent = currentLanguage === "sv" ? "Betala 400 kr för att säkra din biljett. Knappen fyller i mottagare, belopp och ditt anställningsnummer och namn." : "Pay 400 SEK to secure your ticket. The button prefills the recipient, amount, and your employee number and name.";
+      document.getElementById("paymentCopy").textContent = currentLanguage === "sv" ? "Betala 400 kr för att säkra din biljett. Skriv anställningsnummer och namn som meddelande." : "Pay 400 SEK to secure your ticket. Enter your employee number and name as the message.";
       document.getElementById("paymentInstruction").textContent = currentLanguage === "sv" ? "Efter betalningen, återvänd hit och tryck nedan för att slutföra din anmälan." : "Once you’ve paid, return here and tap below to complete your registration.";
       document.getElementById("paymentConfirm").textContent = currentLanguage === "sv" ? "Jag har swishat – Anmäl!" : "I’ve paid — Register";
       document.getElementById("paymentBack").textContent = currentLanguage === "sv" ? "Tillbaka till dina uppgifter" : "Back to your details";
@@ -2166,14 +2163,8 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
       });
 
       document.getElementById("openSwish").addEventListener("click", () => {
-        // Swish HTTPS payment link; national recipient format, explicit SEK currency.
-        const swishUrl = new URL("https://app.swish.nu/1/p/sw/");
-        swishUrl.searchParams.set("sw", "0768347279");
-        swishUrl.searchParams.set("amt", "400");
-        swishUrl.searchParams.set("cur", "SEK");
-        swishUrl.searchParams.set("msg", getSwishMessage());
-        // Launch only on a click; returning does not confirm payment.
-        window.location.href = swishUrl.href;
+        // Open Swish without passing any payment information.
+        window.location.href = "https://app.swish.nu/";
       });
       document.getElementById("paymentConfirm").addEventListener("click", () => {
         if (!isAndroidRegistrationSubmitting) androidRegistrationForm.requestSubmit();
@@ -2231,7 +2222,7 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
           if (registrationStep === "details") {
             registrationStep = "payment";
             setRegistrationState("payment");
-            document.getElementById("paymentTitle").focus({ preventScroll: true });
+            document.getElementById("paymentCopy").focus({ preventScroll: true });
             return;
           }
           isAndroidRegistrationSubmitting = true;
