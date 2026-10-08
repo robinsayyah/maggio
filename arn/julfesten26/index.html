@@ -2,6 +2,7 @@
 <html lang="sv">
 <head>
   <meta charset="UTF-8" />
+  <meta name="format-detection" content="telephone=no" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#590909" />
   <meta property="og:title" content="ARN Crew Julfesten" />
@@ -1214,11 +1215,16 @@ body { background-image:none; }
 #paymentCopy { text-align: left; width: 100%; max-width: none; }
 
 /* Swish handoff; keep manual payment details available on other devices. */
-#androidRegistrationPanel .swish-open { display: inline-flex; align-items: center; justify-content: center; line-height: 1; width: auto; max-width: 100%; align-self: center; gap: 14px; }
-.swish-open img { display: block; flex-shrink: 0; width: 76px; height: 28px; object-fit: contain; }
+#androidRegistrationPanel .swish-open { display: inline-flex; align-items: center; justify-content: center; line-height: 1; width: auto; max-width: 100%; align-self: center; min-width: 0; padding: 0 18px; gap: 10px; }
+.swish-open img { display: block; flex-shrink: 0; width: auto; max-width: 76px; height: 28px; object-fit: contain; }
 .swish-fallback { width: 100%; font-size: .85rem; line-height: 1.45; text-align: left; }
 .swish-fallback summary { cursor: pointer; }
 #androidRegistrationPanel .swish-fallback p { max-width: none; margin-top: 8px; overflow-wrap: anywhere; }
+.payment-number-copy { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+button.payment-number { color: #fff; -webkit-text-fill-color: #fff; appearance: none; background: transparent; border: 0; font-family: inherit; padding: 8px; min-height: 44px; cursor: pointer; }
+button.payment-number:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; border-radius: 8px; }
+#copySwishStatus { font-size: .8rem; opacity: .8; }
+#copySwishNumber a, #copySwishNumber a[x-apple-data-detectors] { color: #fff !important; -webkit-text-fill-color: #fff; text-decoration: none !important; }
 </style>
 </head>
 <body>
@@ -1432,8 +1438,11 @@ body { background-image:none; }
             </form>
 
             <section class="payment-step" id="paymentStep" inert aria-labelledby="paymentCopy">
-              <p id="paymentCopy" tabindex="-1">Betala 400 kr för att säkra din biljett. Skriv anställningsnummer och namn som meddelande.</p>
-              <div class="payment-number">076-834 72 79</div>
+              <p id="paymentCopy" tabindex="-1">Betala 400 kr till 076-834 72 79 för att säkra din biljett. Skriv anställningsnummer och namn som meddelande.</p>
+              <div class="payment-number-copy">
+                <button class="payment-number" id="copySwishNumber" type="button" aria-describedby="copySwishStatus">076-834 72 79</button>
+                <small id="copySwishStatus" role="status" aria-live="polite">Tryck för att kopiera</small>
+              </div>
               <button class="button button-primary swish-open" type="button" id="openSwish">
                 <span id="openSwishLabel">Öppna Swish</span>
                 <img src="images/swishLogo.png" alt="" aria-hidden="true" />
@@ -1871,13 +1880,15 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
       document.getElementById("phoneCountryHint").textContent = currentLanguage === "sv" ? "Ange landskod om du har ett utländskt nummer." : "Include your country code if your number is not Swedish.";
       androidRegistrationSubmit.textContent = currentLanguage === "sv" ? "Fortsätt" : "Continue";
       androidRegistrationClose.setAttribute("aria-label", t.androidRegistrationClose);
-      document.getElementById("paymentCopy").textContent = currentLanguage === "sv" ? "Betala 400 kr för att säkra din biljett. Skriv anställningsnummer och namn som meddelande." : "Pay 400 SEK to secure your ticket. Enter your employee number and name as the message.";
+      document.getElementById("paymentCopy").textContent = currentLanguage === "sv" ? "Betala 400 kr till 076-834 72 79 för att säkra din biljett. Skriv anställningsnummer och namn som meddelande." : "Pay 400 SEK to 076-834 72 79 to secure your ticket. Enter your employee number and name as the message.";
       document.getElementById("paymentInstruction").textContent = currentLanguage === "sv" ? "Efter betalningen, återvänd hit och tryck nedan för att slutföra din anmälan." : "Once you’ve paid, return here and tap below to complete your registration.";
       document.getElementById("paymentConfirm").textContent = currentLanguage === "sv" ? "Jag har swishat – Anmäl!" : "I’ve paid — Register";
       document.getElementById("paymentBack").textContent = currentLanguage === "sv" ? "Tillbaka till dina uppgifter" : "Back to your details";
       document.getElementById("openSwishLabel").textContent = currentLanguage === "sv" ? "Öppna Swish" : "Open Swish";
       document.getElementById("swishFallbackLabel").textContent = currentLanguage === "sv" ? "Kan du inte öppna Swish?" : "Can’t open Swish?";
       document.getElementById("swishFallbackCopy").textContent = currentLanguage === "sv" ? "Öppna Swish manuellt och betala 400 kr till 076-834 72 79. Använd meddelandet nedan." : "Open Swish manually and pay 400 SEK to 076-834 72 79. Use the message below.";
+      document.getElementById("copySwishStatus").textContent = currentLanguage === "sv" ? "Tryck för att kopiera" : "Tap to copy";
+      document.getElementById("copySwishNumber").setAttribute("aria-label", currentLanguage === "sv" ? "Kopiera Swish-numret 076-834 72 79" : "Copy Swish number 076-834 72 79");
       termsTitle.textContent = t.termsTitle;
       if (termsCopy) termsCopy.textContent = t.termsCopy;
       termsSectionTitles[0].textContent = t.termsSectionTitles[0];
@@ -2162,6 +2173,36 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
         }
       });
 
+      let copyNumberTimer;
+      document.getElementById("copySwishNumber").addEventListener("click", async () => {
+        const status = document.getElementById("copySwishStatus");
+        clearTimeout(copyNumberTimer);
+        let copied = false;
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText("0768347279");
+            copied = true;
+          }
+        } catch (_) { /* Try the compatibility fallback below. */ }
+        if (!copied) {
+          const field = document.createElement("textarea");
+          field.value = "0768347279";
+          field.readOnly = true;
+          field.style.cssText = "position:fixed;top:0;left:0;opacity:0;font-size:16px;";
+          document.body.appendChild(field);
+          field.select();
+          field.setSelectionRange(0, field.value.length);
+          try { copied = document.execCommand("copy"); } catch (_) {}
+          field.remove();
+          document.getElementById("copySwishNumber").focus({ preventScroll: true });
+        }
+        status.textContent = copied
+          ? (currentLanguage === "sv" ? "Kopierat!" : "Copied!")
+          : (currentLanguage === "sv" ? "Kunde inte kopiera. Kopiera numret manuellt." : "Couldn’t copy. Copy the number manually.");
+        copyNumberTimer = setTimeout(() => {
+          status.textContent = currentLanguage === "sv" ? "Tryck för att kopiera" : "Tap to copy";
+        }, 3000);
+      });
       document.getElementById("openSwish").addEventListener("click", () => {
         // Open Swish without passing any payment information.
         window.location.href = "https://app.swish.nu/";
