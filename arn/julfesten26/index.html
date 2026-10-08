@@ -353,7 +353,9 @@
       border: none;
       cursor: pointer;
       border-radius: 999px;
+      height: 52px;
       min-height: 52px;
+      flex-shrink: 0;
       padding: 0 22px;
       font-size: 1rem;
       font-weight: 600;
@@ -939,16 +941,6 @@
 
     .rsvp-submit {
       width: 100%;
-      min-width: 120px;
-      height: 54px;
-      border: none;
-      border-radius: 16px;
-      background: linear-gradient(180deg, #5b2032, #35121f);
-      color: #fff;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      padding: 0 24px;
     }
 
     .rsvp-submit:disabled {
@@ -1150,9 +1142,83 @@ body { background-image:none; }
 .lock-submit { background:#f0f0f2; color:#101012; }
 .lock-submit:disabled { opacity:.6; }
 #codeError { color:#ffadb7; margin:10px 0; font-size:14px; }
-.rsvp-submit,.waitlist-action-primary { background:#17181b; }
+.waitlist-action-primary { background:#17181b; }
 #waitlistPanel,#eventSelection,#summerWaitlistWarning { display:none!important; }
 
+/* Registration popup: slightly brighter red than the page background. */
+#androidRegistrationPanel, #termsPanel {
+  background: #741313;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+#androidRegistrationPanel .rsvp-title,
+#androidRegistrationPanel .rsvp-copy,
+#androidRegistrationPanel .rsvp-back,
+#androidRegistrationPanel .payment-back {
+  color: #fff;
+}
+:is(#androidRegistrationPanel, #termsPanel) .sheet-handle {
+  background: rgba(255, 255, 255, 0.35);
+}
+/* Keep the fields light without picking up the red beneath them. */
+#androidRegistrationPanel .rsvp-input {
+  background: #fcfcfc;
+  color: #111827;
+}
+
+/* Only the visible registration step contributes to the popup height. */
+#registrationStage .payment-step,
+#registrationStage .registration-status {
+  display: none;
+}
+#registrationStage.is-payment .payment-step,
+#registrationStage.is-busy .registration-status,
+#registrationStage.is-complete .registration-status {
+  display: flex;
+}
+#registrationStage.is-payment .rsvp-form,
+#registrationStage.is-busy .rsvp-form,
+#registrationStage.is-complete .rsvp-form {
+  display: none;
+}
+#androidRegistrationPanel .rsvp-header { margin-bottom: 14px; }
+#androidRegistrationPanel .rsvp-form { gap: 12px; }
+#androidRegistrationPanel .rsvp-action { margin-top: 4px; }
+#androidRegistrationPanel .payment-step { gap: 14px; padding: 12px 4px; }
+#androidRegistrationPanel .rsvp-back { margin-top: 14px; }
+
+:is(#androidRegistrationPanel, #termsPanel) .registration-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+:is(#androidRegistrationPanel, #termsPanel) .registration-close:hover { background: rgba(255,255,255,.1); }
+:is(#androidRegistrationPanel, #termsPanel) .registration-close:focus-visible { outline: 2px solid #fff; outline-offset: -4px; }
+:is(#androidRegistrationPanel, #termsPanel) .registration-close:disabled { opacity: .48; cursor: not-allowed; }
+:is(#androidRegistrationPanel, #termsPanel) .rsvp-title { padding-right: 30px; }
+#termsPanel .rsvp-title, #termsPanel .sheet-section-title,
+#termsPanel .sheet-list, #termsPanel .faq-question, #termsPanel .faq-answer { color: #fff; }
+#termsPanel .sheet-section { border-color: rgba(255,255,255,.18); }
+#termsPanel .faq-item { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); box-shadow: none; }
+#paymentCopy { text-align: left; width: 100%; max-width: none; }
+
+/* Swish handoff; keep manual payment details available on other devices. */
+#androidRegistrationPanel .swish-open { width: auto; max-width: 100%; align-self: center; gap: 14px; }
+.swish-open img { width: 76px; height: 28px; object-fit: contain; }
+.swish-fallback { width: 100%; font-size: .85rem; line-height: 1.45; text-align: left; }
+.swish-fallback summary { cursor: pointer; }
+#androidRegistrationPanel .swish-fallback p { max-width: none; margin-top: 8px; overflow-wrap: anywhere; }
 </style>
 </head>
 <body>
@@ -1323,6 +1389,9 @@ body { background-image:none; }
           </div>
 
           <div class="rsvp-panel" id="androidRegistrationPanel">
+            <button class="registration-close" type="button" id="androidRegistrationClose" aria-label="Stäng">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" /></svg>
+            </button>
             <div class="sheet-handle"></div>
             <div class="rsvp-header">
               <h3 class="rsvp-title" id="androidRegistrationTitle">Välj vilka event du vill delta i</h3>
@@ -1354,22 +1423,30 @@ body { background-image:none; }
               <input class="rsvp-input" type="text" aria-label="Fullt namn / Full name" autocomplete="name" autocapitalize="words" placeholder="Fullt namn" required maxlength="120" />
               <input class="rsvp-input" type="tel" aria-label="Mobilnummer / Mobile number" autocomplete="tel" inputmode="tel" aria-describedby="phoneCountryHint" placeholder="Mobil" required maxlength="40" />
 
-              <small id="phoneCountryHint">Inkludera landskod, t.ex. +46 70 123 45 67.</small>
+              <small id="phoneCountryHint">Ange landskod om du har ett utländskt nummer.</small>
               <div class="rsvp-submit-section">
                 <p class="summer-waitlist-warning" id="summerWaitlistWarning" aria-hidden="true">Julfesten är fullbokad. Du placeras på väntelistan om du inte redan har en biljett.</p>
 
                 <div class="rsvp-action">
-                  <button class="rsvp-submit" type="submit" disabled>Skicka</button>
+                  <button class="rsvp-submit button button-primary" type="submit" disabled>Skicka</button>
                 </div>
               </div>
             </form>
 
             <section class="payment-step" id="paymentStep" inert aria-labelledby="paymentTitle">
               <h3 id="paymentTitle" tabindex="-1">Säkra din biljett</h3>
-              <p id="paymentCopy">Swisha 400 kr till numret nedan för att säkra din biljett.</p>
-              <div class="payment-number">076-834 72 79</div>
-              <p id="paymentInstruction">När du har swishat, tryck nedan för att slutföra din anmälan.</p>
-              <button class="rsvp-submit" type="button" id="paymentConfirm">Jag har swishat – Anmäl!</button>
+              <p id="paymentCopy">Betala 400 för att säkra din biljett.</p>
+              <button class="button button-primary swish-open" type="button" id="openSwish">
+                <span id="openSwishLabel">Öppna Swish</span>
+                <img src="images/swishLogo.png" alt="" aria-hidden="true" />
+              </button>
+              <details class="swish-fallback">
+                <summary id="swishFallbackLabel">Kan du inte öppna Swish?</summary>
+                <p id="swishFallbackCopy">Öppna Swish manuellt och betala 400 kr till 076-834 72 79.</p>
+                <p id="swishMessagePreview"></p>
+              </details>
+              <p id="paymentInstruction">Efter betalningen, återvänd hit och tryck nedan för att slutföra din anmälan.</p>
+              <button class="rsvp-submit button button-primary" type="button" id="paymentConfirm">Jag har swishat – Anmäl!</button>
               <button class="payment-back" type="button" id="paymentBack">Tillbaka till dina uppgifter</button>
             </section>
             <div class="registration-status" role="status" aria-live="polite" aria-atomic="true">
@@ -1378,10 +1455,13 @@ body { background-image:none; }
               <p id="androidRegistrationFeedback"></p>
             </div>
             </div>
-            <button class="rsvp-back" type="button" id="androidRegistrationClose">Stäng</button>
+
           </div>
 
           <div class="rsvp-panel" id="termsPanel">
+            <button class="registration-close" type="button" id="termsClose" aria-label="Stäng">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" /></svg>
+            </button>
             <div class="sheet-handle"></div>
             <div class="rsvp-header">
               <h3 class="rsvp-title">Villkor och frågor</h3>
@@ -1454,7 +1534,7 @@ body { background-image:none; }
               </div>
             </div>
 
-            <button class="rsvp-back" type="button" id="termsClose">Stäng</button>
+
           </div>
   <div class="rsvp-sheet-overlay" id="rsvpSheetOverlay"></div>
 
@@ -1789,15 +1869,18 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
       summerWaitlistWarning.textContent = t.summerWaitlistWarning;
       androidNameInput.placeholder = t.androidNamePlaceholder;
       employeeNumberInput.placeholder = currentLanguage === "sv" ? "Anställningsnummer" : "Employee number";
-      androidPhoneInput.placeholder = "+46 70 123 45 67";
-      document.getElementById("phoneCountryHint").textContent = currentLanguage === "sv" ? "Inkludera landskod, t.ex. +46 70 123 45 67." : "Include your country code, e.g. +46 70 123 45 67.";
+      androidPhoneInput.placeholder = t.androidPhonePlaceholder;
+      document.getElementById("phoneCountryHint").textContent = currentLanguage === "sv" ? "Ange landskod om du har ett utländskt nummer." : "Include your country code if your number is not Swedish.";
       androidRegistrationSubmit.textContent = currentLanguage === "sv" ? "Fortsätt" : "Continue";
-      androidRegistrationClose.textContent = t.androidRegistrationClose;
+      androidRegistrationClose.setAttribute("aria-label", t.androidRegistrationClose);
       document.getElementById("paymentTitle").textContent = currentLanguage === "sv" ? "Säkra din biljett" : "Secure your ticket";
-      document.getElementById("paymentCopy").textContent = currentLanguage === "sv" ? "Swisha 400 kr till numret nedan för att säkra din biljett. Skriv namn och anställningsnummer i meddelandet." : "Swish 400 SEK to the number below to secure your ticket. Write your name and employee number in the message.";
-      document.getElementById("paymentInstruction").textContent = currentLanguage === "sv" ? "När du har swishat, tryck nedan för att slutföra din anmälan." : "Once you’ve paid, tap below to complete your registration.";
+      document.getElementById("paymentCopy").textContent = currentLanguage === "sv" ? "Betala 400 för att säkra din biljett. Knappen fyller i mottagare, belopp och ditt anställningsnummer och namn." : "Pay 400 to secure your ticket. The button prefills the recipient, amount, and your employee number and name.";
+      document.getElementById("paymentInstruction").textContent = currentLanguage === "sv" ? "Efter betalningen, återvänd hit och tryck nedan för att slutföra din anmälan." : "Once you’ve paid, return here and tap below to complete your registration.";
       document.getElementById("paymentConfirm").textContent = currentLanguage === "sv" ? "Jag har swishat – Anmäl!" : "I’ve paid — Register";
       document.getElementById("paymentBack").textContent = currentLanguage === "sv" ? "Tillbaka till dina uppgifter" : "Back to your details";
+      document.getElementById("openSwishLabel").textContent = currentLanguage === "sv" ? "Öppna Swish" : "Open Swish";
+      document.getElementById("swishFallbackLabel").textContent = currentLanguage === "sv" ? "Kan du inte öppna Swish?" : "Can’t open Swish?";
+      document.getElementById("swishFallbackCopy").textContent = currentLanguage === "sv" ? "Öppna Swish manuellt och betala 400 kr till 076-834 72 79. Använd meddelandet nedan." : "Open Swish manually and pay 400 SEK to 076-834 72 79. Use the message below.";
       termsTitle.textContent = t.termsTitle;
       if (termsCopy) termsCopy.textContent = t.termsCopy;
       termsSectionTitles[0].textContent = t.termsSectionTitles[0];
@@ -1810,7 +1893,7 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
       termsLists[2].innerHTML = buildListMarkup(t.termsSectionItems[2]);
       termsLists[3].innerHTML = buildListMarkup(t.termsSectionItems[3]);
       faqList.innerHTML = buildFaqMarkup(t.faqItems);
-      termsClose.textContent = t.termsClose;
+      termsClose.setAttribute("aria-label", t.termsClose);
       langSvButton.classList.toggle("is-active", currentLanguage === "sv");
       langEnButton.classList.toggle("is-active", currentLanguage === "en");
 
@@ -1894,9 +1977,16 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
       document.body.style.overflow = "hidden";
     }
 
+    function getSwishMessage() {
+      // Swish payment messages support up to 50 characters.
+      return Array.from(employeeNumberInput.value.trim() + " - " + androidNameInput.value.trim()).slice(0, 50).join("");
+    }
+
     function setRegistrationState(state) {
+      if (state === "payment") document.getElementById("swishMessagePreview").textContent = getSwishMessage();
       const stage = document.getElementById("registrationStage");
       stage.classList.toggle("is-payment", state === "payment");
+      document.getElementById("androidRegistrationCopy").hidden = state !== "idle";
       document.getElementById("paymentStep").inert = state !== "payment";
       stage.classList.toggle("is-busy", state === "sending");
       stage.classList.toggle("is-complete", state === "success");
@@ -2075,6 +2165,16 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
         }
       });
 
+      document.getElementById("openSwish").addEventListener("click", () => {
+        const payment = {
+          version: 1,
+          payee: { value: "46768347279", editable: false },
+          amount: { value: 400, editable: false },
+          message: { value: getSwishMessage(), editable: true }
+        };
+        // A direct user gesture launches the installed app. No payment status is inferred.
+        window.location.href = "swish://payment?data=" + encodeURIComponent(JSON.stringify(payment));
+      });
       document.getElementById("paymentConfirm").addEventListener("click", () => {
         if (!isAndroidRegistrationSubmitting) androidRegistrationForm.requestSubmit();
       });
@@ -2100,7 +2200,11 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
           const t = translations[currentLanguage];
           const employeeNumber = employeeNumberInput.value.trim();
           const fullName = androidNameInput.value.trim();
-          const phoneNumber = androidPhoneInput.value.trim().replace(/[\s().-]/g, "");
+          const enteredPhoneNumber = androidPhoneInput.value.trim().replace(/[\s().-]/g, "");
+          // Keep the submitted number international while accepting Swedish local input.
+          const phoneNumber = enteredPhoneNumber.startsWith("0") && !enteredPhoneNumber.startsWith("00")
+            ? "+46" + enteredPhoneNumber.slice(1)
+            : enteredPhoneNumber;
           const selectedEventCodes = Array.from(selectedAndroidEventCodes).sort();
 
           if (!RSVP_ENDPOINT) {
@@ -2119,7 +2223,7 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
           }
 
           if (!/^\+[1-9][0-9]{6,14}$/.test(phoneNumber)) {
-            androidPhoneInput.setCustomValidity(currentLanguage === "sv" ? "Ange mobilnummer med landskod, t.ex. +46 70 123 45 67." : "Enter your mobile number with country code, e.g. +46 70 123 45 67.");
+            androidPhoneInput.setCustomValidity(currentLanguage === "sv" ? "Ange ett giltigt mobilnummer. Ange landskod om numret inte är svenskt." : "Enter a valid mobile number. Include the country code if it is not Swedish.");
             androidPhoneInput.reportValidity();
             return;
           }
