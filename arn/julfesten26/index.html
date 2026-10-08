@@ -1320,7 +1320,7 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
           <div class="group-card">
             <div class="group-card-header">
               <h3 class="group-title">Gäster</h3>
-              <div class="accepted-count">17 / 300</div>
+              <div class="accepted-count">21 / 300</div>
             </div>
             <div class="group-card-content">
               <div class="guest-list">
@@ -1453,7 +1453,7 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
                 <p id="swishMessagePreview"></p>
               </details>
               <p id="paymentInstruction">Efter betalningen, återvänd hit och tryck nedan för att slutföra din anmälan.</p>
-              <button class="rsvp-submit button button-primary" type="button" id="paymentConfirm">Jag har swishat – Anmäl!</button>
+              <button class="rsvp-submit button button-primary" type="button" id="paymentConfirm">Jag har swishat!</button>
               <button class="payment-back" type="button" id="paymentBack">Tillbaka till dina uppgifter</button>
             </section>
             <div class="registration-status" role="status" aria-live="polite" aria-atomic="true">
@@ -1640,7 +1640,7 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
         hostsTitle: "Värdar",
         hostsCaption: "",
         guestsTitle: "Gäster",
-        acceptedCount: "17 / 300",
+        acceptedCount: "21 / 300",
         guestStatus: "Kommer",
         lockTitle: "Ho ho ho!",
         lockCopy: "Ready for boarding? Ange koden för att gå vidare.",
@@ -1731,7 +1731,7 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
         hostsTitle: "Hosts",
         hostsCaption: "",
         guestsTitle: "Guests",
-        acceptedCount: "17 / 300",
+        acceptedCount: "21 / 300",
         guestStatus: "Attending",
         lockTitle: "Hello!",
         lockCopy: "Ready for boarding? Enter the code to view details and to secure your spot.",
@@ -1880,7 +1880,7 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
       androidRegistrationClose.setAttribute("aria-label", t.androidRegistrationClose);
       document.getElementById("paymentCopy").textContent = currentLanguage === "sv" ? "Betala 400 kr till 076-834 72 79 för att säkra din biljett. Skriv anställningsnummer och namn som meddelande." : "Pay 400 SEK to 076-834 72 79 to secure your ticket. Enter your employee number and name as the message.";
       document.getElementById("paymentInstruction").textContent = currentLanguage === "sv" ? "Efter betalningen, återvänd hit och tryck nedan för att slutföra din anmälan." : "Once you’ve paid, return here and tap below to complete your registration.";
-      document.getElementById("paymentConfirm").textContent = currentLanguage === "sv" ? "Jag har swishat – Anmäl!" : "I’ve paid — Register";
+      document.getElementById("paymentConfirm").textContent = currentLanguage === "sv" ? "Jag har swishat!" : "I’ve paid!";
       document.getElementById("paymentBack").textContent = currentLanguage === "sv" ? "Tillbaka till dina uppgifter" : "Back to your details";
       document.getElementById("openSwishLabel").textContent = currentLanguage === "sv" ? "Öppna Swish" : "Open Swish";
       document.getElementById("swishFallbackLabel").textContent = currentLanguage === "sv" ? "Kan du inte öppna Swish?" : "Can’t open Swish?";
