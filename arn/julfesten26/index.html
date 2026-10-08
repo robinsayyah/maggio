@@ -1,0 +1,2198 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#590909" />
+  <meta property="og:title" content="ARN Crew Julfesten" />
+  <meta property="og:description" content="Gästlista - ARN Crew Julfesten" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.maggio.club/arn/julfesten26/" />
+  <meta property="og:image" content="https://www.maggio.club/arn/julfesten26/images/boatParty.jpg" />
+  <meta property="og:image:width" content="1146" />
+  <meta property="og:image:height" content="728" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ARN Crew Julfesten" />
+  <meta name="twitter:description" content="Gästlista - ARN Crew Julfesten" />
+  <meta name="twitter:image" content="https://www.maggio.club/arn/julfesten26/images/boatParty.jpg" />
+  <title>ARN Crew Julfesten</title>
+  <style>
+    :root {
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.72);
+      --line: rgba(255, 255, 255, 0.12);
+      --card: rgba(255, 255, 255, 0.12);
+      --card-strong: rgba(255, 255, 255, 0.18);
+      --sheet-bg: rgba(250, 245, 235, 0.94);
+      --sheet-line: rgba(15, 23, 42, 0.08);
+      --button-text: #32121d;
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.32);
+      --shadow-soft: 0 18px 48px rgba(44, 12, 25, 0.2);
+      --radius-xl: 34px;
+      --radius-lg: 26px;
+      --radius-md: 20px;
+      --content-width: 1320px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
+      color: var(--text);
+      min-height: 100%;
+    }
+
+    html {
+      background-color: #19090f;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      position: relative;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.18), transparent 24%),
+        radial-gradient(circle at 80% 15%, rgba(255, 255, 255, 0.12), transparent 20%),
+        linear-gradient(180deg, rgba(24, 7, 15, 0.14), rgba(24, 7, 15, 0.68)),
+        url("images/dirtySanta.PNG") center center / cover no-repeat,
+        linear-gradient(180deg, #804256 0%, #682037 52%, #391323 78%, #180910 100%);
+      background-repeat: no-repeat;
+      background-size: auto, auto, auto, cover, 100% 200%;
+    }
+
+    body.lock-open {
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+    }
+
+    .page-bg {
+      display: none;
+    }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      width: min(calc(100% - 28px), var(--content-width));
+      margin: 0 auto;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .lock-open .shell {
+      align-items: flex-start;
+    }
+
+    .invite-layout {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 20px;
+      align-items: stretch;
+      position: relative;
+    }
+
+    .hero-panel {
+      position: relative;
+      min-height: 720px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)),
+        url("images/dirtySanta.PNG") center center / cover no-repeat;
+      isolation: isolate;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.16) 30%, rgba(44,12,25,0.06) 52%, rgba(44,12,25,0.86) 100%);
+      z-index: 0;
+    }
+
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.25), transparent 32%),
+        linear-gradient(180deg, transparent 35%, rgba(44, 12, 25, 0.12) 52%, rgba(44, 12, 25, 0.78) 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: absolute;
+      inset: auto 0 0 0;
+      z-index: 3;
+      padding: 44px 32px 30px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-header {
+      display: block;
+      width: 100%;
+    }
+
+    .hero-kicker {
+      display: inline-block;
+      margin: 0 0 12px;
+      font-size: 0.94rem;
+      letter-spacing: -0.01em;
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+      margin: 0;
+      text-wrap: balance;
+    }
+
+    .hero-language {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      z-index: 4;
+    }
+
+    .hero-copy {
+      display: none;
+    }
+
+    .hero-copy-text {
+      display: none;
+    }
+
+    .info-card {
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(82, 24, 43, 0.54), rgba(42, 12, 24, 0.78));
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(26px) saturate(1.15);
+      -webkit-backdrop-filter: blur(26px) saturate(1.15);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 720px;
+    }
+
+    .info-inner {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .group-card {
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      overflow: hidden;
+    }
+
+    .group-card-content {
+      padding: 20px;
+    }
+
+    .group-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 20px 0;
+    }
+
+    .group-title {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .section-caption {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    .welcome {
+      margin-bottom: 0;
+    }
+
+    .welcome h2 {
+      margin: 0 0 10px;
+      font-size: 2.2rem;
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+    }
+
+    .welcome p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .note {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .note p {
+      margin: 0;
+    }
+
+    .details {
+      display: grid;
+      gap: 0;
+      margin-bottom: 0;
+    }
+
+    .detail-row {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .detail-row:first-child {
+      padding-top: 0;
+    }
+
+    .detail-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .detail-label {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .detail-value {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.92);
+      line-height: 1.45;
+    }
+
+    .cta-wrap {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+
+    .inline-link {
+      appearance: none;
+      border: none;
+      background: transparent;
+      padding: 0;
+      margin-top: 14px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.92rem;
+      line-height: 1.4;
+      text-decoration: underline;
+      text-decoration-color: rgba(255, 255, 255, 0.28);
+      text-underline-offset: 0.18em;
+      cursor: pointer;
+    }
+
+    .language-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      color: rgba(255, 255, 255, 0.72);
+      flex: 0 0 52px;
+      justify-content: flex-end;
+      white-space: nowrap;
+    }
+
+    .language-button {
+      appearance: none;
+      border: none;
+      background: transparent;
+      padding: 0;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+      letter-spacing: -0.01em;
+    }
+
+    .language-button.is-active {
+      color: rgba(255, 255, 255, 0.96);
+      font-weight: 600;
+    }
+
+    .button {
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      min-height: 52px;
+      padding: 0 22px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: transform 0.18s ease, opacity 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(235, 212, 163, 0.94));
+      color: var(--button-text);
+      min-width: 160px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    }
+
+    .hosts-section {
+      margin-bottom: 0;
+    }
+
+    .hosts-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .hosts-list {
+      display: flex;
+      gap: 22px;
+    }
+
+    .host-person {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .host-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .host-name {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.88);
+      text-align: center;
+    }
+
+    .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.24);
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+    }
+
+    .guests-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .guests-header h3 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .accepted-count {
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 0.84rem;
+    }
+
+    .guest-list {
+      display: grid;
+      gap: 8px;
+      filter: blur(6px);
+      opacity: 0.65;
+      pointer-events: none;
+    }
+
+    .guest-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+    }
+
+    .guest-item .avatar {
+      width: 46px;
+      height: 46px;
+      box-shadow: none;
+    }
+
+    .guest-name {
+      font-size: 0.96rem;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .guest-status {
+      margin-left: auto;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      background: rgba(89, 255, 154, 0.12);
+      color: #d8ffe4;
+      border: 1px solid rgba(89, 255, 154, 0.14);
+    }
+
+    .lock-overlay {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 40;
+      background: rgba(8, 11, 26, 0.24);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .lock-card {
+      width: min(540px, 100%);
+      background: rgba(250, 245, 235, 0.86);
+      color: #111827;
+      border-radius: 30px;
+      padding: 18px 18px 18px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.48);
+      backdrop-filter: blur(30px) saturate(1.15);
+      -webkit-backdrop-filter: blur(30px) saturate(1.15);
+    }
+
+    .sheet-handle {
+      width: 42px;
+      height: 5px;
+      margin: 0 auto 18px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.16);
+    }
+
+    .sheet-eyebrow {
+      margin: 0 0 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: rgba(15, 23, 42, 0.52);
+    }
+
+    .lock-card h3 {
+      margin: 0 0 10px;
+      font-size: clamp(1.9rem, 3vw, 2.6rem);
+      letter-spacing: -0.05em;
+      font-weight: 700;
+    }
+
+    .lock-card p {
+      margin: 0 0 18px;
+      font-size: 1rem;
+      line-height: 1.45;
+      color: rgba(17, 24, 39, 0.78);
+    }
+
+    .lock-input {
+      width: 100%;
+      height: 56px;
+      border-radius: 16px;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      padding: 0 18px;
+      font-size: 1rem;
+      outline: none;
+      background: rgba(255, 255, 255, 0.82);
+      margin-bottom: 14px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .lock-input:focus,
+    .rsvp-input:focus {
+      border-color: rgba(30, 99, 236, 0.45);
+      box-shadow: 0 0 0 4px rgba(30, 99, 236, 0.12);
+    }
+
+    .lock-submit {
+      width: 100%;
+      height: 54px;
+      border-radius: 16px;
+      border: none;
+      background: linear-gradient(180deg, #5b2032, #35121f);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lock-open .lock-overlay {
+      display: flex;
+    }
+
+    .rsvp-sheet-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 10, 30, 0.36);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      z-index: 90;
+    }
+
+    .rsvp-sheet-overlay.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .rsvp-panel {
+      background: var(--sheet-bg);
+      color: #111827;
+      z-index: 100;
+      border: 1px solid rgba(255, 255, 255, 0.58);
+      backdrop-filter: blur(34px) saturate(1.08);
+      -webkit-backdrop-filter: blur(34px) saturate(1.08);
+    }
+
+    .rsvp-header {
+      margin-bottom: 18px;
+    }
+
+    .rsvp-title {
+      margin: 0;
+      font-size: clamp(1.9rem, 3vw, 2.4rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: #111827;
+    }
+
+    .rsvp-copy {
+      margin: 10px 0 0;
+      font-size: 1rem;
+      line-height: 1.45;
+      color: rgba(17, 24, 39, 0.72);
+    }
+
+    .inline-sheet-link {
+      appearance: none;
+      border: none;
+      background: transparent;
+      padding: 0;
+      color: inherit;
+      font: inherit;
+      text-decoration: underline;
+      text-underline-offset: 0.16em;
+      cursor: pointer;
+    }
+
+    .inline-emphasis {
+      font-weight: 700;
+    }
+
+    .rsvp-choices {
+      display: grid;
+      gap: 14px;
+    }
+
+    .rsvp-choice {
+      width: 100%;
+      min-height: 72px;
+      border: 1px solid var(--sheet-line);
+      background: rgba(255, 255, 255, 0.62);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      justify-content: space-between;
+      padding: 0 18px;
+      border-radius: 22px;
+      font-size: 1.12rem;
+      cursor: pointer;
+      color: #111827;
+      text-align: left;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .sheet-section {
+      padding: 16px 0;
+      border-top: 1px solid rgba(17, 24, 39, 0.08);
+    }
+
+    .sheet-section:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .sheet-section-title {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #111827;
+      letter-spacing: -0.02em;
+    }
+
+    .sheet-list {
+      margin: 0;
+      padding-left: 18px;
+      color: rgba(17, 24, 39, 0.76);
+      line-height: 1.5;
+      font-size: 0.98rem;
+    }
+
+    .sheet-list li + li {
+      margin-top: 8px;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq-item {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(17, 24, 39, 0.06);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    }
+
+    .faq-question,
+    .faq-answer {
+      margin: 0;
+      font-size: 0.98rem;
+      line-height: 1.5;
+      color: rgba(17, 24, 39, 0.8);
+    }
+
+    .faq-answer {
+      margin-top: 6px;
+    }
+
+    .choice-icon {
+      width: 34px;
+      height: 34px;
+      border: 1.5px solid rgba(17, 24, 39, 0.18);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.08rem;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .choice-text {
+      flex: 1;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .choice-chevron {
+      font-size: 1.2rem;
+      color: rgba(17, 24, 39, 0.38);
+    }
+
+    .maggio-app-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .maggio-app-icon {
+      width: 64px;
+      height: 64px;
+      flex: 0 0 64px;
+      border-radius: 17px;
+      box-shadow: 0 10px 26px rgba(8, 16, 51, 0.16);
+    }
+
+    .maggio-app-label {
+      margin: 0 0 5px;
+      color: rgba(17, 24, 39, 0.54);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .maggio-app-heading .rsvp-title {
+      font-size: clamp(1.65rem, 3vw, 2.15rem);
+    }
+
+    .waitlist-steps {
+      margin: 18px 0 0;
+      padding: 16px 16px 16px 38px;
+      border: 1px solid var(--sheet-line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.62);
+      color: rgba(17, 24, 39, 0.76);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .waitlist-steps li + li {
+      margin-top: 9px;
+    }
+
+    .waitlist-steps strong {
+      color: #111827;
+      font-weight: 650;
+    }
+
+    .waitlist-actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .waitlist-action {
+      appearance: none;
+      width: 100%;
+      min-height: 54px;
+      padding: 0 20px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .waitlist-action:hover {
+      transform: translateY(-1px);
+    }
+
+    .waitlist-action-primary {
+      background: linear-gradient(180deg, #5b2032, #35121f);
+      color: #fff;
+      box-shadow: 0 10px 22px rgba(8, 16, 51, 0.14);
+    }
+
+    .waitlist-action-secondary {
+      border: 1px solid var(--sheet-line);
+      background: rgba(255, 255, 255, 0.72);
+      color: #111827;
+    }
+
+
+    .registration-stage { display: grid; overflow: hidden; }
+    .payment-step { visibility: hidden; opacity: 0; transform: translateX(48px); transition: transform .3s ease, opacity .3s ease, visibility .3s; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 18px; text-align: center; padding: 20px 4px; }
+    .payment-step h3, .payment-step p { margin: 0; }
+    .payment-step p { line-height: 1.5; max-width: 32ch; }
+    .payment-number { font-size: 1.8rem; font-weight: 650; letter-spacing: .03em; color: inherit; text-decoration: none; }
+    .payment-step .rsvp-submit { width: 100%; }
+    .payment-back { border: 0; background: none; font: inherit; text-decoration: underline; cursor: pointer; padding: 8px; }
+    .registration-stage.is-payment .payment-step { visibility: visible; opacity: 1; transform: none; }
+    .registration-stage.is-payment .rsvp-form { opacity: 0; transform: translateX(-48px); pointer-events: none; }
+    @media (prefers-reduced-motion: reduce) { .payment-step { transition: none; transform: none; } }
+
+    .registration-stage > * { grid-area: 1 / 1; }
+    .registration-stage .rsvp-form { transition: opacity .24s ease, transform .24s ease; }
+    .registration-stage.is-busy .rsvp-form,
+    .registration-stage.is-complete .rsvp-form { opacity: 0; transform: translateY(-8px); pointer-events: none; }
+    .registration-status { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding: 32px 16px; text-align: center; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .28s ease .15s, transform .28s ease .15s; }
+    .registration-stage.is-busy .registration-status,
+    .registration-stage.is-complete .registration-status { opacity: 1; visibility: visible; transform: none; }
+    .registration-status p { margin: 0; max-width: 30ch; font-size: 1.05rem; line-height: 1.55; }
+    .registration-spinner { position: relative; width: 32px; height: 32px; }
+    .registration-spinner span { position: absolute; left: 14px; top: 1px; width: 4px; height: 9px; border-radius: 3px; background: currentColor; transform-origin: 2px 15px; transform: rotate(calc(var(--i) * 45deg)); animation: registration-spin .8s linear infinite; animation-delay: calc(var(--i) * .1s); opacity: .2; }
+    .registration-check { display: none; width: 40px; height: 40px; border: 1.5px solid currentColor; border-radius: 50%; align-items: center; justify-content: center; font-size: 23px; }
+    .is-complete .registration-spinner { display: none; }
+    .is-complete .registration-check { display: flex; animation: registration-appear .3s ease both; }
+    @keyframes registration-spin { 0% { opacity: 1; } 100% { opacity: .2; } }
+    @keyframes registration-appear { from { opacity: 0; transform: scale(.85); } to { opacity: 1; transform: scale(1); } }
+    @media (prefers-reduced-motion: reduce) {
+      .registration-stage .rsvp-form, .registration-status { transition: none; transform: none; }
+      .registration-spinner span, .registration-check { animation: none !important; }
+    }
+
+    .rsvp-form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .event-selection {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .event-choice {
+      transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+    }
+
+    .event-choice:hover {
+      transform: translateY(-1px);
+    }
+
+    .event-choice .choice-icon {
+      color: transparent;
+      transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .event-choice.is-selected {
+      border-color: rgba(17, 24, 39, 0.28);
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .event-choice.is-selected .choice-icon {
+      border-color: #111827;
+      background: #111827;
+      color: #fff;
+    }
+
+    .event-choice:disabled {
+      cursor: default;
+      opacity: 0.62;
+      transform: none;
+    }
+
+    .rsvp-input {
+      width: 100%;
+      height: 58px;
+      border-radius: 16px;
+      border: 1px solid var(--sheet-line);
+      background: rgba(255, 255, 255, 0.8);
+      padding: 0 18px;
+      font-size: 1rem;
+      outline: none;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.84);
+    }
+
+    .rsvp-action {
+      margin-top: 8px;
+      display: flex;
+      justify-content: stretch;
+    }
+
+    .rsvp-submit-section {
+      display: grid;
+    }
+
+    .summer-waitlist-warning {
+      max-height: 0;
+      margin: 0;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-6px);
+      color: #b42318;
+      font-size: 0.88rem;
+      font-weight: 600;
+      line-height: 1.45;
+      transition:
+        max-height 0.24s ease,
+        margin-bottom 0.24s ease,
+        opacity 0.18s ease,
+        transform 0.24s ease;
+    }
+
+    .summer-waitlist-warning.is-visible {
+      max-height: 4rem;
+      margin-bottom: 12px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .rsvp-submit {
+      width: 100%;
+      min-width: 120px;
+      height: 54px;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #5b2032, #35121f);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0 24px;
+    }
+
+    .rsvp-submit:disabled {
+      cursor: not-allowed;
+      opacity: 0.48;
+    }
+
+    .rsvp-back {
+      margin-top: 16px;
+      background: transparent;
+      border: none;
+      color: rgba(17,17,17,0.56);
+      font-size: 0.92rem;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .rsvp-feedback {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(17, 24, 39, 0.06);
+      color: rgba(17, 24, 39, 0.76);
+      font-size: 0.95rem;
+      line-height: 1.45;
+      display: none;
+    }
+
+    .rsvp-feedback.is-visible {
+      display: block;
+    }
+
+    @media (min-width: 721px) {
+      .rsvp-panel {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: min(560px, calc(100vw - 48px));
+        max-height: min(82vh, 760px);
+        overflow-y: auto;
+        padding: 18px 22px 22px;
+        border-radius: 30px;
+        box-shadow: 0 24px 70px rgba(0,0,0,0.22);
+        opacity: 0;
+        pointer-events: none;
+        transform: translate(-50%, -50%) scale(0.96);
+        transition:
+          opacity 0.22s ease,
+          transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .rsvp-panel.is-visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .invite-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-panel,
+      .info-card {
+        min-height: auto;
+      }
+
+      .hero-panel {
+        min-height: 580px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .shell {
+        width: min(calc(100% - 16px), var(--content-width));
+        padding: 10px 0 16px;
+        align-items: flex-start;
+      }
+
+      .hero-panel {
+        min-height: 500px;
+        border-radius: 28px;
+      }
+
+      .hero-content {
+        padding: 28px 20px 20px;
+      }
+
+      .hero-kicker {
+        font-size: 0.88rem;
+      }
+
+      .hero-title {
+        font-size: clamp(2.5rem, 11vw, 3.7rem);
+      }
+
+      .hero-language {
+        top: 14px;
+        right: 14px;
+      }
+
+      .info-card {
+        border-radius: 28px;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        overflow: visible;
+      }
+
+      .info-inner {
+        padding: 0;
+      }
+
+      .group-card-content,
+      .group-card-header {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .detail-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .cta-wrap {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .lock-card {
+        padding: 16px;
+        border-radius: 28px;
+      }
+
+      .rsvp-panel {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        max-height: min(82vh, 760px);
+        overflow-y: auto;
+        padding: 16px 16px 28px;
+        border-radius: 28px 28px 0 0;
+        box-shadow: 0 -18px 52px rgba(0, 0, 0, 0.18);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(100%);
+        transition:
+          transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+          opacity 0.22s ease;
+      }
+
+      .rsvp-panel.is-visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .rsvp-choice {
+        min-height: 68px;
+      }
+
+      .sheet-section-title {
+        font-size: 0.94rem;
+      }
+
+      .sheet-list,
+      .faq-question,
+      .faq-answer {
+        font-size: 0.92rem;
+        line-height: 1.42;
+      }
+
+      .faq-item {
+        padding: 12px 14px;
+      }
+    }
+  
+:root { --sheet-bg:rgba(245,245,245,.97); --button-text:#101012; }
+html,body { background:#590909; }
+body { background-image:none; }
+.hero-panel { background:#590909 url("images/dirtySanta.PNG") center top / 100% auto no-repeat; }
+.hero-panel::before { background:linear-gradient(180deg,rgba(89,9,9,.04) 5%,rgba(89,9,9,.18) 32%,#590909 72%); }
+.hero-panel::after { background:none; }
+.info-card { background:linear-gradient(160deg,#731010dd,#420606ee); }
+.button-primary { background:linear-gradient(#fafafa,#d9d9dc); }
+.lock-overlay { background:#59090970; backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); }
+.lock-card { background:#590909f5; border:1px solid #ffffff25; color:#f5f5f7; padding:30px; }
+.lock-card p { color:#bfc0c7; }
+.lock-input { background:#ffffff08; color:#fff; border:1px solid #ffffff30; }
+.lock-input::placeholder { color:#a0a1a8; }
+.lock-submit { background:#f0f0f2; color:#101012; }
+.lock-submit:disabled { opacity:.6; }
+#codeError { color:#ffadb7; margin:10px 0; font-size:14px; }
+.rsvp-submit,.waitlist-action-primary { background:#17181b; }
+#waitlistPanel,#eventSelection,#summerWaitlistWarning { display:none!important; }
+
+</style>
+</head>
+<body>
+  <div class="page-bg"></div>
+
+  <main class="shell">
+    <section class="invite-layout">
+      <div class="hero-panel">
+        <div class="hero-language">
+          <div class="language-switch" aria-label="Language switcher">
+            <button class="language-button" id="langSvButton" type="button">SV</button>
+            <span>/</span>
+            <button class="language-button" id="langEnButton" type="button">EN</button>
+          </div>
+        </div>
+        <div class="hero-content">
+          <div class="hero-kicker"></div>
+          <div class="hero-header">
+            <h1 class="hero-title">ARN Crew Julfesten!</h1>
+          </div>
+          <div class="hero-copy">
+            <span class="hero-copy-text"></span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="info-card">
+        <div class="info-inner">
+          <div class="group-card">
+            <div class="group-card-content">
+              <div class="welcome">
+                <h2 class="welcome-title">Hej!</h2>
+                <p class="welcome-copy">
+                  Dags för julfest! Fredag den 11 december bjuder vi in till en festkväll med julstämning tillsammans med kollegor från ARN-basen. Anmäl dig för att säkra din plats. Mer information kommer inom kort!
+                </p>
+              </div>
+
+              <div class="note">
+                <p>Obs: Detta är ett privat evenemang och anordnas <span class="inline-emphasis">inte</span> av SAS.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="group-card">
+            <div class="group-card-content">
+              <div class="details">
+                <div class="detail-row">
+                  <div class="detail-label">Tid</div>
+                  <div class="detail-value">11 december 2026<br />17:30 - 22:00</div>
+                </div>
+
+                <div class="detail-row">
+                  <div class="detail-label">Plats</div>
+                  <div class="detail-value">Skeppsholmen, Stockholm</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="group-card">
+            <div class="group-card-content">
+              <div class="cta-wrap">
+                <button class="button button-primary" id="rsvpButton" type="button">OSA</button>
+              </div>
+              <button class="inline-link" id="termsButton" type="button">Villkor och frågor</button>
+            </div>
+          </div>
+
+          <div class="group-card">
+            <div class="group-card-header">
+              <h3 class="group-title">Värdar</h3>
+            </div>
+            <div class="group-card-content">
+              <div class="hosts-section">
+                <div class="hosts-list">
+                  <div class="host-person">
+                    <a class="host-link" href="sms:+46704567454">
+                      <img class="avatar" src="images/christopherMedevik.jpeg" alt="Christopher Medevik" />
+                      <div class="host-name">Christopher Medevik</div>
+                    </a>
+                  </div>
+                  <div class="host-person">
+                    <a class="host-link" href="sms:+470768347279">
+                      <img class="avatar" src="images/robinSayyah.png" alt="Robin Sayyah" />
+                      <div class="host-name">Robin Sayyah</div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="group-card">
+            <div class="group-card-header">
+              <h3 class="group-title">Gäster</h3>
+              <div class="accepted-count">120 / 120</div>
+            </div>
+            <div class="group-card-content">
+              <div class="guest-list">
+                <div class="guest-item">
+                  <img class="avatar" src="https://www.maggio.club/arn/guest-list/guest-1.jpg" alt="Guest avatar" />
+                  <div class="guest-name">Vagör Duhär</div>
+                  <div class="guest-status">Kommer</div>
+                </div>
+
+                <div class="guest-item">
+                  <img class="avatar" src="https://www.maggio.club/arn/guest-list/guest-2.jpg" alt="Guest avatar" />
+                  <div class="guest-name">Ärduså Nyfikenatt</div>
+                  <div class="guest-status">Kommer</div>
+                </div>
+
+                <div class="guest-item">
+                  <img class="avatar" src="https://www.maggio.club/arn/guest-list/guest-3.jpg" alt="Guest avatar" />
+                  <div class="guest-name">Dugräver I Källkoden</div>
+                  <div class="guest-status">Kommer</div>
+                </div>
+
+                <div class="guest-item">
+                  <img class="avatar" src="https://www.maggio.club/arn/guest-list/guest-4.jpg" alt="Guest avatar" />
+                  <div class="guest-name">Osa Istället</div>
+                  <div class="guest-status">Kommer</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="lock-overlay">
+        <div class="lock-card" role="dialog" aria-modal="true" aria-label="Invitation code">
+          <div class="sheet-eyebrow"></div>
+          <h3>Hej!</h3>
+          <p>
+            Ready for boarding? Ange koden för att gå vidare.
+          </p>
+          <input class="lock-input" type="password" placeholder="Ange kod" aria-label="Inbjudningskod / Invitation code" autocomplete="current-password" maxlength="100" /><p id="codeError" role="alert"></p>
+          <button class="lock-submit" aria-label="Unlock" type="button">Fortsätt</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <iframe name="rsvpSubmitFrame" id="rsvpSubmitFrame" hidden></iframe>
+          <div class="rsvp-panel" id="waitlistPanel">
+            <div class="sheet-handle"></div>
+            <div class="maggio-app-heading">
+              <img class="maggio-app-icon" src="../../images/favIconMaggio.png" alt="" />
+              <div>
+                <p class="maggio-app-label">Maggio</p>
+                <h3 class="rsvp-title" id="waitlistTitle">OSA i Maggio!</h3>
+              </div>
+            </div>
+            <p class="rsvp-copy" id="waitlistCopy">Väntelistan hanteras i Maggio genom klubben SAS Crew ARN.</p>
+
+            <ol class="waitlist-steps">
+              <li id="waitlistStepOne">Öppna Maggio och logga in.</li>
+              <li id="waitlistStepTwo">Gå till Clubs och gå med i klubben <strong>SAS Crew ARN</strong>.</li>
+              <li id="waitlistStepThree">När du blivit godkänd öppnar du eventet Julfesten och skriver upp dig på väntelistan.</li>
+              <li id="waitlistStepFour">Du kommer få uppdateringar om din plats i appen.</li>
+            </ol>
+
+            <div class="waitlist-actions">
+              <a class="waitlist-action waitlist-action-primary" id="openMaggioLink">Öppna Maggio</a>
+              <a class="waitlist-action waitlist-action-secondary" id="downloadMaggioLink">Hämta Maggio</a>
+              <button class="waitlist-action waitlist-action-secondary" id="androidUsersButton" type="button">Android-användare</button>
+            </div>
+
+            <button class="rsvp-back" type="button" id="waitlistClose">Stäng</button>
+          </div>
+
+          <div class="rsvp-panel" id="androidRegistrationPanel">
+            <div class="sheet-handle"></div>
+            <div class="rsvp-header">
+              <h3 class="rsvp-title" id="androidRegistrationTitle">Välj vilka event du vill delta i</h3>
+              <p class="rsvp-copy" id="androidRegistrationCopy">
+                <span id="androidRegistrationCopyBeforeLink">Välj ett eller flera event och fyll sedan i dina uppgifter (</span>
+                <button class="inline-sheet-link" id="androidTermsLink" type="button">villkor</button>
+                <span id="androidRegistrationCopyAfterLink">).</span>
+              </p>
+            </div>
+
+            <div class="event-selection" id="eventSelection" aria-label="Välj event">
+              <button class="rsvp-choice event-choice" id="prePartyChoice" type="button" data-event-code="0" aria-pressed="false">
+                <span class="choice-icon" aria-hidden="true">✓</span>
+                <span class="choice-text" id="prePartyChoiceText">Förfesten</span>
+              </button>
+              <button class="rsvp-choice event-choice" id="summerPartyChoice" type="button" data-event-code="1" aria-pressed="false">
+                <span class="choice-icon" aria-hidden="true">✓</span>
+                <span class="choice-text" id="summerPartyChoiceText">Julfesten</span>
+              </button>
+              <button class="rsvp-choice event-choice" id="afterPartyChoice" type="button" data-event-code="2" aria-pressed="false">
+                <span class="choice-icon" aria-hidden="true">✓</span>
+                <span class="choice-text" id="afterPartyChoiceText">Efterfesten</span>
+              </button>
+            </div>
+
+            <div class="registration-stage" id="registrationStage">
+            <form class="rsvp-form" id="androidRegistrationForm">
+              <input class="rsvp-input" id="employeeNumber" name="employeeNumber" type="text" inputmode="numeric" pattern="[0-9]+" aria-label="Anställningsnummer / Employee number" placeholder="Anställningsnummer" autocomplete="off" required maxlength="50" />
+              <input class="rsvp-input" type="text" aria-label="Fullt namn / Full name" autocomplete="name" autocapitalize="words" placeholder="Fullt namn" required maxlength="120" />
+              <input class="rsvp-input" type="tel" aria-label="Mobilnummer / Mobile number" autocomplete="tel" inputmode="tel" aria-describedby="phoneCountryHint" placeholder="Mobil" required maxlength="40" />
+
+              <small id="phoneCountryHint">Inkludera landskod, t.ex. +46 70 123 45 67.</small>
+              <div class="rsvp-submit-section">
+                <p class="summer-waitlist-warning" id="summerWaitlistWarning" aria-hidden="true">Julfesten är fullbokad. Du placeras på väntelistan om du inte redan har en biljett.</p>
+
+                <div class="rsvp-action">
+                  <button class="rsvp-submit" type="submit" disabled>Skicka</button>
+                </div>
+              </div>
+            </form>
+
+            <section class="payment-step" id="paymentStep" inert aria-labelledby="paymentTitle">
+              <h3 id="paymentTitle" tabindex="-1">Säkra din biljett</h3>
+              <p id="paymentCopy">Swisha 400 kr till numret nedan för att säkra din biljett.</p>
+              <div class="payment-number">076 834 72 79</div>
+              <p id="paymentInstruction">När du har swishat, tryck nedan för att slutföra din anmälan.</p>
+              <button class="rsvp-submit" type="button" id="paymentConfirm">Jag har swishat – anmäl mig</button>
+              <button class="payment-back" type="button" id="paymentBack">Tillbaka till dina uppgifter</button>
+            </section>
+            <div class="registration-status" role="status" aria-live="polite" aria-atomic="true">
+              <div class="registration-spinner" aria-hidden="true"><span style="--i:0"></span><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span><span style="--i:4"></span><span style="--i:5"></span><span style="--i:6"></span><span style="--i:7"></span></div>
+              <div class="registration-check" aria-hidden="true">✓</div>
+              <p id="androidRegistrationFeedback"></p>
+            </div>
+            </div>
+            <button class="rsvp-back" type="button" id="androidRegistrationClose">Stäng</button>
+          </div>
+
+          <div class="rsvp-panel" id="termsPanel">
+            <div class="sheet-handle"></div>
+            <div class="rsvp-header">
+              <h3 class="rsvp-title">Villkor och frågor</h3>
+            </div>
+
+            <div class="sheet-section">
+              <h4 class="sheet-section-title">Återförsäljning och väntelista</h4>
+              <ul class="sheet-list">
+                <li>Om evenemanget är fullbokat kan du skriva upp dig på väntelistan.</li>
+                <li>Kontakta Christopher eller Robin om du önskar att sälja vidare din biljett.</li>
+              </ul>
+            </div>
+
+            <div class="sheet-section">
+              <h4 class="sheet-section-title">Anmälan</h4>
+              <ul class="sheet-list">
+                <li>Evenemanget är endast för ARN-crew.</li>
+                <li>Din anmälan är bindande när biljetten är betald. Biljetter återbetalas ej.</li>
+                <li>Får du förhinder kan din plats överlåtas till någon annan på ARN-basen, efter godkännande.</li>
+              </ul>
+            </div>
+
+            <div class="sheet-section">
+              <h4 class="sheet-section-title">Genomförande</h4>
+              <ul class="sheet-list">
+                <li>Vi har beställt sol, men evenemanget genomförs oavsett väder.</li>
+                <li>Undantag gäller endast om rederiet bedömer att genomförandet inte är möjligt.</li>
+                <li>Eventuella ändringar i tid, plats eller upplägg kommuniceras så snart som möjligt till anmälda gäster.</li>
+              </ul>
+            </div>
+
+            <div class="sheet-section">
+              <h4 class="sheet-section-title">Ordning och trivsel</h4>
+              <ul class="sheet-list">
+                <li>Vi vill påminna om att det inte är tillåtet att förtära medhavd alkohol ombord.</li>
+                <li>Arrangörerna förbehåller sig rätten att göra ändringar i gästlistan eller neka ombordstigning om man bedömer att en gäst riskerar att uppträda unruly ombord.</li>
+              </ul>
+            </div>
+
+            <div class="sheet-section">
+              <h4 class="sheet-section-title">Vanliga frågor</h4>
+              <div class="faq-list">
+                <div class="faq-item">
+                  <p class="faq-question"><strong>Hur får jag min biljett?</strong></p>
+                  <p class="faq-answer">När vi har mottagit betalningen får du en bekräftelse via SMS. Själva biljetten skickas ut kort tid innan avgång.</p>
+                </div>
+
+                <div class="faq-item">
+                  <p class="faq-question"><strong>När börjar boarding?</strong></p>
+                  <p class="faq-answer">Vi återkommer med exakt tid närmare avgång.</p>
+                </div>
+
+                <div class="faq-item">
+                  <p class="faq-question"><strong>Vad händer om jag kommer sent?</strong></p>
+                  <p class="faq-answer">No show i SAS Time! Nejdå, men vi kan tyvärr inte ta en försening för att vänta in någon.</p>
+                </div>
+
+                <div class="faq-item">
+                  <p class="faq-question"><strong>Vad gäller för klädsel?</strong></p>
+                  <p class="faq-answer">Det finnes ikke dårlig vær, bare dårlige klær.</p>
+                </div>
+
+                <div class="faq-item">
+                  <p class="faq-question"><strong>Finns det garderob?</strong></p>
+                  <p class="faq-answer">Ja, garderob finns ombord, men tänk på att ditt bagage ska få plats under stolen framför dig.</p>
+                </div>
+
+                <div class="faq-item">
+                  <p class="faq-question"><strong>Finns det mat och dryck ombord?</strong></p>
+                  <p class="faq-answer">Ja, det finns bar och eventuellt lite tilltugg. Vi återkommer med detaljer när servicekonceptet är spikat.</p>
+                </div>
+
+                <div class="faq-item">
+                  <p class="faq-question"><strong>Kan jag simma från båten?</strong></p>
+                  <p class="faq-answer">Ja, om rederiet bedömer att väderförhållandena är tillräckligt bra. Kapten har sista ordet även här.</p>
+                </div>
+              </div>
+            </div>
+
+            <button class="rsvp-back" type="button" id="termsClose">Stäng</button>
+          </div>
+  <div class="rsvp-sheet-overlay" id="rsvpSheetOverlay"></div>
+
+  <script>
+    const REQUIRE_ACCESS_CODE = false; // Set true to restore the password popup.
+    const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycby9WRYTNVOEdCLpPy18cLij0tyBz_Pdv8uPF-5oP7FQ7PYMDKYZD5UPKLOrs_SOuM8c5g/exec";
+    const WHATSAPP_URL = ""; // Add the organiser-provided link here.
+    const eventIsFull = false;
+
+
+    const input = document.querySelector(".lock-input");
+    const unlockButton = document.querySelector(".lock-submit");
+    const heroKicker = document.querySelector(".hero-kicker");
+    const heroTitle = document.querySelector(".hero-title");
+    const heroCopyText = document.querySelector(".hero-copy-text");
+    const welcomeTitle = document.querySelector(".welcome-title");
+    const welcomeCopy = document.querySelector(".welcome-copy");
+    const noteCopy = document.querySelector(".note p");
+    const infoTitle = document.querySelector(".group-card:nth-of-type(2) .group-title");
+    const detailRows = document.querySelectorAll(".details .detail-row");
+    const rsvpButton = document.getElementById("rsvpButton");
+    const termsButton = document.getElementById("termsButton");
+    const hostsTitle = document.querySelector(".group-card:nth-of-type(4) .group-title");
+    const hostsCaption = document.querySelector(".group-card:nth-of-type(4) .section-caption");
+    const guestsTitle = document.querySelector(".group-card:nth-of-type(5) .group-title");
+    const acceptedCount = document.querySelector(".accepted-count");
+    const guestStatusLabels = document.querySelectorAll(".guest-status");
+    const lockTitle = document.querySelector(".lock-card h3");
+    const lockCopy = document.querySelector(".lock-card p");
+    const langSvButton = document.getElementById("langSvButton");
+    const langEnButton = document.getElementById("langEnButton");
+
+    const waitlistPanel = document.getElementById("waitlistPanel");
+    const androidRegistrationPanel = document.getElementById("androidRegistrationPanel");
+    const termsPanel = document.getElementById("termsPanel");
+    const waitlistClose = document.getElementById("waitlistClose");
+    const androidRegistrationClose = document.getElementById("androidRegistrationClose");
+    const termsClose = document.getElementById("termsClose");
+    const rsvpSheetOverlay = document.getElementById("rsvpSheetOverlay");
+    const rsvpSubmitFrame = document.getElementById("rsvpSubmitFrame");
+
+    const waitlistTitle = document.getElementById("waitlistTitle");
+    const waitlistCopy = document.getElementById("waitlistCopy");
+    const waitlistStepOne = document.getElementById("waitlistStepOne");
+    const waitlistStepTwo = document.getElementById("waitlistStepTwo");
+    const waitlistStepThree = document.getElementById("waitlistStepThree");
+    const waitlistStepFour = document.getElementById("waitlistStepFour");
+    const openMaggioLink = document.getElementById("openMaggioLink");
+    const downloadMaggioLink = document.getElementById("downloadMaggioLink");
+    const androidUsersButton = document.getElementById("androidUsersButton");
+    const androidRegistrationTitle = document.getElementById("androidRegistrationTitle");
+    const androidRegistrationCopyBeforeLink = document.getElementById("androidRegistrationCopyBeforeLink");
+    const androidTermsLink = document.getElementById("androidTermsLink");
+    const androidRegistrationCopyAfterLink = document.getElementById("androidRegistrationCopyAfterLink");
+    const androidRegistrationForm = document.getElementById("androidRegistrationForm");
+    const androidNameInput = androidRegistrationForm.querySelector('input[autocomplete="name"]');
+    const employeeNumberInput = document.getElementById("employeeNumber");
+    const androidPhoneInput = androidRegistrationForm.querySelector('input[type="tel"]');
+    const androidRegistrationSubmit = androidRegistrationForm.querySelector(".rsvp-submit");
+    const androidRegistrationFeedback = document.getElementById("androidRegistrationFeedback");
+    const eventSelection = document.getElementById("eventSelection");
+    const eventChoiceButtons = Array.from(document.querySelectorAll(".event-choice"));
+    const prePartyChoiceText = document.getElementById("prePartyChoiceText");
+    const summerPartyChoiceText = document.getElementById("summerPartyChoiceText");
+    const afterPartyChoiceText = document.getElementById("afterPartyChoiceText");
+    const summerWaitlistWarning = document.getElementById("summerWaitlistWarning");
+    const termsTitle = termsPanel.querySelector(".rsvp-title");
+    const termsCopy = termsPanel.querySelector(".rsvp-copy");
+    const termsSectionTitles = termsPanel.querySelectorAll(".sheet-section-title");
+    const termsLists = termsPanel.querySelectorAll(".sheet-list");
+    const faqTitle = termsSectionTitles[4];
+    const faqList = termsPanel.querySelector(".faq-list");
+
+    const languageStorageKey = "maggio-event-language";
+    let currentLanguage = "sv";
+    let isAndroidRegistrationSubmitting = false;
+    let registrationStep = "details";
+    const selectedAndroidEventCodes = new Set(["1"]);
+    const translations = {
+      sv: {
+        documentTitle: "ARN Crew Julfesten!",
+        heroKicker: "",
+        heroTitle: "ARN Crew Julfesten!",
+        heroCopyDefault: "",
+        welcomeTitleDefault: "Hej!",
+        welcomeCopy: "Dags för julfest! Fredag den 11 december bjuder vi in till en festkväll med julstämning tillsammans med kollegor från ARN-basen. Anmäl dig för att säkra din plats! <span class=\"inline-emphasis\">Först till kvarn!</span> Mer information kommer inom kort!",
+        noteCopy: 'Obs: Detta är ett privat evenemang och anordnas <span class="inline-emphasis">inte</span> av SAS.',
+        infoTitle: "Information",
+        timeLabel: "Tid",
+        timeValue: "11 december 2026<br />17:30 - 22:00",
+        placeLabel: "Plats",
+        placeValue: "Skeppsholmen, Stockholm",
+        rsvpButton: "Anmäl",
+        rsvpButtonFull: "Anmäl",
+        termsButton: "Villkor och frågor",
+        hostsTitle: "Värdar",
+        hostsCaption: "",
+        guestsTitle: "Gäster",
+        acceptedCount: "120 / 120",
+        guestStatus: "Kommer",
+        lockTitle: "Hej!",
+        lockCopy: "Ready for boarding? Ange koden för att gå vidare.",
+        lockPlaceholder: "Ange kod",
+        lockSubmit: "Fortsätt",
+        waitlistTitle: "OSA i Maggio!",
+        waitlistCopy: "Väntelistan hanteras i Maggio genom klubben SAS Crew ARN.",
+        waitlistStepOne: "Öppna Maggio och logga in.",
+        waitlistStepTwo: "Gå till Clubs och gå med i klubben <strong>SAS Crew ARN</strong>.",
+        waitlistStepThree: "När du blivit godkänd öppnar du eventet Julfesten och skriver upp dig på väntelistan.",
+        waitlistStepFour: "Du kommer få uppdateringar om din plats i appen.",
+        openMaggio: "Öppna Maggio",
+        downloadMaggio: "Hämta Maggio",
+        androidUsers: "Android-användare",
+        waitlistClose: "Stäng",
+        androidRegistrationTitle: "Välj vilka event du vill delta i",
+        androidRegistrationCopyBeforeLink: "Välj ett eller flera event och fyll sedan i dina uppgifter (",
+        androidRegistrationCopyLink: "villkor",
+        androidRegistrationCopyAfterLink: ").",
+        eventSelectionLabel: "Välj event",
+        preParty: "Förfesten",
+        summerParty: "Julfesten",
+        afterParty: "Efterfesten",
+        summerWaitlistWarning: "Julfesten är fullbokad. Du placeras på väntelistan om du inte redan har en biljett.",
+        androidNamePlaceholder: "Fullt namn",
+        androidPhonePlaceholder: "Mobil",
+        androidRegistrationSubmit: "Skicka",
+        androidRegistrationSubmitting: "Skickar...",
+        androidRegistrationSuccess: "Tack! Din anmälan är registrerad.",
+        androidRegistrationSuccessWithWaitlist: "Tack! Din anmälan är registrerad. Du står på väntelistan till Julfesten.",
+        androidRegistrationError: "Något gick fel. Försök igen.",
+        androidRegistrationConfigError: "Anmälan är inte konfigurerad ännu.",
+        androidRegistrationSelectionError: "Välj minst ett event.",
+        androidRegistrationClose: "Stäng",
+        termsTitle: "Villkor och frågor",
+        termsCopy: "Kort information för crew på ARN-basen inför anmälan och deltagande.",
+        termsSectionTitles: ["Återförsäljning och väntelista", "Anmälan", "Genomförande", "Ordning och trivsel", "Vanliga frågor"],
+        termsSectionItems: [
+          [
+            "Om evenemanget är fullbokat kan du skriva upp dig på väntelistan.",
+            "Kontakta Christopher eller Robin om du önskar att sälja vidare din biljett."
+          ],
+          [
+            "Evenemanget är endast för ARN-crew.",
+            "En anmälan garanterar inte en plats.",
+            "Om din anmälan godkänns skickas en Swishförfrågan till numret du angett. Din plats är bekräftad först efter betalning mottagits.",
+            "Vid förhinder kan en bekräftad plats överlåtas till någon annan på ARN-basen efter godkännande."
+          ],
+          [
+            "Vi har beställt sol, men evenemanget genomförs oavsett väder.",
+            "Undantag gäller endast om rederiet bedömer att genomförandet inte är möjligt.",
+            "Eventuella ändringar i tid, plats eller upplägg kommuniceras så snart som möjligt."
+          ],
+          [
+            "Vi vill påminna om att det inte är tillåtet att förtära medhavd alkohol ombord.",
+            "Arrangörerna förbehåller sig rätten att göra ändringar i gästlistan eller neka ombordstigning om man bedömer att en gäst riskerar att uppträda unruly ombord."
+          ]
+        ],
+        faqItems: [
+          ["Ska vi vara på en båt?", "Det är alltid fest när det här gänget är ombord ett flygplan, så varför inte festa ombord en båt den här gången?"],
+          ["Hur får jag min biljett?", "När vi har mottagit betalningen får du en bekräftelse av värdarna. Själva biljetten skickas ut kort tid innan avgång."],
+          ["När börjar boarding?", "Vi återkommer med exakt tid närmare avgång."],
+          ["Vad händer om jag kommer sent?", "\"No Show\" i SAS Time! Nejdå, men vi kan tyvärr inte ta en försening för att vänta in någon."],
+          ["Finns det en klädkod?", "Det finnes ikke dårlig vær, bare dårlige klær."],
+          ["Finns det garderob?", "Ja, garderob finns ombord, men tänk på att ditt bagage ska få plats under stolen framför dig."],
+          ["Finns det mat och dryck ombord?", "Ja, det finns bar och eventuellt lite tilltugg. Vi återkommer med detaljer när servicekonceptet är spikat."],
+          ["Kan jag simma från båten?", "Ja, om rederiet bedömer att väderförhållandena är tillräckligt bra. Kapten har sista ordet även här."]
+        ],
+        termsClose: "Stäng",
+        emptyCodeAlert: "Ange din kod",
+        invalidCodeAlert: "Ogiltig kod",
+        verifyErrorAlert: "Kunde inte verifiera koden"
+      },
+      en: {
+        documentTitle: "ARN Crew Christmas Party!",
+        heroKicker: "",
+        heroTitle: "ARN Crew Christmas Party!",
+        heroCopyDefault: "",
+        welcomeTitleDefault: "Hi!",
+        welcomeCopy: "Time for a Christmas party! On Friday, 11 December, we’re inviting you to a festive evening with Christmas spirit together with colleagues from the ARN base. Apply for a ticket to secure your spot! <span class=\"inline-emphasis\">First come, first served.</span> More information soon!",
+        noteCopy: 'Please note: this is a private event and is <span class="inline-emphasis">not</span> organized by SAS.',
+        infoTitle: "Information",
+        timeLabel: "Time",
+        timeValue: "Friday, December 11, 2026<br />5:30 PM - 10:00 PM",
+        placeLabel: "Location",
+        placeValue: "Skeppsholmen, Stockholm",
+        rsvpButton: "Register",
+        rsvpButtonFull: "Register",
+        termsButton: "Terms and FAQ",
+        hostsTitle: "Hosts",
+        hostsCaption: "",
+        guestsTitle: "Guests",
+        acceptedCount: "120 / 120",
+        guestStatus: "Attending",
+        lockTitle: "Hello!",
+        lockCopy: "Ready for boarding? Enter the code to view details and to secure your spot.",
+        lockPlaceholder: "Enter code",
+        lockSubmit: "Continue",
+        waitlistTitle: "RSVP in Maggio!",
+        waitlistCopy: "The waitlist is managed in Maggio through the SAS Crew ARN club.",
+        waitlistStepOne: "Open Maggio and sign in.",
+        waitlistStepTwo: "Go to Clubs and join <strong>SAS Crew ARN</strong>.",
+        waitlistStepThree: "Once approved, open the Julfesten event and add yourself to the waitlist.",
+        waitlistStepFour: "You will receive updates about your place in the app.",
+        openMaggio: "Open Maggio",
+        downloadMaggio: "Download Maggio",
+        androidUsers: "Android users",
+        waitlistClose: "Close",
+        androidRegistrationTitle: "Select the events you’d like to attend",
+        androidRegistrationCopyBeforeLink: "Select one or more events, then enter your details (",
+        androidRegistrationCopyLink: "terms",
+        androidRegistrationCopyAfterLink: ").",
+        eventSelectionLabel: "Select events",
+        preParty: "Pre-party",
+        summerParty: "Christmas party",
+        afterParty: "After-party",
+        summerWaitlistWarning: "The Christmas party is full. You will be added to the waitlist unless you already have a ticket.",
+        androidNamePlaceholder: "Full name",
+        androidPhonePlaceholder: "Mobile number",
+        androidRegistrationSubmit: "Submit",
+        androidRegistrationSubmitting: "Sending...",
+        androidRegistrationSuccess: "Thank you! Your registration has been received.",
+        androidRegistrationSuccessWithWaitlist: "Thank you! Your registration has been received. You are on the Christmas party waitlist.",
+        androidRegistrationError: "Something went wrong. Please try again.",
+        androidRegistrationConfigError: "The registration form is not configured yet.",
+        androidRegistrationSelectionError: "Select at least one event.",
+        androidRegistrationClose: "Close",
+        termsTitle: "Terms and FAQ",
+        termsCopy: "Short practical information for ARN-base crew before registering and attending.",
+        termsSectionTitles: ["Resale and waitlist", "Registration", "Operations", "On-board conduct", "Frequently asked questions"],
+        termsSectionItems: [
+          [
+            "If the event is full, you may join waitlist.",
+            "Contact Christopher or Robin if you wish to resell your ticket.",
+          ],
+          [
+            "The event is for ARN crew only.",
+            "Applying for a ticket does not guarantee a spot.",
+            "If your request is approved, a Swish-request will be sent to the number you provide. Your spot is confirmed once payment has been completed.",
+            "If you can no longer attend, a confirmed spot may be transferred to someone else at the ARN base, subject to approval."
+          ],
+          [
+            "We've ordered sunshine, but the event will go ahead regardless of weather.",
+            "The only exception is if the boat operator determines that the event cannot be carried out.",
+            "Any changes to time, location, or format will be communicated as soon as possible."
+          ],
+          [
+            "We would like to remind you that the consumption of your own alcoholic beverages is not allowed.",
+            "The organizers reserve the right to make changes to the guest list or deny boarding if a guest is considered likely to behave in an unruly manner on board."
+          ]
+        ],
+        faqItems: [
+          ["Are we going to be on a boat?", "It’s always a party when this crew is on board an aircraft, so why not party on board a boat this time?"],
+          ["How do I receive my ticket?", "Once payment has been received, you will get a confirmation by SMS. The actual ticket will be sent shortly before departure."],
+          ["When does boarding start?", "We will share the exact time closer to departure."],
+          ["What happens if I arrive late?", "\"No Show\" in SAS Time. Jokes aside, we unfortunately cannot delay departure to wait for anyone."],
+          ["Is there a dress code?", "There is no bad weather, only bad clothing."],
+          ["Is there a cloakroom?", "Yes, there is a cloakroom on board, but keep in mind that your baggage should fit under the seat in front of you."],
+          ["Will there be food and drinks on board?", "Yes, there will be a bar and possibly some light bites. We will share more details once the service concept is finalized."],
+          ["Can we swim from the boat?", "Yes, if the boat operator considers the weather conditions suitable. The captain has the final word here as well."]
+        ],
+        termsClose: "Close",
+        emptyCodeAlert: "Enter your code",
+        invalidCodeAlert: "Invalid code",
+        verifyErrorAlert: "Could not verify the code"
+      }
+    };
+
+Object.assign(translations.sv,{"androidRegistrationTitle": "Skriv upp dig på väntelistan", "androidRegistrationCopyBeforeLink": "Fyll i ditt fullständiga namn och mobilnummer (", "androidRegistrationSubmit": "Skicka", "androidRegistrationSuccessWithWaitlist": "Tack! Din förfrågan till väntelistan har skickats.", "lockCopy": "Ange din inbjudningskod för att öppna sidan."});
+Object.assign(translations.en,{"androidRegistrationTitle": "Join the waitlist", "androidRegistrationCopyBeforeLink": "Enter your full name and mobile number (", "androidRegistrationSubmit": "Submit", "androidRegistrationSuccessWithWaitlist": "Thank you! Your waitlist request has been sent.", "lockCopy": "Enter your invitation code to open the page."});
+Object.assign(translations.sv,{"androidRegistrationTitle": "Anmäl dig till julfesten", "androidRegistrationCopyBeforeLink": "Fyll i anställningsnummer, fullständigt namn och mobilnummer (", "androidRegistrationSuccess": "Tack! Din anmälan har skickats."});
+Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Christmas party", "androidRegistrationCopyBeforeLink": "Enter your employee number, full name and mobile number (", "androidRegistrationSuccess": "Thank you! Your registration has been sent."});
+    function buildListMarkup(items) {
+      return items.map((item) => `<li>${item}</li>`).join("");
+    }
+
+    function buildFaqMarkup(items) {
+      return items.map(([question, answer]) => `
+        <div class="faq-item">
+          <p class="faq-question"><strong>${question}</strong></p>
+          <p class="faq-answer">${answer}</p>
+        </div>
+      `).join("");
+    }
+
+    function applyUnlockedCopy() {
+      const t = translations[currentLanguage];
+      welcomeTitle.textContent = t.welcomeTitleDefault;
+      heroCopyText.textContent = t.heroCopyDefault;
+    }
+
+    function setLanguage(lang) {
+      currentLanguage = translations[lang] ? lang : "sv";
+      const t = translations[currentLanguage];
+
+      document.documentElement.lang = currentLanguage;
+      document.title = t.documentTitle;
+      heroKicker.textContent = t.heroKicker;
+      heroTitle.textContent = t.heroTitle;
+      applyUnlockedCopy();
+      welcomeCopy.innerHTML = t.welcomeCopy;
+      noteCopy.innerHTML = t.noteCopy;
+      if (infoTitle) infoTitle.textContent = t.infoTitle;
+      detailRows[0].querySelector(".detail-label").textContent = t.timeLabel;
+      detailRows[0].querySelector(".detail-value").innerHTML = t.timeValue;
+      detailRows[1].querySelector(".detail-label").textContent = t.placeLabel;
+      detailRows[1].querySelector(".detail-value").textContent = t.placeValue;
+      rsvpButton.textContent = eventIsFull ? t.rsvpButtonFull : t.rsvpButton;
+      termsButton.textContent = t.termsButton;
+      hostsTitle.textContent = t.hostsTitle;
+      if (hostsCaption) hostsCaption.textContent = t.hostsCaption;
+      guestsTitle.textContent = t.guestsTitle;
+      acceptedCount.textContent = t.acceptedCount;
+      guestStatusLabels.forEach((label) => {
+        label.textContent = t.guestStatus;
+      });
+      lockTitle.textContent = t.lockTitle;
+      lockCopy.textContent = t.lockCopy;
+      input.placeholder = t.lockPlaceholder;
+      unlockButton.textContent = t.lockSubmit;
+      waitlistTitle.textContent = t.waitlistTitle;
+      waitlistCopy.textContent = t.waitlistCopy;
+      waitlistStepOne.textContent = t.waitlistStepOne;
+      waitlistStepTwo.innerHTML = t.waitlistStepTwo;
+      waitlistStepThree.textContent = t.waitlistStepThree;
+      waitlistStepFour.textContent = t.waitlistStepFour;
+      openMaggioLink.textContent = t.openMaggio;
+      downloadMaggioLink.textContent = t.downloadMaggio;
+      androidUsersButton.textContent = t.androidUsers;
+      waitlistClose.textContent = t.waitlistClose;
+      androidRegistrationTitle.textContent = t.androidRegistrationTitle;
+      androidRegistrationCopyBeforeLink.textContent = t.androidRegistrationCopyBeforeLink;
+      androidTermsLink.textContent = t.androidRegistrationCopyLink;
+      androidRegistrationCopyAfterLink.textContent = t.androidRegistrationCopyAfterLink;
+      eventSelection.setAttribute("aria-label", t.eventSelectionLabel);
+      prePartyChoiceText.textContent = t.preParty;
+      summerPartyChoiceText.textContent = t.summerParty;
+      afterPartyChoiceText.textContent = t.afterParty;
+      summerWaitlistWarning.textContent = t.summerWaitlistWarning;
+      androidNameInput.placeholder = t.androidNamePlaceholder;
+      employeeNumberInput.placeholder = currentLanguage === "sv" ? "Anställningsnummer" : "Employee number";
+      androidPhoneInput.placeholder = "+46 70 123 45 67";
+      document.getElementById("phoneCountryHint").textContent = currentLanguage === "sv" ? "Inkludera landskod, t.ex. +46 70 123 45 67." : "Include your country code, e.g. +46 70 123 45 67.";
+      androidRegistrationSubmit.textContent = currentLanguage === "sv" ? "Fortsätt" : "Continue";
+      androidRegistrationClose.textContent = t.androidRegistrationClose;
+      document.getElementById("paymentTitle").textContent = currentLanguage === "sv" ? "Säkra din biljett" : "Secure your ticket";
+      document.getElementById("paymentCopy").textContent = currentLanguage === "sv" ? "Swisha 400 kr till numret nedan för att säkra din biljett." : "Swish 400 SEK to the number below to secure your ticket.";
+      document.getElementById("paymentInstruction").textContent = currentLanguage === "sv" ? "När du har swishat, tryck nedan för att slutföra din anmälan." : "Once you’ve paid, tap below to complete your registration.";
+      document.getElementById("paymentConfirm").textContent = currentLanguage === "sv" ? "Jag har swishat – anmäl mig" : "I’ve paid — register";
+      document.getElementById("paymentBack").textContent = currentLanguage === "sv" ? "Tillbaka till dina uppgifter" : "Back to your details";
+      termsTitle.textContent = t.termsTitle;
+      if (termsCopy) termsCopy.textContent = t.termsCopy;
+      termsSectionTitles[0].textContent = t.termsSectionTitles[0];
+      termsSectionTitles[1].textContent = t.termsSectionTitles[1];
+      termsSectionTitles[2].textContent = t.termsSectionTitles[2];
+      termsSectionTitles[3].textContent = t.termsSectionTitles[3];
+      faqTitle.textContent = t.termsSectionTitles[4];
+      termsLists[0].innerHTML = buildListMarkup(t.termsSectionItems[0]);
+      termsLists[1].innerHTML = buildListMarkup(t.termsSectionItems[1]);
+      termsLists[2].innerHTML = buildListMarkup(t.termsSectionItems[2]);
+      termsLists[3].innerHTML = buildListMarkup(t.termsSectionItems[3]);
+      faqList.innerHTML = buildFaqMarkup(t.faqItems);
+      termsClose.textContent = t.termsClose;
+      langSvButton.classList.toggle("is-active", currentLanguage === "sv");
+      langEnButton.classList.toggle("is-active", currentLanguage === "en");
+
+      try {
+        localStorage.setItem(languageStorageKey, currentLanguage);
+      } catch (error) {
+      }
+    }
+
+    function detectInitialLanguage() {
+      try {
+        const savedLanguage = localStorage.getItem(languageStorageKey);
+        if (savedLanguage && translations[savedLanguage]) {
+          return savedLanguage;
+        }
+      } catch (error) {
+      }
+
+      const locales = navigator.languages && navigator.languages.length
+        ? navigator.languages
+        : [navigator.language || "sv"];
+
+      return locales.some((locale) => locale && locale.toLowerCase().startsWith("sv")) ? "sv" : "en";
+    }
+
+    function decodeBase64(value) {
+      return Uint8Array.from(atob(value), (char) => char.charCodeAt(0));
+    }
+
+    function bytesToHex(bytes) {
+      return Array.from(bytes, (value) => value.toString(16).padStart(2, "0")).join("");
+    }
+
+
+
+    function revealPage() {
+      document.body.classList.remove("lock-open");
+      document.querySelector(".invite-layout").inert = false;
+      document.querySelector(".lock-overlay").style.display = "none";
+      input.value = "";
+      rsvpButton.focus();
+    }
+    async function unlock() {
+      if (unlockButton.disabled) return;
+      const errorBox = document.getElementById("codeError");
+      errorBox.textContent = "";
+      if (!input.value.trim()) { errorBox.textContent = translations[currentLanguage].emptyCodeAlert; return; }
+      unlockButton.disabled = true;
+      unlockButton.textContent = currentLanguage === "sv" ? "Öppnar…" : "Opening…";
+      try {
+        const bytes = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(input.value.trim()));
+        const enteredHash = Array.from(new Uint8Array(bytes), byte => byte.toString(16).padStart(2,"0")).join("");
+        if (enteredHash !== "bf2d710fde60f3914dc64321b890635be7789a1698542458bab2f91680d0e895") throw new Error(translations[currentLanguage].invalidCodeAlert);
+        try { sessionStorage.setItem("julfesten26-unlocked", "yes"); } catch {}
+        revealPage();
+      } catch(error) { errorBox.textContent = error.message; input.focus(); }
+      finally { unlockButton.disabled = false; unlockButton.textContent = translations[currentLanguage].lockSubmit; }
+    }
+
+    function hideAllRsvpPanels() {
+      if (isAndroidRegistrationSubmitting) return;
+      waitlistPanel.classList.remove("is-visible");
+      androidRegistrationPanel.classList.remove("is-visible");
+      termsPanel.classList.remove("is-visible");
+      rsvpSheetOverlay.classList.remove("is-visible");
+      document.body.style.overflow = "";
+      androidRegistrationFeedback.classList.remove("is-visible");
+      androidRegistrationFeedback.textContent = "";
+    }
+
+    function showPanel(panel) {
+      hideAllRsvpPanels();
+      if (panel === androidRegistrationPanel) {
+        registrationStep = "details";
+        setRegistrationState("idle");
+        androidRegistrationSubmit.style.display = "";
+        updateAndroidEventSelection();
+      }
+      panel.classList.add("is-visible");
+      rsvpSheetOverlay.classList.add("is-visible");
+      document.body.style.overflow = "hidden";
+    }
+
+    function setRegistrationState(state) {
+      const stage = document.getElementById("registrationStage");
+      stage.classList.toggle("is-payment", state === "payment");
+      document.getElementById("paymentStep").inert = state !== "payment";
+      stage.classList.toggle("is-busy", state === "sending");
+      stage.classList.toggle("is-complete", state === "success");
+      androidRegistrationForm.inert = state !== "idle";
+      stage.setAttribute("aria-busy", String(state === "sending"));
+      androidRegistrationClose.disabled = state === "sending";
+      if (state === "sending") androidRegistrationFeedback.textContent = translations[currentLanguage].androidRegistrationSubmitting;
+    }
+
+    function submitRsvp(payload) {
+      return new Promise((resolve, reject) => {
+        const form = document.createElement("form");
+        const timeoutId = window.setTimeout(() => {
+          cleanup();
+          reject(new Error("RSVP submission timed out."));
+        }, 10000);
+
+        function cleanup() {
+          window.clearTimeout(timeoutId);
+          rsvpSubmitFrame.removeEventListener("load", handleLoad);
+          form.remove();
+        }
+
+        function handleLoad() {
+          cleanup();
+          resolve();
+        }
+
+        form.method = "POST";
+        form.action = RSVP_ENDPOINT;
+        form.target = "rsvpSubmitFrame";
+        form.style.display = "none";
+
+        Object.entries(payload).forEach(([key, value]) => {
+          const input = document.createElement("input");
+          input.type = "hidden";
+          input.name = key;
+          input.value = value;
+          form.appendChild(input);
+        });
+
+        rsvpSubmitFrame.addEventListener("load", handleLoad, { once: true });
+        document.body.appendChild(form);
+        form.submit();
+      });
+    }
+
+    function updateAndroidEventSelection() {
+      const hasSelection = selectedAndroidEventCodes.size > 0;
+      const includesSummerParty = false;
+      eventChoiceButtons.forEach((button) => {
+        const isSelected = selectedAndroidEventCodes.has(button.dataset.eventCode);
+        button.classList.toggle("is-selected", isSelected);
+        button.setAttribute("aria-pressed", String(isSelected));
+      });
+      summerWaitlistWarning.classList.toggle("is-visible", includesSummerParty);
+      summerWaitlistWarning.setAttribute("aria-hidden", String(!includesSummerParty));
+      androidRegistrationSubmit.disabled = !hasSelection || isAndroidRegistrationSubmitting;
+    }
+
+    function resetLockedScrollPosition() {
+      if (!document.body.classList.contains("lock-open")) return;
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    }
+
+    let pageInitialized = false;
+
+    function initPage() {
+      if (pageInitialized) return;
+      pageInitialized = true;
+
+      if (REQUIRE_ACCESS_CODE) {
+        document.body.classList.add("lock-open");
+      const overlay = document.querySelector(".lock-overlay");
+      document.body.appendChild(overlay);
+      document.querySelector(".invite-layout").inert = true;
+      input.focus();
+      overlay.addEventListener("keydown", (event) => {
+        if (event.key === "Tab") { event.preventDefault(); (document.activeElement === input ? unlockButton : input).focus(); }
+      });
+      try { if(sessionStorage.getItem("julfesten26-unlocked") === "yes") revealPage(); } catch {}
+      } else {
+        revealPage();
+      }
+      resetLockedScrollPosition();
+      window.addEventListener("load", resetLockedScrollPosition);
+      window.addEventListener("pageshow", resetLockedScrollPosition);
+
+      if (unlockButton) {
+        unlockButton.addEventListener("click", unlock);
+      }
+
+      if (input) {
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            unlock();
+          }
+        });
+      }
+
+      if (langSvButton) {
+        langSvButton.addEventListener("click", () => {
+          setLanguage("sv");
+        });
+      }
+
+      if (langEnButton) {
+        langEnButton.addEventListener("click", () => {
+          setLanguage("en");
+        });
+      }
+
+      if (rsvpButton) {
+        rsvpButton.addEventListener("click", () => {
+          showPanel(androidRegistrationPanel);
+        });
+      }
+
+      if (termsButton) {
+        termsButton.addEventListener("click", () => {
+          showPanel(termsPanel);
+        });
+      }
+
+      if (waitlistClose) {
+        waitlistClose.addEventListener("click", () => {
+          hideAllRsvpPanels();
+        });
+      }
+
+      if (androidUsersButton) {
+        androidUsersButton.addEventListener("click", () => {
+          showPanel(androidRegistrationPanel);
+        });
+      }
+
+      eventChoiceButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const eventCode = button.dataset.eventCode;
+          if (selectedAndroidEventCodes.has(eventCode)) {
+            selectedAndroidEventCodes.delete(eventCode);
+          } else {
+            selectedAndroidEventCodes.add(eventCode);
+          }
+          updateAndroidEventSelection();
+        });
+      });
+
+      if (androidTermsLink) {
+        androidTermsLink.addEventListener("click", () => {
+          showPanel(termsPanel);
+        });
+      }
+
+      if (androidRegistrationClose) {
+        androidRegistrationClose.addEventListener("click", () => {
+          hideAllRsvpPanels();
+        });
+      }
+
+      if (termsClose) {
+        termsClose.addEventListener("click", () => {
+          hideAllRsvpPanels();
+        });
+      }
+
+      if (rsvpSheetOverlay) {
+        rsvpSheetOverlay.addEventListener("click", () => {
+          hideAllRsvpPanels();
+        });
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          hideAllRsvpPanels();
+        }
+      });
+
+      document.getElementById("paymentConfirm").addEventListener("click", () => {
+        if (!isAndroidRegistrationSubmitting) androidRegistrationForm.requestSubmit();
+      });
+      document.getElementById("paymentBack").addEventListener("click", () => {
+        registrationStep = "details";
+        setRegistrationState("idle");
+        employeeNumberInput.focus({ preventScroll: true });
+      });
+      if (androidRegistrationForm) {
+        employeeNumberInput.addEventListener("input", () => {
+          employeeNumberInput.value = employeeNumberInput.value.replace(/[^0-9]/g, "");
+        });
+        androidNameInput.addEventListener("input", () => {
+          const start = androidNameInput.selectionStart;
+          const end = androidNameInput.selectionEnd;
+          androidNameInput.value = androidNameInput.value.replace(/(^|[\s’'-])(\p{L})/gu, (match, boundary, letter) => boundary + letter.toLocaleUpperCase());
+          androidNameInput.setSelectionRange(start, end);
+        });
+        androidPhoneInput.addEventListener("input", () => androidPhoneInput.setCustomValidity(""));
+        androidRegistrationForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          if (isAndroidRegistrationSubmitting) return;
+          const t = translations[currentLanguage];
+          const employeeNumber = employeeNumberInput.value.trim();
+          const fullName = androidNameInput.value.trim();
+          const phoneNumber = androidPhoneInput.value.trim().replace(/[\s().-]/g, "");
+          const selectedEventCodes = Array.from(selectedAndroidEventCodes).sort();
+
+          if (!RSVP_ENDPOINT) {
+            alert(t.androidRegistrationConfigError);
+            return;
+          }
+
+          if (selectedEventCodes.length === 0) {
+            alert(t.androidRegistrationSelectionError);
+            return;
+          }
+
+          if (!employeeNumber || !fullName || !phoneNumber) {
+            alert(t.androidRegistrationError);
+            return;
+          }
+
+          if (!/^\+[1-9][0-9]{6,14}$/.test(phoneNumber)) {
+            androidPhoneInput.setCustomValidity(currentLanguage === "sv" ? "Ange mobilnummer med landskod, t.ex. +46 70 123 45 67." : "Enter your mobile number with country code, e.g. +46 70 123 45 67.");
+            androidPhoneInput.reportValidity();
+            return;
+          }
+          if (!/^[0-9]+$/.test(employeeNumber)) { employeeNumberInput.reportValidity(); return; }
+          if (registrationStep === "details") {
+            registrationStep = "payment";
+            setRegistrationState("payment");
+            document.getElementById("paymentTitle").focus({ preventScroll: true });
+            return;
+          }
+          isAndroidRegistrationSubmitting = true;
+          setRegistrationState("sending");
+          updateAndroidEventSelection();
+          androidRegistrationSubmit.textContent = t.androidRegistrationSubmitting;
+          eventChoiceButtons.forEach((button) => {
+            button.disabled = true;
+          });
+
+          try {
+            for (const eventCode of selectedEventCodes) {
+              await submitRsvp({
+                employeeNumber,
+                fullName,
+                phoneNumber,
+                rsvp: "yes",
+                earlyBird: true,
+                waitlist: false
+              });
+            }
+
+            androidRegistrationSubmit.style.display = "none";
+            androidRegistrationFeedback.textContent = eventIsFull
+              ? t.androidRegistrationSuccessWithWaitlist
+              : t.androidRegistrationSuccess;
+            setRegistrationState("success");
+            if (WHATSAPP_URL) window.location.assign(WHATSAPP_URL);
+          } catch (error) {
+            setRegistrationState("payment");
+            document.getElementById("paymentConfirm").focus();
+            alert(t.androidRegistrationError);
+          } finally {
+            isAndroidRegistrationSubmitting = false;
+            androidRegistrationSubmit.textContent = currentLanguage === "sv" ? "Fortsätt" : "Continue";
+            eventChoiceButtons.forEach((button) => {
+              button.disabled = false;
+            });
+            updateAndroidEventSelection();
+          }
+        });
+      }
+
+      updateAndroidEventSelection();
+      setLanguage(detectInitialLanguage());
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initPage, { once: true });
+    } else {
+      initPage();
+    }
+  </script>
+</body>
+</html>
