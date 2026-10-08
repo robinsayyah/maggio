@@ -2204,8 +2204,8 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
         }, 3000);
       });
       document.getElementById("openSwish").addEventListener("click", () => {
-        // Experimental amount-only link; no recipient or message is passed.
-        window.location.href = "https://app.swish.nu/?amt=400";
+        // Open Swish without passing any payment information.
+        window.location.href = "https://app.swish.nu/";
       });
       document.getElementById("paymentConfirm").addEventListener("click", () => {
         if (!isAndroidRegistrationSubmitting) androidRegistrationForm.requestSubmit();
