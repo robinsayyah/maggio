@@ -1225,6 +1225,37 @@ button.payment-number { color: #fff; -webkit-text-fill-color: #fff; appearance: 
 button.payment-number:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; border-radius: 8px; }
 #copySwishStatus { font-size: .8rem; opacity: .8; }
 #copySwishNumber a, #copySwishNumber a[x-apple-data-detectors] { color: #fff !important; -webkit-text-fill-color: #fff; text-decoration: none !important; }
+
+    .cta-price-note { margin: 10px 0 0; color: var(--muted); font-size: .8rem; line-height: 1.5; }
+
+    /* Early Boarding pricing, kept in the existing invitation design. */
+    .boarding-prices {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .boarding-tier {
+      border-radius: 18px;
+      padding: 16px 14px;
+      border: 1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.055);
+    }
+    .boarding-tier.is-early {
+      background: rgba(255,255,255,.14);
+      border-color: rgba(255,255,255,.26);
+    }
+    .boarding-tier-label { margin: 0 0 10px; font-size: .79rem; font-weight: 600; color: rgba(255,255,255,.83); }
+    .boarding-tier-price { margin: 0 0 5px; font-size: clamp(1.55rem,3vw,1.95rem); font-weight: 700; letter-spacing: -.045em; line-height: 1; }
+    .boarding-tier-date { margin: 0; font-size: .76rem; line-height: 1.4; color: rgba(255,255,255,.72); }
+    .boarding-explanation { margin-top: 12px; padding: 0 2px; color: var(--muted); font-size: .8rem; line-height: 1.5; }
+    .boarding-explanation p { margin: 0; }
+    .boarding-explanation p + p { margin-top: 6px; }
+    .boarding-group .group-card-content { padding-bottom: 18px; }
+    @media (max-width: 380px) {
+      .boarding-tier { padding: 14px 10px; }
+      .boarding-tier-label { font-size: .74rem; }
+      .boarding-tier-date { font-size: .72rem; }
+    }
 </style>
 </head>
 <body>
@@ -1258,7 +1289,7 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
               <div class="welcome">
                 <h2 class="welcome-title">Ho ho ho!</h2>
                 <p class="welcome-copy">
-                  Sa någon julfest? Fredag den 11 december bjuder vi in till en festkväll tillsammans med crew-kollegor på ARN-basen. Anmäl dig nu för att säkra din plats! Mer information kommer inom kort!
+                  Efter sommarens utsålda båtfest är det dags att samla gänget igen! Fredag den 11 december byter vi uniformen mot julstämning, livemusik och dansgolv tillsammans med crew-kollegorna på ARN. Säkra din biljett och häng med!
                 </p>
               </div>
 
@@ -1284,11 +1315,33 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
             </div>
           </div>
 
+          <div class="group-card boarding-group" id="boardingPriceCard">
+            <div class="group-card-content">
+              <div class="boarding-prices" aria-label="Biljettpriser">
+                <div class="boarding-tier is-early">
+                  <p class="boarding-tier-label" id="boardingEarlyLabel">Early Boarding</p>
+                  <p class="boarding-tier-price">400 kr</p>
+                  <p class="boarding-tier-date" id="boardingEarlyDate">Nu!</p>
+                </div>
+                <div class="boarding-tier">
+                  <p class="boarding-tier-label" id="boardingRegularLabel">Regular Boarding</p>
+                  <p class="boarding-tier-price">450 kr</p>
+                  <p class="boarding-tier-date" id="boardingRegularDate">Från 1 november</p>
+                </div>
+              </div>
+              <div class="boarding-explanation" id="boardingExplanation">
+                <p>Väntar du på decemberrostern? Vi förstår! Får du förhinder hjälper vi gärna till att försöka hitta en kollega som vill ta över din biljett.</p>
+                
+              </div>
+            </div>
+          </div>
+
           <div class="group-card">
             <div class="group-card-content">
               <div class="cta-wrap">
                 <button class="button button-primary" id="rsvpButton" type="button">OSA</button>
               </div>
+              <p class="cta-price-note" id="ctaPriceNote">Priset höjs till 450 kr den 1 november.</p>
               <button class="inline-link" id="termsButton" type="button">Villkor och frågor</button>
             </div>
           </div>
@@ -1551,6 +1604,13 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
     const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycby9WRYTNVOEdCLpPy18cLij0tyBz_Pdv8uPF-5oP7FQ7PYMDKYZD5UPKLOrs_SOuM8c5g/exec";
     const WHATSAPP_URL = ""; // Add the organiser-provided link here.
     const eventIsFull = false;
+    // Event prices change at midnight in Stockholm on November 1, 2026.
+    function isEarlyBoarding() {
+      const parts = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Stockholm", year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(new Date());
+      const get = (type) => parts.find((part) => part.type === type).value;
+      return `${get("year")}-${get("month")}-${get("day")}` < "2026-11-01";
+    }
+    function ticketPrice() { return isEarlyBoarding() ? 400 : 450; }
 
 
     const input = document.querySelector(".lock-input");
@@ -1565,9 +1625,9 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
     const detailRows = document.querySelectorAll(".details .detail-row");
     const rsvpButton = document.getElementById("rsvpButton");
     const termsButton = document.getElementById("termsButton");
-    const hostsTitle = document.querySelector(".group-card:nth-of-type(4) .group-title");
-    const hostsCaption = document.querySelector(".group-card:nth-of-type(4) .section-caption");
-    const guestsTitle = document.querySelector(".group-card:nth-of-type(5) .group-title");
+    const hostsTitle = document.querySelector(".group-card:nth-of-type(5) .group-title");
+    const hostsCaption = document.querySelector(".group-card:nth-of-type(5) .section-caption");
+    const guestsTitle = document.querySelector(".group-card:nth-of-type(6) .group-title");
     const acceptedCount = document.querySelector(".accepted-count");
     const guestStatusLabels = document.querySelectorAll(".guest-status");
     const lockTitle = document.querySelector(".lock-card h3");
@@ -1628,15 +1688,18 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
         heroTitle: "ARN Crew Julfest!",
         heroCopyDefault: "",
         welcomeTitleDefault: "Ho ho ho!",
-        welcomeCopy: "Sa någon julfest? Fredag den 11 december bjuder vi in till en festkväll tillsammans med crew-kollegor på ARN-basen. Anmäl dig nu för att säkra din plats! Mer information kommer inom kort!",
+        welcomeCopy: "Efter sommarens utsålda båtfest är det dags att samla gänget igen! Fredag den 11 december byter vi uniformen mot julstämning, livemusik och dansgolv tillsammans med crew-kollegorna på ARN. Säkra din biljett och häng med!",
         noteCopy: 'Obs: Detta är ett privat evenemang och anordnas <span class="inline-emphasis">inte</span> av SAS.',
         infoTitle: "Information",
         timeLabel: "Tid",
         timeValue: "11 december 2026<br />19:00 - 01:00",
         placeLabel: "Plats",
         placeValue: "Stockholm City",
-        rsvpButton: "Anmäl",
-        rsvpButtonFull: "Anmäl",
+        boardingEarlyDate: "Nu!",
+        boardingRegularDate: "Från 1 november",
+        boardingExplanation: "<p>Väntar du på decemberrostern? Vi förstår! Får du förhinder hjälper vi gärna till att försöka hitta en kollega som vill ta över din biljett.</p>",
+        rsvpButton: "Köp biljett",
+        rsvpButtonFull: "Köp biljett",
         termsButton: "Villkor och frågor",
         hostsTitle: "Värdar",
         hostsCaption: "",
@@ -1716,15 +1779,18 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
         heroTitle: "ARN Crew Christmas Party!",
         heroCopyDefault: "",
         welcomeTitleDefault: "Ho ho ho!",
-        welcomeCopy: "Time for a Christmas party! On Friday, 11 December, we’re inviting you to a festive evening with Christmas spirit together with crew-colleagues at the ARN base. Apply for a ticket to secure your spot! <span class=\"inline-emphasis\">First come, first served.</span> More information soon!",
+        welcomeCopy: "After our sold-out summer party, it's time to get the crew together again! On December 11, we're swapping uniforms for Christmas spirit, live music and a dance floor full of familiar faces. Secure your ticket and join us!",
         noteCopy: 'Please note: this is a private event and is <span class="inline-emphasis">not</span> organized by SAS.',
         infoTitle: "Information",
         timeLabel: "Time",
         timeValue: "Friday, December 11, 2026<br />7:00 PM - 10:00 PM",
         placeLabel: "Location",
         placeValue: "Stockholm City",
-        rsvpButton: "Register",
-        rsvpButtonFull: "Register",
+        boardingEarlyDate: "Now!",
+        boardingRegularDate: "From November 1",
+        boardingExplanation: "<p>Waiting for your December roster? We get it! If you can’t make it, we’ll gladly try to help you find a colleague to take over your ticket.</p>",
+        rsvpButton: "Buy Ticket",
+        rsvpButtonFull: "Buy Ticket",
         termsButton: "Terms and FAQ",
         hostsTitle: "Hosts",
         hostsCaption: "",
@@ -1834,6 +1900,10 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
       applyUnlockedCopy();
       welcomeCopy.innerHTML = t.welcomeCopy;
       noteCopy.innerHTML = t.noteCopy;
+      document.getElementById("boardingEarlyDate").textContent = t.boardingEarlyDate;
+      document.getElementById("boardingRegularDate").textContent = t.boardingRegularDate;
+      document.getElementById("boardingExplanation").innerHTML = t.boardingExplanation;
+      document.querySelector(".boarding-prices").setAttribute("aria-label", currentLanguage === "sv" ? "Biljettpriser" : "Ticket prices");
       if (infoTitle) infoTitle.textContent = t.infoTitle;
       detailRows[0].querySelector(".detail-label").textContent = t.timeLabel;
       detailRows[0].querySelector(".detail-value").innerHTML = t.timeValue;
@@ -1841,6 +1911,7 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
       detailRows[1].querySelector(".detail-value").textContent = t.placeValue;
       rsvpButton.textContent = eventIsFull ? t.rsvpButtonFull : t.rsvpButton;
       termsButton.textContent = t.termsButton;
+      document.getElementById("ctaPriceNote").textContent = currentLanguage === "sv" ? "Priset höjs till 450 kr den 1 november." : "Price increases to 450 SEK on November 1.";
       hostsTitle.textContent = t.hostsTitle;
       if (hostsCaption) hostsCaption.textContent = t.hostsCaption;
       guestsTitle.textContent = t.guestsTitle;
@@ -1875,15 +1946,15 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
       employeeNumberInput.placeholder = currentLanguage === "sv" ? "Anställningsnummer" : "Employee number";
       androidPhoneInput.placeholder = t.androidPhonePlaceholder;
       document.getElementById("phoneCountryHint").textContent = currentLanguage === "sv" ? "Ange landskod om du inte har ett svenskt nummer." : "Include your country code if your number is not Swedish.";
-      androidRegistrationSubmit.textContent = currentLanguage === "sv" ? "Fortsätt" : "Continue";
+      androidRegistrationSubmit.textContent = currentLanguage === "sv" ? "Fortsätt till betalning" : "Continue to payment";
       androidRegistrationClose.setAttribute("aria-label", t.androidRegistrationClose);
-      document.getElementById("paymentCopy").textContent = currentLanguage === "sv" ? "Betala 400 kr till 076-834 72 79 för att säkra din biljett. Skriv anställningsnummer och namn som meddelande." : "Pay 400 SEK to 076-834 72 79 to secure your ticket. Enter your employee number and name as the message.";
+      document.getElementById("paymentCopy").textContent = currentLanguage === "sv" ? `Betala ${ticketPrice()} kr till 076-834 72 79 för att säkra din biljett. Skriv anställningsnummer och namn som meddelande.` : `Pay ${ticketPrice()} SEK to 076-834 72 79 to secure your ticket. Enter your employee number and name as the message.`;
       document.getElementById("paymentInstruction").textContent = currentLanguage === "sv" ? "Efter betalningen, återvänd hit och tryck nedan för att slutföra din anmälan." : "Once you’ve paid, return here and tap below to complete your registration.";
       document.getElementById("paymentConfirm").textContent = currentLanguage === "sv" ? "Jag har swishat!" : "I’ve paid!";
       document.getElementById("paymentBack").textContent = currentLanguage === "sv" ? "Tillbaka till dina uppgifter" : "Back to your details";
       document.getElementById("openSwishLabel").textContent = currentLanguage === "sv" ? "Öppna Swish" : "Open Swish";
       document.getElementById("swishFallbackLabel").textContent = currentLanguage === "sv" ? "Kan du inte öppna Swish?" : "Can’t open Swish?";
-      document.getElementById("swishFallbackCopy").textContent = currentLanguage === "sv" ? "Öppna Swish manuellt och betala 400 kr till 076-834 72 79. Använd meddelandet nedan." : "Open Swish manually and pay 400 SEK to 076-834 72 79. Use the message below.";
+      document.getElementById("swishFallbackCopy").textContent = currentLanguage === "sv" ? `Öppna Swish manuellt och betala ${ticketPrice()} kr till 076-834 72 79. Använd meddelandet nedan.` : `Open Swish manually and pay ${ticketPrice()} SEK to 076-834 72 79. Use the message below.`;
       document.getElementById("copySwishStatus").textContent = currentLanguage === "sv" ? "Tryck för att kopiera" : "Tap to copy";
       document.getElementById("copySwishNumber").setAttribute("aria-label", currentLanguage === "sv" ? "Kopiera Swish-numret 076-834 72 79" : "Copy Swish number 076-834 72 79");
       termsTitle.textContent = t.termsTitle;
@@ -1988,7 +2059,10 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
     }
 
     function setRegistrationState(state) {
-      if (state === "payment") document.getElementById("swishMessagePreview").textContent = getSwishMessage();
+      if (state === "payment") {
+        document.getElementById("swishMessagePreview").textContent = getSwishMessage();
+        setLanguage(currentLanguage); // Refresh payment amount if date changed while the page was open.
+      }
       const stage = document.getElementById("registrationStage");
       stage.classList.toggle("is-payment", state === "payment");
       document.getElementById("androidRegistrationCopy").hidden = state !== "idle";
@@ -2278,7 +2352,7 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
                 fullName,
                 phoneNumber,
                 rsvp: "yes",
-                earlyBird: true,
+                earlyBird: isEarlyBoarding(),
                 waitlist: false
               });
             }
@@ -2295,7 +2369,7 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
             alert(t.androidRegistrationError);
           } finally {
             isAndroidRegistrationSubmitting = false;
-            androidRegistrationSubmit.textContent = currentLanguage === "sv" ? "Fortsätt" : "Continue";
+            androidRegistrationSubmit.textContent = currentLanguage === "sv" ? "Fortsätt till betalning" : "Continue to payment";
             eventChoiceButtons.forEach((button) => {
               button.disabled = false;
             });
