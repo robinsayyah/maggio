@@ -1427,7 +1427,7 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
               <input class="rsvp-input" type="text" aria-label="Fullt namn / Full name" autocomplete="name" autocapitalize="words" placeholder="Fullt namn" required maxlength="120" />
               <input class="rsvp-input" type="tel" aria-label="Mobilnummer / Mobile number" autocomplete="tel" inputmode="tel" aria-describedby="phoneCountryHint" placeholder="Mobil" required maxlength="40" />
 
-              <small id="phoneCountryHint">Ange landskod om du har ett utländskt nummer.</small>
+              <small id="phoneCountryHint">Ange landskod om du inte har ett svenskt nummer.</small>
               <div class="rsvp-submit-section">
                 <p class="summer-waitlist-warning" id="summerWaitlistWarning" aria-hidden="true">Julfesten är fullbokad. Du placeras på väntelistan om du inte redan har en biljett.</p>
 
@@ -1871,7 +1871,7 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
       androidNameInput.placeholder = t.androidNamePlaceholder;
       employeeNumberInput.placeholder = currentLanguage === "sv" ? "Anställningsnummer" : "Employee number";
       androidPhoneInput.placeholder = t.androidPhonePlaceholder;
-      document.getElementById("phoneCountryHint").textContent = currentLanguage === "sv" ? "Ange landskod om du har ett utländskt nummer." : "Include your country code if your number is not Swedish.";
+      document.getElementById("phoneCountryHint").textContent = currentLanguage === "sv" ? "Ange landskod om du inte har ett svenskt nummer." : "Include your country code if your number is not Swedish.";
       androidRegistrationSubmit.textContent = currentLanguage === "sv" ? "Fortsätt" : "Continue";
       androidRegistrationClose.setAttribute("aria-label", t.androidRegistrationClose);
       document.getElementById("paymentCopy").textContent = currentLanguage === "sv" ? "Betala 400 kr till 076-834 72 79 för att säkra din biljett. Skriv anställningsnummer och namn som meddelande." : "Pay 400 SEK to 076-834 72 79 to secure your ticket. Enter your employee number and name as the message.";
