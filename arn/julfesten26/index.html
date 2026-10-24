@@ -441,6 +441,61 @@
       font-size: 0.84rem;
     }
 
+    .guest-preview {
+      display: grid;
+      align-items: center;
+    }
+
+    .guest-preview > * {
+      grid-area: 1 / 1;
+      min-width: 0;
+    }
+
+    .guest-list-prompt {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 0;
+      text-align: center;
+    }
+
+    .guest-list-prompt-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .guest-list-prompt p {
+      max-width: 300px;
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.45;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .guest-app-store-link {
+      display: inline-block;
+      line-height: 0;
+      transition: transform 120ms ease, opacity 120ms ease;
+    }
+
+    .guest-app-store-link:hover,
+    .guest-app-store-link:focus-visible {
+      transform: translateY(-1px);
+      opacity: 0.88;
+    }
+
+    .guest-app-store-link img {
+      display: block;
+      width: 140px;
+      max-width: 100%;
+      height: auto;
+    }
+
     .guest-list {
       display: grid;
       gap: 8px;
@@ -1373,8 +1428,8 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
               <h3 class="group-title">Gäster</h3>
               <div class="accepted-count">Endast 149 platser kvar!</div>
             </div>
-            <div class="group-card-content">
-              <div class="guest-list">
+            <div class="group-card-content guest-preview">
+              <div class="guest-list" aria-hidden="true">
                 <div class="guest-item">
                   <img class="avatar" src="https://www.maggio.club/arn/guest-list/guest-1.jpg" alt="Guest avatar" />
                   <div class="guest-name">Vagör Duhär</div>
@@ -1398,6 +1453,13 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
                   <div class="guest-name">Osa Istället</div>
                   <div class="guest-status">Kommer</div>
                 </div>
+              </div>
+              <div class="guest-list-prompt" lang="en">
+                <img class="guest-list-prompt-icon" src="../../images/favIconMaggio.png" alt="Maggio" width="64" height="64" />
+                <p>Want to see the guest list?<br>Join the SAS Crew ARN club.</p>
+                <a class="guest-app-store-link" href="https://apps.apple.com/se/app/maggio-club/id6761921851?l=en-GB" aria-label="Download Maggio on the App Store">
+                  <img src="../../images/black.svg" alt="Download on the App Store" />
+                </a>
               </div>
             </div>
           </div>
