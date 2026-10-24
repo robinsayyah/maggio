@@ -1454,9 +1454,9 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
                   <div class="guest-status">Kommer</div>
                 </div>
               </div>
-              <div class="guest-list-prompt" lang="en">
+              <div class="guest-list-prompt">
                 <img class="guest-list-prompt-icon" src="../../images/favIconMaggio.png" alt="Maggio" width="64" height="64" />
-                <p>Want to see the guest list?<br>Join the SAS Crew ARN club.</p>
+                <p><span id="guestListQuestion">Vill du se gästlistan?</span><br><span id="guestListInvitation">Gå med i klubben SAS Crew ARN.</span></p>
                 <a class="guest-app-store-link" href="https://apps.apple.com/se/app/maggio-club/id6761921851?l=en-GB" aria-label="Download Maggio on the App Store">
                   <img src="../../images/black.svg" alt="Download on the App Store" />
                 </a>
@@ -1766,6 +1766,9 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
         guestsTitle: "Gäster",
         acceptedCount: "Endast 149 platser kvar!",
         guestStatus: "Kommer",
+        guestListQuestion: "Vill du se gästlistan?",
+        guestListInvitation: "Gå med i klubben SAS Crew ARN.",
+        guestAppStoreLabel: "Hämta Maggio på App Store",
         lockTitle: "Ho ho ho!",
         lockCopy: "Ready for boarding? Ange koden för att gå vidare.",
         lockPlaceholder: "Ange kod",
@@ -1857,6 +1860,9 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
         guestsTitle: "Guests",
         acceptedCount: "Only 149 spots remaining!",
         guestStatus: "Attending",
+        guestListQuestion: "Want to see the guest list?",
+        guestListInvitation: "Join the SAS Crew ARN club.",
+        guestAppStoreLabel: "Download Maggio on the App Store",
         lockTitle: "Hello!",
         lockCopy: "Ready for boarding? Enter the code to view details and to secure your spot.",
         lockPlaceholder: "Enter code",
@@ -1975,6 +1981,9 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
       hostsTitle.textContent = t.hostsTitle;
       if (hostsCaption) hostsCaption.textContent = t.hostsCaption;
       guestsTitle.textContent = t.guestsTitle;
+      document.getElementById("guestListQuestion").textContent = t.guestListQuestion;
+      document.getElementById("guestListInvitation").textContent = t.guestListInvitation;
+      document.querySelector(".guest-app-store-link").setAttribute("aria-label", t.guestAppStoreLabel);
       acceptedCount.textContent = t.acceptedCount;
       guestStatusLabels.forEach((label) => {
         label.textContent = t.guestStatus;
