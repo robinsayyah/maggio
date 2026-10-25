@@ -104,14 +104,18 @@
 
     .hero-panel {
       position: relative;
-      min-height: 720px;
+      align-self: start;
       border-radius: var(--radius-xl);
       overflow: hidden;
       box-shadow: var(--shadow);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)),
-        url("images/dirtySanta2.PNG") center center / cover no-repeat;
+      background: #590909;
       isolation: isolate;
+    }
+
+    .hero-image {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     .hero-panel::before {
@@ -134,8 +138,7 @@
     }
 
     .hero-content {
-      position: absolute;
-      inset: auto 0 0 0;
+      position: relative;
       z-index: 3;
       padding: 44px 32px 30px;
       display: flex;
@@ -1065,9 +1068,6 @@
         min-height: auto;
       }
 
-      .hero-panel {
-        min-height: 580px;
-      }
     }
 
     @media (max-width: 720px) {
@@ -1078,7 +1078,6 @@
       }
 
       .hero-panel {
-        min-height: 500px;
         border-radius: 28px;
       }
 
@@ -1185,8 +1184,8 @@
 :root { --sheet-bg:rgba(245,245,245,.97); --button-text:#101012; }
 html,body { background:#590909; }
 body { background-image:none; }
-.hero-panel { background:#590909 url("images/dirtySanta2.PNG") center top / 100% auto no-repeat; }
-.hero-panel::before { background:linear-gradient(180deg,rgba(89,9,9,.04) 5%,rgba(89,9,9,.18) 32%,#590909 72%); }
+.hero-panel { background:#590909; }
+.hero-panel::before { background:none; }
 .hero-panel::after { background:none; }
 .info-card { background:linear-gradient(160deg,#731010dd,#420606ee); }
 .button-primary { background:linear-gradient(#fafafa,#d9d9dc); }
@@ -1320,6 +1319,7 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
   <main class="shell">
     <section class="invite-layout">
       <div class="hero-panel">
+        <img class="hero-image" src="images/dirtySanta2.PNG" alt="" />
         <div class="hero-language">
           <div class="language-switch" aria-label="Language switcher">
             <button class="language-button" id="langSvButton" type="button">SV</button>
