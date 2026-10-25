@@ -138,9 +138,11 @@
     }
 
     .hero-content {
-      position: relative;
+      position: absolute;
+      inset: auto 0 0;
       z-index: 3;
-      padding: 44px 32px 30px;
+      padding: 100px 32px 30px;
+      background: linear-gradient(to top, #590909 0%, rgba(89, 9, 9, 0.9) 28%, rgba(89, 9, 9, 0.55) 60%, rgba(89, 9, 9, 0) 100%);
       display: flex;
       flex-direction: column;
     }
@@ -1082,7 +1084,7 @@
       }
 
       .hero-content {
-        padding: 28px 20px 20px;
+        padding: 72px 20px 20px;
       }
 
       .hero-kicker {
