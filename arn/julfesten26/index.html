@@ -1282,12 +1282,11 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
 #copySwishStatus { font-size: .8rem; opacity: .8; }
 #copySwishNumber a, #copySwishNumber a[x-apple-data-detectors] { color: #fff !important; -webkit-text-fill-color: #fff; text-decoration: none !important; }
 
-    .cta-price-note { margin: 10px 0 0; color: var(--muted); font-size: .8rem; line-height: 1.5; }
-
-    /* Early Bird pricing, kept in the existing invitation design. */
+    /* Current ticket price with the previous Early Bird offer retained. */
     .boarding-prices {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
       gap: 10px;
     }
     .boarding-tier {
@@ -1296,13 +1295,23 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
       border: 1px solid rgba(255,255,255,.13);
       background: rgba(255,255,255,.055);
     }
-    .boarding-tier.is-early {
+    .boarding-tier.is-current {
+      justify-self: start;
       background: rgba(255,255,255,.14);
       border-color: rgba(255,255,255,.26);
     }
     .boarding-tier-label { margin: 0 0 10px; font-size: .79rem; font-weight: 600; color: rgba(255,255,255,.83); }
-    .boarding-tier-price { margin: 0 0 5px; font-size: clamp(1.55rem,3vw,1.95rem); font-weight: 700; letter-spacing: -.045em; line-height: 1; }
+    .boarding-tier-price { margin: 0 0 5px; font-size: clamp(2rem,4vw,2.5rem); font-weight: 700; letter-spacing: -.045em; line-height: 1; }
     .boarding-tier-date { margin: 0; font-size: .76rem; line-height: 1.4; color: rgba(255,255,255,.72); }
+    .boarding-tier.is-past {
+      padding: 12px;
+      background: rgba(255,255,255,.14);
+      border-color: rgba(255,255,255,.26);
+      opacity: .35;
+    }
+    .boarding-tier.is-past .boarding-tier-label { margin-bottom: 8px; font-size: .72rem; }
+    .boarding-tier.is-past .boarding-tier-price { font-size: 1.5rem; }
+    .boarding-tier.is-past .boarding-tier-date { font-size: .7rem; }
     .boarding-explanation { margin-top: 12px; padding: 0 2px; color: var(--muted); font-size: .8rem; line-height: 1.5; }
     .boarding-explanation p { margin: 0; }
     .boarding-explanation p + p { margin-top: 6px; }
@@ -1376,15 +1385,15 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
           <div class="group-card boarding-group" id="boardingPriceCard">
             <div class="group-card-content">
               <div class="boarding-prices" aria-label="Biljettpriser">
-                <div class="boarding-tier is-early">
-                  <p class="boarding-tier-label" id="boardingEarlyLabel">Early Bird</p>
-                  <p class="boarding-tier-price">400 kr</p>
-                  <p class="boarding-tier-date" id="boardingEarlyDate">Nu!</p>
-                </div>
-                <div class="boarding-tier">
-                  <p class="boarding-tier-label" id="boardingRegularLabel">Regular</p>
-                  <p class="boarding-tier-price">450 kr</p>
+                <div class="boarding-tier is-current">
+                  <p class="boarding-tier-label" id="boardingRegularLabel">Pris</p>
+                  <p class="boarding-tier-price" id="boardingRegularPrice">450 kr</p>
                   <p class="boarding-tier-date" id="boardingRegularDate">Från 1 november</p>
+                </div>
+                <div class="boarding-tier is-past">
+                  <p class="boarding-tier-label">Early Bird</p>
+                  <p class="boarding-tier-price" id="boardingEarlyPrice">400 kr</p>
+                  <p class="boarding-tier-date" id="boardingEarlyStatus">Avslutat</p>
                 </div>
               </div>
               <div class="boarding-explanation" id="boardingExplanation">
@@ -1395,7 +1404,6 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
                 <div class="cta-wrap">
                   <button class="button button-primary" id="rsvpButton" type="button">OSA</button>
                 </div>
-                <p class="cta-price-note" id="ctaPriceNote">Priset höjs till 450 kr den 1 november.</p>
                 <button class="inline-link" id="termsButton" type="button">Villkor och frågor</button>
               </div>
             </div>
@@ -1757,8 +1765,9 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
         timeValue: "11 december 2026<br />19:00 - 01:00",
         placeLabel: "Plats",
         placeValue: "Stockholm City",
-        boardingEarlyDate: "Nu!",
+        boardingRegularLabel: "Pris",
         boardingRegularDate: "Från 1 november",
+        boardingEarlyStatus: "Avslutat",
         boardingExplanation: "<p>Väntar du på decemberrostern? Vi förstår! Får du förhinder hjälper vi gärna till att försöka hitta en kollega som vill ta över din biljett.</p>",
         rsvpButton: "Köp biljett",
         rsvpButtonFull: "Köp biljett",
@@ -1851,8 +1860,9 @@ button.payment-number:focus-visible { outline: 2px solid currentColor; outline-o
         timeValue: "Friday, December 11, 2026<br />19:00 - 01:00",
         placeLabel: "Location",
         placeValue: "Stockholm City",
-        boardingEarlyDate: "Now!",
+        boardingRegularLabel: "Price",
         boardingRegularDate: "From November 1",
+        boardingEarlyStatus: "Ended",
         boardingExplanation: "<p>Waiting for your December roster? We get it! If you can’t make it, we’ll gladly try to help you find a colleague to take over your ticket.</p>",
         rsvpButton: "Buy Ticket",
         rsvpButtonFull: "Buy Ticket",
@@ -1968,7 +1978,10 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
       applyUnlockedCopy();
       welcomeCopy.innerHTML = t.welcomeCopy;
       noteCopy.innerHTML = t.noteCopy;
-      document.getElementById("boardingEarlyDate").textContent = t.boardingEarlyDate;
+      document.getElementById("boardingRegularLabel").textContent = t.boardingRegularLabel;
+      document.getElementById("boardingRegularPrice").textContent = currentLanguage === "sv" ? "450 kr" : "450 SEK";
+      document.getElementById("boardingEarlyPrice").textContent = currentLanguage === "sv" ? "400 kr" : "400 SEK";
+      document.getElementById("boardingEarlyStatus").textContent = t.boardingEarlyStatus;
       document.getElementById("boardingRegularDate").textContent = t.boardingRegularDate;
       document.getElementById("boardingExplanation").innerHTML = t.boardingExplanation;
       document.querySelector(".boarding-prices").setAttribute("aria-label", currentLanguage === "sv" ? "Biljettpriser" : "Ticket prices");
@@ -1979,7 +1992,6 @@ Object.assign(translations.en,{"androidRegistrationTitle": "Register for the Chr
       detailRows[1].querySelector(".detail-value").textContent = t.placeValue;
       rsvpButton.textContent = eventIsFull ? t.rsvpButtonFull : t.rsvpButton;
       termsButton.textContent = t.termsButton;
-      document.getElementById("ctaPriceNote").textContent = currentLanguage === "sv" ? "Priset höjs till 450 kr den 1 november." : "Price increases to 450 SEK on November 1.";
       hostsTitle.textContent = t.hostsTitle;
       if (hostsCaption) hostsCaption.textContent = t.hostsCaption;
       guestsTitle.textContent = t.guestsTitle;
